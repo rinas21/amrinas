@@ -23,9 +23,11 @@
     <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/myself.png">
     <link rel="stylesheet" href='./files/style.css'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,19 +35,10 @@
   "name": "A.M. Rinas",
   "description": "Software Engineer and Full-Stack Developer focused on AI, DevOps, and modern web applications.",
   "image": "https://rinas21.github.io/amrinas/img/myself.png",
-  "alternateName": ["AM Rinas", "Rinas AM", "A M Rinas"],
   "jobTitle": "Software Engineer",
   "worksFor": {
     "@type": "Organization",
-    "name": "hSenid Mobile Solutions (Pvt) Ltd"
-  },
-  "affiliation": {
-    "@type": "Organization",
-    "name": "hSenid Mobile Solutions (Pvt) Ltd"
-  },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "Open University of Sri Lanka"
+    "name": "Wincore Solutions"
   },
   "url": "https://rinas21.github.io/amrinas/",
   "sameAs": [
@@ -53,46 +46,31 @@
     "https://www.youtube.com/@rinas0",
     "https://www.researchgate.net/profile/Mohomad-Rinas",
     "https://rinas21.github.io/amrinas"
-  ],
-  "knowsAbout": [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Full-Stack Development",
-    "DevOps",
-    "Cloud Computing",
-    "Python",
-    "Java",
-    "Docker"
   ]
 }
 </script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "A.M. Rinas Portfolio",
-  "url": "https://rinas21.github.io/amrinas/",
-  "inLanguage": "en",
-  "description": "Official portfolio of A.M. Rinas with projects, skills, and professional profile details."
-}
-</script>
-
 </head>
 
 <body>
 
+    <!-- ===== NAVBAR ===== -->
     <header class="header">
-
         <a href="#" class="logo">Portfolio</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
         <nav class="navbar" id="myLinks">
             <a href="#Home" style="--i:1" class="active">Home</a>
             <a href="#About" style="--i:2">About</a>
             <a href="#Skills" style="--i:3">Skills</a>
-            <a href="#Projects" style="--i:4">Projects</a>
-            <a href="#Services" style="--i:5">Services</a>
-            <a href="#Contact" style="--i:6">Contact</a>
+            <a href="#Experience" style="--i:4">Experience</a>
+            <a href="#Projects" style="--i:5">Projects</a>
+            <a href="#Services" style="--i:6">Services</a>
+            <a href="#Contact" style="--i:7">Contact</a>
         </nav>
     </header>
+
+    <!-- ===== HOME ===== -->
     <section class="home" id="Home">
         <div class="home-content">
             <h3>Hello, I'm</h3>
@@ -101,351 +79,365 @@
                 A <span class="text">Software Engineer</span> passionate about building reliable systems,<br>
                 solving real-world problems, and growing as a <span class="text">Full-Stack Developer</span>.
             </h4>
-
-            <div class="img">
-                <img src="./img/myself.png" class="responsive" alt="A.M.Rinas">
-            </div>
-
             <div class="home-sci">
-                <a href="https://www.linkedin.com/in/amrinas" style="--i:7" target="_blank"><i
-                        class='bx bxl-linkedin'></i></a>
-                <a href="https://qamastery.blogspot.com" style="--i:8" target="_blank"><i
-                        class='bx bxl-blogger'></i></a>
+                <a href="https://www.linkedin.com/in/amrinas" style="--i:7" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://qamastery.blogspot.com" style="--i:8" target="_blank"><i class='bx bxl-blogger'></i></a>
                 <a href="https://medium.com/@amrinas" style="--i:9" target="_blank"><i class='bx bxl-medium'></i></a>
-                <a href="https://www.youtube.com/channel/UCDz9pd7wGEEu-YJf90KIqhw" style="--i:10" target="_blank"><i
-                        class='bx bxl-youtube'></i></a>
+                <a href="https://www.youtube.com/channel/UCDz9pd7wGEEu-YJf90KIqhw" style="--i:10" target="_blank"><i class='bx bxl-youtube'></i></a>
                 <a href="https://github.com/rinas21" style="--i:11" target="_blank"><i class='bx bxl-github'></i></a>
             </div>
         </div>
+        <div class="img">
+            <img src="./img/myself.png" class="responsive" alt="A.M.Rinas">
+        </div>
     </section>
 
-
-
-
+    <!-- ===== ABOUT ===== -->
     <section>
         <div class="about" id="About">
-            <div class="about-img">
+            <div class="about-img gsap-slide-left">
                 <img src="./img/myself2.png" class="second-image" alt="A.M.Rinas">
             </div>
-            <div class="about-text">
+            <div class="about-text gsap-slide-right">
                 <h2>About <span>Me</span></h2>
                 <p>
-                    I'm a dedicated and adaptable software engineering student with a strong background in various
-                    technologies.
-                    My expertise includes Software Engineering, Web Development, Cybersecurity, and Linux. Along with my
-                    degree,
-                    I have completed courses in Python, SQL, Java, and Linux, which have helped me build
-                    practical projects.
-                    One notable project is the "Drowsiness Detection & Alerting System," where I honed my skills as a
-                    team player.
+                    I'm a dedicated Software Engineer currently working as a <strong>Full Stack Consultant at Wincore Solutions</strong>. With a strong background across full-stack development, QA engineering, DevOps automation, and data analytics, I build scalable real-world software solutions.
                     <br><br>
-                    I am currently seeking opportunities in roles that allow me to leverage my technical skills, learn,
-                    and contribute to innovative solutions.
+                    My expertise spans Java, Python, Docker, Cloud platforms, and modern web technologies. I thrive in fast-paced agile environments and am passionate about clean code, system reliability, and continuous improvement.
                 </p>
             </div>
         </div>
     </section>
 
-
-
+    <!-- ===== SKILLS / TECH STACK ===== -->
     <section id="Skills">
-        <h2 class="subtitle">My <span>Skills</span></h2>
-        <div class="skill-container">
+        <h2 class="subtitle gsap-fade-up">My <span>Tech Stack</span></h2>
+        <div class="tech-stack">
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>Programming Languages</h2>
-                    <p>Languages I work with:</p>
-                    <ul>
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>JavaScript</li>
-                        <li>HTML & CSS</li>
-                        <li>SCSS</li>
-                        <li>Shell Script</li>
-                        <li>R</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-code-alt'></i> Languages &amp; Frameworks</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/>
+                    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+                    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+                    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
+                    <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP"/>
+                    <img src="https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white" alt="R"/>
+                    <img src="https://img.shields.io/badge/Shell_Script-E5A50A?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Shell"/>
+                    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js"/>
+                    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+                    <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native"/>
+                    <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express"/>
+                    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+                    <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue"/>
+                    <img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white" alt="GraphQL"/>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>Web & App Development</h2>
-                    <p>Technologies and frameworks used:</p>
-                    <ul>
-                        <li>JSX</li>
-                        <li>React Native</li>
-                        <li>PHP</li>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
-                        <li>Firebase</li>
-                        <li>phpMyAdmin</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-data'></i> Databases &amp; Data Tools</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
+                    <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+                    <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
+                    <img src="https://img.shields.io/badge/IBM_Db2-0052CC?style=for-the-badge&logo=ibm&logoColor=white" alt="IBM Db2"/>
+                    <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white" alt="Firebase"/>
+                    <img src="https://img.shields.io/badge/Neo4j-008CC1?style=for-the-badge&logo=neo4j&logoColor=white" alt="Neo4j"/>
+                    <img src="https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" alt="DuckDB"/>
+                    <img src="https://img.shields.io/badge/Apache_Hadoop-FCCF32?style=for-the-badge&logo=apache-hadoop&logoColor=black" alt="Hadoop"/>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>QA & Testing Tools</h2>
-                    <p>Tools and practices for ensuring software quality:</p>
-                    <ul>
-                        <li>Postman</li>
-                        <li>JMeter</li>
-                        <li>Manual Testing</li>
-                        <li>Bug Debugging & Reporting</li>
-                        <li>Production Issue Analysis</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-cloud'></i> DevOps &amp; Cloud</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+                    <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" alt="Kubernetes"/>
+                    <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" alt="GCP"/>
+                    <img src="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=white" alt="Ansible"/>
+                    <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
+                    <img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white" alt="Prometheus"/>
+                    <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana"/>
+                    <img src="https://img.shields.io/badge/Loki-8AB8F9?style=for-the-badge&logo=grafana&logoColor=white" alt="Loki"/>
+                    <img src="https://img.shields.io/badge/SonarQube-2A2A72?style=for-the-badge&logo=sonarqube&logoColor=white" alt="SonarQube"/>
+                    <img src="https://img.shields.io/badge/Keycloak-0086D7?style=for-the-badge&logo=keycloak&logoColor=white" alt="Keycloak"/>
+                    <img src="https://img.shields.io/badge/Nginx-009688?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx"/>
+                    <img src="https://img.shields.io/badge/Apache_Tomcat-F8DC75?style=for-the-badge&logo=apache-tomcat&logoColor=black" alt="Tomcat"/>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>DevOps & Monitoring</h2>
-                    <p>Tools for CI/CD, monitoring, and deployment:</p>
-                    <ul>
-                        <li>Docker</li>
-                        <li>Prometheus</li>
-                        <li>Grafana</li>
-                        <li>Loki & Promtail</li>
-                        <li>Node Exporter</li>
-                        <li>Red Hat & CentOS</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-bar-chart-alt-2'></i> Data Engineering &amp; Analytics</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/Apache_Airflow-017CEE?style=for-the-badge&logo=apache-airflow&logoColor=white" alt="Airflow"/>
+                    <img src="https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white" alt="dbt"/>
+                    <img src="https://img.shields.io/badge/Airbyte-1F70C1?style=for-the-badge&logo=airbyte&logoColor=white" alt="Airbyte"/>
+                    <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=power-bi&logoColor=black" alt="Power BI"/>
+                    <img src="https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=google-colab&logoColor=white" alt="Colab"/>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>Database Technologies</h2>
-                    <p>Databases I've worked with:</p>
-                    <ul>
-                        <li>MySQL</li>
-                        <li>MSSQL</li>
-                        <li>MongoDB</li>
-                        <li>IBM Db2</li>
-                        <li>DuckDB</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-bug'></i> QA &amp; Testing</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white" alt="Postman"/>
+                    <img src="https://img.shields.io/badge/JMeter-1098F7?style=for-the-badge&logo=apache-jmeter&logoColor=white" alt="JMeter"/>
+                    <img src="https://img.shields.io/badge/Wireshark-0088CC?style=for-the-badge&logo=wireshark&logoColor=white" alt="Wireshark"/>
+                    <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" alt="Selenium"/>
+                    <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white" alt="Jira"/>
+                    <img src="https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white" alt="Jest"/>
                 </div>
             </div>
 
-            <div class="skill-box">
-                <div class="skill-content">
-                    <h2>Tools & Utilities</h2>
-                    <p>Additional tools and utilities I’m familiar with:</p>
-                    <ul>
-                        <li>Apache Tomcat</li>
-                        <li>Ansible</li>
-                        <li>Keycloak</li>
-                        <li>Wireshark</li>
-                        <li>Git & GitHub</li>
-                        <li>SonarQube</li>
-                        <li>Apache2</li>
-                    </ul>
+            <div class="tech-group gsap-fade-up">
+                <h3><i class='bx bx-desktop'></i> Tools &amp; OS</h3>
+                <div class="badge-group">
+                    <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux"/>
+                    <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+                    <img src="https://img.shields.io/badge/CentOS-262577?style=for-the-badge&logo=centos&logoColor=white" alt="CentOS"/>
+                    <img src="https://img.shields.io/badge/Red_Hat-C9272D?style=for-the-badge&logo=red-hat&logoColor=white" alt="Red Hat"/>
+                    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma"/>
+                    <img src="https://img.shields.io/badge/Blender-F5792A?style=for-the-badge&logo=blender&logoColor=white" alt="Blender"/>
                 </div>
             </div>
 
         </div>
     </section>
 
+    <!-- ===== PROFESSIONAL EXPERIENCE ===== -->
+    <section id="Experience">
+        <h2 class="subtitle gsap-fade-up">Professional <span>Experience</span></h2>
+        <div class="timeline">
 
+            <div class="timeline-item gsap-timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <h3>Full Stack Consultant</h3>
+                            <h4>Wincore Solutions</h4>
+                        </div>
+                        <span class="timeline-date">Apr 2026 – Present</span>
+                    </div>
+                    <ul class="timeline-list">
+                        <li>Designing and developing full-stack web applications for client projects across multiple domains.</li>
+                        <li>Deploying and managing cloud infrastructure using <strong>AWS, Oracle Cloud, and DigitalOcean</strong>.</li>
+                        <li>Building and maintaining <strong>client websites and WordPress solutions</strong>, including custom themes and integrations.</li>
+                        <li>Developing scalable backend services and APIs using <strong>Java and Node.js</strong>, and modern frontends using <strong>TypeScript</strong>.</li>
+                        <li>Handling end-to-end delivery including development, deployment, optimization, and client support.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">TypeScript</span>
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">WordPress</span>
+                        <span class="project-tag">DigitalOcean</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item gsap-timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <h3>Software Engineer</h3>
+                            <h4>hSenid Mobile Solutions (Pvt) Ltd</h4>
+                        </div>
+                        <span class="timeline-date">Jan 2025 – Mar 2026</span>
+                    </div>
+                    <ul class="timeline-list">
+                        <li>Developed new features and resolved issues in production-grade telecom applications.</li>
+                        <li>Participated in <strong>code reviews, DevOps automation, and agile sprints</strong>.</li>
+                        <li>Contributed to <strong>deployment workflows, CI/CD pipelines, and system integrations</strong>.</li>
+                        <li>Worked with <strong>Java, React, Node.js, GCP, Docker, and REST APIs</strong>.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Docker</span>
+                        <span class="project-tag">GCP</span>
+                        <span class="project-tag">REST APIs</span>
+                        <span class="project-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item gsap-timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div>
+                            <h3>Software Quality Assurance Engineer</h3>
+                            <h4>hSenid Mobile Solutions (Pvt) Ltd</h4>
+                        </div>
+                        <span class="timeline-date">Jan 2024 – Dec 2024</span>
+                    </div>
+                    <ul class="timeline-list">
+                        <li>Conducted <strong>manual, regression, and API testing</strong> to ensure software reliability across 1000+ modules.</li>
+                        <li>Built <strong>test environments, automation scripts, and pipelines</strong> using Postman &amp; JMeter.</li>
+                        <li>Collaborated with developers to resolve bugs and improve overall product quality.</li>
+                        <li>Utilized Wireshark, REST APIs, Shell Scripting, Jira, SQL, and JavaScript for testing workflows.</li>
+                    </ul>
+                    <div class="timeline-tags">
+                        <span class="project-tag">Postman</span>
+                        <span class="project-tag">JMeter</span>
+                        <span class="project-tag">Wireshark</span>
+                        <span class="project-tag">SQL</span>
+                        <span class="project-tag">Jira</span>
+                        <span class="project-tag">Shell Script</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
     <section id="Projects">
         <div id="portfolio">
             <div class="main-text" id="serv">
-                <h2>My <span>Projects</span></h2>
+                <h2 class="gsap-fade-up">My <span>Projects</span></h2>
                 <div class="project-container">
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-cog project-icon'></i>
                         <h3>Campaign Management System</h3>
                         <p><strong>Role:</strong> Developer Associate, Production Support</p>
-                        <p>• Bonus offering for their SIM users based on user profile and when they do transactions.</p>
-                        <p>• Worked on production-related issues and solved many issues the system is currently
-                            experiencing.</p>
+                        <p>• Bonus offering for SIM users based on user profile and transactions.</p>
+                        <p>• Worked on production-related issues and solved many critical system problems.</p>
                         <p>• Worked with technologies such as Java, Servlet, JSX, JS, Bash scripting, Ant, Maven.</p>
-                        <p>• Gained experience in solving real-world problems and fixed many production issues.</p>
                         <span class="project-tag">Java</span>
                         <span class="project-tag">Servlet</span>
                         <span class="project-tag">JSX</span>
-                        <span class="project-tag">JS</span>
                         <span class="project-tag">Bash Scripting</span>
-                        <span class="project-tag">Ant</span>
                         <span class="project-tag">Maven</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-group project-icon'></i>
-                        <h3>Customer Segmentation & Rewards</h3>
-                        <p><strong>Role:</strong> QA & Manual Tester</p>
+                        <h3>Customer Segmentation &amp; Rewards</h3>
+                        <p><strong>Role:</strong> QA &amp; Manual Tester</p>
                         <p>• Worked on a segmentation and rewarding application supporting peak-level promotions.</p>
-                        <p>• Conducted bug fixing and manual testing on over 1000 modules, set up testing environments,
-                            and built projects to ensure application quality.</p>
-                        <p>• Used SQL, JavaScript, IBM Db2, Java, shell scripting, Node.js, GraphQL, and Apache
-                            technologies.</p>
+                        <p>• Conducted bug fixing and manual testing on over 1000 modules.</p>
                         <span class="project-tag">SQL</span>
-                        <span class="project-tag">JavaScript</span>
                         <span class="project-tag">IBM Db2</span>
                         <span class="project-tag">Java</span>
                         <span class="project-tag">Node.js</span>
                         <span class="project-tag">GraphQL</span>
-                        <span class="project-tag">Shell Scripting</span>
-                        <span class="project-tag">Apache</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-transfer-alt project-icon'></i>
                         <h3>Mobile Number Portability</h3>
-                        <p><strong>Role:</strong> QA & API Tester</p>
-                        <p>• Worked on mobile number portability application enabling SIM card network conversion while
-                            keeping the phone number.</p>
-                        <p>• Implemented testing servers and API simulators and created scripts and pipelines for
-                            testing.</p>
-                        <p>• Gained hands-on experience with Java, Postman, Wireshark, REST APIs, communication
-                            protocols, and MySQL.</p>
+                        <p><strong>Role:</strong> QA &amp; API Tester</p>
+                        <p>• Mobile number portability enabling SIM card network conversion while keeping phone number.</p>
+                        <p>• Implemented testing servers, API simulators, and testing pipelines.</p>
                         <span class="project-tag">Java</span>
                         <span class="project-tag">Postman</span>
                         <span class="project-tag">Wireshark</span>
                         <span class="project-tag">REST APIs</span>
                         <span class="project-tag">MySQL</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-bar-chart-alt project-icon'></i>
                         <h3>System Monitoring Dashboard</h3>
                         <p><strong>Role:</strong> Developer</p>
-                        <p>• Planned, architected, and demonstrated a system monitoring dashboard for clustered servers.
-                        </p>
-                        <p>• Gained hands-on experience with Grafana, Prometheus, Promtail, Loki, and Node Exporter, and
-                            created dashboards to visualize server data.</p>
+                        <p>• Architected a system monitoring dashboard for clustered servers.</p>
+                        <p>• Created dashboards with Grafana, Prometheus, Promtail, Loki, and Node Exporter.</p>
                         <span class="project-tag">Grafana</span>
                         <span class="project-tag">Prometheus</span>
-                        <span class="project-tag">Promtail</span>
                         <span class="project-tag">Loki</span>
                         <span class="project-tag">Node Exporter</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-wifi project-icon'></i>
                         <h3>Wi-Fi Authentication App</h3>
                         <p><strong>Role:</strong> QA</p>
-                        <p>• Worked on a mobile Wi-Fi authentication application for authenticating users connecting to
-                            the network.</p>
-                        <p>• Implemented testing servers and API simulators and created scripts and pipelines for
-                            testing.</p>
-                        <p>• Gained hands-on experience with Red Hat, communication protocols, networking tools, MySQL,
-                            and API protocols.</p>
+                        <p>• Mobile Wi-Fi authentication application for network user authentication.</p>
+                        <p>• Implemented testing servers and API simulators with networking tools.</p>
                         <span class="project-tag">Red Hat</span>
                         <span class="project-tag">Shell Scripting</span>
                         <span class="project-tag">MySQL</span>
-                        <span class="project-tag">API Protocols</span>
                         <span class="project-tag">Networking</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-book-reader project-icon'></i>
                         <h3>Education Suggestion System</h3>
                         <p><strong>Role:</strong> Full Stack Developer</p>
                         <p>• Built an educational suggestion system to help students focus on areas of improvement.</p>
-                        <p>• Developed the application through the full software development life cycle (SDLC),
-                            including gathering requirements and maintaining the system.</p>
-                        <p>• Used PHP, Firebase, React Native, MySQL, HTML, JavaScript, CSS3, and phpMyAdmin.</p>
+                        <p>• Full SDLC including requirements gathering and system maintenance.</p>
                         <span class="project-tag">PHP</span>
                         <span class="project-tag">Firebase</span>
                         <span class="project-tag">React Native</span>
                         <span class="project-tag">MySQL</span>
                         <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS3</span>
-                        <span class="project-tag">phpMyAdmin</span>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card gsap-card">
                         <i class='bx bx-bulb project-icon'></i>
                         <h3>Other Contributions</h3>
                         <p>• Built chatbots, web interfaces, and sample web pages in different frameworks.</p>
                         <p>• Conducted research and development in Kubernetes, Docker, AI, and machine learning.</p>
-                        <p>• Worked on various projects involving JavaScript, HTML, CSS, Python, and Java, and
-                            contributed to frameworks based on those technologies.</p>
-                        <p>• Completed numerous certifications and training in data science and various technologies.
-                        </p>
+                        <p>• Completed numerous certifications and training in data science and various technologies.</p>
                         <span class="project-tag">Python</span>
                         <span class="project-tag">Docker</span>
                         <span class="project-tag">Kubernetes</span>
-                        <span class="project-tag">AI</span>
-                        <span class="project-tag">Machine Learning</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">AI/ML</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
+    <!-- ===== SERVICES ===== -->
     <section id="Services">
         <div class="project">
             <div class="container">
-                <h1 class="sub-title">My <span>Services</span></h1>
+                <h1 class="sub-title gsap-fade-up">My <span>Services</span></h1>
                 <div class="prj-list">
-                    <!-- Web Development -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bx-code' style="color: #F2A85F;"></i>
                         <h2>Web Development</h2>
-                        <p>Specialized in developing dynamic, responsive websites and applications using modern
-                            frameworks like React and JavaScript. Proficient in integrating front-end technologies with
-                            backend systems.</p>
+                        <p>Specialized in developing dynamic, responsive websites and applications using modern frameworks like React and JavaScript. Proficient in integrating front-end technologies with backend systems.</p>
                     </div>
-
-                    <!-- UI/UX Design -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bx-cube' style="color: #F2A85F;"></i>
                         <h2>UI / UX Design</h2>
-                        <p>Focused on delivering clean and user-friendly designs that enhance usability and provide a
-                            seamless user experience across various platforms.</p>
+                        <p>Focused on delivering clean and user-friendly designs that enhance usability and provide a seamless user experience across various platforms.</p>
                     </div>
-
-                    <!-- Java & Android Development -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bxl-java' style="color: #F2A85F;"></i>
-                        <h2>Java & Android Development</h2>
-                        <p>Experienced in Java programming, especially in building Android applications using Android
-                            Studio. Can develop both native and hybrid mobile apps.</p>
+                        <h2>Java &amp; Android Development</h2>
+                        <p>Experienced in Java programming, especially in building Android applications using Android Studio. Can develop both native and hybrid mobile apps.</p>
                     </div>
-
-                    <!-- QA & Automation Testing -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bx-check-square' style="color: #F2A85F;"></i>
-                        <h2>QA & Automation Testing</h2>
-                        <p>Strong background in manual and automated testing. Proficient in tools like Selenium and
-                            Katalon for writing test cases and ensuring high-quality code through rigorous testing
-                            practices.</p>
+                        <h2>QA &amp; Automation Testing</h2>
+                        <p>Strong background in manual and automated testing. Proficient in tools like Selenium and Katalon for writing test cases and ensuring high-quality code.</p>
                     </div>
-
-                    <!-- Git & CI/CD Pipeline Integration -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bxl-git' style="color: #F2A85F;"></i>
-                        <h2>Git & CI/CD Pipeline Integration</h2>
-                        <p>Proficient in using Git for version control and integrating CI/CD pipelines using GitLab for
-                            seamless deployment and continuous integration of software applications.</p>
+                        <h2>Git &amp; CI/CD Pipelines</h2>
+                        <p>Proficient in using Git for version control and integrating CI/CD pipelines using GitLab for seamless deployment and continuous integration.</p>
                     </div>
-
-                    <!-- Database Development -->
-                    <div>
+                    <div class="gsap-card">
                         <i class="fas fa-database" style="color: #F2A85F;"></i>
                         <h2>Database Development</h2>
-                        <p>Experienced in working with databases like MySQL and MongoDB, ensuring data integrity,
-                            optimized queries, and efficient database management.</p>
+                        <p>Experienced in working with databases like MySQL and MongoDB, ensuring data integrity, optimized queries, and efficient database management.</p>
                     </div>
-
-                    <!-- Performance & Security Testing -->
-                    <div>
+                    <div class="gsap-card">
                         <i class='bx bx-shield-alt-2' style="color: #F2A85F;"></i>
-                        <h2>Performance & Security Testing</h2>
-                        <p>Passionate about ensuring robust software performance through stress and load testing, along
-                            with securing applications by performing OWASP security testing.</p>
+                        <h2>Performance &amp; Security Testing</h2>
+                        <p>Ensuring robust software performance through stress and load testing, along with securing applications by performing OWASP security testing.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="contacts" id="Contact">
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contacts gsap-fade-up" id="Contact">
         <div class="contact-text">
             <h2>Contact <span>Me</span></h2>
             <h4>Open to collaborate on meaningful projects</h4>
-
             <div class="contact-icons">
                 <a href="mailto:mohomadrinas00@gmail.com"><i class='bx bxs-send'></i></a>
                 <a href="https://github.com/rinas21" target="_blank"><i class='bx bxl-github'></i></a>
@@ -463,6 +455,4 @@
     <script src="./files/script.js"></script>
 </body>
 
-
 </html>
-
