@@ -127,8 +127,17 @@ const navLinks  = document.querySelectorAll(".navbar a");
 window.addEventListener("scroll", () => {
     let current = "";
     sections.forEach(s => {
-        if (window.pageYOffset >= s.offsetTop - 120) current = s.getAttribute("id") || "";
+        const id = s.getAttribute("id");
+        if (id && window.pageYOffset >= s.offsetTop - 120) {
+            current = id;
+        }
     });
+    
+    // Force 'Contact' active if we've reached the absolute bottom of the page
+    if (window.innerHeight + Math.ceil(window.pageYOffset) >= document.documentElement.scrollHeight - 5) {
+        current = "Contact";
+    }
+    
     navLinks.forEach(l => {
         l.classList.remove("active");
         if (l.getAttribute("href") === "#" + current) l.classList.add("active");
