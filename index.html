@@ -78,10 +78,11 @@
             <a href="#About" style="--i:2">About</a>
             <a href="#Skills" style="--i:3">Skills</a>
             <a href="#Experience" style="--i:4">Experience</a>
-            <a href="#LiveProjects" style="--i:5">Live</a>
-            <a href="#Projects" style="--i:6">Projects</a>
-            <a href="#Services" style="--i:7">Services</a>
-            <a href="#Contact" style="--i:8">Contact</a>
+            <a href="#Publications" style="--i:5">Publications</a>
+            <a href="#LiveProjects" style="--i:6">Live</a>
+            <a href="#Projects" style="--i:7">Projects</a>
+            <a href="#Services" style="--i:8">Services</a>
+            <a href="#Contact" style="--i:9">Contact</a>
         </nav>
     </header>
 
@@ -322,6 +323,118 @@
                         <span class="project-tag">Jira</span>
                         <span class="project-tag">Shell Script</span>
                     </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== PUBLICATIONS ===== -->
+    <section id="Publications">
+        <style>
+            .pub-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                max-width: 1000px;
+                margin: 2rem auto 0;
+                padding: 0 20px;
+            }
+            .pub-item {
+                background: rgba(255, 255, 255, 0.03);
+                border-left: 4px solid #F2A85F;
+                padding: 1.5rem 2rem;
+                border-radius: 10px;
+                transition: transform 0.3s ease, background 0.3s ease;
+            }
+            .pub-item:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.06);
+            }
+            .pub-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #fff;
+                margin-bottom: 0.5rem;
+                line-height: 1.4;
+            }
+            .pub-authors {
+                color: #aaa;
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+                font-style: italic;
+            }
+            .pub-meta {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 15px;
+                font-size: 0.9rem;
+                color: #ccc;
+            }
+            .pub-badge {
+                background: rgba(242, 168, 95, 0.1);
+                color: #F2A85F;
+                padding: 5px 12px;
+                border-radius: 5px;
+                font-weight: 600;
+                border: 1px solid #F2A85F;
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .pub-badge.ieee {
+                background: #F2A85F;
+                color: #000;
+                box-shadow: 0 0 10px rgba(242, 168, 95, 0.4);
+            }
+            .pub-venue {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        </style>
+        <h2 class="subtitle gsap-fade-up">Research <span>Publications</span></h2>
+        
+        <div class="pub-list">
+            
+            <div class="pub-item gsap-fade-up">
+                <h3 class="pub-title">A Version-Aware Metric for Measuring Innovation in Software Code Patterns</h3>
+                <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+                <div class="pub-meta">
+                    <span class="pub-badge ieee"><i class="fas fa-award"></i> IEEE Highlight</span>
+                    <span class="pub-venue"><i class="bx bx-calendar"></i> Feb 2026</span>
+                    <span class="pub-venue"><i class="bx bx-map"></i> International Conference on Advanced Research in Computing (ICARC 2026) - IEEE</span>
+                </div>
+            </div>
+
+            <div class="pub-item gsap-fade-up" style="border-left-color: #4CAF50;">
+                <h3 class="pub-title">Bridging the Academic Management Support Gap and Enhancing Student Autonomy: A Needs-Assessment for a Smart Assistant Integrated with the OULMS at the Open University of Sri Lanka</h3>
+                <div class="pub-authors">Mohomad Rinas, B. K. S. Mendis, D. A. G. De Silva, P. G. P. Perera, Lakshan Gunasekara, Saliya Wickramasinghe</div>
+                <div class="pub-meta">
+                    <span class="pub-badge" style="color: #4CAF50; border-color: #4CAF50; background: rgba(76, 175, 80, 0.1);"><i class="bx bx-globe"></i> International Conference</span>
+                    <span class="pub-venue"><i class="bx bx-calendar"></i> Feb 2026</span>
+                    <span class="pub-venue"><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
+                </div>
+            </div>
+
+            <div class="pub-item gsap-fade-up" style="border-left-color: #4CAF50;">
+                <h3 class="pub-title">SinglishGPT: Enhancing Real-Time Translation and Information Retrieval for Singlish Chatbots</h3>
+                <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+                <div class="pub-meta">
+                    <span class="pub-badge" style="color: #4CAF50; border-color: #4CAF50; background: rgba(76, 175, 80, 0.1);"><i class="bx bx-globe"></i> International Conference</span>
+                    <span class="pub-venue"><i class="bx bx-calendar"></i> Feb 2026</span>
+                    <span class="pub-venue"><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
+                </div>
+            </div>
+
+            <div class="pub-item gsap-fade-up" style="border-left-color: #4CAF50;">
+                <h3 class="pub-title">Pioneering Large Language Model Integration for Proactive Error Detection and Code Modification Recommendations in Integration Testing</h3>
+                <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+                <div class="pub-meta">
+                    <span class="pub-badge" style="color: #4CAF50; border-color: #4CAF50; background: rgba(76, 175, 80, 0.1);"><i class="bx bx-globe"></i> International Conference</span>
+                    <span class="pub-venue"><i class="bx bx-calendar"></i> Feb 2026</span>
+                    <span class="pub-venue"><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
                 </div>
             </div>
 
