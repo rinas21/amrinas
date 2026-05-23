@@ -1,0 +1,23 @@
+# A.M. Rinas Portfolio
+
+> A.M. Rinas is a Software Engineer and Full-Stack Developer with expertise in AI, DevOps, Java, Python, and modern web applications. Currently working as a Full Stack Consultant at Wincore Solutions.
+
+## About
+A.M. Rinas is a dedicated Software Engineer with a strong background across full-stack development, QA engineering, DevOps automation, and data analytics, building scalable real-world software solutions. Expertise spans Java, Python, Docker, Cloud platforms, and modern web technologies.
+
+## Professional Experience
+- **Full Stack Consultant at Wincore Solutions** (Apr 2026 - Present): Designing full-stack web applications, managing cloud infrastructure (AWS, Oracle Cloud, DigitalOcean), developing backend services (Java, Node.js) and modern frontends (TypeScript).
+- **Software Engineer at hSenid Mobile Solutions** (Jan 2025 - Mar 2026): Developed features in telecom applications, participated in code reviews, DevOps automation, CI/CD, worked with Java, React, Node.js, GCP, Docker.
+- **Software Quality Assurance Engineer at hSenid Mobile Solutions** (Jan 2024 - Dec 2024): Conducted manual, regression, and API testing, built automation scripts (Postman, JMeter).
+
+## Tech Stack
+- **Languages & Frameworks**: Java, Python, JavaScript, TypeScript, PHP, R, Shell, Node.js, React, React Native, Express, Flask, Vue, GraphQL
+- **Databases**: MySQL, PostgreSQL, MongoDB, IBM Db2, Firebase, Neo4j, DuckDB, Hadoop
+- **DevOps & Cloud**: Docker, Kubernetes, GCP, Ansible, Git, Prometheus, Grafana, Loki, SonarQube, Keycloak, Nginx, Tomcat
+- **Data Engineering**: Airflow, dbt, Airbyte, Power BI, Colab
+- **QA & Testing**: Postman, JMeter, Wireshark, Selenium, Jira, Jest
+
+## Contact & Links
+- Website: https://rinas21.github.io/amrinas/
+- GitHub: https://github.com/rinas21
+- LinkedIn: https://www.linkedin.com/in/amrinas
