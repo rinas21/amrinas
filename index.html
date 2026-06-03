@@ -45,7 +45,8 @@
     <meta name="twitter:description"
         content="Portfolio of A.M. Rinas with projects, skills, and services in software engineering.">
     <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/myself.webp">
-    <link rel="stylesheet" href='./files/style.min.css'>
+    <link rel="stylesheet" href="./files/style.css">
+    <link rel="stylesheet" href="./files/cyber-theme.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
@@ -92,15 +93,16 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="navbar" id="myLinks">
-            <a href="#Home" style="--i:1" class="active">Home</a>
-            <a href="#About" style="--i:2">About</a>
-            <a href="#Skills" style="--i:3">Skills</a>
-            <a href="#Experience" style="--i:4">Experience</a>
-            <a href="#Publications" style="--i:5">Publications</a>
-            <a href="#LiveProjects" style="--i:6">Live</a>
-            <a href="#Projects" style="--i:7">Projects</a>
-            <a href="#Services" style="--i:8">Services</a>
-            <a href="#Contact" style="--i:9">Contact</a>
+            <a href="index.html#Home" style="--i:1" class="active">Home</a>
+            <a href="index.html#About" style="--i:2">About</a>
+            <a href="index.html#Skills" style="--i:3">Skills</a>
+            <a href="index.html#Experience" style="--i:4">Experience</a>
+            <a href="index.html#Publications" style="--i:5">Publications</a>
+            <a href="index.html#LiveProjects" style="--i:6">Live</a>
+            <a href="index.html#Projects" style="--i:7">Projects</a>
+            <a href="index.html#Services" style="--i:8">Services</a>
+            <a href="blog.html" style="--i:9">Blog</a>
+            <a href="index.html#Contact" style="--i:10">Contact</a>
         </nav>
     </header>
 
@@ -108,65 +110,58 @@
     <section class="home" id="Home">
         <canvas id="hero-canvas"></canvas>
         <div class="home-content">
-            <h3>Hello, I'm</h3>
-            <h1 id="hero-name">
-                <span class="name-letter" style="--li:0">A</span><span class="name-letter" style="--li:1">.</span><span
-                    class="name-letter" style="--li:2">M</span><span class="name-letter" style="--li:3">.</span><span
-                    class="name-letter" style="--li:4">R</span><span class="name-letter" style="--li:5">i</span><span
-                    class="name-letter" style="--li:6">n</span><span class="name-letter" style="--li:7">a</span><span
-                    class="name-letter" style="--li:8">s</span>
+            <div class="hero-badge gsap-slide-top" style="--i:0.1s">
+                <span class="badge-dot"></span> Available for new opportunities
+            </div>
+            <h1 id="hero-name" class="hero-title gsap-slide-right" style="--i:0.2s">
+                Hi, I'm <span class="gradient-text">A.M. Rinas</span>
             </h1>
-            <h4 style="--i:6">
+            <h4 class="hero-subtitle gsap-slide-up" style="--i:0.3s">
                 A <span class="text">Software Engineer</span> passionate about building reliable systems,<br>
                 solving real-world problems, and growing as a <span class="text">Full-Stack Developer</span>.
             </h4>
-            <div class="home-sci">
-                <a href="https://www.linkedin.com/in/amrinas" style="--i:7" target="_blank" class="social-btn"><i
-                        class='bx bxl-linkedin'></i></a>
-                <a href="https://qamastery.blogspot.com" style="--i:8" target="_blank" class="social-btn"><i
-                        class='bx bxl-blogger'></i></a>
-                <a href="https://medium.com/@amrinas" style="--i:9" target="_blank" class="social-btn"><i
-                        class='bx bxl-medium'></i></a>
-                <a href="https://www.youtube.com/channel/UCDz9pd7wGEEu-YJf90KIqhw" style="--i:10" target="_blank"
-                    class="social-btn"><i class='bx bxl-youtube'></i></a>
-                <a href="https://github.com/rinas21" style="--i:11" target="_blank" class="social-btn"><i
-                        class='bx bxl-github'></i></a>
+            <div class="home-actions gsap-slide-up" style="--i:0.4s">
+                <a href="#Contact" class="btn primary-btn">Let's Talk <i class='bx bx-right-arrow-alt'></i></a>
+                <a href="#Projects" class="btn secondary-btn">View Work</a>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-num-row"><span class="stat-num" data-target="2">0</span><span
-                            class="stat-suffix">+</span></div>
+            <div class="home-sci gsap-slide-up" style="--i:0.5s">
+                <a href="https://www.linkedin.com/in/amrinas" target="_blank" class="social-btn"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://qamastery.blogspot.com" target="_blank" class="social-btn"><i class='bx bxl-blogger'></i></a>
+                <a href="https://medium.com/@amrinas" target="_blank" class="social-btn"><i class='bx bxl-medium'></i></a>
+                <a href="https://www.youtube.com/channel/UCDz9pd7wGEEu-YJf90KIqhw" target="_blank" class="social-btn"><i class='bx bxl-youtube'></i></a>
+                <a href="https://github.com/rinas21" target="_blank" class="social-btn"><i class='bx bxl-github'></i></a>
+            </div>
+            <div class="hero-stats gsap-slide-up" style="--i:0.6s">
+                <div class="stat-item glass-panel">
+                    <div class="stat-num-row"><span class="stat-num" data-target="2">0</span><span class="stat-suffix">+</span></div>
                     <span class="stat-label">Years Exp</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-num-row"><span class="stat-num" data-target="25">0</span><span
-                            class="stat-suffix">+</span></div>
+                <div class="stat-item glass-panel">
+                    <div class="stat-num-row"><span class="stat-num" data-target="25">0</span><span class="stat-suffix">+</span></div>
                     <span class="stat-label">Certifications</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-num-row"><span class="stat-num" data-target="15">0</span><span
-                            class="stat-suffix">+</span></div>
+                <div class="stat-item glass-panel">
+                    <div class="stat-num-row"><span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span></div>
                     <span class="stat-label">Projects</span>
                 </div>
             </div>
         </div>
-        <div class="img">
-            <img src="./img/myself.webp" class="responsive"
-                alt="A.M. Rinas - Software Engineer and Full-Stack Developer Portrait">
+        <div class="hero-img-wrapper gsap-zoom-in" style="--i:0.4s">
+            <div class="img-glow"></div>
+            <img src="./img/myself.webp" class="responsive hero-img" alt="A.M. Rinas - Software Engineer and Full-Stack Developer Portrait">
         </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
     <section>
         <div class="about" id="About">
+        <div class="section-glow"></div>
             <div class="about-img gsap-slide-left">
                 <img src="./img/myself2.webp" class="second-image"
                     alt="A.M. Rinas - Professional Software Quality Assurance Engineer">
             </div>
             <div class="about-text gsap-slide-right">
-                <h2>About <span>Me</span></h2>
+                <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
                 <p>
                     I'm a dedicated Software Engineer currently working as a <strong>Full Stack Consultant at Wincore
                         Solutions</strong>. With a strong background across full-stack development, QA engineering,
@@ -182,7 +177,8 @@
 
     <!-- ===== SKILLS / TECH STACK ===== -->
     <section id="Skills">
-        <h2 class="subtitle gsap-fade-up">My <span>Tech Stack</span></h2>
+        <div class="section-glow"></div>
+        <h2 class="subtitle gsap-fade-up">My <span class="gradient-text">Tech Stack</span></h2>
         <div class="tech-stack">
 
             <div class="tech-group gsap-fade-up">
@@ -328,7 +324,8 @@
 
     <!-- ===== PROFESSIONAL EXPERIENCE ===== -->
     <section id="Experience">
-        <h2 class="subtitle gsap-fade-up">Professional <span>Experience</span></h2>
+        <div class="section-glow"></div>
+        <h2 class="subtitle gsap-fade-up">Professional <span class="gradient-text">Experience</span></h2>
         <div class="timeline">
 
             <div class="timeline-item gsap-timeline-item">
@@ -427,6 +424,7 @@
 
     <!-- ===== PUBLICATIONS ===== -->
     <section id="Publications">
+        <div class="section-glow"></div>
         <style>
             .pub-list {
                 display: flex;
@@ -498,7 +496,7 @@
                 gap: 5px;
             }
         </style>
-        <h2 class="subtitle gsap-fade-up">Research <span>Publications</span></h2>
+        <h2 class="subtitle gsap-fade-up">Research <span class="gradient-text">Publications</span></h2>
 
         <div class="pub-list">
 
@@ -562,7 +560,8 @@
 
     <!-- ===== LIVE PROJECTS ===== -->
     <section id="LiveProjects">
-        <h2 class="subtitle gsap-fade-up">Live <span>Projects</span></h2>
+        <div class="section-glow"></div>
+        <h2 class="subtitle gsap-fade-up">Live <span class="gradient-text">Projects</span></h2>
         <div class="live-projects-grid">
 
             <a href="https://cse-atlas.vercel.app" target="_blank" class="simple-live-card gsap-card">
@@ -580,6 +579,7 @@
 
     <!-- ===== PROJECTS ===== -->
     <section id="Projects">
+        <div class="section-glow"></div>
         <div id="portfolio">
             <div class="main-text" id="serv">
                 <h2 class="gsap-fade-up">My <span>Projects</span></h2>
@@ -675,9 +675,10 @@
 
     <!-- ===== SERVICES ===== -->
     <section id="Services">
+        <div class="section-glow"></div>
         <div class="project">
             <div class="container">
-                <h1 class="sub-title gsap-fade-up">My <span>Services</span></h1>
+                <h2 class="sub-title gsap-fade-up">My <span class="gradient-text">Services</span></h2>
                 <div class="prj-list">
                     <div class="gsap-card">
                         <i class='bx bx-code' style="color: #F2A85F;"></i>
@@ -729,8 +730,9 @@
 
     <!-- ===== CONTACT ===== -->
     <section class="contacts gsap-fade-up" id="Contact">
+        <div class="section-glow"></div>
         <div class="contact-text">
-            <h2>Contact <span>Me</span></h2>
+            <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
             <h4>Open to collaborate on meaningful projects</h4>
             <div class="contact-icons">
                 <a href="mailto:mohomadrinas00@gmail.com"><i class='bx bxs-send'></i></a>

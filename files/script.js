@@ -96,9 +96,13 @@ document.addEventListener("mousemove", (e) => {
 // ===== SCROLL TO TOP =====
 const toTop = document.querySelector(".top");
 window.addEventListener("scroll", () => {
-    toTop.classList.toggle("active", window.pageYOffset > 200);
+    if (toTop) {
+        toTop.classList.toggle("active", window.pageYOffset > 200);
+    }
 }, { passive: true });
-toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+if (toTop) {
+    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+}
 
 // ===== HAMBURGER MENU =====
 const hamburger = document.getElementById("hamburger");
@@ -203,21 +207,8 @@ function addTilt(selector, intensity = 12) {
     });
 }
 
-addTilt(".project-card", 10);
-addTilt(".prj-list div", 8);
-
 // ===== MAGNETIC SOCIAL BUTTONS =====
-document.querySelectorAll(".social-btn").forEach(btn => {
-    btn.addEventListener("mousemove", (e) => {
-        const rect = btn.getBoundingClientRect();
-        const dx = e.clientX - (rect.left + rect.width  / 2);
-        const dy = e.clientY - (rect.top  + rect.height / 2);
-        btn.style.transform = `translate(${dx * 0.35}px, ${dy * 0.35}px)`;
-    });
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "";
-    });
-});
+// Keep social buttons stable for cleaner UI and better touch behavior.
 
 // ===== TIMELINE LEFT BORDER REVEAL =====
 const timelineObserver = new IntersectionObserver((entries) => {
@@ -280,15 +271,5 @@ gsap.utils.toArray(".gsap-card").forEach(el => {
 
 // Contact
 makeScrollAnim(".contacts.gsap-fade-up", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out" });
-
-// Rotating gradient angle on tech groups
-gsap.utils.toArray(".tech-group").forEach((group, i) => {
-    gsap.to(group, {
-        "--grad-angle": "495deg",
-        duration: 6 + i * 0.5,
-        repeat: -1,
-        ease: "none"
-    });
-});
 
 window.addEventListener("load", () => ScrollTrigger.refresh());

@@ -1,24 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
 
 :root {
-    --accent: #F2A85F;
-    --accent-dark: #A16B2D;
-    --accent-glow: rgba(242, 168, 95, 0.25);
-    --green: #39D353;
-    --bg: #080808;
-    --bg-card: #111111;
-    --bg-card2: #181818;
-    --border: rgba(242, 168, 95, 0.18);
-    --text: #E8E8E8;
-    --text-muted: #888;
-    --header-bg: #0e0e0e;
+    --accent: #00f0ff; /* Neon Cyan */
+    --accent-dark: #00a3ad;
+    --accent-glow: rgba(0, 240, 255, 0.35);
+    --green: #ff0055; /* Neon Pink */
+    --bg: #03000a; /* Deep purple/black */
+    --bg-card: #0a0514;
+    --bg-card2: #130a24;
+    --border: rgba(0, 240, 255, 0.2);
+    --text: #e0e6ed;
+    --text-muted: #8b99a8;
+    --header-bg: rgba(3, 0, 10, 0.85);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -300,7 +300,10 @@ body {
 }
 
 .tech-group {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 32px;
@@ -390,7 +393,10 @@ body {
 }
 
 .timeline-content {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px 32px;
@@ -490,7 +496,10 @@ body {
 }
 
 .simple-live-card {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -645,7 +654,10 @@ body {
 }
 
 .prj-list div {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 36px 28px;
     border-radius: 16px;
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -1336,3 +1348,17 @@ body {
     100% { left: 100%; width: 0; opacity: 0; }
 }
 
+
+/* ===== ORB GLOW FOR SECTIONS ===== */
+.section-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(242, 168, 95, 0.08) 0%, transparent 60%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(50px);
+}
