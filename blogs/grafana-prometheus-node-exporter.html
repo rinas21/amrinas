@@ -1,0 +1,139 @@
+<h1>Introduction: Overview of Grafana, Prometheus, and Node Exporter</h1>
+<h3>Tool Description</h3>
+<p><strong>Grafana:</strong> Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visualizations.</p>
+<p><strong>Prometheus:</strong> Prometheus is an open-source monitoring and alerting toolkit designed for reliability and scalability, known for its dimensional data model and powerful query language (PromQL).</p>
+<p><strong>Node Exporter:</strong> Node Exporter is a Prometheus exporter for system metrics, exposing various system-level metrics about CPU, memory, disk usage, and more, which Prometheus can then scrape and store.</p>
+<h3>Benefits of using these tools together</h3>
+<ul>
+<li>Unified Monitoring Platform: Integrating Grafana with Prometheus and Node Exporter provides a comprehensive solution for monitoring and observability across various systems and services.</li>
+<li>Rich Visualization Capabilities: Grafana&#39;s powerful visualization features allow you to create detailed, interactive dashboards that display data collected by Prometheus and Node Exporter.</li>
+<li>Flexible Data Queries: Prometheus&#39;s PromQL query language enables flexible querying of metrics collected by Node Exporter, allowing you to extract specific data points and trends for analysis.</li>
+<li>Real-time Alerting: Prometheus can be configured to monitor metrics from Node Exporter and trigger alerts based on predefined thresholds.</li>
+<li>Scalability and Performance: Node Exporter&#39;s lightweight design makes it suitable for monitoring large-scale deployments without significant overhead.</li>
+<li>Open-source Community Support: All three tools are open-source projects with active communities.</li>
+<li>Ecosystem Integration: Grafana supports integration with a wide range of data sources and plugins.</li>
+<li>Historical Analysis: Grafana&#39;s ability to visualize historical data stored in Prometheus allows for trend analysis and performance optimization over time.</li>
+</ul>
+<h3>Prerequisites</h3>
+<p><strong>Necessary permissions and access</strong></p>
+<p><strong>Firewall Rules (UFW):</strong> Open port 3000 for Grafana: <code>sudo ufw allow 3000</code>.</p>
+<p><strong>Hosts File Configuration:</strong> Modify <code>/etc/hosts</code> to include:</p>
+<pre><code class="language-text">127.0.0.1:3000      172.16.x.xxx
+</code></pre>
+<p>Replace <code>172.16.x.xxx</code> with your IP address.</p>
+<h3>Installing Grafana on Ubuntu</h3>
+<p><strong>Downloading Grafana for Ubuntu:</strong> Download Grafana OSS edition if not using Docker.</p>
+<p><strong>Setting up Grafana:</strong></p>
+<ul>
+<li><strong>In Docker:</strong><pre><code class="language-bash">sudo docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
+</code></pre>
+</li>
+<li><strong>Starting and enabling Grafana service:</strong><pre><code class="language-bash">sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+</code></pre>
+</li>
+</ul>
+<h3>Installing Prometheus on Ubuntu</h3>
+<p><strong>Downloading Prometheus for Ubuntu:</strong> Download tar.gz from the Prometheus download page.</p>
+<p><strong>Installing Prometheus:</strong></p>
+<ul>
+<li>Unzip it using:<pre><code class="language-bash">tar xzf prometheus-2.xx.x.linux-amd64.tar.gz
+</code></pre>
+</li>
+<li>Move it to <code>/etc/prometheus</code>:<pre><code class="language-bash">mv prometheus-2.xx.x.linux-amd64 /etc/prometheus
+</code></pre>
+</li>
+<li>Create a systemd service file:<pre><code class="language-bash">vi /etc/systemd/system/prometheus.service
+</code></pre>
+</li>
+<li>Enter the following content:<pre><code class="language-ini">[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/etc/prometheus/prometheus --config.file=/etc/prometheus/prometheus.yml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</li>
+<li>Reload systemd, start, enable, and check status:<pre><code class="language-bash">systemctl daemon-reload
+systemctl start prometheus
+systemctl enable prometheus
+systemctl status prometheus
+</code></pre>
+</li>
+</ul>
+<h3>Installing Node Exporter on Ubuntu</h3>
+<p><strong>Downloading Node Exporter for Ubuntu:</strong> Download from Node Exporter download page.</p>
+<p><strong>Installing Node Exporter:</strong></p>
+<ul>
+<li>Unzip it using:<pre><code class="language-bash">tar xzf node_exporter-1.8.1.linux-amd64
+</code></pre>
+</li>
+<li>Move it to <code>/etc/node_exporter</code>:<pre><code class="language-bash">mv node_exporter-1.8.1.linux-amd64 /etc/node_exporter
+</code></pre>
+</li>
+<li>Create a systemd service file:<pre><code class="language-bash">vi /etc/systemd/system/node_exporter.service
+</code></pre>
+</li>
+<li>Enter the following content:<pre><code class="language-ini">[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/etc/node_exporter/node_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</li>
+<li>Reload systemd, start, enable, and check status:<pre><code class="language-bash">systemctl daemon-reload
+systemctl start node_exporter
+systemctl enable node_exporter
+systemctl status node_exporter
+</code></pre>
+</li>
+</ul>
+<h3>Configuring Node Exporter as a service</h3>
+<p>Remove existing <code>prometheus.yml</code> file:</p>
+<pre><code class="language-bash">rm -rf /etc/prometheus/prometheus.yml
+</code></pre>
+<p>Create a new file and enter the following:</p>
+<pre><code class="language-bash">vi /etc/prometheus/prometheus.yml
+</code></pre>
+<pre><code class="language-yaml">global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: node
+    static_configs:
+      - targets: [&#39;172.16.1.141:9100&#39;] # Replace with your own IP
+</code></pre>
+<p>Reload systemd, start Prometheus, and check status:</p>
+<pre><code class="language-bash">systemctl daemon-reload
+systemctl restart prometheus
+systemctl status prometheus
+</code></pre>
+<h3>Accessing Grafana and Creating a New Connection</h3>
+<p><strong>Access Grafana:</strong> Open your browser and go to <code>http://&lt;your_ip&gt;:3000</code> (e.g., <code>http://172.16.1.141:3000</code>).</p>
+<p><strong>Create a New Connection:</strong></p>
+<ul>
+<li>Navigate to Configuration -&gt; Data Sources.</li>
+<li>Click on Add data source.</li>
+<li>Select Prometheus from the list.</li>
+<li>Enter the URL as <code>http://&lt;your_ip&gt;:9090</code> (replace with your IP if different).</li>
+<li>Click Save &amp; Test to verify the connection.</li>
+<li>Create or Import a Dashboard:<ul>
+<li>Go to Dashboards -&gt; Manage.</li>
+<li>Click New Dashboard to create one, or</li>
+<li>Click Import to import an existing dashboard.</li>
+<li>For example, you can import dashboard ID 1860 for system monitoring.</li>
+<li>If importing, remove any unnecessary links and save the dashboard.</li>
+</ul>
+</li>
+</ul>

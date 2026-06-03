@@ -234,79 +234,66 @@
             const modalBody = document.getElementById('modal-body');
             const closeModal = document.getElementById('close-modal');
 
-            let blogPosts = [];
-
-            // Helper to parse YAML frontmatter from markdown
-            function parseFrontmatter(markdown) {
-                const match = markdown.match(/^---\n([\s\S]*?)\n---/);
-                if (!match) return { meta: {}, content: markdown };
-                
-                const metaString = match[1];
-                const content = markdown.slice(match[0].length);
-                const meta = {};
-                
-                metaString.split('\n').forEach(line => {
-                    const colonIndex = line.indexOf(':');
-                    if (colonIndex > -1) {
-                        const key = line.slice(0, colonIndex).trim();
-                        let value = line.slice(colonIndex + 1).trim();
-                        if (value.startsWith('"') && value.endsWith('"')) {
-                            value = value.slice(1, -1);
-                        }
-                        meta[key] = value;
-                    }
-                });
-                return { meta, content };
-            }
-
-            // Fetch and parse all posts dynamically
-            async function initBlog() {
-                try {
-                    let files = [];
-                    try {
-                        // Fully automatic: Fetch the directory contents directly from GitHub API
-                        const apiRes = await fetch('https://api.github.com/repos/rinas21/amrinas/contents/blogs');
-                        if (apiRes.ok) {
-                            const data = await apiRes.json();
-                            files = data.filter(item => item.name.endsWith('.md')).map(item => item.name);
-                        } else {
-                            throw new Error('API rate limit reached or running locally');
-                        }
-                    } catch (apiErr) {
-                        // Fallback to local posts.json if API fails or testing locally offline
-                        console.warn('Falling back to posts.json...', apiErr);
-                        const response = await fetch('./blogs/posts.json');
-                        if (response.ok) {
-                            files = await response.json();
-                        }
-                    }
-                    
-                    for (const file of files) {
-                        try {
-                            const mdRes = await fetch('./blogs/' + file);
-                            if (mdRes.ok) {
-                                const mdText = await mdRes.text();
-                                const { meta } = parseFrontmatter(mdText);
-                                
-                                blogPosts.push({
-                                    title: meta.title || 'Untitled',
-                                    category: meta.category || 'Uncategorized',
-                                    excerpt: meta.excerpt || '',
-                                    author: meta.author || 'Anonymous',
-                                    readTime: meta.readTime || '5 min',
-                                    date: meta.date || '',
-                                    file: file
-                                });
-                            }
-                        } catch (e) {
-                            console.error('Failed to load markdown file:', file, e);
-                        }
-                    }
-                    renderPosts();
-                } catch (error) {
-                    console.error(error);
-                    blogGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--ink-muted); padding: 40px; max-width: 600px; margin: 0 auto; line-height: 1.6;"><b>Notice for Local Development:</b><br>Since this blog is completely automated and script-free, it reads your files directly from the GitHub API. <br><br>If you are seeing this error, it means you either haven\'t <b>pushed</b> your latest Markdown files to GitHub yet, or you have hit the GitHub API rate limit. Push your changes to GitHub to see them appear!</p>';
+            // Add your blog posts here manually. This ensures it works perfectly locally and on GitHub Pages!
+            const blogPosts = [
+                {
+                    title: "Introduction: Overview of Grafana, Prometheus, and Node Exporter",
+                    category: "DevOps",
+                    excerpt: "An overview and installation guide for Grafana, Prometheus, and Node Exporter on Ubuntu.",
+                    author: "A.M.Rinas",
+                    readTime: "5 min",
+                    date: "03 June 2026",
+                    file: "grafana-prometheus-node-exporter.html"
+                },
+                {
+                    title: "Grafana Installation on Ubuntu using Docker",
+                    category: "DevOps",
+                    excerpt: "A guide on installing Grafana OSS on Ubuntu using Docker.",
+                    author: "A.M.Rinas",
+                    readTime: "5 min",
+                    date: "03 June 2026",
+                    file: "grafana-installation-docker.html"
+                },
+                {
+                    title: "Essential SQL Queries for Database Exploration and Management",
+                    category: "Databases",
+                    excerpt: "A guide on essential SQL queries used for database exploration and management.",
+                    author: "A.M.Rinas",
+                    readTime: "5 min",
+                    date: "03 June 2026",
+                    file: "essential-sql-queries.html"
+                },
+                {
+                    title: "How to Create a Docker Network",
+                    category: "DevOps",
+                    excerpt: "A guide on creating Docker networks to allow containers to communicate securely.",
+                    author: "A.M.Rinas",
+                    readTime: "4 min",
+                    date: "03 June 2026",
+                    file: "docker-network-guide.html"
+                },
+                {
+                    title: "How to Install and Use Katalon Studio for Web Testing",
+                    category: "Tech",
+                    excerpt: "A step-by-step guide to installing Katalon Studio and creating your first web test.",
+                    author: "A.M.Rinas",
+                    readTime: "6 min",
+                    date: "03 June 2026",
+                    file: "katalon-studio-guide.html"
+                },
+                {
+                    title: "MySQL General Log Setup and Monitoring",
+                    category: "Databases",
+                    excerpt: "A comprehensive guide to enabling and monitoring the MySQL general log on a Linux system.",
+                    author: "A.M.Rinas",
+                    readTime: "5 min",
+                    date: "03 June 2026",
+                    file: "mysql-general-log.html"
                 }
+            ];
+
+            function initBlog() {
+                renderPosts();
             }
 
             // Render posts based on filters
@@ -352,7 +339,7 @@
                 });
             }
 
-            // Open Modal and Fetch Markdown
+            // Open Modal and Fetch HTML
             async function openPost(filename) {
                 modalBody.innerHTML = '<p>Loading...</p>';
                 postModal.style.display = 'flex';
@@ -360,8 +347,10 @@
                 try {
                     const response = await fetch('./blogs/' + filename);
                     if (!response.ok) throw new Error('Post not found');
-                    const text = await response.text();
-                    modalBody.innerHTML = marked.parse(text);
+                    const htmlText = await response.text();
+                    
+                    // Directly render the HTML content
+                    modalBody.innerHTML = htmlText;
                 } catch (error) {
                     modalBody.innerHTML = `<h2>Error</h2><p>Could not load the blog post. Make sure <b>${filename}</b> exists in the <i>blogs/</i> folder.</p>`;
                 }

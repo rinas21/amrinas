@@ -1,0 +1,58 @@
+<h1>MySQL General Log Setup Steps</h1>
+<h3>Step 1: Edit MySQL Configuration File</h3>
+<ul>
+<li>Open the MySQL configuration file (<code>my.cnf</code> or <code>my.ini</code>):<pre><code class="language-bash">sudo nano /etc/mysql/my.cnf
+</code></pre>
+</li>
+<li>Add or modify the following lines under the <code>[mysqld]</code> section:<pre><code class="language-ini">[mysqld]
+general_log = 1
+general_log_file = /var/log/mysql/mysql-general.log
+</code></pre>
+</li>
+<li>Save and close the file.</li>
+</ul>
+<h3>Step 2: Restart MySQL Server</h3>
+<ul>
+<li>Restart the MySQL service to apply the changes:<pre><code class="language-bash">sudo systemctl restart mysql
+</code></pre>
+</li>
+</ul>
+<h3>Step 3: Enable General Log Dynamically (Optional)</h3>
+<ul>
+<li>Connect to MySQL and enable the general log dynamically:<pre><code class="language-sql">mysql -u root -p
+SET GLOBAL general_log = &#39;ON&#39;;
+SET GLOBAL general_log_file = &#39;/var/log/mysql/mysql-general.log&#39;;
+</code></pre>
+</li>
+</ul>
+<h3>Step 4: Verify General Log Status</h3>
+<ul>
+<li>Check the status of the general log:<pre><code class="language-sql">mysql -u root -p
+SHOW VARIABLES LIKE &#39;general_log%&#39;;
+</code></pre>
+</li>
+</ul>
+<h3>Verification:</h3>
+<p>Verify the general log by checking the log file at <code>/var/log/mysql/mysql-general.log</code> for recorded queries.</p>
+<h1>Monitoring MySQL Performance</h1>
+<h3>Method 1: Using MySQL Workbench</h3>
+<ul>
+<li>Open MySQL Workbench and connect to your MySQL server.</li>
+<li>Navigate to the &quot;Server Status&quot; or &quot;Performance Reports&quot; to monitor various metrics.</li>
+</ul>
+<h3>Method 2: Using Prometheus and Grafana</h3>
+<ul>
+<li>Install and configure <code>mysqld_exporter</code> to expose MySQL metrics:<pre><code class="language-bash">wget https://github.com/prometheus/mysqld_exporter/releases/download/v0.13.0/mysqld_exporter-0.13.0.linux-amd64.tar.gz
+tar xvf mysqld_exporter-0.13.0.linux-amd64.tar.gz
+cd mysqld_exporter-0.13.0.linux-amd64
+./mysqld_exporter --config.my-cnf=/path/to/my.cnf
+</code></pre>
+</li>
+<li>Configure Prometheus to scrape metrics from <code>mysqld_exporter</code>.</li>
+<li>Set up Grafana dashboards to visualize MySQL metrics.</li>
+</ul>
+<h3>Method 3: Using MySQL Enterprise Monitor</h3>
+<ul>
+<li>Install MySQL Enterprise Monitor for comprehensive monitoring and performance insights.</li>
+</ul>
+<p>For more details on monitoring MySQL, refer to the <a href="https://dev.mysql.com/doc/refman/8.0/en/query-log.html">MySQL Query Log Documentation</a>.</p>

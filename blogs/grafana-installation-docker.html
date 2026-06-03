@@ -1,0 +1,62 @@
+<h1>Grafana Installation on Ubuntu using Docker</h1>
+<h3>Aim :</h3>
+<p>Install Grafana OSS (open-source version) on Ubuntu using Docker.</p>
+<h2>Grafana Installation Steps</h2>
+<h3>Step 1: Pull and Run the Grafana Container</h3>
+<ul>
+<li>Pull and start the Grafana container:<pre><code class="language-bash">sudo docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
+</code></pre>
+<ul>
+<li><code>-d</code>: Detaches the container and runs it in the background.</li>
+<li><code>-p 3000:3000</code>: Maps port 3000 on your host machine to port 3000 inside the container, enabling access to Grafana&#39;s web interface.</li>
+<li><code>--name=grafana</code>: Specifies the name of the container as <code>grafana</code>.</li>
+</ul>
+</li>
+</ul>
+<h3>Step 2: Access Grafana</h3>
+<ul>
+<li>Once the container is running, access Grafana by opening a web browser and navigating to:<pre><code class="language-text">http://localhost:3000
+</code></pre>
+If Grafana is running on a remote server or different IP, replace <code>localhost</code> with the server&#39;s IP or hostname.</li>
+</ul>
+<h3>Step 3: Initial Setup</h3>
+<ul>
+<li>On the first visit, you&#39;ll be prompted to:<ul>
+<li>Set up an admin password (default username: <code>admin</code>).</li>
+<li>Configure data sources and dashboards as needed.</li>
+</ul>
+</li>
+</ul>
+<h3>Step 4: Change Admin Password</h3>
+<ul>
+<li>After logging in with the default credentials:<ul>
+<li>Click on the user icon in the lower-left corner, then select &quot;Admin&quot; to access the Admin menu.</li>
+<li>Go to &quot;Profile&quot; and then &quot;Change password&quot; to update the admin password.</li>
+</ul>
+</li>
+</ul>
+<h3>Useful Grafana and Docker Commands</h3>
+<ul>
+<li><strong>Grafana Commands:</strong><ul>
+<li>Restart Grafana container:<pre><code class="language-bash">sudo docker restart grafana
+</code></pre>
+</li>
+<li>View logs of Grafana container:<pre><code class="language-bash">sudo docker logs grafana
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>Docker Commands:</strong><ul>
+<li>List all running containers:<pre><code class="language-bash">sudo docker ps
+</code></pre>
+</li>
+<li>Stop and remove Grafana container:<pre><code class="language-bash">sudo docker stop grafana
+sudo docker rm grafana
+</code></pre>
+</li>
+<li>Clean up unused Docker resources (containers, images, networks):<pre><code class="language-bash">sudo docker system prune
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
