@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Create a Docker Network | A.M. Rinas Blog</title>
+    <title>Your Blog Title Here | A.M. Rinas Blog</title>
     
     <!-- SEO Meta Tags for Google AdSense -->
-    <meta name="description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
-    <meta name="keywords" content="How to Create a Docker Network, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Your Blog Title Here, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
     <meta name="author" content="A.M. Rinas">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/docker-network-guide.html">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/template.html">
     
     <!-- Open Graph for Facebook/LinkedIn -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="How to Create a Docker Network | A.M. Rinas Blog">
-    <meta property="og:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
-    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/docker-network-guide.html">
+    <meta property="og:title" content="Your Blog Title Here | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/template.html">
     <meta property="og:image" content="https://rinas21.github.io/amrinas/img/myself.webp">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to Create a Docker Network">
-    <meta name="twitter:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
+    <meta name="twitter:title" content="Your Blog Title Here">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
     
     <!-- Google Structured Data (JSON-LD) for Rich Results -->
     <script type="application/ld+json">
@@ -31,10 +31,10 @@
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/docker-network-guide.html"
+        "@id": "https://rinas21.github.io/amrinas/blogs/template.html"
       },
-      "headline": "How to Create a Docker Network",
-      "description": "Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...",
+      "headline": "Your Blog Title Here",
+      "description": "Your SEO friendly description goes here.",
       "author": {
         "@type": "Person",
         "name": "A.M. Rinas",
@@ -121,31 +121,19 @@
     </header>
 
     <article class="blog-post-container">
-        <h1>How to Create a Docker Network</h1>
-<p>Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managing services that need to interact within a defined network. Follow these steps to create a Docker network:</p>
-<h3>Step 1: Open Your Terminal</h3>
-<p>Access your terminal or command prompt where Docker is installed.</p>
-<h3>Step 2: Create a Docker Network</h3>
-<p>Use the following command to create a new Docker network:</p>
-<pre><code class="language-bash">docker network create your_network_name
-</code></pre>
-<p>Replace <code>your_network_name</code> with a name that makes sense for your application.</p>
-<h3>Step 3: Verify the Network Creation</h3>
-<p>You can verify that the network was created successfully by listing all Docker networks:</p>
-<pre><code class="language-bash">docker network ls
-</code></pre>
-<h3>Step 4: Connect Containers to the Network</h3>
-<p>When you run a container, you can connect it to the created network using the <code>--network</code> option:</p>
-<pre><code class="language-bash">docker run -d --name your_container_name --network your_network_name your_image_name
-</code></pre>
-<p>Replace <code>your_container_name</code> with the desired name for your container, and <code>your_image_name</code> with the name of the Docker image you wish to run.</p>
-<h3>Step 5: Testing Connectivity</h3>
-<p>To test if containers are communicating properly within the network, you can run a shell inside one of the containers and ping another container:</p>
-<pre><code class="language-bash">docker exec -it your_container_name /bin/bash
-ping other_container_name
-</code></pre>
-<p>This will confirm that the containers are able to see each other through the Docker network.</p>
+        <h1>Your Blog Post Title Goes Here</h1>
 
+<p>
+  This is your introductory paragraph. It should grab the reader's attention and 
+  explain what this blog post is about. It's fully optimized for SEO.
+</p>
+
+<h2>Adding Images</h2>
+<p>To add an image, use standard HTML tags.</p>
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="SEO friendly alt text goes here">
+
+<h2>Code Snippets</h2>
+<pre><code>console.log("Fully SEO optimized post!");</code></pre>
     </article>
 </body>
 </html>
