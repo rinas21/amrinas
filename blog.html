@@ -223,61 +223,178 @@
 
             // Add your blog posts here manually. This ensures it works perfectly locally and on GitHub Pages!
             const blogPosts = [
-                {
-                    title: "Introduction: Overview of Grafana, Prometheus, and Node Exporter",
-                    category: "DevOps",
-                    excerpt: "An overview and installation guide for Grafana, Prometheus, and Node Exporter on Ubuntu.",
-                    author: "A.M.Rinas",
-                    readTime: "5 min",
-                    date: "03 June 2026",
-                    file: "grafana-prometheus-node-exporter.html"
-                },
-                {
-                    title: "Grafana Installation on Ubuntu using Docker",
-                    category: "DevOps",
-                    excerpt: "A guide on installing Grafana OSS on Ubuntu using Docker.",
-                    author: "A.M.Rinas",
-                    readTime: "5 min",
-                    date: "03 June 2026",
-                    file: "grafana-installation-docker.html"
-                },
-                {
-                    title: "Essential SQL Queries for Database Exploration and Management",
-                    category: "Databases",
-                    excerpt: "A guide on essential SQL queries used for database exploration and management.",
-                    author: "A.M.Rinas",
-                    readTime: "5 min",
-                    date: "03 June 2026",
-                    file: "essential-sql-queries.html"
-                },
-                {
-                    title: "How to Create a Docker Network",
-                    category: "DevOps",
-                    excerpt: "A guide on creating Docker networks to allow containers to communicate securely.",
-                    author: "A.M.Rinas",
-                    readTime: "4 min",
-                    date: "03 June 2026",
-                    file: "docker-network-guide.html"
-                },
-                {
-                    title: "How to Install and Use Katalon Studio for Web Testing",
-                    category: "Tech",
-                    excerpt: "A step-by-step guide to installing Katalon Studio and creating your first web test.",
-                    author: "A.M.Rinas",
-                    readTime: "6 min",
-                    date: "03 June 2026",
-                    file: "katalon-studio-guide.html"
-                },
-                {
-                    title: "MySQL General Log Setup and Monitoring",
-                    category: "Databases",
-                    excerpt: "A comprehensive guide to enabling and monitoring the MySQL general log on a Linux system.",
-                    author: "A.M.Rinas",
-                    readTime: "5 min",
-                    date: "03 June 2026",
-                    file: "mysql-general-log.html"
-                }
-            ];
+    {
+        "title": "Essential Linux System Commands: A Systems Engineering Reference",
+        "category": "Databases",
+        "excerpt": "An advanced systems administration reference for fundamental Linux commands. Covers multi-tenant user management, programmatic file and stream manipulation, kernel process analysis, and low-level network interface monitoring.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "basic-linux.html"
+    },
+    {
+        "title": "How to Create a Docker Network",
+        "category": "DevOps",
+        "excerpt": "Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "docker-network-guide.html"
+    },
+    {
+        "title": "Essential SQL Queries for Database Exploration and Management",
+        "category": "Databases",
+        "excerpt": "Structured Query Language (SQL) is the backbone of database management, enabling users to interact with databases to retrieve, manipulate, and manage ...",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "essential-sql-queries.html"
+    },
+    {
+        "title": "A Developer's Guide to the OpenAI GPT Playground",
+        "category": "DevOps",
+        "excerpt": "Master OpenAI's GPT Playground parameters including Temperature, Top P, and Stop Sequences. Learn how to configure structural LLM workflows for reliable bug reporting.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "gpt-playground.html"
+    },
+    {
+        "title": "Grafana Installation on Ubuntu using Docker",
+        "category": "DevOps",
+        "excerpt": "Install Grafana OSS (open-source version) on Ubuntu using Docker....",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "grafana-installation-docker.html"
+    },
+    {
+        "title": "Introduction: Overview of Grafana, Prometheus, and Node Exporter",
+        "category": "DevOps",
+        "excerpt": "Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali...",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "grafana-prometheus-node-exporter.html"
+    },
+    {
+        "title": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
+        "category": "DevOps",
+        "excerpt": "Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "https-server.html"
+    },
+    {
+        "title": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
+        "category": "DevOps",
+        "excerpt": "A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "insall-xmind.html"
+    },
+    {
+        "title": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
+        "category": "DevOps",
+        "excerpt": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "iptables-rules.html"
+    },
+    {
+        "title": "Step-by-Step Guide to Installing Katalon Studio",
+        "category": "DevOps",
+        "excerpt": "Katalon Studio is a powerful tool for automating web, API, and mobile testing. In this guide, we&#39;ll walk you through the installation process and ...",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "katalon-studio-guide.html"
+    },
+    {
+        "title": "MySQL 8.0 Binary Installation and MariaDB Cleanup Guide",
+        "category": "Databases",
+        "excerpt": "A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runtime dependencies, and purge conflicting MariaDB footprints.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "mysql-binary.html"
+    },
+    {
+        "title": "MySQL General Log Setup Steps",
+        "category": "Databases",
+        "excerpt": "Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries....",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "mysql-general-log.html"
+    },
+    {
+        "title": "Mastering netstat Commands for Linux Network Analysis",
+        "category": "DevOps",
+        "excerpt": "A practical networking guide to using netstat commands in Linux. Learn how to inspect open sockets, audit listening TCP/UDP ports, map Process IDs (PIDs), and analyze kernel routing tables.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "netstat-commnd.html"
+    },
+    {
+        "title": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
+        "category": "DevOps",
+        "excerpt": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "npm-version-understand.html"
+    },
+    {
+        "title": "How to Install Postman via Binary Tarball on Ubuntu",
+        "category": "DevOps",
+        "excerpt": "A structural DevOps guide to manually installing Postman on Ubuntu using official Linux binary tarballs. Learn how to extract binaries, map symbolic execution paths, and provision desktop application configuration entries.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "postman-ubunut.html"
+    },
+    {
+        "title": "Mastering SCP Commands for Secure File Transfers",
+        "category": "DevOps",
+        "excerpt": "A practical DevOps guide to using SCP (Secure Copy Protocol) for secure file and directory transfers between local and remote Linux machines. Learn key syntax, flags, and real-world examples.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "scp-commnd.html"
+    },
+    {
+        "title": "Comprehensive SSH Setup and Hardening Guide",
+        "category": "DevOps",
+        "excerpt": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "ssh-commnd.html"
+    },
+    {
+        "title": "How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide",
+        "category": "DevOps",
+        "excerpt": "A comprehensive step-by-step tutorial on installing Apache Tomcat 9.0.21 on Linux (Ubuntu/Debian). Learn how to configure JDK, manage dedicated service users, and establish environment path variables safely.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "tomcat-on-ubuntu.html"
+    },
+    {
+        "title": "Mastering the Vi/Vim Editor: A Comprehensive Systems Guide",
+        "category": "DevOps",
+        "excerpt": "A structural DevOps and systems engineering guide to mastering the Vi/Vim terminal text editor. Learn modal switching mechanics, regex string replacement, regex escaping, buffer yank arrays, and efficient pipeline management.",
+        "author": "A.M.Rinas",
+        "readTime": "5 min",
+        "date": "03 June 2026",
+        "file": "vim-editor.html"
+    }
+];
 
             function initBlog() {
                 renderPosts();

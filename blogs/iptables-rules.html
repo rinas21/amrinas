@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog</title>
+
+    <meta name="description"
+        content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
+    <meta name="keywords"
+        content="Understanding iptables in Linux, Netfilter Firewall, DevOps, Linux Administration, Network Security, Packet Filtering, Tomcat Port Blocking, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/understanding-iptables-linux.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title"
+        content="Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/understanding-iptables-linux.html">
+    <meta property="og:image"
+        content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1Z_7TU90x4n3txS9tsfLjIIOoTvkUg0Tu7mU7XPo02lbv8hkEGfxrGa-urkCaZIAVmDFWdLyNEdfUjgYyotI3Ce0T5CaDlSuwmtz9rti4wPwvPJ0YwZhwADdlLJ8nfrxXXEEu8NyvvD_bxHz2npoCrC9nBb_zTzpFvkDDY0-2Qk6zS57mTDQuZawN/s1200/ipttt.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Understanding iptables in Linux: Firewall Packet Filtering Guide">
+    <meta name="twitter:description"
+        content="Learn how to inspect, create, and apply packet filtering rules across basic input and output chains in the Linux kernel.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/understanding-iptables-linux.html"
+      },
+      "headline": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
+      "description": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <style>
+        :root {
+            --cream: #faf7f2;
+            --ink: #1f1b16;
+            --gold-deep: #8a6440;
+            --playfair: 'Playfair Display', Georgia, serif;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .blog-post-container {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .blog-post-container h1 {
+            font-family: var(--playfair);
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-post-container h2,
+        .blog-post-container h3 {
+            font-family: var(--playfair);
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+        }
+
+        .blog-post-container p {
+            margin-bottom: 1.5em;
+        }
+
+        .blog-post-container pre {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            font-size: 14px;
+        }
+
+        .blog-post-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2em 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-container a {
+            color: var(--gold-deep);
+            text-decoration: underline;
+        }
+
+        .blog-post-container iframe {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Understanding iptables in Linux</h1>
+
+        <p>
+            Securing network layers on a Linux platform requires a solid understanding of structural packet routing
+            engines. At the baseline of core infrastructure security sits <code>iptables</code>, a command-line utility
+            used to interface with the Netfilter framework inside the Linux kernel. This guide analyzes how packets flow
+            across built-in operational chains and provides terminal examples to intercept traffic streams securely.
+        </p>
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1Z_7TU90x4n3txS9tsfLjIIOoTvkUg0Tu7mU7XPo02lbv8hkEGfxrGa-urkCaZIAVmDFWdLyNEdfUjgYyotI3Ce0T5CaDlSuwmtz9rti4wPwvPJ0YwZhwADdlLJ8nfrxXXEEu8NyvvD_bxHz2npoCrC9nBb_zTzpFvkDDY0-2Qk6zS57mTDQuZawN/s1200/ipttt.png"
+            alt="Netfilter iptables architectural map detailing table rules and network packet filter chains layout">
+
+        <h2>What is iptables?</h2>
+        <p>
+            The <code>iptables</code> system functions as a modular user-space tool allowing systems administrators to
+            formulate explicit policies for network packet processing. It maps match conditions against active frames,
+            deciding whether an enterprise server accepts, routes, alters, or terminates network traffic blocks based on
+            attributes like source IP addresses, destination ports, or protocols.
+        </p>
+        <p>
+            Rules are organized inside specific structural tables. The most prevalent option is the <code>filter</code>
+            table, which manages defensive actions across three native processing pipelines:
+        </p>
+        <ul>
+            <li><strong>INPUT:</strong> Targets all incoming packets directed specifically toward processes on the local
+                host machine.</li>
+            <li><strong>OUTPUT:</strong> Evaluates all network packets generated locally and departing from the server.
+            </li>
+            <li><strong>FORWARD:</strong> Intercepts incoming packets that are not addressed to local services but need
+                to be passed along to another network interface.</li>
+        </ul>
+
+        <h2>Practical Implementation Examples</h2>
+        <p>
+            Applying granular firewall configurations involves appending targets directly onto the active processing
+            chains. Below are common commands for restricting standard port traffic.
+        </p>
+
+        <h3>Blocking Incoming Packets for a Port</h3>
+        <p>
+            To completely drop incoming web requests targeting standard unsecured HTTP communication paths, attach a
+            rule to intercept TCP transmissions bound for port 80:
+        </p>
+        <pre><code>sudo iptables -A INPUT -p tcp --dport 80 -j DROP</code></pre>
+        <p>
+            In this block, the <code>-A</code> flag appends a tracking condition to the <code>INPUT</code> array. The
+            <code>-p tcp</code> flag filters out non-TCP matches, while <code>-j DROP</code> explicitly instructs the
+            core kernel hook to discard matched packets without issuing an ICMP response.
+        </p>
+
+        <h3>Blocking Outgoing Packets for a Port</h3>
+        <p>
+            If a security sandbox rule dictates that local service threads must not communicate outward over encrypted
+            secure socket layers (HTTPS), append a block targeting outbound destinations on port 443:
+        </p>
+        <pre><code>sudo iptables -A OUTPUT -p tcp --dport 443 -j DROP</code></pre>
+
+        <h3>Blocking Tomcat Port Using iptables</h3>
+        <p>
+            During specialized deployment phases or security maintenance intervals, you may want to restrict external
+            web clients from talking directly to backend servlet instances. Assuming your local Apache Tomcat server
+            runs on its default port configuration (8080), execute an input blockage parameter:
+        </p>
+        <pre><code>sudo iptables -A INPUT -p tcp --dport 8080 -j DROP</code></pre>
+
+        <h2>Verifying Your Firewall Configuration</h2>
+        <p>
+            After modifying the active kernel configurations, verify that the runtime rule chains have parsed your
+            instructions correctly.
+        </p>
+        <p>
+            List the running policies and tracking parameters in an index list using the following diagnostic command
+            pass:
+        </p>
+        <pre><code>sudo iptables -L</code></pre>
+        <p>
+            To cross-reference rules with numeric designations and track cumulative packet traffic hits, append
+            additional evaluation flags:
+        </p>
+        <pre><code>sudo iptables -L -n -v</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+            <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+            <!-- Topic SEO Keywords: Understanding iptables in Linux: Firewall Packet Filtering Guide, DevOps, Guide, Tutorial -->
+    </article>
+</body>
+
+</html>

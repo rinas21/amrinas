@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demystifying Semantic Versioning: An NPM and NuGet Guide | A.M. Rinas Blog</title>
+
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description"
+        content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
+    <meta name="keywords"
+        content="NPM Versioning Guide, Semantic Versioning, SemVer, DevOps, NuGet Package Versioning, Software Engineering, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/npm-versioning-guide.html">
+
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/npm-versioning-guide.html">
+    <meta property="og:image"
+        content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfXoVnCAJaAmEVKEsGpvVWg3psfoT7lrJElW7AxPaM658IwondX0jkdrwHACg1hLXQr6w8BlGCCUhhcgNcAZljJMX2ficFL1G1tB_23jBFHX9jBsPcNpFF3-O2vXmNLS4J20b-__DbQFiKf7W1AsudINOYvN8XPHqfA69gW77VRkcPPT1evdBhjZsg">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
+    <meta name="twitter:description"
+        content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems.">
+
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/npm-versioning-guide.html"
+      },
+      "headline": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
+      "description": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <style>
+        :root {
+            --cream: #faf7f2;
+            --ink: #1f1b16;
+            --gold-deep: #8a6440;
+            --playfair: 'Playfair Display', Georgia, serif;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .blog-post-container {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .blog-post-container h1 {
+            font-family: var(--playfair);
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-post-container h2,
+        .blog-post-container h3 {
+            font-family: var(--playfair);
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+        }
+
+        .blog-post-container p {
+            margin-bottom: 1.5em;
+        }
+
+        .blog-post-container pre {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            font-size: 14px;
+        }
+
+        .blog-post-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2em 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-post-container a {
+            color: var(--gold-deep);
+            text-decoration: underline;
+        }
+
+        .blog-post-container iframe {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>NPM &amp; NuGet Package Versioning Guide</h1>
+
+        <p>
+            Managing dependencies effectively requires a clear strategy. Both modern JavaScript development with NPM and
+            .NET ecosystem development with NuGet rely heavily on <strong>Semantic Versioning (SemVer)</strong> to
+            maintain predictability and avoid runtime breaks. This guide highlights the essential mechanics of SemVer
+            structure, constraints, and package updates.
+        </p>
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfXoVnCAJaAmEVKEsGpvVWg3psfoT7lrJElW7AxPaM658IwondX0jkdrwHACg1hLXQr6w8BlGCCUhhcgNcAZljJMX2ficFL1G1tB_23jBFHX9jBsPcNpFF3-O2vXmNLS4J20b-__DbQFiKf7W1AsudINOYvN8XPHqfA69gW77VRkcPPT1evdBhjZsg"
+            alt="NPM and NuGet Semantic Versioning Overview Diagram">
+
+        <h2>Semantic Versioning Basics</h2>
+        <p>
+            NPM leverages SemVer structure rules strictly to categorize dependency logic. Standard versions follow the
+            strict structural format: <code>Major.Minor.Patch</code>.
+        </p>
+
+        <h3>Version Number Breakdown:</h3>
+        <ul>
+            <li>
+                <strong>Major:</strong> Incremented immediately when breaking API changes are introduced. Upstream
+                shifts make the newer version incompatible with previous instances (e.g., transitioning to
+                <code>2.0.0</code>).
+            </li>
+            <li>
+                <strong>Minor:</strong> Incremented when fully backward-compatible functionalities or new features are
+                safely added to the codebase (e.g., progressing to <code>1.2.0</code>).
+            </li>
+            <li>
+                <strong>Patch:</strong> Incremented strictly for internal bug fixes, patches, or optimization
+                adjustments that retain full backward-compatibility (e.g., moving to <code>1.1.1</code>).
+            </li>
+            <li>
+                <strong>Suffix (optional):</strong> Appended using a trailing hyphen to indicate pre-release states or
+                development tracks (e.g., <code>1.1.1-beta</code>).
+            </li>
+        </ul>
+
+        <h2>NuGet Package Versioning</h2>
+        <p>
+            NuGet implements a similar Semantic Versioning logic framework optimized for cross-platform .NET application
+            structures.
+        </p>
+
+        <h3>Key Points:</h3>
+        <ul>
+            <li><strong>Package Versioning:</strong> Core structures communicate intentional system alterations
+                explicitly through targeted SemVer values.</li>
+            <li><strong>Pre-release Versions:</strong> Suffix allocations flag tentative releases (e.g.,
+                <code>1.0.0-beta</code>) to designate testing status.</li>
+            <li><strong>Version Constraints:</strong> Developers define explicit target boundaries using mathematical
+                interval bounds to declare compatible scopes (e.g., <code>[1.0.0, 2.0.0)</code>).</li>
+            <li><strong>Floating Versions:</strong> Configures automated resolution chains to match the latest built
+                patches or updates within specific minor version trees (e.g., <code>1.0.*</code>).</li>
+            <li><strong>Version Resolution:</strong> NuGet algorithms parse designated bounds dynamically, resolving
+                conflicting requirements to supply the highest compatible build variant.</li>
+        </ul>
+
+        <h3>Practical Example Scenarios:</h3>
+        <p>
+            Consider tracking a common utility NuGet dependency named <code>ExampleLib</code>:
+        </p>
+        <ul>
+            <li>Referencing fixed version <code>1.2.3</code> locks development directly to a stable release profile
+                containing definite features.</li>
+            <li>If a version numbered <code>2.0.0</code> releases, it serves as a warning that immediate architectural
+                breaking changes exist.</li>
+            <li>Encountering a new release at <code>1.3.0</code> indicates newly available elements that remain
+                completely backward-compatible with older <code>1.x.x</code> targets.</li>
+            <li>An adjustment yielding a <code>1.2.4</code> identifier indicates targeted patch code corrections
+                maintaining full compatibility inside <code>1.2.x</code> boundaries.</li>
+            <li>A flag indicating <code>1.2.3-beta</code> alerts you to an untested development milestone built prior to
+                formal baseline releases.</li>
+        </ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+        <!-- Topic SEO Keywords: NPM Versioning Guide, Semantic Versioning, SemVer, NuGet Packages, Dependency Management, Devops, Version Constraints -->
+    </article>
+</body>
+
+</html>
