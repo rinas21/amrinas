@@ -194,10 +194,10 @@ body {
     box-shadow: 0 8px 24px var(--accent-glow);
 }
 
-.img {
+.hero-img-wrapper {
     display: inline-block;
     position: absolute;
-    right: 6%;
+    right: 3%;
     bottom: 0;
     opacity: 0;
     animation: slideUP 0.8s ease forwards 0.2s;
@@ -881,7 +881,7 @@ body {
         min-height: 100vh;
     }
 
-    .img {
+    .hero-img-wrapper {
         position: relative;
         right: auto;
         bottom: auto;
