@@ -169,6 +169,13 @@ body {
     animation: slideTop 0.6s ease forwards 0.35s;
 }
 
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
 .home-content h4 span.text {
     color: var(--accent);
     font-weight: 600;
@@ -249,6 +256,7 @@ body {
     border: 3px solid var(--accent);
     box-shadow: 0 20px 60px rgba(var(--secondary-rgb),0.15);
     transition: transform 0.4s ease;
+    object-fit: cover;
 }
 
 .second-image:hover {
@@ -271,7 +279,7 @@ body {
     font-size: 16px;
     line-height: 2;
     letter-spacing: 0.5px;
-    text-align: justify;
+    text-align: left;
 }
 
 .about-text p strong {
@@ -909,6 +917,16 @@ body {
 
     .about-img {
         order: -1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .second-image {
+        max-width: 320px !important;
+        max-height: 350px !important;
+        width: 100% !important;
+        height: auto;
+        object-fit: cover;
     }
 
     .about-text h2 {
@@ -928,23 +946,264 @@ body {
     }
 }
 
-/* Mobile - up to 600px */
-@media (max-width: 600px) {
+/* ===== MOBILE: 480px ===== */
+@media (max-width: 480px) {
     .header {
-        padding: 16px 5%;
+        padding: 14px 5%;
     }
 
     .logo {
-        font-size: 18px;
-        letter-spacing: 3px;
+        font-size: 17px;
+        letter-spacing: 2px;
     }
 
+    /* Hero */
     .home {
-        padding: 100px 5% 50px;
+        padding: 90px 5% 40px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .home-content {
+        max-width: 100%;
     }
 
     .home-content h1 {
-        font-size: 36px;
+        font-size: clamp(28px, 9vw, 40px);
+        letter-spacing: 1px;
+    }
+
+    .home-content h3 {
+        font-size: 18px;
+    }
+
+    .home-content h4 {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    /* Remove <br> effect on very small screens */
+    .home-content h4 br {
+        display: none;
+    }
+
+    .home-actions {
+        justify-content: center;
+    }
+
+    .home-sci {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .stat-item {
+        padding: 8px 14px;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .stat-num {
+        font-size: 20px;
+    }
+
+    .stat-suffix {
+        font-size: 14px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .hero-img-wrapper {
+        margin-top: 24px;
+    }
+
+    .responsive {
+        width: 200px;
+    }
+
+    /* About */
+    .about {
+        padding: 80px 5% 50px;
+        gap: 1.5rem;
+    }
+
+    .about-text h2 {
+        font-size: clamp(26px, 8vw, 38px);
+        text-align: center;
+    }
+
+    .about-text p {
+        font-size: 14px;
+        line-height: 1.9;
+        text-align: left;
+    }
+
+    .second-image {
+        max-width: 240px !important;
+        max-height: 280px !important;
+        width: 100% !important;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Section headings */
+    .subtitle,
+    .sub-title,
+    .main-text h2,
+    .contact-text h2 {
+        font-size: clamp(26px, 8vw, 36px);
+        padding-bottom: 32px;
+    }
+
+    /* Skills */
+    #Skills {
+        padding: 60px 5% 40px;
+    }
+
+    .tech-group {
+        padding: 18px 16px;
+    }
+
+    .badge-group img {
+        height: 22px;
+    }
+
+    /* Experience */
+    #Experience {
+        padding: 60px 5%;
+    }
+
+    .timeline {
+        padding-left: 22px;
+    }
+
+    .timeline::before {
+        left: 7px;
+    }
+
+    .timeline-dot {
+        left: -26px;
+        width: 11px;
+        height: 11px;
+    }
+
+    .timeline-content {
+        padding: 16px 14px;
+    }
+
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+
+    .timeline-content h4 {
+        font-size: 13px;
+    }
+
+    .timeline-date {
+        font-size: 11px;
+    }
+
+    /* Projects */
+    #Projects {
+        padding: 0 5% 30px;
+    }
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .main-text {
+        padding-top: 40px;
+        padding-bottom: 24px;
+    }
+
+    .main-text h2 {
+        font-size: clamp(26px, 8vw, 36px);
+        padding-bottom: 24px;
+    }
+
+    /* Live Projects */
+    #LiveProjects {
+        padding: 60px 5% 30px;
+    }
+
+    .live-projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Services */
+    .prj-list {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 40px 5%;
+    }
+
+    /* Contact */
+    .contacts {
+        padding: 60px 5%;
+    }
+
+    .contact-text h2 {
+        font-size: clamp(26px, 8vw, 36px);
+    }
+
+    .contact-text h4 {
+        font-size: 15px;
+    }
+
+    .contact-icons {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    /* Footer */
+    .footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 16px 5%;
+    }
+}
+
+/* ===== MOBILE: 600px (fallback for slightly larger small screens) ===== */
+@media (max-width: 600px) and (min-width: 481px) {
+    .home {
+        padding: 100px 5% 50px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .home-content {
+        max-width: 100%;
+    }
+
+    .home-actions {
+        justify-content: center;
+    }
+
+    .home-sci {
+        justify-content: center;
+        display: flex;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .home-content h1 {
+        font-size: clamp(30px, 7vw, 42px);
         letter-spacing: 2px;
     }
 
@@ -953,11 +1212,11 @@ body {
     }
 
     .home-content h4 {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .responsive {
-        width: 220px;
+        width: 240px;
     }
 
     .about-text h2,
@@ -965,7 +1224,7 @@ body {
     .sub-title,
     .main-text h2,
     .contact-text h2 {
-        font-size: 34px;
+        font-size: clamp(28px, 7vw, 38px);
     }
 
     .about-text p {
@@ -974,10 +1233,19 @@ body {
 
     #Skills,
     #Experience,
+    #LiveProjects,
     #Projects,
     #Services .container {
         padding-left: 5%;
         padding-right: 5%;
+    }
+
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    .live-projects-grid {
+        grid-template-columns: 1fr;
     }
 
     .tech-group {
@@ -1003,7 +1271,7 @@ body {
     }
 
     .timeline-content {
-        padding: 20px 18px;
+        padding: 20px 16px;
     }
 
     .timeline-content h3 {
@@ -1036,7 +1304,7 @@ body {
     }
 
     .contact-text h2 {
-        font-size: 36px;
+        font-size: 34px;
     }
 
     .footer {

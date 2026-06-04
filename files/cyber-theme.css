@@ -184,6 +184,7 @@ h1, h2, h3, h4, h5, h6, .logo {
     border-radius: 24px;
     border: 1px solid rgba(var(--accent-rgb), 0.15);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* size constraints are handled per breakpoint in style.css */
 }
 .second-image:hover {
     transform: scale(1.02) translateY(-4px);
