@@ -49,7 +49,7 @@ document.addEventListener("mousemove", (e) => {
 
     const COUNT = 60;
     const CONNECT_DIST = 130;
-    const ACCENT = "242,168,95";
+    const ACCENT = "59, 130, 246";
 
     for (let i = 0; i < COUNT; i++) {
         particles.push({
