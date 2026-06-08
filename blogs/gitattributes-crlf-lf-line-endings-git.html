@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding .gitattributes: Solving Cross-Platform Line Ending Problems | A.M. Rinas Blog</title>
+
+    <meta name="description"
+        content="A practical guide to .gitattributes in Git. Learn how to solve cross-platform line ending issues between Windows CRLF and Linux LF, and why teams must standardize repositories.">
+    <meta name="keywords"
+        content="gitattributes, git line endings, CRLF vs LF, git cross platform issues, Windows Linux git problems, DevOps git configuration, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/gitattributes-line-endings-guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Understanding .gitattributes: Solving Cross-Platform Line Ending Problems | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="Learn how .gitattributes fixes CRLF vs LF issues and prevents cross-platform Git problems in real projects.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/gitattributes-line-endings-guide.html">
+    <meta property="og:image"
+        content="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Understanding .gitattributes and Git Line Ending Problems">
+    <meta name="twitter:description"
+        content="Fix Windows vs Linux Git line ending issues using .gitattributes in real projects.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/gitattributes-line-endings-guide.html"
+      },
+      "headline": "Understanding .gitattributes: Solving Cross-Platform Line Ending Problems",
+      "description": "A practical guide to .gitattributes and Git line ending normalization between Windows and Linux systems.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Understanding .gitattributes: Solving Cross-Platform Line Ending Problems</h1>
+
+        <p>
+            One of the most common hidden problems in collaborative development is inconsistent line endings between
+            operating systems. Windows uses CRLF (Carriage Return + Line Feed), while Linux and macOS use LF (Line
+            Feed). This difference silently breaks builds, causes unexpected diffs, and creates unnecessary merge
+            conflicts.
+        </p>
+
+        <p>
+            The <code>.gitattributes</code> file solves this problem by enforcing consistent behavior across all
+            contributors, regardless of their operating system.
+        </p>
+
+        <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"
+            alt="Git logo representing version control and repository management">
+
+        <h2>The Problem: CRLF vs LF</h2>
+
+        <p>
+            Different operating systems handle line endings differently:
+        </p>
+
+        <ul>
+            <li><strong>Windows:</strong> CRLF (\r\n)</li>
+            <li><strong>Linux/macOS:</strong> LF (\n)</li>
+        </ul>
+
+        <p>
+            This causes Git repositories to behave inconsistently when multiple developers are working on different
+            systems. A file edited on Windows may appear completely modified on Linux, even if no real changes were
+            made.
+        </p>
+
+        <h2>Why This Becomes a Real Problem</h2>
+
+        <p>
+            Without standardization, teams face:
+        </p>
+
+        <ul>
+            <li>False diffs in Git history</li>
+            <li>Broken shell scripts in Linux environments</li>
+            <li>CI/CD pipeline failures</li>
+            <li>Messy merge conflicts with no real logic changes</li>
+        </ul>
+
+        <h2>How .gitattributes Fixes It</h2>
+
+        <p>
+            The <code>.gitattributes</code> file forces Git to normalize line endings at the repository level instead
+            of relying on individual developer settings.
+        </p>
+
+        <h3>Basic Configuration</h3>
+
+        <pre><code>* text=auto</code></pre>
+
+        <p>
+            This tells Git to automatically handle line ending normalization based on file type.
+        </p>
+
+        <h3>Strict Cross-Platform Control</h3>
+
+        <pre><code>* text=auto eol=lf</code></pre>
+
+        <p>
+            This forces all files in the repository to use LF, even on Windows machines.
+        </p>
+
+        <h3>Language-Specific Rules</h3>
+
+        <pre><code>*.sh text eol=lf
+*.js text
+*.css text
+*.bat text eol=crlf</code></pre>
+
+        <p>
+            This allows fine-grained control depending on file type and execution environment.
+        </p>
+
+        <h2>Real Project Example</h2>
+
+        <p>
+            In real-world projects, especially when deploying from Windows development machines to Linux servers,
+            inconsistent line endings often cause Docker build failures or script execution errors.
+        </p>
+
+        <p>
+            Adding a <code>.gitattributes</code> file early in the project prevents these issues entirely and ensures
+            consistent behavior across all environments.
+        </p>
+
+        <h2>How It Works Internally</h2>
+
+        <p>
+            When files are committed, Git checks the rules defined in <code>.gitattributes</code> and automatically
+            converts line endings to a consistent format in the repository. When checked out, it adapts them to the
+            local system if configured.
+        </p>
+
+        <h2>Best Practice Recommendation</h2>
+
+        <p>
+            For most modern development teams, the safest configuration is:
+        </p>
+
+        <pre><code>* text=auto eol=lf</code></pre>
+
+        <p>
+            This ensures Linux-friendly consistency across CI/CD pipelines, containers, and production servers.
+        </p>
+
+        <h2>Conclusion</h2>
+
+        <p>
+            .gitattributes is a small file with a huge impact. It silently prevents cross-platform issues that often
+            waste hours in debugging. For any serious project, especially those involving multiple developers or
+            deployment pipelines, it should be considered mandatory.
+        </p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+
+        <!-- SEO Crawler Data: A.M.Rinas, Git gitattributes, CRLF LF problem, cross platform git issues, DevOps Git configuration -->
+        <!-- Topic SEO Keywords: Understanding gitattributes, Git line ending normalization, CRLF vs LF explained -->
+    </article>
+</body>
+
+</html>
