@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Docker Builds Fail Differently on Linux and Windows | A.M. Rinas Blog</title>
+
+    <meta name="description"
+        content="A practical guide to understanding why Docker builds behave differently on Linux and Windows. Learn common causes, file system issues, and how to debug Docker containers effectively.">
+    <meta name="keywords"
+        content="Docker build issues, Linux vs Windows Docker, Docker Compose errors, container debugging, DevOps Docker troubleshooting, file system differences Docker, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/docker-build-linux-windows-issues.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why Docker Builds Fail Differently on Linux and Windows | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="Understand why Docker behaves differently across Linux and Windows and how to fix common build failures.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/docker-build-linux-windows-issues.html">
+    <meta property="og:image"
+        content="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Docker Builds Fail on Linux vs Windows">
+    <meta name="twitter:description"
+        content="Fix Docker build issues caused by OS differences, file systems, and environment mismatches.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/docker-build-linux-windows-issues.html"
+      },
+      "headline": "Why Docker Builds Fail Differently on Linux and Windows",
+      "description": "A practical breakdown of Docker build issues across Linux and Windows environments.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-08",
+      "dateModified": "2026-06-08"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Why Docker Builds Fail Differently on Linux and Windows</h1>
+
+        <p>
+            Docker is designed to abstract away environment differences, but in reality, operating system behavior
+            still leaks into container workflows. One of the most common frustrations developers face is that a Docker
+            build works on Linux but fails on Windows, or behaves inconsistently across both systems.
+        </p>
+
+        <p>
+            This is not a Docker issue alone. It is almost always caused by differences in file systems, line endings,
+            path handling, and permission models between Windows and Linux.
+        </p>
+
+        <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"
+            alt="Docker logo representing containerized application builds and deployment workflows">
+
+        <h2>The Core Problem: OS-Level Differences Still Matter</h2>
+
+        <p>
+            Docker containers run Linux-based environments in most production setups. However, when you build images
+            on Windows, you are still interacting with a Windows file system and tooling layer.
+        </p>
+
+        <p>
+            This mismatch creates subtle but critical inconsistencies.
+        </p>
+
+        <h2>Common Reasons Docker Builds Fail</h2>
+
+        <h3>1. Line Ending Issues (CRLF vs LF)</h3>
+
+        <p>
+            Scripts inside containers may fail if Windows converts Linux shell scripts into CRLF format.
+        </p>
+
+        <pre><code>#!/bin/bash\r
+echo "Hello World"</code></pre>
+
+        <p>
+            The <code>\r</code> character breaks execution in Linux containers.
+        </p>
+
+        <h3>2. File Permission Problems</h3>
+
+        <p>
+            Linux containers rely heavily on executable permissions, while Windows does not enforce them the same way.
+        </p>
+
+        <pre><code>chmod +x script.sh</code></pre>
+
+        <p>
+            If permissions are not preserved correctly, entrypoint scripts may fail with "permission denied".
+        </p>
+
+        <h3>3. Path Format Differences</h3>
+
+        <p>
+            Windows uses backslashes, Linux uses forward slashes. Docker expects Linux-style paths inside containers.
+        </p>
+
+        <pre><code># Wrong on Linux container context
+C:\app\src
+
+# Correct
+/app/src</code></pre>
+
+        <h3>4. Volume Mount Issues</h3>
+
+        <p>
+            Docker volume mounts behave differently on Windows due to file system translation layers (NTFS vs ext4).
+        </p>
+
+        <h3>5. Case Sensitivity Problems</h3>
+
+        <p>
+            Linux file systems are case-sensitive, Windows is not. This leads to hidden runtime failures.
+        </p>
+
+        <pre><code>import UserService from "./userservice"</code></pre>
+
+        <p>
+            This may work on Windows but fail on Linux if the actual file is <code>UserService.js</code>.
+        </p>
+
+        <h2>How to Debug Docker Build Issues Properly</h2>
+
+        <h3>Step 1: Build with verbose output</h3>
+
+        <pre><code>docker build --no-cache --progress=plain .</code></pre>
+
+        <p>
+            This forces Docker to show full logs instead of cached layers.
+        </p>
+
+        <h3>Step 2: Enter the container manually</h3>
+
+        <pre><code>docker run -it --entrypoint /bin/sh image_name</code></pre>
+
+        <p>
+            This helps you inspect the actual runtime environment.
+        </p>
+
+        <h3>Step 3: Inspect file formats inside container</h3>
+
+        <pre><code>file script.sh</code></pre>
+
+        <p>
+            If you see CRLF endings, the issue is confirmed.
+        </p>
+
+        <h3>Step 4: Use consistent Git configuration</h3>
+
+        <p>
+            Always enforce LF endings using:
+        </p>
+
+        <pre><code>* text=auto eol=lf</code></pre>
+
+        <h2>Best Practices to Avoid These Issues</h2>
+
+        <ul>
+            <li>Always develop inside Linux-like environments when using Docker</li>
+            <li>Standardize line endings using .gitattributes</li>
+            <li>Avoid Windows-style paths in code</li>
+            <li>Use WSL2 if you are on Windows</li>
+            <li>Test builds inside containers, not only on host OS</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+
+        <p>
+            Docker does not fully eliminate OS differences. It isolates applications, not the developer environment.
+            Most build failures come from ignoring how Windows and Linux still behave differently under the hood.
+        </p>
+
+        <p>
+            Once you understand file systems, permissions, and line endings, Docker becomes predictable instead of
+            frustrating.
+        </p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+
+        <!-- SEO Crawler Data: Docker Linux Windows issues, container build failures, DevOps troubleshooting, A.M. Rinas Blog -->
+        <!-- Topic SEO Keywords: Docker build errors, Linux vs Windows containers, debugging Docker Compose issues -->
+    </article>
+</body>
+
+</html>
