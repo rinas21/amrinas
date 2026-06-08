@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Video Trimming on Linux Using FFmpeg (No Re-encoding) | A.M. Rinas Blog</title>
+
+    <meta name="description"
+        content="A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding. Learn how to cut MKV and MP4 files quickly using -ss, -to, and -c copy for high-speed video editing workflows.">
+    <meta name="keywords"
+        content="ffmpeg video trimming, linux video editing, ffmpeg -c copy, cut video without re-encoding, mkv trimming linux, video processing ffmpeg, DevOps tools, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/ffmpeg-video-trimming-linux.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Fast Video Trimming on Linux Using FFmpeg (No Re-encoding) | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="Learn how to instantly trim videos on Linux using FFmpeg without re-encoding. Perfect for fast MKV/MP4 editing workflows.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/ffmpeg-video-trimming-linux.html">
+    <meta property="og:image"
+        content="https://upload.wikimedia.org/wikipedia/commons/5/5b/FFmpeg_Logo_new.svg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fast Video Trimming on Linux Using FFmpeg">
+    <meta name="twitter:description"
+        content="Learn how to cut videos instantly on Linux using FFmpeg without re-encoding or quality loss.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/ffmpeg-video-trimming-linux.html"
+      },
+      "headline": "Fast Video Trimming on Linux Using FFmpeg",
+      "description": "A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)</h1>
+
+        <p>
+            Video editing on Linux does not always require heavy graphical tools. In many cases, simple trimming tasks
+            like cutting a section of a video can be done instantly using FFmpeg. Instead of re-encoding the video,
+            FFmpeg can copy streams directly, making the process extremely fast and lossless.
+        </p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/FFmpeg_Logo_new.svg"
+            alt="FFmpeg logo representing fast video processing and multimedia editing on Linux systems">
+
+        <h2>Why FFmpeg for Video Trimming</h2>
+        <p>
+            Most video editors re-encode the entire file even for small cuts, which is slow and wastes CPU resources.
+            FFmpeg avoids this by directly copying the video and audio streams when possible.
+        </p>
+
+        <p>
+            This makes it ideal for quick edits, especially for developers, content creators, or anyone working in a
+            Linux environment.
+        </p>
+
+        <h2>Basic FFmpeg Installation</h2>
+        <p>Install FFmpeg depending on your Linux distribution:</p>
+
+        <pre><code># Debian / Ubuntu
+sudo apt install ffmpeg
+
+# Arch Linux
+sudo pacman -S ffmpeg
+
+# Fedora
+sudo dnf install ffmpeg</code></pre>
+
+        <h2>Core Video Trimming Command</h2>
+        <p>
+            The simplest way to trim a video without re-encoding is:
+        </p>
+
+        <pre><code>ffmpeg -i "input.mkv" -ss 00:00:04 -to 00:09:52 -c copy output.mkv</code></pre>
+
+        <p>
+            This command extracts a segment from the input video without changing the original encoding.
+        </p>
+
+        <h2>Understanding the Parameters</h2>
+
+        <h3>1. Input File</h3>
+        <pre><code>-i input.mkv</code></pre>
+        <p>Specifies the source video file.</p>
+
+        <h3>2. Start Time</h3>
+        <pre><code>-ss 00:00:04</code></pre>
+        <p>Defines where the trimmed segment begins.</p>
+
+        <h3>3. End Time</h3>
+        <pre><code>-to 00:09:52</code></pre>
+        <p>Defines where the trimmed segment ends.</p>
+
+        <h3>4. Stream Copy (Key Concept)</h3>
+        <pre><code>-c copy</code></pre>
+        <p>
+            This tells FFmpeg not to re-encode the video or audio streams. This is what makes the operation extremely
+            fast.
+        </p>
+
+        <h2>Real-World Example</h2>
+        <p>
+            Example command used in a real workflow:
+        </p>
+
+        <pre><code>ffmpeg -i "2026-06-03 21-20-17.mkv" -ss 00:00:04 -to 00:09:52 -c copy output2.mkv</code></pre>
+
+        <p>
+            This is useful for quickly extracting clips from long recordings, gameplay videos, or screen captures.
+        </p>
+
+        <h2>Important Limitation</h2>
+        <p>
+            Stream copying is fast, but it is not frame-accurate. Cuts may slightly shift because FFmpeg must align
+            with keyframes.
+        </p>
+
+        <p>
+            If you need precise frame-level cutting, you must re-encode the video, which increases processing time.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+            FFmpeg provides a powerful and lightweight way to handle video trimming on Linux. For quick edits, stream
+            copying is the fastest option available. Understanding when to use -c copy versus re-encoding is key to
+            efficient video processing workflows.
+        </p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, FFmpeg Linux video editing, Linux video trimming, DevOps tools, A.M. Rinas Blog -->
+        <!-- Topic SEO Keywords: FFmpeg video trimming guide, Linux video editing tutorial, no re-encoding video cut -->
+    </article>
+</body>
+
+</html>
