@@ -140,7 +140,7 @@
             background: var(--warm);
             transform: scale(1.01);
             border-color: transparent;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
             z-index: 2;
         }
 
@@ -389,7 +389,10 @@
             <div class="arch-header">
                 <div class="arch-meta-row">
                     <h2 class="arch-title">Insights<br>&amp; Guides</h2>
-                    <p class="arch-sub">Research, guides, and honest advice. New posts published regularly.</p>
+                    <p class="arch-sub">Research, guides, and honest advice. New posts published regularly.<br><span
+                            id="total-blogs-count"
+                            style="color: var(--gold-deep); font-weight: 800; margin-top: 5px; display: inline-block;"></span>
+                    </p>
                 </div>
 
                 <div class="category-tags" id="category-container" style="margin-bottom: 20px; margin-top: 10px;">
@@ -679,6 +682,10 @@
         ];
 
         function initBlog() {
+            const countEl = document.getElementById('total-blogs-count');
+            if (countEl) {
+                countEl.innerText = `Total Posts: ${blogPosts.length}`;
+            }
             renderPosts();
         }
 
