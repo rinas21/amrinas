@@ -1,0 +1,184 @@
+---
+title: Apache HTTP Server Troubleshooting Notes
+---
+
+## Apache HTTP Server Troubleshooting Notes
+
+## Common Commands
+
+### Syntax Check
+- **Command:**
+  ```bash
+  ./httpd -t
+  ```
+- **Purpose:** Validates the syntax of Apache configuration files without restarting the server.
+- **Benefits:**
+  - Quickly identifies errors in configuration.
+  - Pinpoints the exact file and line number of the issue.
+
+### Additional Options
+- **Dump Virtual Hosts:**
+  ```bash
+  ./httpd -t -D DUMP_VHOSTS
+  ```
+  Lists all configured virtual hosts and their respective settings.
+
+- **Dump Modules:**
+  ```bash
+  ./httpd -t -D DUMP_MODULES
+  ```
+  Displays all loaded Apache modules.
+
+- **Dump Runtime Configuration:**
+  ```bash
+  ./httpd -t -D DUMP_RUN_CFG
+  ```
+  Outputs the runtime configuration, useful for debugging.
+
+---
+
+## Issue Encountered: `SSLSessionCache cannot occur within <VirtualHost>`
+
+### Error Description
+- **Error Message:**
+  ```
+  AH00526: Syntax error on line 209 of /path/to/httpd.conf:
+  SSLSessionCache cannot occur within <VirtualHost> section
+  ```
+
+- **Cause:**
+  The `SSLSessionCache` directive was placed inside a `<VirtualHost>` block, which is not allowed. This directive should be in the global context.
+
+### Resolution Steps
+1. Open the Apache configuration file for editing:
+   ```bash
+   vim /path/to/httpd.conf
+   ```
+
+2. Locate the `SSLSessionCache` directive.
+
+3. Move the directive outside of any `<VirtualHost>` blocks, typically near the top of the configuration file.
+
+4. Save and close the file.
+
+5. Validate the syntax:
+   ```bash
+   ./httpd -t
+   ```
+
+6. Restart the Apache server:
+   ```bash
+   ./httpd -k restart
+   ```
+
+---
+
+## Debugging Logs
+
+### Check the Error Log
+- **Command:**
+  ```bash
+  cat /path/to/apache/logs/error_log
+  ```
+- **Purpose:** Provides detailed error messages and logs related to server operations.
+- **Example Logs:**
+  ```
+  [Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+  [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down
+  ```
+
+### Key Warnings and Notices
+- **`AH01873`:**
+  - Warning: Session Cache is not configured.
+  - **Hint:** Ensure `SSLSessionCache` is configured in the global context.
+
+- **`AH00491`:**
+  - Notice: The server received a signal to terminate (e.g., `SIGTERM`).
+
+---
+
+## Tips for Future Troubleshooting
+- Always use `httpd -t` after making configuration changes.
+- Check logs regularly for warnings or errors.
+- Keep configuration directives in the appropriate context (global vs. `<VirtualHost>`).
+
+---
+
+### Notes
+This document can be expanded with additional issues or commands encountered during Apache HTTP Server management.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## SSL Certificate Creation and Validation
+
+## 1. Generate a New Private Key
+To generate a new private key using OpenSSL:
+
+```bash
+openssl genrsa -out /hms/installs/apache/key/enum_hsenidmobile_com.key 2048
+ 
+ ```
+
+## 2. Create a New CSR (Certificate Signing Request)
+
+ ```bash
+openssl req -new -key /hms/installs/apache/key/enum_hsenidmobile_com.key -out /hms/installs/apache/key/enum_hsenidmobile_com.csr
+```
+## 3. Submit the CSR to a Certificate Authority (CA)
+
+Once the CSR is generated, submit it to your Certificate Authority (CA) of choice (e.g., Let's Encrypt, DigiCert) to obtain a signed certificate. The CA will provide:
+
+- `.crt` file: This is the signed certificate.
+- `.chain` or `.intermediate` certificate file (optional): This is the intermediate certificate that links your certificate to the CA's root certificate.
+
+### Example:
+After submitting the CSR to the CA, you will receive files like:
+- `enum_hsenidmobile_com.crt` (signed certificate)
+- `enum_hsenidmobile_com_chain.crt` (intermediate certificate)
+
+## 4. Install the SSL Certificate
+
+Once you have received the certificate files from your CA, you'll need to install them on your server.
+
+### Update Apache SSL Configuration
+
+Edit the Apache configuration to include the following:
+
+```apache
+SSLEngine On
+SSLCertificateFile /hms/installs/apache/key/enum_hsenidmobile_com.crt
+SSLCertificateKeyFile /hms/installs/apache/key/enum_hsenidmobile_com.key
+SSLCertificateChainFile /hms/installs/apache/key/enum_hsenidmobile_com_chain.crt
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Steps to Verify HTTPS Certificate and Redirection:  
+
+1. **Verify HTTPS Certificate**
+
+Run the following command to check the HTTPS certificate:
+```bash     
+     curl -ikv https://localhost
+```
+
+**Note**: Replace with the correct endpoint based on your environment (e.g., localhost for development or the production endpoint URL).
+
+1. curl -ikv http://localhost checks how the server responds to HTTP requests.  
+
+2. curl -L http://localhost will follow any HTTP-to-HTTPS redirections.
+     
+
+## Expected Results:
+
+*   The certificate details (Subject, Issuer, Validity period) should be displayed.
+    
+    *   A warning might appear if using a self-signed certificate, which is acceptable if intentional.
+        
+*   The server should respond with a “301 Moved Permanently” or “302 Found” status code, indicating a redirection to HTTPS.
+    
+*   The request should follow the redirection to the HTTPS URL.
+ 

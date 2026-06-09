@@ -1,0 +1,139 @@
+---
+title: 1. We need to locate a file owned by user bandit7, group bandit6, and is exactly 33 bytes in size. Here's the exact find command:
+---
+
+1. We need to locate a file owned by user bandit7, group bandit6, and is exactly 33 bytes in size. Here's the exact find command:
+
+```bash
+find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+```
+
+ - Search the entire server.
+ - type f: Look for regular files.
+ - user bandit7: Files owned by user bandit7.
+ - group bandit6: Files owned by group bandit6.
+ - size 33c: Files that are 33 bytes in size (c stands for bytes).
+ - 2>/dev/null: Suppress permission denied errors.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## SSH with a Custom Port
+
+```bash
+ssh -p PORT_NUMBER username@hostname
+```
+##  SSH with ProxyJump (Jump Host)
+
+### If you need to use an intermediary server (jump host) to reach your destination server, you can use the -J option.
+
+```bash
+ssh -J jump_user@jump_host destination_user@destination_host
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Why We Need Proxy Configuration in Maven's settings.xml
+
+<p>The proxy configuration in the <code>settings.xml</code> file is essential for the following reasons:</p>
+
+<ol>
+  <li><strong>Network Access Control:</strong> 
+    <p>If your network is behind a corporate firewall or proxy server, Maven needs this configuration to route its requests through the proxy. This allows Maven to access remote repositories (such as Maven Central or internal repositories) and download dependencies or plugins, especially when direct access to the internet is restricted.</p>
+  </li>
+  <li><strong>Security and Monitoring:</strong> 
+    <p>Proxies are often used to monitor and control network traffic for security and auditing purposes. By routing Maven's traffic through a proxy, your organization can track and control access to external resources.</p>
+  </li>
+  <li><strong>Optimized Performance (Caching):</strong> 
+    <p>Proxies can cache responses (like dependencies or artifacts), which can speed up build times when accessing commonly used resources. If Maven has already downloaded a dependency once, the proxy can serve it from the cache instead of downloading it again.</p>
+  </li>
+  <li><strong>Bypass Local Restrictions:</strong> 
+    <p>The <code>nonProxyHosts</code> field allows you to define exceptions where Maven doesn't use the proxy, such as for internal repositories or local network addresses. This ensures that Maven can still communicate directly with trusted hosts without needing to route everything through the proxy.</p>
+  </li>
+  <li><strong>Consistency:</strong> 
+    <p>Configuring the proxy in the <code>settings.xml</code> ensures that all developers and build environments within your organization are using the same proxy configuration, providing consistent behavior across different machines or systems.</p>
+  </li>
+</ol>
+
+<p>In summary, this configuration is required when Maven needs to access the internet via a proxy server, ensuring smooth communication with remote repositories and better control over network traffic.</p>
+
+<h3>Example Proxy Configuration in settings.xml</h3>
+
+<pre>
+<code>
+&lt;proxy&gt;
+  &lt;id&gt;optional&lt;/id&gt;
+  &lt;active&gt;true&lt;/active&gt;
+  &lt;protocol&gt;http&lt;/protocol&gt;
+  &lt;host&gt;proxy.host.net&lt;/host&gt;
+  &lt;port&gt;80&lt;/port&gt;
+  &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
+&lt;/proxy&gt;
+
+</code>
+</pre>
+
+<p>Example Path to settings.xml:</p>
+
+<pre>
+<code>
+/opt/mvn-3-0-3/conf
+</code>
+</pre>
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+<h1>Git Tag Commands</h1>
+<p>Here are some useful Git commands for managing and working with tags:</p>
+    
+ <h2>1. List all tags</h2>
+<pre><code>git tag</code></pre>
+<p>Lists all the tags in the repository.</p>
+
+<h2>2. Show the latest tag</h2>
+ <pre><code>git describe --tags --abbrev=0</code></pre>
+ <p>This will show the most recent tag associated with the current commit, without any additional information.</p>
+
+<h2>3. Show information about a specific tag</h2>
+    <pre><code>git show &lt;tag_name&gt;</code></pre>
+    <p>Displays the commit information associated with the specified tag.</p>
+
+<h2>4. Create a new tag</h2>
+    <pre><code>git tag &lt;tag_name&gt;</code></pre>
+    <p>Creates a new tag at the current commit.</p>
+
+ <h2>5. Create an annotated tag</h2>
+    <pre><code>git tag -a &lt;tag_name&gt; -m "Tag message"</code></pre>
+    <p>Creates an annotated tag with a message at the current commit. Annotated tags are stored as full objects in the Git database, containing the tagger name, email, and date.</p>
+
+ <h2>6. Create a lightweight tag</h2>
+  <pre><code>git tag &lt;tag_name&gt; &lt;commit_hash&gt;</code></pre>
+    <p>Creates a lightweight tag pointing to a specific commit. It's simply a reference to that commit.</p>
+
+ <h2>7. Delete a tag</h2>
+    <pre><code>git tag -d &lt;tag_name&gt;</code></pre>
+    <p>Deletes the specified tag from your local repository.</p>
+
+ <h2>8. Push a tag to remote</h2>
+    <pre><code>git push origin &lt;tag_name&gt;</code></pre>
+    <p>Pushes a specific tag to the remote repository.</p>
+
+<h2>9. Push all tags to remote</h2>
+    <pre><code>git push --tags</code></pre>
+    <p>Pushes all tags in the local repository to the remote.</p>
+
+ <h2>10. Checkout a tag</h2>
+    <pre><code>git checkout &lt;tag_name&gt;</code></pre>
+    <p>Switches to a specific tag. This creates a "detached HEAD" state, meaning you're not on a branch, but instead, you're pointing to a specific commit.</p>
+
+ <h2>11. List all tags with their commit messages</h2>
+    <pre><code>git tag -n</code></pre>
+    <p>Lists all tags with the first few lines of their associated commit messages.</p>
+
+ <h2>12. Find tags for a specific commit</h2>
+    <pre><code>git tag --contains &lt;commit_hash&gt;</code></pre>
+    <p>Shows all the tags that contain the specified commit.</p>
+
+ <h2>13. Show the commit for a specific tag</h2>
+    <pre><code>git log &lt;tag_name&gt;</code></pre>
+    <p>Shows the commit history for the specified tag.</p>

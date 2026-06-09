@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Backup & Restore with Docker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --container-bg: #1e293b;
+            --border-color: #334155;
+            --code-bg: #020617;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 60px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 25px; }
+        h2 { font-size: 1.8rem; margin-top: 45px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #fca5a5;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+            color: #e2e8f0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        th { background-color: var(--code-bg); color: var(--accent-color); }
+        a { color: #7dd3fc; text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #38bdf8; text-decoration: underline; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+</head>
+<body>
+    <div class="container" id="content"></div>
+    <script type="text/markdown" id="md-content">
+## MongoDB Backup & Restore with Docker
+
+This guide outlines the process for backing up and restoring MongoDB databases running in Docker containers. It uses generic names for containers and databases, which you should replace with your specific values.
+
+### 1. Identify Your MongoDB Container
+
+First, list your running Docker containers to identify your MongoDB instance.
+
+```bash
+docker ps
+```
+
+*Identify your MongoDB container (e.g., `my-mongo`) and any other relevant database containers.*
+
+### 2. Prepare a Backup Directory on the Host
+
+Create a dedicated folder on your host machine where all backups will be stored.
+
+```bash
+sudo mkdir -p /databases
+sudo chown -R $USER:$USER /databases
+cd /databases
+```
+
+### 3. Dump the Database from the Container
+
+Use `mongodump` to export your database from the running container. **Always use proper authentication.**
+
+```bash
+docker exec my-mongo mongodump \
+  --username <DB_USER> \
+  --password <DB_PASSWORD> \
+  --authenticationDatabase admin \
+  --db <SOURCE_DB_NAME> \
+  --out /dump
+```
+
+After dumping, copy the backup from the container to your host machine.
+
+```bash
+docker cp my-mongo:/dump /databases/mongo-backup-$(date +%F)
+```
+
+**Example Backup Folder Structure:**
+
+```
+/databases/mongo-backup-2026-01-05/
+├── admin/
+├── prelude.json
+└── <SOURCE_DB_NAME>/
+    ├── collection1.bson
+    ├── collection1.metadata.json
+    └── collection2.bson
+    └── ...
+```
+
+### 4. Start a Fresh MongoDB Container (If Needed)
+
+If you're restoring to a new or clean container, stop and remove the old one, then start a new one.
+
+```bash
+docker stop my-mongo
+docker rm my-mongo
+
+docker run -d \
+  --name my-mongo \
+  -p 127.0.0.1:27017:27017 \
+  -v mongo-data:/data/db \
+  -e MONGO_INITDB_ROOT_USERNAME=<DB_USER> \
+  -e MONGO_INITDB_ROOT_PASSWORD=<DB_PASSWORD> \
+  -e MONGO_INITDB_DATABASE=<SOURCE_DB_NAME> \
+  mongo:<VERSION>
+```
+
+**Verify MongoDB version inside the new container:**
+
+```bash
+docker exec my-mongo mongosh -u <DB_USER> -p <DB_PASSWORD> --authenticationDatabase admin --eval "db.version()"
+```
+
+### 5. Copy Backup into Container for Restore
+
+Create a directory inside the container to hold the backup files, then copy them over.
+
+```bash
+docker exec my-mongo mkdir -p /backup
+docker cp /databases/mongo-backup-2026-01-05/<SOURCE_DB_NAME> my-mongo:/backup/<SOURCE_DB_NAME>
+```
+
+**Verify files are copied:**
+```bash
+docker exec my-mongo ls -F /backup/<SOURCE_DB_NAME>
+```
+
+### 6. Restore Database to a New Name
+
+Use `mongorestore` to import the data. You can restore it to the original database name or a new one using the `--db` flag.
+
+```bash
+docker exec my-mongo mongorestore \
+  --username <DB_USER> \
+  --password <DB_PASSWORD> \
+  --authenticationDatabase admin \
+  --db <RESTORE_DB_NAME> \ # Use <SOURCE_DB_NAME> if restoring to original name
+  /backup/<SOURCE_DB_NAME>
+```
+
+**Success Output Example:**
+```
+X document(s) restored successfully. 0 document(s) failed to restore.
+```
+
+**Verify in `mongosh`:**
+```bash
+docker exec -it my-mongo mongosh -u <DB_USER> -p <DB_PASSWORD> --authenticationDatabase admin
+```
+Once inside `mongosh`:
+```javascript
+> show databases;
+> use <RESTORE_DB_NAME>;
+> show collections;
+> db.<collection_name>.findOne();
+```
+
+### 7. Important Notes & Caveats
+
+-   **Authentication:** Always use full authentication (`--username`, `--password`, `--authenticationDatabase`) for `mongodump` and `mongorestore` inside Docker.
+-   **Container Paths:** Ensure the `/dump` or `/backup` directory exists inside the container *before* attempting to copy files to it.
+-   **Metadata Files:** The `*.metadata.json` files are crucial as they contain index definitions and other collection metadata. Always include them when restoring.
+-   **Selective Renames:** For advanced scenarios where you need to restore specific collections and rename them, use `mongorestore`'s namespace options:
+    -   `--nsInclude <namespace_pattern>`
+    -   `--nsFrom <original_namespace>`
+    -   `--nsTo <new_namespace>`
+    (e.g., `--nsFrom "source_db.collection1" --nsTo "target_db.new_collection1"`)
+-   **MongoDB Version:** Ensure the `mongo:<VERSION>` tag matches the version of MongoDB you intend to use.
+
+| Command | Purpose / What it Does | Notes / Context |
+|---------|----------------------|----------------|
+| `docker ps` | List running containers | Check status of containers |
+| `docker exec -it my-db mongosh -u admin -p admin123 --authenticationDatabase admin` | Access MongoDB shell inside container | View databases and perform operations |
+| `docker run -d --name my-db -p 127.0.0.1:27017:27017 -v my-db-volume:/data/db my-db-image` | Start a new container from backup image | Run MongoDB or other DB container on target machine |
+| `docker cp ~/backup/my-db-dump my-db:/tmp/my-db-dump` | Copy database dump into container | Copy to a safe location inside container (not volume mount) |
+| `docker commit <container-id> my-db-backup` | Save running container as an image | Create reusable backup image of container |
+| `docker save -o ~/backup/my-db-backup.tar my-db-backup` | Save Docker image to tar file | For transferring image to another machine |
+| `docker load -i ~/backup/my-db-backup.tar` | Load saved Docker image on target machine | Makes image available for running containers |
+| `docker run --rm -v my-db-volume:/data/db -v ~/backup:/backup ubuntu tar czvf /backup/my-db-volume-backup.tar.gz -C /data/db .` | Backup Docker volume | Use temporary container to archive DB volume |
+| `docker run --rm -v my-db-volume:/data/db -v ~/backup:/backup ubuntu bash -c "cd /data/db && tar xzvf /backup/my-db-volume-backup.tar.gz --strip 1"` | Restore Docker volume backup | Restore data from tar to Docker volume |
+| `docker exec -it my-db mongorestore -u admin -p admin123 --authenticationDatabase admin /tmp/my-db-dump` | Restore MongoDB database from dump | Correct restore method when DB uses a volume |
+    </script>
+    <script>
+        const markdownContent = document.getElementById('md-content').textContent;
+        document.getElementById('content').innerHTML = marked.parse(markdownContent);
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+---
+title: CPU Cycle and its Relation to Time
+---
+
+### CPU Cycle and its Relation to Time
+
+- A **CPU cycle** represents the time taken for the CPU to perform a basic operation, such as fetching, decoding, or executing an instruction.
+- It is not measured in seconds but is linked to the CPU's clock speed.
+
+#### Relation to Clock Speed
+- **Clock Speed**: Measured in Hertz (Hz), it defines how many cycles the CPU can perform per second.
+- Example: A CPU with a clock speed of **3 GHz** (3 billion cycles per second) has a single cycle duration of approximately **0.33 nanoseconds** (1 / 3 billion seconds).
+
+#### Key Takeaways
+- A CPU cycle is a fundamental unit of computation time for the processor.
+- The faster the clock speed, the shorter the duration of each cycle, resulting in quicker processing.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Overview
+- **Multiple-level queues** are not standalone scheduling algorithms but work in conjunction with others to optimize job scheduling.
+- They are used in systems where jobs can be grouped based on shared characteristics, such as:
+  - Priority levels
+  - CPU-bound vs. I/O-bound jobs
+  - Batch vs. interactive jobs
+
+#### Key Concepts
+1. **Priority-based Queues**:
+   - Different queues exist for various priority levels.
+   - Higher-priority queues receive CPU time before lower-priority ones.
+
+2. **CPU-bound vs. I/O-bound Queues**:
+   - Separate queues for CPU-intensive and I/O-intensive tasks.
+   - The scheduler alternates between queues to maintain system balance.
+
+3. **Foreground vs. Background Queues**:
+   - Interactive (foreground) jobs are given preferential treatment.
+   - Batch (background) jobs are processed with lower priority.
+
+---
+
+#### Characteristics
+- **Flexibility**: Different scheduling algorithms can be applied to different queues.
+- **Fairness Concerns**:
+  - High-priority queues may starve lower-priority ones.
+  - Aging can address fairness by promoting long-waiting jobs to higher-priority queues.
+
+---
+
+#### Questions to Consider
+1. **Queue Traversal**:
+   - Should the processor finish all jobs in one queue before moving to the next?
+   - Or should it cycle through queues?
+
+2. **Fairness**:
+   - Is it fair to favor high-priority jobs excessively?
+   - Will low-priority jobs get an opportunity to execute?
+
+3. **Starvation Prevention**:
+   - How can jobs in lower-priority queues eventually be served?
+   - Can aging or queue promotions improve fairness?
+
+---
+
+#### Queue Movement Policies
+1. **Fixed Queues**:
+   - Jobs remain in their assigned queues throughout execution.
+   
+2. **Dynamic Movement**:
+   - Jobs are moved between queues based on performance or behavior.
+
+3. **Increasing Time Quantums**:
+   - Lower-priority queues may have larger time quantums to balance execution time.
+
+4. **Aging**:
+   - Jobs waiting too long are promoted to higher-priority queues.
+
+---
+
+#### Advantages
+- Combines the strengths of multiple algorithms.
+- Supports a variety of job types and workloads.
+
+#### Challenges
+- Requires careful policy design to avoid starvation and ensure fairness.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Notes on Availability and Reliability
+
+#### Key Definitions:
+1. **Availability**:
+   - A measure of the time a unit is operational and available for use.
+   - Influenced by:
+     - **MTBF (Mean Time Between Failures)**: Average operational time before failure.
+     - **MTTR (Mean Time to Repair)**: Average time to repair and return the unit to service.
+   - **Formula**:
+     \[
+     \text{Availability} = \frac{\text{MTBF}}{\text{MTBF} + \text{MTTR}}
+     \]
+   - Example Calculation:
+     - **MTBF**: 4,000 hours
+     - **MTTR**: 2 hours
+     - \[
+     \text{Availability} = \frac{4000}{4000 + 2} = 0.9995
+     \]
+     - Interpretation: The unit would be available 99.95% of the time, or 9,995 out of every 10,000 hours.
+
+2. **Reliability**:
+   - A measure of the probability that a unit will not fail during a given time period.
+   - **Formula** (introduced by Nickel in 1978):
+     \[
+     \text{Reliability}(t) = e^{-\frac{1}{\text{MTBF}} \cdot t}
+     \]
+     - \( e \): Mathematical constant (approximately 2.71828).
+     - \( t \): Time period (in the same units as MTBF).
+
+   - Example Calculation:
+     - **MTBF**: 4,000 hours
+     - **Time (t)**: 10 minutes = \( \frac{10}{60} \) hours
+     - \[
+     \text{Reliability}(t) = e^{-\frac{1}{4000} \cdot \frac{10}{60}}
+     \]
+     - Simplification:
+       \[
+       \text{Reliability}(t) = e^{-\frac{1}{24,000}} \approx 0.9999584
+       \]
+     - Interpretation: The unit has a 99.99584% probability of functioning during the required 10-minute period.
+
+---
+
+#### Key Considerations:
+- Ensure consistent units when calculating MTBF, MTTR, and time (e.g., all in hours or all in days).
+- Availability reflects operational uptime, while reliability measures failure probability over time.
+
+---
+
+#### Practical Examples:
+1. **Terminal Example**:
+   - MTBF: 4,000 hours.
+   - Usage: 4 hours/day, 20 days/month = 80 hours/month.
+   - Failure Frequency:
+     \[
+     \text{Failure Interval} = \frac{\text{MTBF}}{\text{Usage}} = \frac{4000}{80} = 50 \text{ months}
+     \]
+
+2. **Deadline Scenario**:
+   - If a unit must work for 10 minutes before a deadline:
+     - Reliability ≈ 99.99584%.

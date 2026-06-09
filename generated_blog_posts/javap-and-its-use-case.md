@@ -1,0 +1,137 @@
+---
+title: javap and its Use Case
+---
+
+### javap and its Use Case
+
+javap is a command-line tool provided by the Java Development Kit (JDK) that disassembles Java class files. It allows you to view the bytecode of a class file and obtain details such as the version of the class file and other metadata.
+
+## Use Case:
+* The primary use case for javap is to inspect compiled .class files to understand their structure, such as methods, fields, and bytecode instructions. This is especially useful when you need to verify the compatibility of a class file with a specific Java version.
+
+For example, you can use the following command to check the major version of a class file:
+
+```bash
+javap -v MyClass.class | grep "major version"
+```
+
+This will show the major version of the class file, which tells you which version of Java was used to compile the code.
+
+### Major Version Table:
+
+| Java Version | Major Version |
+|--------------|---------------|
+| Java 1.1     | 45            |
+| Java 1.2     | 46            |
+| Java 1.3     | 47            |
+| Java 1.4     | 48            |
+| Java 5       | 49            |
+| Java 6       | 50            |
+| Java 7       | 51            |
+| Java 8       | 52            |
+| Java 9       | 53            |
+| Java 10      | 54            |
+| Java 11      | 55            |
+| Java 12      | 56            |
+| Java 13      | 57            |
+| Java 14      | 58            |
+| Java 15      | 59            |
+| Java 16      | 60            |
+| Java 17      | 61            |
+| Java 18      | 62            |
+| Java 19      | 63            |
+
+* Example:
+If you run the following command on a class file:
+
+```bash
+javap -v /path/to/your/ClassFile.class | grep "major version"
+```
+It will output something like:
+
+```bash
+major version: 50
+```
+This means that the class file was compiled using Java 6 (major version 50).
+
+## Common Usages of `javap`
+
+`javap` is a command-line tool that disassembles Java class files. It provides detailed information about the structure and content of compiled Java classes. Here's a breakdown of common usages:
+
+**Viewing Class Metadata:**
+
+You can use `javap` to display detailed information about a class file, such as its methods, fields, and other structural details.
+
+```bash
+javap MyClass.class
+```
+This will show information about the class, such as:
+
+* Fields
+* Constructors
+* Methods
+* Modifiers (public, private, etc.)
+
+**Viewing Bytecode with -v (Verbose) Option:**
+
+The -v (verbose) option will display more detailed information, including bytecode instructions, stack map tables, and constant pool entries.
+
+```Bash
+javap -v MyClass.class
+```
+
+Example output:
+
+* Method signatures
+* Line numbers
+* Bytecode instructions
+* Inspecting Methods in a Class:
+
+You can view the methods of a class using the -public, -private, or -protected flags to see the methods for a particular access level.
+
+```Bash
+javap -public MyClass.class
+```
+
+`This shows only public methods in the class.`
+
+**Displaying the Method Signatures:**
+
+If you only want to see the method signatures (i.e., method names and parameters), you can use the -s (summary) option:
+
+```Bash
+javap -s MyClass.class
+```
+**Displaying the Constant Pool:**
+
+The constant pool contains constants used by the class file, such as literals, references to methods, fields, etc. You can display the constant pool using the -c option.
+
+```Bash
+javap -c MyClass.class
+```
+
+Disassembling the Code of a Method:
+
+You can use javap to display the bytecode for a specific method within the class. Use the method name as an argument:
+
+```Bash
+
+javap -c MyClass className.methodName
+```
+
+**Viewing the Class Hierarchy (Superclasses and Interfaces):**
+
+Use the -p option to display both the private and public members (fields and methods) of a class. This is useful for analyzing the complete class hierarchy.
+
+```Bash
+
+javap -p MyClass.class
+```
+**Disassembling the Entire Package of Classes:**
+
+You can use javap on a directory to analyze multiple class files within a package at once.
+
+```Bash
+
+javap -v -p path/to/classes/*.class
+```

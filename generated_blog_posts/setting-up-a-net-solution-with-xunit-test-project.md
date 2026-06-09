@@ -1,0 +1,90 @@
+---
+title: Setting Up a .NET Solution with xUnit Test Project
+---
+
+# Setting Up a .NET Solution with xUnit Test Project
+
+## Step 1 – Create the Test Project
+
+```bash
+dotnet new xunit -n BuffetConnect.E2E -f net10.0
+```
+
+**Purpose:** Creates a new xUnit test project.
+
+- `-n BuffetConnect.E2E`: Names the project folder and `.csproj` file.
+- `-f net10.0`: Targets .NET 10 framework.
+
+**Result:** Generates `BuffetConnect.E2E/` folder containing `BuffetConnect.E2E.csproj`, `UnitTest1.cs`, and `obj/`.
+
+> **Note:** This is the project where you will write your tests.
+
+## Step 2 – Navigate to the Parent Directory
+
+```bash
+cd ~/Desktop/project/automation/buffet-automation
+```
+
+**Purpose:** Ensure that the solution file will be created in the correct directory.
+
+**Why:** The solution file should be one level above the projects it contains.
+
+## Step 3 – Create the Solution File
+
+```bash
+dotnet new sln -n BuffetConnect
+```
+
+**Purpose:** Creates a solution file `BuffetConnect.sln`.
+
+**Why:** The solution is a container for multiple projects (your tests, main app, libraries).
+
+**Result:** You now have a `.sln` file ready to hold one or more projects.
+
+> **Important:** Do not try to add projects before creating the solution.
+
+## Step 4 – Add the Test Project to the Solution
+
+```bash
+dotnet sln add BuffetConnect.E2E/BuffetConnect.E2E.csproj
+```
+
+**Purpose:** Adds the test project to the solution.
+
+**Why:** The solution now “knows” about this project, so you can build, test, or run everything from the solution level.
+
+> **Tip:** Run this from the directory where the `.sln` file exists.
+
+## Step 5 – Verify Projects in the Solution
+
+```bash
+dotnet sln list
+```
+
+**Purpose:** Confirms which projects are included in the solution.
+
+**Expected Output:**
+
+```text
+Project(s)
+----------
+BuffetConnect.E2E/BuffetConnect.E2E.csproj
+```
+
+## Directory Structure After Setup
+
+```text
+buffet-automation/
+├── BuffetConnect.sln        <-- Solution container
+└── BuffetConnect.E2E/       <-- Test project
+    ├── BuffetConnect.E2E.csproj
+    ├── UnitTest1.cs
+    └── obj/
+```
+
+## Key Takeaways
+
+- Always create the solution first, then add projects.
+- Run solution commands (`dotnet sln add`, `dotnet sln list`) from the solution folder, not the project folder.
+- Keep solution at top level, projects in subfolders — this scales well for multiple projects.
+- Your `.csproj` contains the actual code/tests; the `.sln` just manages projects together.

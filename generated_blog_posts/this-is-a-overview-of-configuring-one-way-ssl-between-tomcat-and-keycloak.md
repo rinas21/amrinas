@@ -1,0 +1,280 @@
+---
+title: This is a overview of configuring one-way SSL between Tomcat and Keycloak.
+---
+
+## This is a overview of configuring one-way SSL between Tomcat and Keycloak. 
+
+1. Keycloak Keystore
+
+* To generate a keystore for Keycloak:
+
+```bash
+$JAVA_HOME/bin/keytool -genkeypair -alias keycloak -keyalg RSA -keysize 2048 -validity 365 \
+-keystore keycloak-keystore.jks -storepass password -keypass password
+```
+* For a more specific configuration:
+
+```bash
+$JAVA_HOME/bin/keytool -genkeypair -alias keycloak -keyalg RSA -keysize 2048 -validity 365 \
+-keystore keycloak-keystore.jks -storepass password -keypass password \
+-dname "CN=<KEYCLOAK_IP>, OU=<ORG>, O=<ORG_NAME>, L=<CITY>, ST=<STATE>, C=<COUNTRY>" \
+-ext SAN=DNS:localhost,IP:<KEYCLOAK_IP>
+```
+
+2. Keycloak Certificate Export :
+* To export the Keycloak public certificate:
+
+```bash
+$JAVA_HOME/bin/keytool -export -alias keycloak -file keycloak-public-cert.crt \
+-keystore keycloak-keystore.jks -storepass password
+```
+3. Tomcat Keystore Generation
+* Similarly, generate a keystore for Tomcat:
+
+```bash
+$JAVA_HOME/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -validity 365 \
+-keystore tomcat-keystore.jks -storepass password -keypass password
+```
+* For specific configuration:
+
+```bash
+$JAVA_HOME/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -validity 365 \
+-keystore tomcat-keystore.jks -storepass password -keypass password \
+-dname "CN=<TOMCAT_IP>, OU=<ORG>, O=<ORG_NAME>, L=<CITY>, ST=<STATE>, C=<COUNTRY>" \
+-ext SAN=DNS:localhost,IP:<TOMCAT_IP>
+```
+
+4. Tomcat Certificate Export
+* Export the Tomcat public certificate:
+
+```bash
+$JAVA_HOME/bin/keytool -export -alias tomcat -file tomcat-public-cert.crt \
+-keystore tomcat-keystore.jks -storepass password
+```
+5. Import Keycloak's Certificate into Tomcat's Truststore
+* Import Keycloak's certificate into Tomcat's truststore:
+
+```bash
+$JAVA_HOME/bin/keytool -import -trustcacerts -alias keycloak -file keycloak-public-cert.crt \
+-keystore tomcat-truststore.jks -storepass password
+```
+6. Keycloak Configuration (keycloak.conf)
+* Add SSL configurations to Keycloak's keycloak.conf:
+
+```conf
+
+hostname=localhost
+https-listener-enabled=true
+https-port=9443
+https-client-auth=none
+https-key-store-file=/path/to/keycloak-keystore.jks
+https-key-store-password=password
+```
+
+7. Tomcat SSL Configuration (server.xml)
+* Add the following to server.xml:
+
+```xml
+
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+      maxThreads="200" SSLEnabled="true" clientAuth="false">
+    <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+    <SSLHostConfig>
+        <Certificate certificateKeystoreFile="conf/tomcat-keystore.jks"
+                     certificateKeystorePassword="password" />
+        <Truststore certificateKeystoreFile="conf/tomcat-truststore.jks"
+                    certificateKeystorePassword="password" />
+    </SSLHostConfig>
+</Connector>
+```
+
+8. Tomcat Truststore Configuration in catalina.sh
+* Update the Tomcat catalina.sh to specify the truststore:
+
+```bash
+JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStore=/path/to/tomcat-truststore.jks"
+JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStorePassword=password"
+JAVA_OPTS="$JAVA_OPTS -Djavax.net.debug=ssl,handshake"
+```
+
+9. Keycloak Client Configurations for HTTPS
+* To update client configurations in Keycloak, log into the admin console and ensure the settings for URLs use HTTPS.
+* add following to apache http.conf file:
+
+```conf
+<VirtualHost *:443>
+    ServerName <DOMAIN_NAME>
+    ServerAlias <ALIAS_NAME>
+
+    # SSL Certificate Files
+    SSLEngine On
+    SSLCertificateFile <SSL_CERTIFICATE_PATH>
+    SSLCertificateKeyFile <SSL_KEY_PATH>
+    SSLCertificateChainFile <SSL_CHAIN_CERTIFICATE_PATH>
+
+    # Proxy Settings
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    # Forward requests to Keycloak
+    ProxyPass /admin-ui https://<KEYCLOAK_SERVER>:<KEYCLOAK_PORT>/admin-ui
+    ProxyPassReverse /admin-ui https://<KEYCLOAK_SERVER>:<KEYCLOAK_PORT>/admin-ui
+
+    ProxyPass / https://<KEYCLOAK_SERVER>:<KEYCLOAK_PORT>/
+    ProxyPassReverse / https://<KEYCLOAK_SERVER>:<KEYCLOAK_PORT>/
+
+    # Fix Cookie Paths for Reverse Proxy
+    ProxyPassReverseCookiePath / /
+
+    # Security Headers
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Content-Type-Options nosniff
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    Header always set Referrer-Policy "no-referrer-when-downgrade"
+    Header always set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+    # Logging (optional)
+    ErrorLog ${APACHE_LOG_DIR}/reverse-proxy-ssl-error.log
+    CustomLog ${APACHE_LOG_DIR}/reverse-proxy-ssl-access.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName <DOMAIN_NAME>
+    ServerAlias <ALIAS_NAME>
+
+    # Redirect HTTP to HTTPS
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^/(.*)$ https://<DOMAIN_NAME>/$1 [R=301,L]
+
+    # Logging (optional)
+    ErrorLog ${APACHE_LOG_DIR}/reverse-proxy-error.log
+    CustomLog ${APACHE_LOG_DIR}/reverse-proxy-access.log combined
+</VirtualHost>
+
+
+```
+10. Tomcat Admin UI Configuration
+* Update the URLs for the admin UI in admin-ui.properties:
+
+```conf
+spring.security.oauth2.client.logout.keycloak.base.url=https://localhost:9443/realms/<REALM>/protocol/openid-connect/logout
+spring.security.oauth2.client.provider.keycloak.token-uri=https://localhost:9443/realms/<REALM>/protocol/openid-connect/token
+spring.security.oauth2.client.provider.keycloak.jwk.set.uri=https://localhost:9443/realms/<REALM>/protocol/openid-connect/certs
+spring.security.oauth2.client.provider.keycloak.authorization.uri=https://localhost:9443/realms/<REALM>/protocol/openid-connect/auth
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+```bash
+
+Login with OAuth 2.0
+[invalid_token_response] An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: I/O error on POST request for "https://<ip>:9443/realms/demo-realm/protocol/openid-connect/token": PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+keycloak again this is coming
+```
+
+* this occure mostly tomcat dont take trustore => in tomcat log check for trustore path.
+
+```bash
+tail -f /path/tomcat/logs/catalina.out
+```
+```log
+29-Jan-2025 00:35:35.883 INFO [main] org.apache.tomcat.util.net.AbstractEndpoint.logCertificate Connector [https-jsse-nio-8443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [/path/tomcat-11.0.2/conf/tomcat-keystore.jks] using alias [tomcat] with trust store [null]
+
+```
+
+##### check where you added $JAVA_OPTS in tomcat `server.xml` and added it under JAVA_OPTS parameter set.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+### Two way SSL Configuration for module-a and module-b Platform Server
+
+#### Generating key, certificate and keystore for module-a-gw
+
+* Execute the following in order to generate the relevant config files for module-a-gw
+
+```
+openssl genrsa -out module-a-key.pem 2048
+```
+
+```
+openssl req -x509 -new -nodes -key module-a-key.pem -sha256 -days 365 \
+-out module-a-cert.pem \
+-subj "/C=LK/ST=WP/L=CMB/O=HMS/OU=module-a/CN=localhost"
+```
+
+```
+openssl pkcs12 -export -out module-a-keystore.p12 \
+-inkey module-a-key.pem -in module-a-cert.pem -name module-a \
+-password pass:password
+```
+
+* Generating module-a-gw server keystore
+```
+$JAVA_HOME/bin/keytool -importkeystore -destkeystore module-a-keystore.jks \
+-srckeystore module-a-keystore.p12 -srcstoretype pkcs12 \
+-alias module-a -deststorepass password -srcstorepass password
+```
+
+
+#### Generating key, certificate and keystore for module-b Platform Server
+
+* Execute the following in order to generate the relevant config files for module-b
+```
+openssl genrsa -out eqp-key.pem 2048
+```
+```
+openssl req -x509 -new -nodes -key eqp-key.pem -sha256 -days 365 \
+-out eqp-cert.pem \
+-subj "/C=LK/ST=WP/L=CMB/O=HMS/OU=eqp/CN=localhost"
+```
+```
+openssl pkcs12 -export -out eqp-keystore.p12 \
+-inkey eqp-key.pem -in eqp-cert.pem -name eqp \
+-password pass:password
+```
+
+* Generating module-buery server keystore
+
+```
+$JAVA_HOME/bin/keytool -importkeystore -destkeystore eqp-keystore.jks \
+-srckeystore eqp-keystore.p12 -srcstoretype pkcs12 \
+-alias eqp -deststorepass password -srcstorepass password
+```
+
+
+#### Generating truststore for module-a-gw and module-buery server
+
+* Generating truststore for module-a-gw using module-buery server certificate
+
+```
+$JAVA_HOME/bin/keytool -import -trustcacerts -alias eqp -file eqp-cert.pem \
+    -keystore module-a-truststore.jks -storepass password
+```
+
+* Generating truststore for module-buery server using module-a-gw certificate
+
+```
+$JAVA_HOME/bin/keytool -import -trustcacerts -alias module-a -file module-a-cert.pem \
+    -keystore eqp-truststore.jks -storepass password
+```
+
+
+#### Application Configuration
+
+* Please configure the relevant truststore and keystore in each server to support two ssl
+
+
+#### Note:
+
+* If any issues faced related to two way ssl being not successful, Please add the following property to the wrapper.conf for the both server application
+
+```
+wrapper.java.additional.1=-Djavax.net.ssl.trustStore=<relevant-trustore.jks>
+wrapper.java.additional.2=-Djavax.net.ssl.trustStorePassword=<truststore-password>
+```
+

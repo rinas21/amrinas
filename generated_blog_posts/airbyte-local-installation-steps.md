@@ -1,0 +1,35 @@
+---
+title: Airbyte Local Installation Steps
+---
+
+## Airbyte Local Installation Steps
+
+### 1. Create and Set Permissions for Airbyte Installation Path
+
+```bash
+sudo mkdir -p /opt/airbyte
+sudo chown -R $USER:$(id -gn) /opt/airbyte
+```
+
+### 2. Install Airbyte Locally
+
+Set the installation path and run the Airbyte installation command:
+
+```bash
+ABCTL_LOCAL_PATH=/opt/airbyte abctl local install
+```
+
+> **Note:** Replace `/opt/airbyte` with your preferred installation directory if needed.
+
+
+for simular error like below:
+```log
+Pod: airbyte-db-0.1841d606b9647c61
+Reason: BackOff
+Message: Back-off restarting failed container airbyte-db-container...
+Logs:
+  chown: /var/lib/postgresql/data/pgdata: Operation not permitted
+  chmod: /var/lib/postgresql/data/pgdata: Operation not permitted
+  initdb: error: could not access directory "/var/lib/postgresql/data/pgdata": Permission denied
+
+```
