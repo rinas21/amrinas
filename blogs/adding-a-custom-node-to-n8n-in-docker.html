@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding a Custom Node to n8n in Docker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --container-bg: #1e293b;
+            --border-color: #334155;
+            --code-bg: #020617;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 60px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+        h1, h2, h3 {
+            color: var(--accent-color);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 25px; }
+        h2 { font-size: 1.8rem; margin-top: 45px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #fca5a5;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        pre code {
+            padding: 0;
+            background: none;
+            color: #e2e8f0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        th { background-color: var(--code-bg); color: var(--accent-color); }
+        a { color: #7dd3fc; text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: #38bdf8; text-decoration: underline; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+</head>
+<body>
+    <div class="container" id="content"></div>
+    <script type="text/markdown" id="md-content">
+# Adding a Custom Node to n8n in Docker
+
+## 1. Check Container and Home Directory
+
+List all Docker containers:
+
+```sh
+docker ps -a
+```
+
+Identify your n8n container ID (e.g., `a417a8c95406`) and start it:
+
+```sh
+docker start -d a417a8c95406
+```
+
+Find the container's home directory (usually `/home/node` in official n8n images):
+
+```sh
+docker exec -it a417a8c95406 sh -c 'echo $HOME'
+```
+
+## 2. Create Custom Node Folders
+
+Inside the container, create the necessary folders:
+
+```sh
+docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/nodes
+docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/credentials
+```
+
+> **Note:** Do **not** use `/root/.n8n` — official n8n Docker images run as a non-root user (`node`).
+
+## 3. Copy Your Node Files
+
+From your local machine (adjust paths as needed):
+
+```sh
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.js a417a8c95406:/home/node/.n8n/custom/nodes/
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.json a417a8c95406:/home/node/.n8n/custom/nodes/
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/eventHub.svg a417a8c95406:/home/node/.n8n/custom/nodes/
+```
+
+If you have credentials:
+
+```sh
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/credentials/EventHubCredential.credential.js a417a8c95406:/home/node/.n8n/custom/credentials/
+```
+
+## 4. Restart the Container
+
+```sh
+docker restart a417a8c95406
+```
+
+## 5. Access n8n and Verify
+
+- Open your browser: [http://localhost:5678](http://localhost:5678)
+- Create a workflow and search for the **EventHub** node.
+    </script>
+    <script>
+        const markdownContent = document.getElementById('md-content').textContent;
+        document.getElementById('content').innerHTML = marked.parse(markdownContent);
+    </script>
+</body>
+</html>
