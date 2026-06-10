@@ -106,8 +106,17 @@ Logs:
     </script>
     <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
     <script>
-        const markdownContent = document.getElementById('md-content').textContent;
-        document.getElementById('content').innerHTML = marked.parse(markdownContent);
+const markdownContent = document.getElementById('md-content').textContent;
+        const htmlContent = marked.parse(markdownContent);
+        const footerHtml = `
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+        <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
+        `;
+        document.getElementById('content').innerHTML = htmlContent + footerHtml;
     </script>
 </body>
 </html>
