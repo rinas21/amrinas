@@ -2,6 +2,21 @@
 <html lang="en">
 
 <head>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A.M. Rinas's Archive of Insights & Guides. Research, technical guides, and honest advice.">
+    <meta name="keywords" content="Tech, DevOps, Blog, A.M. Rinas, Software Engineering">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="A.M. Rinas | Blog">
+    <meta property="og:description" content="A.M. Rinas's Archive of Insights & Guides. Research, technical guides, and honest advice.">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A.M. Rinas | Blog">
+    <meta name="twitter:description" content="A.M. Rinas's Archive of Insights & Guides. Research, technical guides, and honest advice.">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.M. Rinas | Blog</title>
@@ -368,6 +383,30 @@
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "headline": "A.M. Rinas | Blog",
+      "image": "https://rinas21.github.io/amrinas/favicon.png",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas Portfolio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-11",
+      "dateModified": "2026-06-11"
+    }
+    </script>
 </head>
 
 <body>
@@ -429,6 +468,34 @@
 
         // Add your blog posts here manually. This ensures it works perfectly locally and on GitHub Pages!
         const blogPosts = [
+            {
+                "title": "Adding Google Chat to the Ubuntu Desktop Bar",
+                "category": "Tech",
+                "excerpt": "To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.",
+                "author": "A.M.Rinas",
+                "readTime": "2 min",
+                "date": "11 June 2026",
+                "file": "adding-google-chat-to-the-ubuntu-desktop-bar.html",
+                "featured": true
+            },
+            {
+                "title": "Airbyte Local Installation Steps",
+                "category": "DevOps",
+                "excerpt": "Steps for installing Airbyte locally and handling common permission errors during setup.",
+                "author": "A.M.Rinas",
+                "readTime": "3 min",
+                "date": "11 June 2026",
+                "file": "airbyte-local-installation-steps.html"
+            },
+            {
+                "title": "Apache HTTP Server Troubleshooting Notes",
+                "category": "DevOps",
+                "excerpt": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
+                "author": "A.M.Rinas",
+                "readTime": "5 min",
+                "date": "11 June 2026",
+                "file": "apache-http-server-troubleshooting-notes.html"
+            },
             {
                 "title": "Adding a Custom Node to n8n in Docker",
                 "category": "DevOps",

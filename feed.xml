@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<rss version="2.0">
+  <channel>
+    <title>A.M. Rinas | Blog</title>
+    <link>https://rinas21.github.io/amrinas/</link>
+    <description>Insights, research, and guides by A.M. Rinas.</description>
+    <item>
+      <title>Adding Google Chat to the Ubuntu Desktop Bar</title>
+      <link>https://rinas21.github.io/amrinas/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html</link>
+      <description>To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.</description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Airbyte Local Installation Steps</title>
+      <link>https://rinas21.github.io/amrinas/blogs/airbyte-local-installation-steps.html</link>
+      <description>Steps for installing Airbyte locally and handling common permission errors during setup.</description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Apache HTTP Server Troubleshooting Notes</title>
+      <link>https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html</link>
+      <description>Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.</description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Adding a Custom Node to n8n in Docker</title>
+      <link>https://rinas21.github.io/amrinas/blogs/adding-a-custom-node-to-n8n-in-docker.html</link>
+      <description>A step-by-step guide on how to inject a custom node into an n8n Docker container by mounting volumes and restarting the service.</description>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Linux, Maven, and Git Cheat Sheet</title>
+      <link>https://rinas21.github.io/amrinas/blogs/linux-maven-git-cheat-sheet.html</link>
+      <description>A compilation of useful commands for Linux file searching, SSH proxy jumps, Maven proxy settings, and Git tagging.</description>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>MongoDB Backup &amp; Restore with Docker</title>
+      <link>https://rinas21.github.io/amrinas/blogs/mongodb-backup-restore-with-docker.html</link>
+      <description>A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.</description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Disable Auto-Start for a Docker Container</title>
+      <link>https://rinas21.github.io/amrinas/blogs/how-to-disable-auto-start-for-a-docker-container.html</link>
+      <description>Learn how to stop Docker containers from starting automatically after a machine reboot by updating restart policies.</description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why Docker Builds Fail Differently on Linux and Windows</title>
+      <link>https://rinas21.github.io/amrinas/blogs/docker-build-failures-linux-vs-windows.html</link>
+      <description>A practical breakdown of Docker build issues across Linux and Windows environments.</description>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Understanding .gitattributes: Solving Cross-Platform Line Ending Problems</title>
+      <link>https://rinas21.github.io/amrinas/blogs/gitattributes-crlf-lf-line-endings-git.html</link>
+      <description>A practical guide to .gitattributes and Git line ending normalization between Windows and Linux systems.</description>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)</title>
+      <link>https://rinas21.github.io/amrinas/blogs/ffmpeg-video-trimming-linux-no-reencoding.html</link>
+      <description>A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding.</description>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>MySQL 8.0 Binary Installation and MariaDB Cleanup Guide</title>
+      <link>https://rinas21.github.io/amrinas/blogs/mysql-binary.html</link>
+      <description>A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runtime dependencies, and purge conflicting MariaDB footprints.</description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduction: Overview of Grafana, Prometheus, and Node Exporter</title>
+      <link>https://rinas21.github.io/amrinas/blogs/grafana-prometheus-node-exporter.html</link>
+      <description>Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali...</description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Creating Docker Networks for Container Communication</title>
+      <link>https://rinas21.github.io/amrinas/blogs/docker-network-guide.html</link>
+      <description>Learn how Docker bridge networks work and how to connect multiple containers securely.</description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Enable and Monitor the MySQL General Log</title>
+      <link>https://rinas21.github.io/amrinas/blogs/mysql-general-log.html</link>
+      <description>Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries....</description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fixing \</title>
+      <link>https://rinas21.github.io/amrinas/blogs/fix-java-virtual-machine-error-linux.html</link>
+      <description>Step-by-step systems debugging guide to resolve the Java HPI library dependency error 'Could not initialize Java Virtual Machine' after deploying an Oracle JDK binary on Linux kernels.</description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

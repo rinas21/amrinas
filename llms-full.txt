@@ -1,0 +1,867 @@
+# A.M. Rinas Portfolio
+
+> A.M. Rinas is a Software Engineer and Full-Stack Developer with expertise in AI, DevOps, Java, Python, and modern web applications. Currently working as a Full Stack Consultant at Wincore Solutions.
+
+## About
+A.M. Rinas is a dedicated Software Engineer with a strong background across full-stack development, QA engineering, DevOps automation, and data analytics, building scalable real-world software solutions. Expertise spans Java, Python, Docker, Cloud platforms, and modern web technologies.
+
+## Professional Experience
+- **Full Stack Consultant at Wincore Solutions** (Apr 2026 - Present): Designing full-stack web applications, managing cloud infrastructure (AWS, Oracle Cloud, DigitalOcean), developing backend services (Java, Node.js) and modern frontends (TypeScript).
+- **Software Engineer at hSenid Mobile Solutions** (Jan 2025 - Mar 2026): Developed features in telecom applications, participated in code reviews, DevOps automation, CI/CD, worked with Java, React, Node.js, GCP, Docker.
+- **Software Quality Assurance Engineer at hSenid Mobile Solutions** (Jan 2024 - Dec 2024): Conducted manual, regression, and API testing, built automation scripts (Postman, JMeter).
+
+## Tech Stack
+- **Languages & Frameworks**: Java, Python, JavaScript, TypeScript, PHP, R, Shell, Node.js, React, React Native, Express, Flask, Vue, GraphQL
+- **Databases**: MySQL, PostgreSQL, MongoDB, IBM Db2, Firebase, Neo4j, DuckDB, Hadoop
+- **DevOps & Cloud**: Docker, Kubernetes, GCP, Ansible, Git, Prometheus, Grafana, Loki, SonarQube, Keycloak, Nginx, Tomcat
+- **Data Engineering**: Airflow, dbt, Airbyte, Power BI, Colab
+- **QA & Testing**: Postman, JMeter, Wireshark, Selenium, Jira, Jest
+
+## Contact & Links
+- Website: https://rinas21.github.io/amrinas/
+- GitHub: https://github.com/rinas21
+- LinkedIn: https://www.linkedin.com/in/amrinas
+
+
+# Blog Posts
+
+## Adding Google Chat to the Ubuntu Desktop Bar
+Date: 11 June 2026
+
+### Adding Google Chat to the Ubuntu Desktop Bar
+
+To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry:
+
+1. **Create the desktop entry file**  
+    Open a terminal and run:
+    ```bash
+    nano ~/.local/share/applications/google-chat.desktop
+    ```
+
+2. **Paste the following content:**
+    ```ini
+    [Desktop Entry]
+    Name=Google Chat
+    Comment=Google Chat Web Application
+    Exec=opera --new-window https://chat.google.com
+    Icon=google-chat # Or use a full path to a custom icon (e.g., /home/youruser/Pictures/chat_icon.png)
+    Terminal=false
+    Type=Application
+    Categories=Network;Web;
+    ```
+
+3. **Make the file executable:**
+    ```bash
+    chmod +x ~/.local/share/applications/google-chat.desktop
+    ```
+
+4. **Verify the file:**
+    ```bash
+    ls -l ~/.local/share/applications/google-chat.desktop
+    ```
+
+You can now search for "Google Chat" in your applications menu and pin it to your desktop bar.
+
+---
+
+## Airbyte Local Installation Steps
+Date: 11 June 2026
+
+## Airbyte Local Installation Steps
+
+### 1. Create and Set Permissions for Airbyte Installation Path
+
+```bash
+sudo mkdir -p /opt/airbyte
+sudo chown -R $USER:$(id -gn) /opt/airbyte
+```
+
+### 2. Install Airbyte Locally
+
+Set the installation path and run the Airbyte installation command:
+
+```bash
+ABCTL_LOCAL_PATH=/opt/airbyte abctl local install
+```
+
+> **Note:** Replace `/opt/airbyte` with your preferred installation directory if needed.
+
+
+for simular error like below:
+```log
+Pod: airbyte-db-0.1841d606b9647c61
+Reason: BackOff
+Message: Back-off restarting failed container airbyte-db-container...
+Logs:
+  chown: /var/lib/postgresql/data/pgdata: Operation not permitted
+  chmod: /var/lib/postgresql/data/pgdata: Operation not permitted
+  initdb: error: could not access directory "/var/lib/postgresql/data/pgdata": Permission denied
+
+```
+
+---
+
+## Apache HTTP Server Troubleshooting Notes
+Date: 11 June 2026
+
+## Apache HTTP Server Troubleshooting Notes
+
+## Common Commands
+
+### Syntax Check
+- **Command:**
+  ```bash
+  ./httpd -t
+  ```
+- **Purpose:** Validates the syntax of Apache configuration files without restarting the server.
+- **Benefits:**
+  - Quickly identifies errors in configuration.
+  - Pinpoints the exact file and line number of the issue.
+
+### Additional Options
+- **Dump Virtual Hosts:**
+  ```bash
+  ./httpd -t -D DUMP_VHOSTS
+  ```
+  Lists all configured virtual hosts and their respective settings.
+
+- **Dump Modules:**
+  ```bash
+  ./httpd -t -D DUMP_MODULES
+  ```
+  Displays all loaded Apache modules.
+
+- **Dump Runtime Configuration:**
+  ```bash
+  ./httpd -t -D DUMP_RUN_CFG
+  ```
+  Outputs the runtime configuration, useful for debugging.
+
+---
+
+## Issue Encountered: `SSLSessionCache cannot occur within <VirtualHost>`
+
+### Error Description
+- **Error Message:**
+  ```
+  AH00526: Syntax error on line 209 of /path/to/httpd.conf:
+  SSLSessionCache cannot occur within <VirtualHost> section
+  ```
+
+- **Cause:**
+  The `SSLSessionCache` directive was placed inside a `<VirtualHost>` block, which is not allowed. This directive should be in the global context.
+
+### Resolution Steps
+1. Open the Apache configuration file for editing:
+   ```bash
+   vim /path/to/httpd.conf
+   ```
+
+2. Locate the `SSLSessionCache` directive.
+
+3. Move the directive outside of any `<VirtualHost>` blocks, typically near the top of the configuration file.
+
+4. Save and close the file.
+
+5. Validate the syntax:
+   ```bash
+   ./httpd -t
+   ```
+
+6. Restart the Apache server:
+   ```bash
+   ./httpd -k restart
+   ```
+
+---
+
+## Debugging Logs
+
+### Check the Error Log
+- **Command:**
+  ```bash
+  cat /path/to/apache/logs/error_log
+  ```
+- **Purpose:** Provides detailed error messages and logs related to server operations.
+- **Example Logs:**
+  ```
+  [Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+  [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down
+  ```
+
+### Key Warnings and Notices
+- **`AH01873`:**
+  - Warning: Session Cache is not configured.
+  - **Hint:** Ensure `SSLSessionCache` is configured in the global context.
+
+- **`AH00491`:**
+  - Notice: The server received a signal to terminate (e.g., `SIGTERM`).
+
+---
+
+## Tips for Future Troubleshooting
+- Always use `httpd -t` after making configuration changes.
+- Check logs regularly for warnings or errors.
+- Keep configuration directives in the appropriate context (global vs. `<VirtualHost>`).
+
+---
+
+### Notes
+This document can be expanded with additional issues or commands encountered during Apache HTTP Server management.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## SSL Certificate Creation and Validation
+
+## 1. Generate a New Private Key
+To generate a new private key using OpenSSL:
+
+```bash
+openssl genrsa -out /hms/installs/apache/key/enum_hsenidmobile_com.key 2048
+ 
+ ```
+
+## 2. Create a New CSR (Certificate Signing Request)
+
+ ```bash
+openssl req -new -key /hms/installs/apache/key/enum_hsenidmobile_com.key -out /hms/installs/apache/key/enum_hsenidmobile_com.csr
+```
+## 3. Submit the CSR to a Certificate Authority (CA)
+
+Once the CSR is generated, submit it to your Certificate Authority (CA) of choice (e.g., Let's Encrypt, DigiCert) to obtain a signed certificate. The CA will provide:
+
+- `.crt` file: This is the signed certificate.
+- `.chain` or `.intermediate` certificate file (optional): This is the intermediate certificate that links your certificate to the CA's root certificate.
+
+### Example:
+After submitting the CSR to the CA, you will receive files like:
+- `enum_hsenidmobile_com.crt` (signed certificate)
+- `enum_hsenidmobile_com_chain.crt` (intermediate certificate)
+
+## 4. Install the SSL Certificate
+
+Once you have received the certificate files from your CA, you'll need to install them on your server.
+
+### Update Apache SSL Configuration
+
+Edit the Apache configuration to include the following:
+
+```apache
+SSLEngine On
+SSLCertificateFile /hms/installs/apache/key/enum_hsenidmobile_com.crt
+SSLCertificateKeyFile /hms/installs/apache/key/enum_hsenidmobile_com.key
+SSLCertificateChainFile /hms/installs/apache/key/enum_hsenidmobile_com_chain.crt
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Steps to Verify HTTPS Certificate and Redirection:  
+
+1. **Verify HTTPS Certificate**
+
+Run the following command to check the HTTPS certificate:
+```bash     
+     curl -ikv https://localhost
+```
+
+**Note**: Replace with the correct endpoint based on your environment (e.g., localhost for development or the production endpoint URL).
+
+1. curl -ikv http://localhost checks how the server responds to HTTP requests.  
+
+2. curl -L http://localhost will follow any HTTP-to-HTTPS redirections.
+     
+
+## Expected Results:
+
+*   The certificate details (Subject, Issuer, Validity period) should be displayed.
+    
+    *   A warning might appear if using a self-signed certificate, which is acceptable if intentional.
+        
+*   The server should respond with a “301 Moved Permanently” or “302 Found” status code, indicating a redirection to HTTPS.
+    
+*   The request should follow the redirection to the HTTPS URL.
+
+---
+
+## Adding a Custom Node to n8n in Docker
+Date: 10 June 2026
+
+# Adding a Custom Node to n8n in Docker
+
+## 1. Check Container and Home Directory
+
+List all Docker containers:
+
+```sh
+docker ps -a
+```
+
+Identify your n8n container ID (e.g., `a417a8c95406`) and start it:
+
+```sh
+docker start -d a417a8c95406
+```
+
+Find the container's home directory (usually `/home/node` in official n8n images):
+
+```sh
+docker exec -it a417a8c95406 sh -c 'echo $HOME'
+```
+
+## 2. Create Custom Node Folders
+
+Inside the container, create the necessary folders:
+
+```sh
+docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/nodes
+docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/credentials
+```
+
+> **Note:** Do **not** use `/root/.n8n` — official n8n Docker images run as a non-root user (`node`).
+
+## 3. Copy Your Node Files
+
+From your local machine (adjust paths as needed):
+
+```sh
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.js a417a8c95406:/home/node/.n8n/custom/nodes/
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.json a417a8c95406:/home/node/.n8n/custom/nodes/
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/eventHub.svg a417a8c95406:/home/node/.n8n/custom/nodes/
+```
+
+If you have credentials:
+
+```sh
+docker cp ~/Desktop/project/n8n-nodes-starter/dist/credentials/EventHubCredential.credential.js a417a8c95406:/home/node/.n8n/custom/credentials/
+```
+
+## 4. Restart the Container
+
+```sh
+docker restart a417a8c95406
+```
+
+## 5. Access n8n and Verify
+
+- Open your browser: [http://localhost:5678](http://localhost:5678)
+- Create a workflow and search for the **EventHub** node.
+
+---
+
+## Linux, Maven, and Git Cheat Sheet
+Date: 10 June 2026
+
+1. We need to locate a file owned by user bandit7, group bandit6, and is exactly 33 bytes in size. Here's the exact find command:
+
+```bash
+find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+```
+
+ - Search the entire server.
+ - type f: Look for regular files.
+ - user bandit7: Files owned by user bandit7.
+ - group bandit6: Files owned by group bandit6.
+ - size 33c: Files that are 33 bytes in size (c stands for bytes).
+ - 2>/dev/null: Suppress permission denied errors.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## SSH with a Custom Port
+
+```bash
+ssh -p PORT_NUMBER username@hostname
+```
+##  SSH with ProxyJump (Jump Host)
+
+### If you need to use an intermediary server (jump host) to reach your destination server, you can use the -J option.
+
+```bash
+ssh -J jump_user@jump_host destination_user@destination_host
+```
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Why We Need Proxy Configuration in Maven's settings.xml
+
+<p>The proxy configuration in the <code>settings.xml</code> file is essential for the following reasons:</p>
+
+<ol>
+  <li><strong>Network Access Control:</strong> 
+    <p>If your network is behind a corporate firewall or proxy server, Maven needs this configuration to route its requests through the proxy. This allows Maven to access remote repositories (such as Maven Central or internal repositories) and download dependencies or plugins, especially when direct access to the internet is restricted.</p>
+  </li>
+  <li><strong>Security and Monitoring:</strong> 
+    <p>Proxies are often used to monitor and control network traffic for security and auditing purposes. By routing Maven's traffic through a proxy, your organization can track and control access to external resources.</p>
+  </li>
+  <li><strong>Optimized Performance (Caching):</strong> 
+    <p>Proxies can cache responses (like dependencies or artifacts), which can speed up build times when accessing commonly used resources. If Maven has already downloaded a dependency once, the proxy can serve it from the cache instead of downloading it again.</p>
+  </li>
+  <li><strong>Bypass Local Restrictions:</strong> 
+    <p>The <code>nonProxyHosts</code> field allows you to define exceptions where Maven doesn't use the proxy, such as for internal repositories or local network addresses. This ensures that Maven can still communicate directly with trusted hosts without needing to route everything through the proxy.</p>
+  </li>
+  <li><strong>Consistency:</strong> 
+    <p>Configuring the proxy in the <code>settings.xml</code> ensures that all developers and build environments within your organization are using the same proxy configuration, providing consistent behavior across different machines or systems.</p>
+  </li>
+</ol>
+
+<p>In summary, this configuration is required when Maven needs to access the internet via a proxy server, ensuring smooth communication with remote repositories and better control over network traffic.</p>
+
+<h3>Example Proxy Configuration in settings.xml</h3>
+
+<pre>
+<code>
+&lt;proxy&gt;
+  &lt;id&gt;optional&lt;/id&gt;
+  &lt;active&gt;true&lt;/active&gt;
+  &lt;protocol&gt;http&lt;/protocol&gt;
+  &lt;host&gt;proxy.host.net&lt;/host&gt;
+  &lt;port&gt;80&lt;/port&gt;
+  &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
+&lt;/proxy&gt;
+
+</code>
+</pre>
+
+<p>Example Path to settings.xml:</p>
+
+<pre>
+<code>
+/opt/mvn-3-0-3/conf
+</code>
+</pre>
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+<h1>Git Tag Commands</h1>
+<p>Here are some useful Git commands for managing and working with tags:</p>
+    
+ <h2>1. List all tags</h2>
+<pre><code>git tag</code></pre>
+<p>Lists all the tags in the repository.</p>
+
+<h2>2. Show the latest tag</h2>
+ <pre><code>git describe --tags --abbrev=0</code></pre>
+ <p>This will show the most recent tag associated with the current commit, without any additional information.</p>
+
+<h2>3. Show information about a specific tag</h2>
+    <pre><code>git show &lt;tag_name&gt;</code></pre>
+    <p>Displays the commit information associated with the specified tag.</p>
+
+<h2>4. Create a new tag</h2>
+    <pre><code>git tag &lt;tag_name&gt;</code></pre>
+    <p>Creates a new tag at the current commit.</p>
+
+ <h2>5. Create an annotated tag</h2>
+    <pre><code>git tag -a &lt;tag_name&gt; -m "Tag message"</code></pre>
+    <p>Creates an annotated tag with a message at the current commit. Annotated tags are stored as full objects in the Git database, containing the tagger name, email, and date.</p>
+
+ <h2>6. Create a lightweight tag</h2>
+  <pre><code>git tag &lt;tag_name&gt; &lt;commit_hash&gt;</code></pre>
+    <p>Creates a lightweight tag pointing to a specific commit. It's simply a reference to that commit.</p>
+
+ <h2>7. Delete a tag</h2>
+    <pre><code>git tag -d &lt;tag_name&gt;</code></pre>
+    <p>Deletes the specified tag from your local repository.</p>
+
+ <h2>8. Push a tag to remote</h2>
+    <pre><code>git push origin &lt;tag_name&gt;</code></pre>
+    <p>Pushes a specific tag to the remote repository.</p>
+
+<h2>9. Push all tags to remote</h2>
+    <pre><code>git push --tags</code></pre>
+    <p>Pushes all tags in the local repository to the remote.</p>
+
+ <h2>10. Checkout a tag</h2>
+    <pre><code>git checkout &lt;tag_name&gt;</code></pre>
+    <p>Switches to a specific tag. This creates a "detached HEAD" state, meaning you're not on a branch, but instead, you're pointing to a specific commit.</p>
+
+ <h2>11. List all tags with their commit messages</h2>
+    <pre><code>git tag -n</code></pre>
+    <p>Lists all tags with the first few lines of their associated commit messages.</p>
+
+ <h2>12. Find tags for a specific commit</h2>
+    <pre><code>git tag --contains &lt;commit_hash&gt;</code></pre>
+    <p>Shows all the tags that contain the specified commit.</p>
+
+ <h2>13. Show the commit for a specific tag</h2>
+    <pre><code>git log &lt;tag_name&gt;</code></pre>
+    <p>Shows the commit history for the specified tag.</p>
+
+---
+
+## MongoDB Backup & Restore with Docker
+Date: 09 June 2026
+
+## MongoDB Backup & Restore with Docker
+
+This guide outlines the process for backing up and restoring MongoDB databases running in Docker containers. It uses generic names for containers and databases, which you should replace with your specific values.
+
+### 1. Identify Your MongoDB Container
+
+First, list your running Docker containers to identify your MongoDB instance.
+
+```bash
+docker ps
+```
+
+*Identify your MongoDB container (e.g., `my-mongo`) and any other relevant database containers.*
+
+### 2. Prepare a Backup Directory on the Host
+
+Create a dedicated folder on your host machine where all backups will be stored.
+
+```bash
+sudo mkdir -p /databases
+sudo chown -R $USER:$USER /databases
+cd /databases
+```
+
+### 3. Dump the Database from the Container
+
+Use `mongodump` to export your database from the running container. **Always use proper authentication.**
+
+```bash
+docker exec my-mongo mongodump \
+  --username <DB_USER> \
+  --password <DB_PASSWORD> \
+  --authenticationDatabase admin \
+  --db <SOURCE_DB_NAME> \
+  --out /dump
+```
+
+After dumping, copy the backup from the container to your host machine.
+
+```bash
+docker cp my-mongo:/dump /databases/mongo-backup-$(date +%F)
+```
+
+**Example Backup Folder Structure:**
+
+```
+/databases/mongo-backup-2026-01-05/
+├── admin/
+├── prelude.json
+└── <SOURCE_DB_NAME>/
+    ├── collection1.bson
+    ├── collection1.metadata.json
+    └── collection2.bson
+    └── ...
+```
+
+### 4. Start a Fresh MongoDB Container (If Needed)
+
+If you're restoring to a new or clean container, stop and remove the old one, then start a new one.
+
+```bash
+docker stop my-mongo
+docker rm my-mongo
+
+docker run -d \
+  --name my-mongo \
+  -p 127.0.0.1:27017:27017 \
+  -v mongo-data:/data/db \
+  -e MONGO_INITDB_ROOT_USERNAME=<DB_USER> \
+  -e MONGO_INITDB_ROOT_PASSWORD=<DB_PASSWORD> \
+  -e MONGO_INITDB_DATABASE=<SOURCE_DB_NAME> \
+  mongo:<VERSION>
+```
+
+**Verify MongoDB version inside the new container:**
+
+```bash
+docker exec my-mongo mongosh -u <DB_USER> -p <DB_PASSWORD> --authenticationDatabase admin --eval "db.version()"
+```
+
+### 5. Copy Backup into Container for Restore
+
+Create a directory inside the container to hold the backup files, then copy them over.
+
+```bash
+docker exec my-mongo mkdir -p /backup
+docker cp /databases/mongo-backup-2026-01-05/<SOURCE_DB_NAME> my-mongo:/backup/<SOURCE_DB_NAME>
+```
+
+**Verify files are copied:**
+```bash
+docker exec my-mongo ls -F /backup/<SOURCE_DB_NAME>
+```
+
+### 6. Restore Database to a New Name
+
+Use `mongorestore` to import the data. You can restore it to the original database name or a new one using the `--db` flag.
+
+```bash
+docker exec my-mongo mongorestore \
+  --username <DB_USER> \
+  --password <DB_PASSWORD> \
+  --authenticationDatabase admin \
+  --db <RESTORE_DB_NAME> \ # Use <SOURCE_DB_NAME> if restoring to original name
+  /backup/<SOURCE_DB_NAME>
+```
+
+**Success Output Example:**
+```
+X document(s) restored successfully. 0 document(s) failed to restore.
+```
+
+**Verify in `mongosh`:**
+```bash
+docker exec -it my-mongo mongosh -u <DB_USER> -p <DB_PASSWORD> --authenticationDatabase admin
+```
+Once inside `mongosh`:
+```javascript
+> show databases;
+> use <RESTORE_DB_NAME>;
+> show collections;
+> db.<collection_name>.findOne();
+```
+
+### 7. Important Notes & Caveats
+
+-   **Authentication:** Always use full authentication (`--username`, `--password`, `--authenticationDatabase`) for `mongodump` and `mongorestore` inside Docker.
+-   **Container Paths:** Ensure the `/dump` or `/backup` directory exists inside the container *before* attempting to copy files to it.
+-   **Metadata Files:** The `*.metadata.json` files are crucial as they contain index definitions and other collection metadata. Always include them when restoring.
+-   **Selective Renames:** For advanced scenarios where you need to restore specific collections and rename them, use `mongorestore`'s namespace options:
+    -   `--nsInclude <namespace_pattern>`
+    -   `--nsFrom <original_namespace>`
+    -   `--nsTo <new_namespace>`
+    (e.g., `--nsFrom "source_db.collection1" --nsTo "target_db.new_collection1"`)
+-   **MongoDB Version:** Ensure the `mongo:<VERSION>` tag matches the version of MongoDB you intend to use.
+
+| Command | Purpose / What it Does | Notes / Context |
+|---------|----------------------|----------------|
+| `docker ps` | List running containers | Check status of containers |
+| `docker exec -it my-db mongosh -u admin -p admin123 --authenticationDatabase admin` | Access MongoDB shell inside container | View databases and perform operations |
+| `docker run -d --name my-db -p 127.0.0.1:27017:27017 -v my-db-volume:/data/db my-db-image` | Start a new container from backup image | Run MongoDB or other DB container on target machine |
+| `docker cp ~/backup/my-db-dump my-db:/tmp/my-db-dump` | Copy database dump into container | Copy to a safe location inside container (not volume mount) |
+| `docker commit <container-id> my-db-backup` | Save running container as an image | Create reusable backup image of container |
+| `docker save -o ~/backup/my-db-backup.tar my-db-backup` | Save Docker image to tar file | For transferring image to another machine |
+| `docker load -i ~/backup/my-db-backup.tar` | Load saved Docker image on target machine | Makes image available for running containers |
+| `docker run --rm -v my-db-volume:/data/db -v ~/backup:/backup ubuntu tar czvf /backup/my-db-volume-backup.tar.gz -C /data/db .` | Backup Docker volume | Use temporary container to archive DB volume |
+| `docker run --rm -v my-db-volume:/data/db -v ~/backup:/backup ubuntu bash -c "cd /data/db && tar xzvf /backup/my-db-volume-backup.tar.gz --strip 1"` | Restore Docker volume backup | Restore data from tar to Docker volume |
+| `docker exec -it my-db mongorestore -u admin -p admin123 --authenticationDatabase admin /tmp/my-db-dump` | Restore MongoDB database from dump | Correct restore method when DB uses a volume |
+
+---
+
+## How to Disable Auto-Start for a Docker Container
+Date: 09 June 2026
+
+# 🚀 How to Disable Auto-Start for a Docker Container
+
+When a Docker container (like Airbyte) keeps starting automatically after a machine reboot, it usually has a restart policy set to `always` or `unless-stopped`.
+
+## Steps to Disable Auto-Start
+
+### 1. Check the Container's Restart Policy
+Run the following command to inspect the restart policy of the container:
+
+```bash
+docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' <container-name>
+```
+
+**Example:**
+```bash
+docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' airbyte-abctl-control-plane
+```
+
+### 2. Update the Container to Not Auto-Restart
+Run this command to disable the auto-restart policy:
+
+```bash
+docker update --restart=no <container-name>
+```
+
+**Example:**
+```bash
+docker update --restart=no airbyte-abctl-control-plane
+```
+
+✅ This will prevent the container from starting automatically after reboot.
+
+### 3. (Optional) Stop the Container Manually
+If the container is still running and you want to stop it now, use the following command:
+
+```bash
+docker stop <container-name>
+```
+
+**Example:**
+```bash
+docker stop airbyte-abctl-control-plane
+```
+
+## 🛠️ Quick Summary of Docker Restart Policies
+
+| Policy          | Behavior                                           |
+|------------------|---------------------------------------------------|
+| `no`            | Never restart automatically. Only manual start.   |
+| `always`        | Always restart, even after reboot.                |
+| `unless-stopped`| Restart unless you manually stop the container.    |
+| `on-failure`    | Restart only if the container exits with a non-zero status. |
+
+---
+
+## Why Docker Builds Fail Differently on Linux and Windows
+Date: 08 June 2026
+
+
+
+---
+
+## Understanding .gitattributes: Solving Cross-Platform Line Ending Problems
+Date: 08 June 2026
+
+
+
+---
+
+## Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)
+Date: 08 June 2026
+
+
+
+---
+
+## MySQL 8.0 Binary Installation and MariaDB Cleanup Guide
+Date: 03 June 2026
+
+
+
+---
+
+## Introduction: Overview of Grafana, Prometheus, and Node Exporter
+Date: 03 June 2026
+
+
+
+---
+
+## Creating Docker Networks for Container Communication
+Date: 03 June 2026
+
+
+
+---
+
+## How to Enable and Monitor the MySQL General Log
+Date: 03 June 2026
+
+
+
+---
+
+## Fixing \
+Date: 04 June 2026
+
+
+
+---
+
+## Essential Linux System Commands: A Systems Engineering Reference
+Date: 03 June 2026
+
+
+
+---
+
+## Essential SQL Queries for Database Exploration and Management
+Date: 03 June 2026
+
+
+
+---
+
+## A Developer's Guide to the OpenAI GPT Playground
+Date: 03 June 2026
+
+
+
+---
+
+## Grafana Installation on Ubuntu using Docker
+Date: 03 June 2026
+
+
+
+---
+
+## Apache HTTP Server 2.4.x Installation and Configuration Guide
+Date: 03 June 2026
+
+
+
+---
+
+## How to Install XMind on Ubuntu: A Step-by-Step Guide
+Date: 03 June 2026
+
+
+
+---
+
+## Understanding iptables in Linux: Firewall Packet Filtering Guide
+Date: 03 June 2026
+
+
+
+---
+
+## Installing Katalon Studio on Ubuntu
+Date: 03 June 2026
+
+
+
+---
+
+## Mastering netstat Commands for Linux Network Analysis
+Date: 03 June 2026
+
+
+
+---
+
+## Demystifying Semantic Versioning: An NPM and NuGet Guide
+Date: 03 June 2026
+
+
+
+---
+
+## How to Install Postman via Binary Tarball on Ubuntu
+Date: 03 June 2026
+
+
+
+---
+
+## Mastering SCP Commands for Secure File Transfers
+Date: 03 June 2026
+
+
+
+---
+
+## Comprehensive SSH Setup and Hardening Guide
+Date: 03 June 2026
+
+
+
+---
+
+## How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide
+Date: 03 June 2026
+
+
+
+---
+
+## Mastering the Vi/Vim Editor: A Comprehensive Systems Guide
+Date: 03 June 2026
+
+
+
+---
+
