@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Enable Swap Memory on Linux | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.">
+    <meta name="keywords" content="swap memory, linux, swapfile, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/how-to-enable-swap-memory-on-linux.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Enable Swap Memory on Linux | A.M. Rinas Blog">
+    <meta property="og:description" content="A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/how-to-enable-swap-memory-on-linux.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Enable Swap Memory on Linux">
+    <meta name="twitter:description" content="A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/how-to-enable-swap-memory-on-linux.html"
+      },
+      "headline": "How to Enable Swap Memory on Linux",
+      "description": "A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-12",
+      "dateModified": "2026-06-12"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>How to Enable Swap Memory on Linux</h1>
+
+<p>If your system shows <code>Swap: 0B 0B 0B</code>, it means there is no active swap space. Follow these steps to check and enable swap.</p>
+
+<h2>1️⃣ Check If a Swap Partition Exists</h2>
+<p>Run:</p>
+<pre><code>lsblk | grep swap</code></pre>
+<p>If no output appears, you don't have a swap partition.</p>
+
+<h2>2️⃣ Check If Swap Is Configured in /etc/fstab</h2>
+<p>Run:</p>
+<pre><code>cat /etc/fstab | grep swap</code></pre>
+<p>If there is no output, swap is not set up.</p>
+
+<h2>3️⃣ Create a Swap File (If No Swap Exists)</h2>
+<p>If there is no swap partition, create a swap file manually:</p>
+
+<h3>Step 1: Create a 2GB Swap File</h3>
+<pre><code>sudo fallocate -l 2G /swapfile  # Create a 2GB swap file
+sudo chmod 600 /swapfile        # Secure it
+sudo mkswap /swapfile           # Format as swap
+sudo swapon /swapfile           # Enable swap</code></pre>
+
+<h3>Step 2: Verify Swap is Active</h3>
+<pre><code>free -mh
+swapon --show</code></pre>
+
+<h3>Step 3: Make Swap Persistent</h3>
+<p>To make the swap file persist after reboot, add this line to <code>/etc/fstab</code>:</p>
+<pre><code>/swapfile none swap sw 0 0</code></pre>
+
+<h2>4️⃣ If You Have a Swap Partition, Enable It</h2>
+<p>If <code>lsblk</code> shows a swap partition (e.g., <code>/dev/sdX</code>), activate it with:</p>
+<pre><code>sudo swapon /dev/sdX  # Replace /dev/sdX with the actual partition name</code></pre>
+
+<h2>5️⃣ Disable Swap Temporarily (Optional)</h2>
+<p>If you need to disable swap for a while, use:</p>
+<pre><code>sudo swapoff -a</code></pre>
+<p>To re-enable it:</p>
+<pre><code>sudo swapon -a</code></pre>
+
+<p>Now your system should have active swap memory! 🚀</p>
+    
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: swap memory, linux, ubuntu swap, swapfile -->
+    </article>
+</body>
+</html>
