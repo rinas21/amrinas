@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manually delete the migration folder | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Manually delete the migration folder, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/manually-delete-the-migration-folder.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Manually delete the migration folder | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/manually-delete-the-migration-folder.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Manually delete the migration folder">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/manually-delete-the-migration-folder.html"
+      },
+      "headline": "Manually delete the migration folder",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Manually delete the migration folder</h1>
+<p>rm -rf prisma/migrations/<migration_name></p>
+<pre><code>
+## 3. The Solution: `prisma db push`
+
+When `prisma migrate` is not working due to a corrupted migration history or when you just want to quickly sync your schema with the development database, `prisma db push` is the right tool. It inspects the Prisma schema and makes the database match it, bypassing the migration history.
+
+**This is especially useful in development when you don&#39;t need to preserve migration history.**
+
+The following commands fixed the issue:
+
+**Step 1: Push the schema to the database**
+
+This command synchronizes the database schema with the `schema.prisma` file, creating the missing `promo_discount_amount` column. The `--accept-data-loss` flag is used to confirm that we are okay with potential data loss, which is acceptable in a development environment.
+
+```bash
+pnpm prisma db push --accept-data-loss
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>🚀  Your database is now in sync with your Prisma schema.
+✔ Generated Prisma Client (v6.16.2)
+</code></pre>
+<p><strong>Step 2: Re-run the database seed command</strong></p>
+<p>With the database schema now correctly in sync, the seed command can be run successfully.</p>
+<pre><code class="language-bash">pnpm prisma db seed
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code>🌱 Starting database seeding...
+...
+🎉 Database seeding completed successfully!
+...
+🌱  The seed command has been executed.
+</code></pre>
+<h2>Key Takeaway</h2>
+<p>For development environments, if your database and migration history get into a broken state, <code>prisma db push</code> is a powerful command to quickly reset your database schema to match your <code>schema.prisma</code> file. It is often faster and simpler than trying to manually fix a corrupted migration history with <code>prisma migrate resolve</code> or <code>reset</code>.</p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

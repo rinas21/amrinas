@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize the database | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Initialize the database, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/initialize-the-database.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Initialize the database | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/initialize-the-database.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Initialize the database">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/initialize-the-database.html"
+      },
+      "headline": "Initialize the database",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Initialize the database</h1>
+<p>superset db upgrade
+superset fab create-admin  # Create admin user
+superset init</p>
+<pre><code>
+### 🧠 Run Superset
+
+```bash
+superset run -p 8088 --with-threads --reload --debugger
+</code></pre>
+<p>Visit: <a href="http://localhost:8088">http://localhost:8088</a></p>
+<hr>
+<h2>🧩 3. Connect Superset to Cube.js SQL API</h2>
+<p>In Superset UI:</p>
+<ol>
+<li><p>Go to <strong>Settings → Database Connections</strong></p>
+</li>
+<li><p>Click <strong>+ Database</strong></p>
+</li>
+<li><p>Select <strong>PostgreSQL</strong></p>
+</li>
+<li><p>Fill in details:</p>
+<ul>
+<li><strong>Display Name:</strong> <code>Cube.js</code> (or any name)</li>
+<li><strong>SQLAlchemy URI:</strong>  <pre><code>postgresql+psycopg2://admin:admin@localhost:15432/postgres
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Click <strong>Connect</strong></p>
+</li>
+</ol>
+<hr>
+<h2>🧨 Common Errors &amp; Fixes</h2>
+<h3>❌ <code>ModuleNotFoundError: No module named &#39;psycopg2&#39;</code></h3>
+<p><strong>Fix:</strong><br>Activate your Superset venv and install the missing driver:</p>
+<pre><code class="language-bash">source venv/bin/activate
+pip install psycopg2-binary
+</code></pre>
+<hr>
+<h3>❌ Superset logo / favicon 404 errors</h3>
+<p>You may see logs like:</p>
+<pre><code>GET /static/assets/images/superset-logo-horiz.png HTTP/1.1&quot; 404 -
+</code></pre>
+<p>🟡 <em>These are not critical — just missing branding assets. UI still works.</em></p>
+<hr>
+<h3>❌ Unable to load SQLAlchemy dialect <code>shillelagh.multicorn2</code></h3>
+<p>Superset log:</p>
+<pre><code>Unable to load SQLAlchemy dialect shillelagh.multicorn2: No module named &#39;psycopg2&#39;
+</code></pre>
+<p>🟢 <em>This also results from the missing PostgreSQL driver (<code>psycopg2</code>). Installing it as shown above fixes both.</em></p>
+<hr>
+<h3>❌ NPM Error: <code>package.json</code> not found</h3>
+<p>If you ran <code>npm install</code> inside Superset folder:</p>
+<pre><code>npm ERR! enoent ENOENT: no such file or directory, open &#39;.../package.json&#39;
+</code></pre>
+<p>🛠️ <em>You do not need to run <code>npm install</code> in Superset. That’s for frontend development. Ignore this.</em></p>
+<hr>
+<h2>✅ After Connection</h2>
+<ul>
+<li>Go to <strong>Datasets</strong> in Superset</li>
+<li>Explore tables exposed by Cube.js schemas</li>
+<li>Build dashboards using those datasets</li>
+</ul>
+<hr>
+<h2>🧪 Test the Connection via CLI (optional)</h2>
+<pre><code class="language-bash">PGPASSWORD=admin psql -h localhost -p 15432 -U admin postgres
+</code></pre>
+<p>This lets you directly inspect what Cube.js is exposing via PostgreSQL.</p>
+<hr>
+<h2>🧼 Final Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cube.js SQL API</td>
+<td>✅ Running on port 15432</td>
+</tr>
+<tr>
+<td>Superset</td>
+<td>✅ Installed &amp; running</td>
+</tr>
+<tr>
+<td>psycopg2</td>
+<td>✅ Installed in venv</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>✅ PostgreSQL → Cube.js linked</td>
+</tr>
+</tbody></table>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

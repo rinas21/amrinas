@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checking Port Availability Using Netcat (`nc`) | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Checking Port Availability Using Netcat (`nc`), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/checking-port-availability-using-netcat-nc.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Checking Port Availability Using Netcat (`nc`) | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/checking-port-availability-using-netcat-nc.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Checking Port Availability Using Netcat (`nc`)">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/checking-port-availability-using-netcat-nc.html"
+      },
+      "headline": "Checking Port Availability Using Netcat (`nc`)",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Checking Port Availability Using Netcat (<code>nc</code>)</h1>
+<p>Netcat (<code>nc</code>) is a powerful networking tool that can be used for a variety of tasks, such as scanning ports, connecting to remote systems, and troubleshooting network issues. This note explains how to use <code>nc</code> to check if a specific port (e.g., MySQL&#39;s default port) is open on your local machine or a remote server.</p>
+<h2>Command Breakdown: <code>nc -zv 127.0.0.1 3306</code></h2>
+<h3>1. <strong><code>nc</code></strong>:</h3>
+<ul>
+<li>Stands for <strong>Netcat</strong>.</li>
+<li>It’s a versatile networking tool often referred to as the &quot;Swiss army knife&quot; of networking.</li>
+</ul>
+<h3>2. <strong><code>-z</code></strong> (Scan for Open Ports):</h3>
+<ul>
+<li>This option tells Netcat to <strong>scan</strong> the given port(s) without establishing a full connection.</li>
+<li>It checks if the port is open (i.e., a service is listening on that port).</li>
+</ul>
+<h3>3. <strong><code>-v</code></strong> (Verbose Mode):</h3>
+<ul>
+<li>Makes <code>nc</code> output more detailed information about the connection attempt.</li>
+<li>Useful for understanding whether the port is open or closed.</li>
+</ul>
+<h3>4. <strong><code>127.0.0.1</code></strong>:</h3>
+<ul>
+<li>The <strong>loopback address</strong>, which refers to the local machine.</li>
+<li>You can replace this with any IP address (e.g., a remote server’s IP) to test ports on other systems.</li>
+</ul>
+<h3>5. <strong><code>3306</code></strong>:</h3>
+<ul>
+<li>The <strong>port number</strong> to test. In this case, port 3306 is the default port for MySQL.</li>
+</ul>
+<h2>Example Scenarios:</h2>
+<h3>1. <strong>MySQL is Running</strong>:</h3>
+<p>If MySQL is running on port 3306, you will see:</p>
+<pre><code class="language-bash">Connection to 127.0.0.1 3306 port [tcp/mysql] succeeded!
+</code></pre>
+<p>This means that MySQL is accepting connections on port 3306.</p>
+<h3>2. <strong>MySQL is Not Running</strong>:</h3>
+<p>If MySQL is not running on port 3306, you will see:</p>
+<pre><code class="language-bash">nc: connect to 127.0.0.1 port 3306 (tcp) failed: Connection refused
+</code></pre>
+<p>This means either:</p>
+<ul>
+<li>MySQL is not running.</li>
+<li>The port is blocked by a firewall.</li>
+<li>The service is not listening on that port.</li>
+</ul>
+<h2>Checking Multiple Ports:</h2>
+<p>You can also check multiple ports at once by listing them after the IP address. For example:</p>
+<pre><code class="language-bash">nc -zv 127.0.0.1 3306 8080 443
+</code></pre>
+<p>This command will check if ports 3306 (MySQL), 8080 (HTTP), and 443 (HTTPS) are open on 127.0.0.1.</p>
+<hr>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

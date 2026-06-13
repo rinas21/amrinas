@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux) | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/python-virtual-environment-setup-guide-ubuntulinux.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux) | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/python-virtual-environment-setup-guide-ubuntulinux.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux)">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/python-virtual-environment-setup-guide-ubuntulinux.html"
+      },
+      "headline": "🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux)",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux)</h1>
+<h2>📦 Prerequisites</h2>
+<p>Make sure Python and pip are installed:</p>
+<pre><code class="language-bash">python3 --version
+pip3 --version
+</code></pre>
+<p>If not installed, run:</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install python3 python3-pip -y
+</code></pre>
+<h2>🔧 Install <code>virtualenv</code></h2>
+<p>Install <code>virtualenv</code> globally using pip:</p>
+<pre><code class="language-bash">pip3 install virtualenv
+</code></pre>
+<h2>🏗️ Create a Virtual Environment</h2>
+<h3>✅ Option 1: Using Default Python Version</h3>
+<pre><code class="language-bash">virtualenv venv_name
+</code></pre>
+<p>This uses your system’s default Python (usually Python 3).</p>
+<h3>✅ Option 2: Using a Specific Python Version</h3>
+<pre><code class="language-bash">virtualenv -p /usr/bin/python3.14 myenv
+</code></pre>
+<p>Replace <code>python3.14</code> with the path to the version you want.</p>
+<h2>🚀 Activate the Virtual Environment</h2>
+<pre><code class="language-bash">source myenv/bin/activate
+</code></pre>
+<p>You’ll see the environment name in your terminal prompt like this:</p>
+<pre><code class="language-bash">(myenv) user@machine:~$
+</code></pre>
+<h2>📦 Install Packages Inside the Environment</h2>
+<pre><code class="language-bash">pip install package-name
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-bash">pip install numpy
+</code></pre>
+<h2>❌ Deactivate the Virtual Environment</h2>
+<p>To exit the virtual environment:</p>
+<pre><code class="language-bash">deactivate
+</code></pre>
+<h2>🧼 Remove a Virtual Environment (Optional)</h2>
+<pre><code class="language-bash">rm -rf myenv
+</code></pre>
+<h2>🧠 Tips</h2>
+<ul>
+<li>You can keep different environments for different projects.</li>
+<li>Use a <code>.gitignore</code> file to ignore virtual environment folders in Git projects:</li>
+</ul>
+<pre><code class="language-plaintext">venv/
+myenv/
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

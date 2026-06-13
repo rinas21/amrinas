@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 Cube.js Concepts Summary | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="📘 Cube.js Concepts Summary, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/cubejs-concepts-summary.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="📘 Cube.js Concepts Summary | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/cubejs-concepts-summary.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="📘 Cube.js Concepts Summary">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/cubejs-concepts-summary.html"
+      },
+      "headline": "📘 Cube.js Concepts Summary",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>📘 Cube.js Concepts Summary</h1>
+<table>
+<thead>
+<tr>
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cube</strong></td>
+<td>A logical model built on top of a database table or query. Each cube defines dimensions, measures, and joins.</td>
+<td><code>cube(&#39;Orders&#39;, { sql: &#39;SELECT * FROM orders&#39; })</code></td>
+</tr>
+<tr>
+<td><strong>Measure</strong></td>
+<td>A numeric value that can be <strong>aggregated</strong> (like <code>sum</code>, <code>count</code>, <code>avg</code>, etc.).</td>
+<td><code>type: &#39;sum&#39;, sql: &#39;amount&#39;</code></td>
+</tr>
+<tr>
+<td><strong>Dimension</strong></td>
+<td>A categorical field used to <strong>slice or group</strong> measures.</td>
+<td><code>type: &#39;string&#39;, sql: &#39;status&#39;</code></td>
+</tr>
+<tr>
+<td><strong>Time Dimension</strong></td>
+<td>A special dimension for <strong>date/time fields</strong>, used in filtering and pre-aggregation.</td>
+<td><code>type: &#39;time&#39;, sql: &#39;created_at&#39;</code></td>
+</tr>
+<tr>
+<td><strong>Pre-aggregation</strong></td>
+<td>A <strong>pre-computed</strong> summary table for faster query performance.</td>
+<td><code>type: &#39;rollup&#39;, measures: [&#39;Orders.totalAmount&#39;], granularity: &#39;day&#39;</code></td>
+</tr>
+<tr>
+<td><strong>Granularity</strong></td>
+<td>The level of time detail used in a pre-aggregation (<code>day</code>, <code>month</code>, <code>week</code>, etc.).</td>
+<td><code>granularity: &#39;month&#39;</code></td>
+</tr>
+<tr>
+<td><strong>Rollup</strong></td>
+<td>A <strong>type of pre-aggregation</strong> that summarizes data by selected measures and dimensions.</td>
+<td><code>type: &#39;rollup&#39;</code> with <code>measures</code> and <code>dimensions</code></td>
+</tr>
+<tr>
+<td><strong>Refresh Key</strong></td>
+<td>Tells Cube.js <strong>how often to refresh</strong> the pre-aggregated data.</td>
+<td><code>refreshKey: { every: &#39;1 hour&#39; }</code></td>
+</tr>
+<tr>
+<td><strong>Filter (in measure)</strong></td>
+<td>Adds a <strong>condition</strong> to apply only to that measure.</td>
+<td><code>filters: [ { sql: &#39;status = \&#39;completed\&#39;&#39; } ]</code></td>
+</tr>
+<tr>
+<td><strong>Join</strong></td>
+<td>Allows combining data from <strong>multiple cubes (tables)</strong> based on a key relationship.</td>
+<td><code>joins: { Products: { relationship: &#39;belongsTo&#39;, sql: ... } }</code></td>
+</tr>
+<tr>
+<td><strong>Segment</strong></td>
+<td>A reusable <strong>filter condition</strong> defined in a cube for convenience.</td>
+<td><code>segments: { completedOrders: { sql: &#39;status = \&#39;completed\&#39;&#39; } }</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🧠 Example Breakdown</h2>
+<pre><code class="language-js">measures: {
+  totalSales: {
+    sql: &#39;amount&#39;,
+    type: &#39;sum&#39;
+  }
+},
+dimensions: {
+  status: {
+    sql: &#39;status&#39;,
+    type: &#39;string&#39;
+  },
+  createdAt: {
+    sql: &#39;created_at&#39;,
+    type: &#39;time&#39;
+  }
+},
+preAggregations: {
+  dailySales: {
+    type: &#39;rollup&#39;,
+    measures: [&#39;totalSales&#39;],
+    dimensions: [&#39;status&#39;],
+    timeDimension: &#39;createdAt&#39;,
+    granularity: &#39;day&#39;
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><strong>Component</strong></th>
+<th><strong>What It Means</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>totalSales</code></td>
+<td>A measure: sum of <code>amount</code></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>A dimension: used to group sales</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td>A time dimension: date when sale was created</td>
+</tr>
+<tr>
+<td><code>dailySales</code></td>
+<td>A pre-aggregation (rollup): daily summary of sales by status</td>
+</tr>
+</tbody></table>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

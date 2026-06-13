@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Bisect Process to Debug Issue | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Git Bisect Process to Debug Issue, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/git-bisect-process-to-debug-issue.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Git Bisect Process to Debug Issue | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/git-bisect-process-to-debug-issue.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Git Bisect Process to Debug Issue">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/git-bisect-process-to-debug-issue.html"
+      },
+      "headline": "Git Bisect Process to Debug Issue",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Git Bisect Process to Debug Issue</h1>
+<h2>Steps:</h2>
+<h3>1. <strong>Start Git Bisect</strong></h3>
+<p>   The <code>git bisect start</code> command initiates the bisecting process, which allows you to perform a binary search to find the commit that introduced a bug. This is useful when you know a bug exists but don&#39;t know which commit caused it.</p>
+<pre><code class="language-bash">git bisect start
+</code></pre>
+<h3>2. <strong>Checkout Version 2.0.54 (Bad Commit)</strong></h3>
+<pre><code>In this step, we checkout the version where the bug was introduced (the &quot;bad&quot; commit). We then mark this version as bad using git bisect bad. This tells Git to start the search for the bad commit from this point.
+</code></pre>
+<pre><code class="language-bash">
+git checkout 2.0.54
+git bisect bad
+</code></pre>
+<h3>3. <strong>Get the Top-Level Directory</strong></h3>
+<pre><code>`git rev-parse --show-toplevel` is used to print the top-level directory of your Git repository. This helps you understand the root directory where your Git repository is initialized. It&#39;s useful if you&#39;re unsure of your current working directory within the project.
+</code></pre>
+<pre><code class="language-bash">
+git rev-parse --show-toplevel
+</code></pre>
+<h3>4. <strong>Tag Information</strong></h3>
+<pre><code>The git describe --tags command retrieves the most recent tag that is reachable from a given commit. This helps you understand the closest version or release associated with a commit. It&#39;s useful when you want to track which tag the current commit belongs to.
+</code></pre>
+<pre><code class="language-bash">
+git describe --tags e86d6b276bc4d588575d6ba02716b824686c78cb
+</code></pre>
+<h3>5. <strong>Checkout Version 2.0.25 (Good Commit)</strong></h3>
+<pre><code>After marking the bad commit, we then checkout the last known good version (the &quot;good&quot; commit). This helps to narrow down where the issue occurred. We use git bisect good to indicate that this commit is working correctly.
+</code></pre>
+<pre><code class="language-bash">
+git checkout 2.0.25
+git bisect good
+</code></pre>
+<h3>6. <strong>Review Commit Log</strong></h3>
+<pre><code>To review changes in the codebase and potentially identify which commit introduced the bug, use git log --oneline -- .. This will display the commit history for the current directory. It&#39;s helpful for tracing through changes between the &quot;good&quot; and &quot;bad&quot; commits.
+</code></pre>
+<pre><code class="language-bash">
+git log --oneline -- .
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

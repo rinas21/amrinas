@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Message | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Error Message, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/error-message.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Error Message | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/error-message.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Error Message">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/error-message.html"
+      },
+      "headline": "Error Message",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h3>Error Message:</h3>
+<pre><code class="language-bash">java.io.IOException: Keystore was tampered with, or password was incorrect
+</code></pre>
+<h4>Possible Causes:</h4>
+<ol>
+<li><p>Incorrect keystore password: The password in server.xml may not match the actual keystore password.</p>
+</li>
+<li><p>Corrupted keystore: The keystore file might be damaged.</p>
+</li>
+<li><p>Wrong keystore path: The path configured in server.xml might be incorrect.</p>
+</li>
+<li><p>Incorrect keystore format: If the keystore was created using a different Java version, it might not be compatible with Java 5.</p>
+</li>
+</ol>
+<ul>
+<li>Check Configuration</li>
+<li>Locate the server.xml file</li>
+</ul>
+<pre><code class="language-bash">cat /hms/installs/tomcat4-GR/apache-tomcat-5.5.17/conf/server.xml
+</code></pre>
+<ul>
+<li>Find the SSL Connector section (&lt;Connector port=&quot;8443&quot;) and check:</li>
+</ul>
+<ol>
+<li><p>Keystore file path (keystoreFile)</p>
+</li>
+<li><p>Password (keystorePass)</p>
+</li>
+<li><p>Verify the Keystore File Run this command to check if the keystore exists:</p>
+</li>
+</ol>
+<pre><code class="language-bash">keytool -list -keystore /path/to/your/keystore.jks
+</code></pre>
+<p>If prompted for a password, enter it and verify that it lists certificates.</p>
+<h3>How to Fix</h3>
+<p>If the password is incorrect, reset it using:</p>
+<pre><code class="language-bash">keytool -storepasswd -new NEW_PASSWORD -keystore /path/to/your/keystore.jks
+</code></pre>
+<p>If the keystore is missing or corrupted, create a new one:</p>
+<pre><code class="language-bash">keytool -genkey -alias tomcat -keyalg RSA -keystore /path/to/your/keystore.jks -validity 3650
+</code></pre>
+<p>If SSL is not needed, disable it by commenting out the <Connector port="8443" /> block in server.xml.</p>
+<h3>Additional Note:</h3>
+<p>To identify the process using the keystore or related resources, you can use the following command:</p>
+<pre><code class="language-bash">ps -fp 41308
+</code></pre>
+<p>This will display detailed information about the process with PID 41308, including the user, command, and other relevant details. Use this to verify if the correct application is accessing the keystore.</p>
+<h3>Additional Issue: UnsupportedClassVersionError</h3>
+<h4>Error Message:</h4>
+<pre><code class="language-bash">Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: Bad version number in .class file
+</code></pre>
+<h4>Cause:</h4>
+<p>This error occurs when the Java version used to compile the code is higher than the Java version used to run it.</p>
+<h4>Solution:</h4>
+<ol>
+<li><p>Verify the Java version being used:</p>
+<pre><code class="language-bash">java -version
+</code></pre>
+</li>
+<li><p>Update the Java version to match the version used during compilation. For example, if the code was compiled with Java 11, ensure Java 11 is installed and set as the default.</p>
+</li>
+<li><p>Update Maven to use the correct Java version:</p>
+<pre><code class="language-bash">export JAVA_HOME=/path/to/correct/java/version
+mvn clean install
+</code></pre>
+</li>
+<li><p>Run the application again:</p>
+<pre><code class="language-bash">mvn spring-boot:run
+</code></pre>
+</li>
+</ol>
+<p>This issue was resolved by updating the Java version and Maven configuration.</p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Custom Node Development Guide | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="n8n Custom Node Development Guide, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/n8n-custom-node-development-guide.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="n8n Custom Node Development Guide | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/n8n-custom-node-development-guide.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="n8n Custom Node Development Guide">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/n8n-custom-node-development-guide.html"
+      },
+      "headline": "n8n Custom Node Development Guide",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>n8n Custom Node Development Guide</h1>
+<p>This guide explains how to create, build, and test a custom n8n node locally.</p>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-prerequisites">Prerequisites</a></li>
+<li><a href="#2-node-project-structure">Node Project Structure</a></li>
+<li><a href="#3-build-and-link-the-node-locally">Build and Link the Node Locally</a></li>
+<li><a href="#4-install-node-in-local-n8n-instance">Install Node in Local n8n Instance</a></li>
+<li><a href="#5-start-n8n-and-test">Start n8n and Test</a></li>
+<li><a href="#6-updating-your-node">Updating Your Node</a></li>
+<li><a href="#7-troubleshooting">Troubleshooting</a></li>
+<li><a href="#8-references">References</a></li>
+</ol>
+<hr>
+<h2>1. Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> installed (preferably using <a href="https://github.com/nvm-sh/nvm">nvm</a>)</li>
+<li><strong>n8n</strong> installed globally:<pre><code class="language-bash">npm install -g n8n
+</code></pre>
+</li>
+<li>A separate folder for your custom node, e.g.:<pre><code>~/Desktop/project/n8n-nodes-starter
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>2. Node Project Structure</h2>
+<p>Your node project should have the following structure:</p>
+<pre><code>n8n-nodes-starter/
+├── credentials/
+│   └── EventHub.credentials.ts
+├── nodes/
+│   └── EventHub.node.ts
+├── package.json
+├── tsconfig.json
+├── gulpfile.js
+└── README.md
+</code></pre>
+<p><strong>Example <code>package.json</code>:</strong></p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;n8n-nodes-eventhub&quot;,
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;main&quot;: &quot;dist/index.js&quot;,
+    &quot;scripts&quot;: {
+        &quot;build&quot;: &quot;tsc &amp;&amp; gulp build:icons&quot;
+    }
+}
+</code></pre>
+<hr>
+<h2>3. Build and Link the Node Locally</h2>
+<p>Navigate to your node folder:</p>
+<pre><code class="language-bash">cd ~/Desktop/project/n8n-nodes-starter
+</code></pre>
+<p>Build the node:</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+<p><em>This compiles TypeScript to <code>dist/</code> and builds icons.</em></p>
+<p>Create a global symlink for the node:</p>
+<pre><code class="language-bash">npm link
+</code></pre>
+<hr>
+<h2>4. Install Node in Local n8n Instance</h2>
+<p>Create a custom folder for n8n (if it doesn’t exist):</p>
+<pre><code class="language-bash">mkdir -p ~/.n8n/custom
+cd ~/.n8n/custom
+npm init -y
+</code></pre>
+<p>Link your node into n8n:</p>
+<pre><code class="language-bash">npm link n8n-nodes-eventhub
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Ensure the name matches the <code>name</code> field in your node&#39;s <code>package.json</code>.</p>
+</blockquote>
+<hr>
+<h2>5. Start n8n and Test</h2>
+<p>Start n8n:</p>
+<pre><code class="language-bash">n8n start
+</code></pre>
+<p>Open n8n in your browser (default: <a href="http://localhost:5678">http://localhost:5678</a>).</p>
+<p>Search for your node by its node class name (e.g., <code>EventHub</code>), not the package name.</p>
+<hr>
+<h2>6. Updating Your Node</h2>
+<p>After making changes, rebuild the node:</p>
+<pre><code class="language-bash">cd ~/Desktop/project/n8n-nodes-starter
+npm run build
+</code></pre>
+<p>Restart n8n:</p>
+<pre><code class="language-bash">n8n start
+</code></pre>
+<hr>
+<h2>7. Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TypeError: require(...).EventHub is not a constructor</code></td>
+<td>Ensure the class exported from credentials or node matches the import name exactly.<br>Example:<br><code>typescript&lt;br&gt;export class EventHub implements INodeType { ... }&lt;br&gt;</code></td>
+</tr>
+<tr>
+<td><code>E404</code> when linking</td>
+<td>Do <strong>not</strong> run <code>npm link &lt;node&gt;</code> in the node source folder. Instead, run <code>npm link</code> in the source folder and <code>npm link &lt;node-package-name&gt;</code> in <code>~/.n8n/custom</code>.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>8. References</h2>
+<ul>
+<li><a href="https://docs.n8n.io/integrations/creating-nodes/">n8n Custom Node Development Docs</a></li>
+<li><a href="https://docs.n8n.io/integrations/creating-nodes/declarative/">Declarative Style Nodes</a></li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

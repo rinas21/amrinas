@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keycloak Login Error Expiredcode Non Secure Cookie Context | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Keycloak Login Error Expiredcode Non Secure Cookie Context, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/keycloak-login-error-expiredcode-non-secure-cookie-context.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Keycloak Login Error Expiredcode Non Secure Cookie Context | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/keycloak-login-error-expiredcode-non-secure-cookie-context.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Keycloak Login Error Expiredcode Non Secure Cookie Context">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/keycloak-login-error-expiredcode-non-secure-cookie-context.html"
+      },
+      "headline": "Keycloak Login Error Expiredcode Non Secure Cookie Context",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h2>Keycloak Login Error: <code>expired_code</code> &amp; Non-Secure Cookie Context</h2>
+<h2>Issue Overview</h2>
+<p>When using Keycloak, you may encounter the following log warnings related to authentication errors and non-secure cookies:</p>
+<h3>Example Logs:</h3>
+<pre><code class="language-Log">
+2025-01-27 01:51:15,045 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-3) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+2025-01-27 01:51:15,049 WARN  [org.keycloak.events] (executor-thread-3) type=&quot;LOGIN_ERROR&quot;, realmId=&quot;9821b5e9-f662-4cc9-bc87-19019604c1a8&quot;, realmName=&quot;master&quot;, clientId=&quot;security-admin-console&quot;, userId=&quot;null&quot;, ipAddress=&quot;172.16.1.234&quot;, error=&quot;expired_code&quot;, restart_after_timeout=&quot;true&quot;
+</code></pre>
+<h3>Causes:</h3>
+<ol>
+<li><p><strong>Expired Authentication Code</strong>:</p>
+<ul>
+<li>The error <code>expired_code</code> suggests that the authentication code has expired. This can occur due to session timeouts, clock misalignment, or prolonged inactivity.</li>
+</ul>
+</li>
+<li><p><strong>Non-Secure Cookie Context</strong>:</p>
+<ul>
+<li>The warning <code>Non-secure context detected; cookies are not secured</code> indicates that Keycloak is not using secure cookies (i.e., cookies are not sent over HTTPS). This can affect cross-origin POST requests and the availability of cookies.</li>
+</ul>
+</li>
+</ol>
+<h2>Solutions</h2>
+<h3>1. Clear Cache:</h3>
+<ul>
+<li><strong>Browser Cache</strong>: Clear the cache in your browser to ensure there are no expired tokens still being used.</li>
+<li><strong>Keycloak Cache</strong>: If the issue persists, clear the cache on the Keycloak server to remove any stale data.</li>
+</ul>
+<h3>2. Ensure Secure Cookies:</h3>
+<ul>
+<li>Check and update your Keycloak configuration to ensure cookies are set as <code>Secure</code> (only sent over HTTPS) and <code>HttpOnly</code> (not accessible via JavaScript).</li>
+<li>This can be done by modifying the following in your Keycloak server configuration:<ul>
+<li>Set <code>cookie.secure=true</code> and <code>cookie.httpOnly=true</code> in the <code>standalone.xml</code> (or equivalent) file for your Keycloak installation.</li>
+</ul>
+</li>
+</ul>
+<h3>3. Adjust Token Expiry or Session Timeout:</h3>
+<ul>
+<li>Review the settings for token expiry in Keycloak. If the authentication codes are expiring too quickly, you can increase the lifespan of the access tokens and refresh tokens.</li>
+<li>Example of how to adjust token expiry settings:<ul>
+<li>Navigate to <code>Realm Settings &gt; Tokens</code> in the Keycloak Admin Console and adjust the <strong>Access Token Lifespan</strong> and <strong>Refresh Token Lifespan</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3>4. Time Synchronization:</h3>
+<ul>
+<li>Ensure that your Keycloak server and clients are synchronized with a reliable time source to avoid discrepancies in token expiry times.</li>
+</ul>
+<h3>5. Restart Keycloak:</h3>
+<ul>
+<li>After making the changes, restart the Keycloak server to ensure the new configurations are applied.</li>
+</ul>
+<h2>Additional Notes</h2>
+<ul>
+<li>If you continue to encounter this issue after performing the above steps, consider reviewing your Keycloak session settings or network configurations.</li>
+<li>Make sure that any reverse proxies (e.g., Nginx, Apache) or load balancers are correctly handling HTTPS and forwarding secure cookies.</li>
+</ul>
+<h2>Example Keycloak Configuration Adjustments:</h2>
+<h3>Secure Cookies:</h3>
+<p>To enforce secure cookies in Keycloak, update the configuration as follows:</p>
+<ul>
+<li>In the <code>standalone.xml</code> (or equivalent) file, add or modify the setting:</li>
+</ul>
+<pre><code class="language-xml">&lt;security-constraints&gt;
+    &lt;cookie&gt;
+        &lt;secure&gt;true&lt;/secure&gt;
+        &lt;http-only&gt;true&lt;/http-only&gt;
+    &lt;/cookie&gt;
+&lt;/security-constraints&gt;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

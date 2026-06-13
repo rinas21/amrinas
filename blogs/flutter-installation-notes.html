@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Installation Notes | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Flutter Installation Notes, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/flutter-installation-notes.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Flutter Installation Notes | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/flutter-installation-notes.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flutter Installation Notes">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/flutter-installation-notes.html"
+      },
+      "headline": "Flutter Installation Notes",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Flutter Installation Notes</h1>
+<h2>1. Install Dependencies</h2>
+<p>Ensure you have the necessary dependencies installed:</p>
+<pre><code class="language-bash">sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa clang cmake ninja-build libgtk-3-dev
+</code></pre>
+<ol start="2">
+<li>Download Flutter SDK
+Download the latest stable version of Flutter:</li>
+</ol>
+<pre><code class="language-bash">tar -xf ~/Downloads/flutter_linux_3.27.4-stable.tar.xz -C ~/development/
+</code></pre>
+<ol start="3">
+<li>Update Path for Flutter
+Add Flutter to your system path by appending this line to your .bashrc (or .bash_profile):</li>
+</ol>
+<pre><code class="language-bash">echo &#39;export PATH=&quot;$HOME/development/flutter/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<ol start="4">
+<li>Check Flutter Doctor
+Run the following command to ensure Flutter is correctly installed:</li>
+</ol>
+<pre><code class="language-bash">flutter doctor
+</code></pre>
+<ol start="5">
+<li>Install Android SDK
+If you don&#39;t have Android SDK installed, you can install it:</li>
+</ol>
+<pre><code class="language-bash">sudo apt install android-sdk
+</code></pre>
+<ol start="6">
+<li>Install Command Line Tools
+Download and move Android command-line tools:</li>
+</ol>
+<pre><code class="language-bash">mv cmdline-tools/ ~/development/
+mkdir -p ~/development/android-sdk/cmdline-tools
+mv ~/development/cmdline-tools ~/development/android-sdk/cmdline-tools/latest
+</code></pre>
+<ol start="7">
+<li>Set ANDROID_HOME Path
+Add the following to .bashrc for the Android SDK:</li>
+</ol>
+<pre><code class="language-bash">echo &#39;export ANDROID_HOME=~/development/android-sdk&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<ol start="8">
+<li>Install Required SDK Packages
+Run sdkmanager to install the necessary Android SDK components:</li>
+</ol>
+<pre><code class="language-bash">sdkmanager --install &quot;cmdline-tools;latest&quot; &quot;platform-tools&quot; &quot;platforms;android-34&quot; &quot;build-tools;34.0.0&quot;
+</code></pre>
+<ol start="9">
+<li>Accept Android Licenses
+To accept the Android SDK licenses, run:</li>
+</ol>
+<pre><code class="language-bash">flutter doctor --android-licenses
+</code></pre>
+<ol start="10">
+<li>Verify Setup
+Ensure everything is set up correctly by running:</li>
+</ol>
+<pre><code class="language-bash">flutter doctor
+</code></pre>
+<p>By following these steps, you&#39;ll have Flutter and Android SDK correctly installed and configured on your system.</p>
+<h3>Errors ==&gt;</h3>
+<pre><code class="language-bash">Error: A JNI error has occurred, please check your installation and try again
+Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: com/android/sdklib/tool/sdkmanager/SdkManagerCli has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:473)
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:74)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:369)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:363)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:362)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:621)
+</code></pre>
+<ul>
+<li>Reason is old java version</li>
+</ul>
+<pre><code class="language-bash">user:~/Desktop$ flutter doctor --android-licenses
+Android sdkmanager not found. Update to the latest Android SDK and ensure that the cmdline-tools are installed to resolve this.
+</code></pre>
+<ul>
+<li>Android sdk is not there.</li>
+</ul>
+<hr>
+<ul>
+<li>The error message <a href="mailto:git@github.com">git@github.com</a>: Permission denied (publickey). indicates that your SSH key is either not set up or not added to GitHub. Follow these steps to fix it:</li>
+</ul>
+<ol>
+<li>Check if you have an SSH key
+Run:</li>
+</ol>
+<pre><code class="language-bash">ls -al ~/.ssh
+</code></pre>
+<p>If you see files like id_rsa and id_rsa.pub (or id_ed25519 and id_ed25519.pub), you have an SSH key. If not, you need to generate one.</p>
+<ol start="2">
+<li>Generate an SSH Key (if missing)
+If you don’t have a key, generate one using:</li>
+</ol>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C &quot;your-email@example.com&quot;
+</code></pre>
+<p>Press Enter to accept the default location (~/.ssh/id_ed25519), then add a passphrase or leave it empty.</p>
+<ol start="3">
+<li>Add SSH Key to GitHub
+Copy the public key:</li>
+</ol>
+<pre><code class="language-bash">cat ~/.ssh/id_ed25519.pub
+</code></pre>
+<h4>Go to GitHub → Settings → SSH and GPG keys → New SSH Key, paste the copied key, and save.</h4>
+<ol start="4">
+<li>Add the SSH Key to SSH Agent
+Run:</li>
+</ol>
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_ed25519
+</code></pre>
+<ol start="5">
+<li>Test SSH Connection
+Check if SSH works:</li>
+</ol>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p>If successful, it should say:</p>
+<p><code>Hi user! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></p>
+<ol start="6">
+<li>Retry Pushing the Code</li>
+</ol>
+<pre><code class="language-bash">git push --set-upstream origin master
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

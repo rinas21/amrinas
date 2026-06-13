@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html"
+      },
+      "headline": "Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)</h1>
+<ul>
+<li><strong>Current Kernel Installed:</strong> <code>5.14.0-427.42.1.el9_4</code> (RHEL 9.4)</li>
+<li><strong>Available Kernel Versions:</strong> Includes <code>5.14.0-503.x.x.el9_5</code> (RHEL 9.5) and multiple <code>5.14.0-427.x.x.el9_4</code> (RHEL 9.4)</li>
+</ul>
+<h3>Steps to Revert to a RHEL 9.4 Kernel Version:</h3>
+<ol>
+<li><strong>Install Desired Kernel Version from RHEL 9.4:</strong></li>
+</ol>
+<pre><code class="language-bash">   sudo dnf install kernel-5.14.0-427.33.1.el9_4
+</code></pre>
+<ol start="2">
+<li><strong>Reboot the System to Apply the New Kernel:</strong></li>
+</ol>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+<ol start="3">
+<li><strong>Verify the Kernel Version</strong></li>
+</ol>
+<pre><code class="language-bash">uname -r
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

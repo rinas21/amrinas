@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting Prisma DB Seeding Failure | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Troubleshooting Prisma DB Seeding Failure, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/troubleshooting-prisma-db-seeding-failure.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Troubleshooting Prisma DB Seeding Failure | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/troubleshooting-prisma-db-seeding-failure.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Troubleshooting Prisma DB Seeding Failure">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/troubleshooting-prisma-db-seeding-failure.html"
+      },
+      "headline": "Troubleshooting Prisma DB Seeding Failure",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Troubleshooting Prisma DB Seeding Failure</h1>
+<p>This note documents the process of resolving a <code>PrismaClientKnownRequestError</code> that occurred during database seeding. The root cause was a mismatch between the Prisma schema and the actual database state.</p>
+<h2>1. The Initial Problem: Seeding Fails</h2>
+<p>When running <code>pnpm prisma db seed</code>, the process failed with an error indicating a missing column in the database.</p>
+<pre><code class="language-bash">pnpm prisma db seed
+</code></pre>
+<p><strong>Error Output:</strong></p>
+<pre><code>Error during seeding: PrismaClientKnownRequestError: 
+Invalid `prisma.cart.create()` invocation in
+/path/to/project/packages/database/prisma/seed.ts:804:35
+
+→ 804 const cart1 = await prisma.cart.create(
+The column `promo_discount_amount` does not exist in the current database.
+  code: &#39;P2022&#39;,
+  meta: { modelName: &#39;Cart&#39;, column: &#39;promo_discount_amount&#39; },
+  clientVersion: &#39;6.16.2&#39;
+}
+</code></pre>
+<p>This error (<code>P2022</code>) clearly shows that the <code>seed.ts</code> script was trying to insert data into the <code>promo_discount_amount</code> column of the <code>Cart</code> table, but this column did not exist in the database.</p>
+<h2>2. Failed Attempts to Fix</h2>
+<p>Several attempts were made to fix the issue using standard Prisma migration commands, but they failed due to the database being in a broken or inconsistent state.</p>
+<h3>Attempt A: <code>prisma migrate dev</code></h3>
+<p>The first instinct was to create a new migration to add the missing column.</p>
+<pre><code class="language-bash">pnpm prisma migrate dev --name add_promo_discount_amount_to_cart
+</code></pre>
+<p>This failed because a previous, unsuccessful migration had left the database in a state that prevented new migrations from being applied.</p>
+<h3>Attempt B: <code>prisma migrate reset</code></h3>
+<p>The next step was to reset the database, hoping to clear the bad state and re-apply all migrations from scratch.</p>
+<pre><code class="language-bash">pnpm prisma migrate reset
+</code></pre>
+<p>While the reset completed, the subsequent automatic seeding failed with the <strong>exact same error</strong>. This happened because <code>migrate reset</code> only applies existing migration files. Since a migration for <code>promo_discount_amount</code> was never successfully created, the column was still missing after the reset.</p>
+<h3>Attempt C: Resolving and Deleting Failed Migrations</h3>
+<p>Further attempts to resolve the failed migration state and manually delete the broken migration files also led to a dead end, with Prisma detecting a discrepancy and requiring another reset.</p>
+<pre><code class="language-bash">
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

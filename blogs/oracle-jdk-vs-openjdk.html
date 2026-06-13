@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oracle JDK vs OpenJDK | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Oracle JDK vs OpenJDK, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/oracle-jdk-vs-openjdk.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Oracle JDK vs OpenJDK | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/oracle-jdk-vs-openjdk.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Oracle JDK vs OpenJDK">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/oracle-jdk-vs-openjdk.html"
+      },
+      "headline": "Oracle JDK vs OpenJDK",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Oracle JDK vs OpenJDK</h1>
+<h2>Introduction</h2>
+<p>Java Development Kit (JDK) is essential for developing and running Java applications. There are two main distributions:</p>
+<ol>
+<li><strong>Oracle JDK</strong> - Provided by Oracle, with commercial and open-source versions.</li>
+<li><strong>OpenJDK</strong> - Open-source implementation of the Java Platform, Standard Edition.</li>
+</ol>
+<h2>Key Differences</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Oracle JDK</th>
+<th>OpenJDK</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>License</strong></td>
+<td>Requires a commercial license for production use (from Java 11 onwards)</td>
+<td>Open-source under GPL v2 with Classpath Exception</td>
+</tr>
+<tr>
+<td><strong>Support</strong></td>
+<td>Long-term support (LTS) versions with extended updates</td>
+<td>Community-driven support with LTS from vendors</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Often optimized with proprietary improvements</td>
+<td>Similar performance but depends on vendor builds</td>
+</tr>
+<tr>
+<td><strong>Updates &amp; Patches</strong></td>
+<td>Security updates for LTS versions require a subscription</td>
+<td>Security updates provided by the community and vendors</td>
+</tr>
+<tr>
+<td><strong>Builds</strong></td>
+<td>Official Oracle builds</td>
+<td>Built by various vendors like Red Hat, AdoptOpenJDK, Amazon Corretto</td>
+</tr>
+</tbody></table>
+<h2>Which One to Choose?</h2>
+<ul>
+<li><strong>Choose Oracle JDK</strong> if you need Oracle’s commercial support, long-term updates, and performance optimizations.</li>
+<li><strong>Choose OpenJDK</strong> if you prefer an open-source, free-to-use option with community support.</li>
+</ul>
+<h2>Installing OpenJDK</h2>
+<h3>On Ubuntu/Debian</h3>
+<pre><code class="language-sh">sudo apt update &amp;&amp; sudo apt install openjdk-11-jdk
+</code></pre>
+<h3>On CentOS/RHEL</h3>
+<pre><code class="language-sh">sudo yum install java-11-openjdk-devel
+</code></pre>
+<h2>Installing Oracle JDK</h2>
+<ol>
+<li>Download from <a href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle’s official website</a>.</li>
+<li>Follow the installation steps based on your OS.</li>
+</ol>
+<h2>Checking Installed JDK Version</h2>
+<pre><code class="language-sh">java -version
+</code></pre>
+<h2>Conclusion</h2>
+<p>Both Oracle JDK and OpenJDK are viable choices. The decision depends on licensing, support needs, and vendor preferences. OpenJDK is generally recommended for open-source and enterprise projects looking for free alternatives.</p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

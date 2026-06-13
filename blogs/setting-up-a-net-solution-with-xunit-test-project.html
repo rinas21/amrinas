@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up a .NET Solution with xUnit Test Project | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Setting Up a .NET Solution with xUnit Test Project, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/setting-up-a-net-solution-with-xunit-test-project.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Setting Up a .NET Solution with xUnit Test Project | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/setting-up-a-net-solution-with-xunit-test-project.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Setting Up a .NET Solution with xUnit Test Project">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/setting-up-a-net-solution-with-xunit-test-project.html"
+      },
+      "headline": "Setting Up a .NET Solution with xUnit Test Project",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Setting Up a .NET Solution with xUnit Test Project</h1>
+<h2>Step 1 – Create the Test Project</h2>
+<pre><code class="language-bash">dotnet new xunit -n BuffetConnect.E2E -f net10.0
+</code></pre>
+<p><strong>Purpose:</strong> Creates a new xUnit test project.</p>
+<ul>
+<li><code>-n BuffetConnect.E2E</code>: Names the project folder and <code>.csproj</code> file.</li>
+<li><code>-f net10.0</code>: Targets .NET 10 framework.</li>
+</ul>
+<p><strong>Result:</strong> Generates <code>BuffetConnect.E2E/</code> folder containing <code>BuffetConnect.E2E.csproj</code>, <code>UnitTest1.cs</code>, and <code>obj/</code>.</p>
+<blockquote>
+<p><strong>Note:</strong> This is the project where you will write your tests.</p>
+</blockquote>
+<h2>Step 2 – Navigate to the Parent Directory</h2>
+<pre><code class="language-bash">cd ~/Desktop/project/automation/buffet-automation
+</code></pre>
+<p><strong>Purpose:</strong> Ensure that the solution file will be created in the correct directory.</p>
+<p><strong>Why:</strong> The solution file should be one level above the projects it contains.</p>
+<h2>Step 3 – Create the Solution File</h2>
+<pre><code class="language-bash">dotnet new sln -n BuffetConnect
+</code></pre>
+<p><strong>Purpose:</strong> Creates a solution file <code>BuffetConnect.sln</code>.</p>
+<p><strong>Why:</strong> The solution is a container for multiple projects (your tests, main app, libraries).</p>
+<p><strong>Result:</strong> You now have a <code>.sln</code> file ready to hold one or more projects.</p>
+<blockquote>
+<p><strong>Important:</strong> Do not try to add projects before creating the solution.</p>
+</blockquote>
+<h2>Step 4 – Add the Test Project to the Solution</h2>
+<pre><code class="language-bash">dotnet sln add BuffetConnect.E2E/BuffetConnect.E2E.csproj
+</code></pre>
+<p><strong>Purpose:</strong> Adds the test project to the solution.</p>
+<p><strong>Why:</strong> The solution now “knows” about this project, so you can build, test, or run everything from the solution level.</p>
+<blockquote>
+<p><strong>Tip:</strong> Run this from the directory where the <code>.sln</code> file exists.</p>
+</blockquote>
+<h2>Step 5 – Verify Projects in the Solution</h2>
+<pre><code class="language-bash">dotnet sln list
+</code></pre>
+<p><strong>Purpose:</strong> Confirms which projects are included in the solution.</p>
+<p><strong>Expected Output:</strong></p>
+<pre><code class="language-text">Project(s)
+----------
+BuffetConnect.E2E/BuffetConnect.E2E.csproj
+</code></pre>
+<h2>Directory Structure After Setup</h2>
+<pre><code class="language-text">buffet-automation/
+├── BuffetConnect.sln        &lt;-- Solution container
+└── BuffetConnect.E2E/       &lt;-- Test project
+    ├── BuffetConnect.E2E.csproj
+    ├── UnitTest1.cs
+    └── obj/
+</code></pre>
+<h2>Key Takeaways</h2>
+<ul>
+<li>Always create the solution first, then add projects.</li>
+<li>Run solution commands (<code>dotnet sln add</code>, <code>dotnet sln list</code>) from the solution folder, not the project folder.</li>
+<li>Keep solution at top level, projects in subfolders — this scales well for multiple projects.</li>
+<li>Your <code>.csproj</code> contains the actual code/tests; the <code>.sln</code> just manages projects together.</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

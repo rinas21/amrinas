@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eulerian and Hamiltonian Graphs | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Eulerian and Hamiltonian Graphs, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/eulerian-and-hamiltonian-graphs.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Eulerian and Hamiltonian Graphs | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/eulerian-and-hamiltonian-graphs.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eulerian and Hamiltonian Graphs">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/eulerian-and-hamiltonian-graphs.html"
+      },
+      "headline": "Eulerian and Hamiltonian Graphs",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Eulerian and Hamiltonian Graphs</h1>
+<p>This document provides key differences, mathematical rules, and conditions for determining whether a graph is <strong>Eulerian</strong> or <strong>Hamiltonian</strong>.</p>
+<hr>
+<h2>Mathematical Rules and Definitions</h2>
+<h3>Eulerian Graph</h3>
+<p>A graph is <strong>Eulerian</strong> if:</p>
+<ol>
+<li>It contains an <strong>Eulerian circuit</strong>—a closed path that traverses every edge exactly once and returns to the starting vertex.</li>
+<li>The graph must satisfy the following conditions:<ul>
+<li>The graph is <strong>connected</strong>, and</li>
+<li>All vertices ( v \in V ) have an <strong>even degree</strong>:
+$$
+\text{deg}(v) \equiv 0 \ (\text{mod } 2) \ \forall v \in V
+$$</li>
+<li>Or exactly two vertices have an <strong>odd degree</strong>:
+$$
+\text{deg}(v) \equiv 1 \ (\text{mod } 2)
+$$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Hamiltonian Graph</h3>
+<p>A graph is <strong>Hamiltonian</strong> if:</p>
+<ol>
+<li>It contains a <strong>Hamiltonian cycle</strong>—a closed path that visits every vertex exactly once and returns to the starting vertex.</li>
+<li>For a simple graph ( G = (V, E) ) with ( |V| = n ) vertices:<ul>
+<li>Each vertex ( v \in V ) satisfies:
+$$
+\text{deg}(v) \geq \frac{n}{2}.
+$$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Comparison Table</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Aspect</strong></th>
+<th><strong>Eulerian Graph</strong></th>
+<th><strong>Hamiltonian Graph</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Focus</strong></td>
+<td>Traverses every edge exactly once.</td>
+<td>Visits every vertex exactly once.</td>
+</tr>
+<tr>
+<td><strong>Condition</strong></td>
+<td>- All vertices have an even degree:</td>
+<td>- Every vertex satisfies:</td>
+</tr>
+<tr>
+<td></td>
+<td>$ \text{deg}(v) \equiv 0 \ (\text{mod } 2) $</td>
+<td>$ \text{deg}(v) \geq \frac{n}{2} $</td>
+</tr>
+<tr>
+<td></td>
+<td>- Or exactly two vertices have odd degrees:</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>$ \text{deg}(v) \equiv 1 \ (\text{mod } 2) $</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Path Type</strong></td>
+<td>Eulerian circuit (or Eulerian path if two odd vertices).</td>
+<td>Hamiltonian cycle.</td>
+</tr>
+<tr>
+<td><strong>Graph Connectivity</strong></td>
+<td>Must be connected.</td>
+<td>Must be connected.</td>
+</tr>
+<tr>
+<td><strong>Examples</strong></td>
+<td>Königsberg Bridge Problem.</td>
+<td>Traveling Salesperson Problem (TSP).</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Examples and Visualization</h2>
+<h3>Eulerian Graph</h3>
+<ul>
+<li>Example of an Eulerian graph:<ul>
+<li>A connected graph where all vertices have even degrees:
+$$
+\text{deg}(A) = 2, \ \text{deg}(B) = 2, \ \text{deg}(C) = 2, \ \text{deg}(D) = 2
+$$</li>
+<li>Alternatively, a graph with exactly two vertices of odd degrees:
+$$
+\text{deg}(A) = 3, \ \text{deg}(B) = 3, \ \text{deg}(C) = 2, \ \text{deg}(D) = 2
+$$</li>
+</ul>
+</li>
+</ul>
+<h3>Hamiltonian Graph</h3>
+<ul>
+<li>Example of a Hamiltonian graph:<ul>
+<li>A simple graph where each vertex satisfies $ \text{deg}(v) \geq \frac{n}{2} $ for ( n = 6 ) vertices:
+$$
+\text{deg}(A) = 3, \ \text{deg}(B) = 3, \ \text{deg}(C) = 3, \ \text{deg}(D) = 3, \ \text{deg}(E) = 3, \ \text{deg}(F) = 3
+$$</li>
+</ul>
+</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

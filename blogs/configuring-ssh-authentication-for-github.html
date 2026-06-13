@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>**Configuring SSH Authentication for GitHub** | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="**Configuring SSH Authentication for GitHub**, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/configuring-ssh-authentication-for-github.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="**Configuring SSH Authentication for GitHub** | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/configuring-ssh-authentication-for-github.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="**Configuring SSH Authentication for GitHub**">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/configuring-ssh-authentication-for-github.html"
+      },
+      "headline": "**Configuring SSH Authentication for GitHub**",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1><strong>Configuring SSH Authentication for GitHub</strong></h1>
+<h2><strong>Issue Faced</strong></h2>
+<ol>
+<li>GitHub removed password authentication for HTTPS in August 2021.</li>
+<li>SSH authentication was not set up for GitHub.</li>
+<li>Attempted to use <code>id_rsa</code>, but it was linked to a different email.</li>
+<li>The newly generated SSH key (<code>github_id_ed25519</code>) was not saved in <code>~/.ssh/</code>.</li>
+</ol>
+<hr>
+<h2><strong>Solution: Setting Up SSH Authentication for GitHub</strong></h2>
+<h3><strong>Step 1: Generate a New SSH Key for GitHub</strong></h3>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C &quot;mohomadrinas00@gmail.com&quot;
+</code></pre>
+<ul>
+<li>When prompted, enter the filename as:<pre><code>github_id_ed25519
+</code></pre>
+</li>
+<li>Leave the passphrase <strong>empty</strong> (or set one for extra security).</li>
+</ul>
+<hr>
+<h3><strong>Step 2: Move the SSH Key to the Correct Directory</strong></h3>
+<p>If the key is missing from <code>~/.ssh/</code>, move it manually:</p>
+<pre><code class="language-bash">mv github_id_ed25519* ~/.ssh/
+</code></pre>
+<p>Verify it exists:</p>
+<pre><code class="language-bash">ls -al ~/.ssh
+</code></pre>
+<hr>
+<h3><strong>Step 3: Start SSH Agent and Add the New Key</strong></h3>
+<pre><code class="language-bash">eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/github_id_ed25519
+</code></pre>
+<p>Verify that the key is added:</p>
+<pre><code class="language-bash">ssh-add -l
+</code></pre>
+<p>Expected output:</p>
+<pre><code>256 SHA256:BPhKMXxFF94wo3VJW2UbjsuxwDpFuI4DtDAns4cVIoc mohomadrinas00@gmail.com (ED25519)
+</code></pre>
+<hr>
+<h3><strong>Step 4: Configure SSH for GitHub</strong></h3>
+<p>Edit (or create) the SSH configuration file:</p>
+<pre><code class="language-bash">nano ~/.ssh/config
+</code></pre>
+<p>Add the following lines:</p>
+<pre><code>Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/github_id_ed25519
+</code></pre>
+<p>Save the file (<code>Ctrl + X</code>, then <code>Y</code>, then <code>Enter</code>).</p>
+<hr>
+<h3><strong>Step 5: Add SSH Key to GitHub</strong></h3>
+<p>Retrieve the public key:</p>
+<pre><code class="language-bash">cat ~/.ssh/github_id_ed25519.pub
+</code></pre>
+<ul>
+<li>Copy the output.</li>
+<li>Go to <strong>GitHub → Settings → SSH and GPG keys</strong>.</li>
+<li>Click <strong>New SSH Key</strong>, paste it, and save.</li>
+</ul>
+<hr>
+<h3><strong>Step 6: Test SSH Connection</strong></h3>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p>If successful, you should see:</p>
+<pre><code>Hi git_id! You&#39;ve successfully authenticated...
+</code></pre>
+<hr>
+<h3><strong>Step 7: Update Git Remote (If Needed)</strong></h3>
+<p>If you previously cloned the repository using HTTPS, update the remote URL to SSH:</p>
+<pre><code class="language-bash">git remote set-url origin git@github.com:git_id/learning-journal.git
+</code></pre>
+<p>Verify the change:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<hr>
+<h3><strong>Step 8: Push Changes Without Password</strong></h3>
+<p>Now, you can push changes without entering a password:</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

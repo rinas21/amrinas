@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Google Apps Script To Clone Data Up To Column J | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Note Google Apps Script To Clone Data Up To Column J, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/note-google-apps-script-to-clone-data-up-to-column-j.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Note Google Apps Script To Clone Data Up To Column J | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/note-google-apps-script-to-clone-data-up-to-column-j.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Note Google Apps Script To Clone Data Up To Column J">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/note-google-apps-script-to-clone-data-up-to-column-j.html"
+      },
+      "headline": "Note Google Apps Script To Clone Data Up To Column J",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h2>Note: Google Apps Script to Clone Data Up to Column J</h2>
+<p>Use the following function to replicate all sheets from a source Google Spreadsheet to a target Spreadsheet, copying only columns A-J. Existing sheets in the target with the same name will be replaced, and any columns beyond J will be deleted.</p>
+<pre><code class="language-javascript">function replicateSheetsUpToColumnJ() {
+  const sourceSheetId = &#39;1smwCvKnRCMRHrlt2NzmIRb0_9q8Oo2aNff9pfyEaGws&#39;; // Your source spreadsheet ID
+  const targetSheetId = &#39;1MYeY0A_58IDAz4e6q98kEZCXx_W0KbACT5qoCIzhbnU&#39;; // Your target spreadsheet ID
+
+  const sourceSpreadsheet = SpreadsheetApp.openById(sourceSheetId);
+  const targetSpreadsheet = SpreadsheetApp.openById(targetSheetId);
+
+  const sourceSheets = sourceSpreadsheet.getSheets();
+
+  for (const sheet of sourceSheets) {
+    const sheetName = sheet.getName();
+
+    // Get last row with data
+    const lastRow = sheet.getLastRow();
+    if (lastRow === 0) continue; // Skip empty sheets
+
+    // Get data from columns A-J only
+    const dataRange = sheet.getRange(1, 1, lastRow, 10);
+    const data = dataRange.getValues();
+
+    // Remove existing sheet with same name in target
+    let targetSheet = targetSpreadsheet.getSheetByName(sheetName);
+    if (targetSheet) {
+      targetSpreadsheet.deleteSheet(targetSheet);
+    }
+
+    // Create new sheet in target
+    targetSheet = targetSpreadsheet.insertSheet(sheetName);
+
+    // Set values in target sheet
+    targetSheet.getRange(1, 1, data.length, data[0].length).setValues(data);
+
+    // Delete extra columns beyond J if any
+    const maxColumns = targetSheet.getMaxColumns();
+    if (maxColumns &gt; 10) {
+      targetSheet.deleteColumns(11, maxColumns - 10);
+    }
+  }
+
+  SpreadsheetApp.flush();
+  Logger.log(&quot;Replication up to column J complete&quot;);
+}
+</code></pre>
+<p><strong>Usage:</strong>  </p>
+<ul>
+<li>Replace the <code>sourceSheetId</code> and <code>targetSheetId</code> with your actual spreadsheet IDs.</li>
+<li>Run the function in Google Apps Script editor.</li>
+<li>All sheets and their data up to column J will be cloned to the target spreadsheet.</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

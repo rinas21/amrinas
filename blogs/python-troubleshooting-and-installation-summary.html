@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Troubleshooting and Installation Summary | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Python Troubleshooting and Installation Summary, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/python-troubleshooting-and-installation-summary.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Python Troubleshooting and Installation Summary | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/python-troubleshooting-and-installation-summary.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Python Troubleshooting and Installation Summary">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/python-troubleshooting-and-installation-summary.html"
+      },
+      "headline": "Python Troubleshooting and Installation Summary",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Python Troubleshooting and Installation Summary</h1>
+<p>This document summarizes the issues encountered and troubleshooting steps taken based on the provided command history. It also provides guidance on proper Python installation.</p>
+<h2>Issues Encountered</h2>
+<ol>
+<li><strong>Terminal Failure After Changing Python Version:</strong><ul>
+<li>After installing Python 3.14 and setting it as the default using <code>update-alternatives</code>, both <code>gnome-terminal</code> and <code>terminator</code> failed to launch.</li>
+<li>Errors were related to missing or incompatible Python libraries (<code>psutil</code> and <code>gi</code>).</li>
+<li><code>gnome-terminal</code> also had a typo in it&#39;s shebang.</li>
+</ul>
+</li>
+<li><strong>Incompatible Python Libraries:</strong><ul>
+<li>The alpha version of Python 3.14 caused incompatibility issues with <code>psutil</code> and <code>gi</code> libraries, which are essential for the terminal applications.</li>
+</ul>
+</li>
+</ol>
+<h2>Troubleshooting Steps</h2>
+<ol>
+<li><strong>Corrected <code>gnome-terminal</code> Shebang:</strong><ul>
+<li>Used <code>sudo vim /usr/bin/gnome-terminal</code> to correct the shebang from <code>/usri/bin/python3</code> to <code>/usr/bin/python3</code>.</li>
+</ul>
+</li>
+<li><strong>Switched Python Versions:</strong><ul>
+<li>Used <code>sudo update-alternatives --config python3</code> to switch back to a stable Python version (Python 3.10).</li>
+</ul>
+</li>
+<li><strong>Reinstalled Python Libraries:</strong><ul>
+<li><code>sudo apt-get install --reinstall python3-psutil gir1.2-glib-2.0 python3-gi</code> was used to reinstall the python modules that the terminal applications use.</li>
+</ul>
+</li>
+<li><strong>Rebooted the system:</strong><ul>
+<li>Reboots where used in an attempt to solve the issue.</li>
+</ul>
+</li>
+</ol>
+<h2>Proper Python Installation and Version Management</h2>
+<ol>
+<li><p><strong>Adding the DeadSnakes PPA (for newer Python versions):</strong></p>
+<ul>
+<li><code>sudo add-apt-repository ppa:deadsnakes/ppa</code> adds the DeadSnakes PPA, which provides newer Python versions.</li>
+<li><code>sudo apt update</code> updates the package list.</li>
+</ul>
+</li>
+<li><p><strong>Installing a Specific Python Version:</strong></p>
+<ul>
+<li><code>sudo apt-get install python3.11</code> (or <code>python3.14</code>) installs the desired Python version.</li>
+</ul>
+</li>
+<li><p><strong>Managing Python Versions with <code>update-alternatives</code> (Use with Caution):</strong></p>
+<ul>
+<li><code>sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 2</code> registers a Python version with <code>update-alternatives</code>.</li>
+<li><code>sudo update-alternatives --config python3</code> allows you to select the default Python version.</li>
+<li><strong>Recommendation:</strong> Avoid changing the system&#39;s default Python version unless absolutely necessary.</li>
+</ul>
+</li>
+<li><p><strong>Using Virtual Environments (Recommended):</strong></p>
+<ul>
+<li>For project-specific Python versions and dependencies, use virtual environments:<ul>
+<li><code>python3.14 -m venv my_env</code> creates a virtual environment.</li>
+<li><code>source my_env/bin/activate</code> activates the environment.</li>
+<li><code>deactivate</code> deactivates the environment.</li>
+</ul>
+</li>
+<li>Virtual environments isolate project dependencies and prevent system-wide conflicts.</li>
+<li>This is the recommended way to use python 3.14.</li>
+</ul>
+</li>
+</ol>
+<h2>Key Recommendations</h2>
+<ul>
+<li><strong>Use virtual environments</strong> for project-specific Python versions.</li>
+<li><strong>Avoid changing the system&#39;s default Python version</strong> unless you fully understand the consequences.</li>
+<li><strong>Stick to stable Python versions</strong> for system-wide use.</li>
+<li>When using <code>update-alternatives</code> ensure that the path to the python executable is correct.</li>
+<li>If terminal problems occur after python changes, switch back to a stable python version, and reinstall any broken python modules.</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

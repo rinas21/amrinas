@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Explanation Why It Happens How To Fix | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Error Explanation Why It Happens How To Fix, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/error-explanation-why-it-happens-how-to-fix.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Error Explanation Why It Happens How To Fix | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/error-explanation-why-it-happens-how-to-fix.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Error Explanation Why It Happens How To Fix">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/error-explanation-why-it-happens-how-to-fix.html"
+      },
+      "headline": "Error Explanation Why It Happens How To Fix",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Error</strong></th>
+<th align="left"><strong>Explanation</strong></th>
+<th align="left"><strong>Why it Happens</strong></th>
+<th align="left"><strong>How to Fix</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Module &#39;&quot;../types&quot;&#39; has no exported member &#39;ApplyPromoResult&#39;.</code></td>
+<td align="left">TypeScript cannot find <code>ApplyPromoResult</code> in your <code>types</code> module.</td>
+<td align="left">You either didn’t define it, or didn’t export it from your <code>types/index.ts</code>.</td>
+<td align="left">Create <code>ApplyPromoResult</code> in a file (e.g., <code>carts-inputs.ts</code>) and export it in <code>index.ts</code>. <br><br> <strong>Example:</strong> <br> <code>typescript &lt;br&gt; export type ApplyPromoResult = { &lt;br&gt;   success: boolean; &lt;br&gt;   discountAmount?: number; &lt;br&gt;   message?: string; &lt;br&gt; }; &lt;br&gt; </code></td>
+</tr>
+<tr>
+<td align="left"><code>The left-hand side of an arithmetic operation must be of type &#39;any&#39;, &#39;number&#39;, &#39;bigint&#39; or an enum type.</code> <br><br> <code>&#39;flashPrice&#39; is possibly &#39;null&#39;</code>.</td>
+<td align="left">TypeScript is complaining that <code>flashPrice</code> might be <code>null</code> and you’re trying to multiply it with <code>item.quantity</code>.</td>
+<td align="left">TypeScript is strict about <code>null</code> or <code>undefined</code> values in arithmetic operations.</td>
+<td align="left">Ensure <code>flashPrice</code> is always a number. Use a <strong>null check</strong>: <br><br> <code>typescript &lt;br&gt; const price = flashPrice ?? 0; &lt;br&gt; newTotal += price * item.quantity; &lt;br&gt; </code></td>
+</tr>
+<tr>
+<td align="left"><code>Property &#39;cart&#39; does not exist on type &#39;{ quantity: number; }&#39;.</code></td>
+<td align="left">You are trying to access <code>item.cart</code> but TypeScript thinks <code>item</code> has no <code>cart</code> property.</td>
+<td align="left">Either the type of <code>item</code> is wrong, or <code>cart</code> is optional/missing in the type.</td>
+<td align="left">Fix the type definition of <code>item</code> so <code>cart</code> exists, or add a <strong>safety check</strong>: <br><br> <code>typescript &lt;br&gt; item.cart?.status === &#39;COMPLETED&#39; &lt;br&gt; </code></td>
+</tr>
+<tr>
+<td align="left"><code>Module &#39;&quot;./promo-codes&quot;&#39; declares &#39;DiscountType&#39; locally, but it is not exported.</code></td>
+<td align="left">TypeScript sees <code>DiscountType</code> in <code>promo-codes.ts</code>, but it is <strong>not exported</strong>, so your <code>index.ts</code> cannot re-export it.</td>
+<td align="left">You imported it from Prisma but forgot to <code>export</code> it in <code>promo-codes.ts</code>.</td>
+<td align="left">In <code>promo-codes.ts</code>, <strong>export it</strong> explicitly: <br><br> <code>typescript &lt;br&gt; export { DiscountType }; &lt;br&gt; </code></td>
+</tr>
+<tr>
+<td align="left"><code>Module &#39;&quot;../types&quot;&#39; has no exported member ...</code> (other cart types)</td>
+<td align="left">Same as the first error, TypeScript cannot find <code>CreateCartInput</code>, <code>UpdateCartInput</code>, etc.</td>
+<td align="left">You didn’t define or export these types in your <code>types/index.ts</code>.</td>
+<td align="left">Define each type in a file (like <code>carts-inputs.ts</code>) and export them via <code>index.ts</code>.</td>
+</tr>
+</tbody></table>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

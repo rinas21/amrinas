@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL Setup Issues | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="PostgreSQL Setup Issues, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/postgresql-setup-issues.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="PostgreSQL Setup Issues | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/postgresql-setup-issues.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PostgreSQL Setup Issues">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/postgresql-setup-issues.html"
+      },
+      "headline": "PostgreSQL Setup Issues",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>PostgreSQL Setup Issues</h1>
+<h2>Issue 1: PostgreSQL Cluster Setup</h2>
+<p><strong>Error:</strong>
+Warning: No existing cluster is suitable as a default target. Please see man pg_wrapper(1) how to specify one. Error: You must install at least one postgresql-client-<version> package
+<strong>Cause:</strong><br>PostgreSQL client is missing, and no default cluster is set up for PostgreSQL.</p>
+<p><strong>Resolution:</strong><br>You need to initialize a PostgreSQL cluster and ensure that the PostgreSQL client is properly installed. You can try:</p>
+<ul>
+<li>Installing the required PostgreSQL client package with <code>sudo apt install postgresql-client-&lt;version&gt;</code>.</li>
+</ul>
+<hr>
+<h2>Issue 2: PostgreSQL Service Status</h2>
+<p><strong>Command:</strong></p>
+<pre><code class="language-bash">sudo systemctl start postgresql
+sudo systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor pr&gt;
+     Active: active (exited) since Sun 2025-02-23 18:09:28 +0530; 2s ago
+    Process: 30719 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+    Main PID: 30719 (code=exited, status=0/SUCCESS)
+        CPU: 2ms
+</code></pre>
+<p><strong>Cause:</strong>
+The PostgreSQL service is in an &quot;exited&quot; state because it did not initialize a proper database cluster. The service is started, but it does not actively run the PostgreSQL server.</p>
+<p><strong>Resolution:</strong>
+Ensure that PostgreSQL is fully initialized by setting up a database cluster. This can be done using pg_createcluster.</p>
+<p><strong>Cause:</strong>
+The PostgreSQL service is in an &quot;exited&quot; state because it did not initialize a proper database cluster. The service is started, but it does not actively run the PostgreSQL server.</p>
+<p><strong>Resolution:</strong>
+Ensure that PostgreSQL is fully initialized by setting up a database cluster. This can be done using pg_createcluster.</p>
+<h2>Issue 3: Connection Failure</h2>
+<p>Command:</p>
+<pre><code class="language-bash">sudo -u postgres psql
+</code></pre>
+<pre><code class="language-bash">psql: error: connection to server on socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot; failed: No such file or directory
+Is the server running locally and accepting connections on that socket?
+</code></pre>
+<p><strong>Cause:</strong>
+The PostgreSQL server is not running or the socket file does not exist.</p>
+<p><strong>Resolution:</strong>
+Ensure the PostgreSQL server is running and has a valid database cluster created. You may need to reinitialize the cluster or start the server correctly.</p>
+<h2>Issue 4: PostgreSQL Cluster Initialization Failure</h2>
+<p>Command:</p>
+<pre><code class="language-bash">sudo pg_createcluster 17 main --start
+</code></pre>
+<p>Error: no initdb program for version 17 found</p>
+<p><strong>Cause:</strong>
+The required initialization program (initdb) for version 17 is missing.</p>
+<p><strong>Resolution:</strong>
+Verify that the PostgreSQL version and its components are correctly installed. You may need to install additional packages for version 17, such as postgresql-17.</p>
+<h2>Issue 5: Invalid SQL Commands</h2>
+<p>Commands:</p>
+<pre><code class="language-sql">show databases;
+show db;
+</code></pre>
+<pre><code class="language-sql">ERROR: unrecognized configuration parameter &quot;databases&quot;
+ERROR: unrecognized configuration parameter &quot;db&quot;
+</code></pre>
+<p><strong>Cause:</strong>
+These are not valid SQL commands in PostgreSQL.</p>
+<p><strong>Resolution:</strong>
+To list databases in PostgreSQL, use:</p>
+<pre><code class="language-sql">\l
+</code></pre>
+<pre><code class="language-sql">SELECT datname FROM pg_database;
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

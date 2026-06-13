@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html"
+      },
+      "headline": "This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h2>This is a overview of configuring one-way SSL between Tomcat and Keycloak.</h2>
+<ol>
+<li>Keycloak Keystore</li>
+</ol>
+<ul>
+<li>To generate a keystore for Keycloak:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -genkeypair -alias keycloak -keyalg RSA -keysize 2048 -validity 365 \
+-keystore keycloak-keystore.jks -storepass password -keypass password
+</code></pre>
+<ul>
+<li>For a more specific configuration:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -genkeypair -alias keycloak -keyalg RSA -keysize 2048 -validity 365 \
+-keystore keycloak-keystore.jks -storepass password -keypass password \
+-dname &quot;CN=&lt;KEYCLOAK_IP&gt;, OU=&lt;ORG&gt;, O=&lt;ORG_NAME&gt;, L=&lt;CITY&gt;, ST=&lt;STATE&gt;, C=&lt;COUNTRY&gt;&quot; \
+-ext SAN=DNS:localhost,IP:&lt;KEYCLOAK_IP&gt;
+</code></pre>
+<ol start="2">
+<li>Keycloak Certificate Export :</li>
+</ol>
+<ul>
+<li>To export the Keycloak public certificate:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -export -alias keycloak -file keycloak-public-cert.crt \
+-keystore keycloak-keystore.jks -storepass password
+</code></pre>
+<ol start="3">
+<li>Tomcat Keystore Generation</li>
+</ol>
+<ul>
+<li>Similarly, generate a keystore for Tomcat:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -validity 365 \
+-keystore tomcat-keystore.jks -storepass password -keypass password
+</code></pre>
+<ul>
+<li>For specific configuration:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -validity 365 \
+-keystore tomcat-keystore.jks -storepass password -keypass password \
+-dname &quot;CN=&lt;TOMCAT_IP&gt;, OU=&lt;ORG&gt;, O=&lt;ORG_NAME&gt;, L=&lt;CITY&gt;, ST=&lt;STATE&gt;, C=&lt;COUNTRY&gt;&quot; \
+-ext SAN=DNS:localhost,IP:&lt;TOMCAT_IP&gt;
+</code></pre>
+<ol start="4">
+<li>Tomcat Certificate Export</li>
+</ol>
+<ul>
+<li>Export the Tomcat public certificate:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -export -alias tomcat -file tomcat-public-cert.crt \
+-keystore tomcat-keystore.jks -storepass password
+</code></pre>
+<ol start="5">
+<li>Import Keycloak&#39;s Certificate into Tomcat&#39;s Truststore</li>
+</ol>
+<ul>
+<li>Import Keycloak&#39;s certificate into Tomcat&#39;s truststore:</li>
+</ul>
+<pre><code class="language-bash">$JAVA_HOME/bin/keytool -import -trustcacerts -alias keycloak -file keycloak-public-cert.crt \
+-keystore tomcat-truststore.jks -storepass password
+</code></pre>
+<ol start="6">
+<li>Keycloak Configuration (keycloak.conf)</li>
+</ol>
+<ul>
+<li>Add SSL configurations to Keycloak&#39;s keycloak.conf:</li>
+</ul>
+<pre><code class="language-conf">
+hostname=localhost
+https-listener-enabled=true
+https-port=9443
+https-client-auth=none
+https-key-store-file=/path/to/keycloak-keystore.jks
+https-key-store-password=password
+</code></pre>
+<ol start="7">
+<li>Tomcat SSL Configuration (server.xml)</li>
+</ol>
+<ul>
+<li>Add the following to server.xml:</li>
+</ul>
+<pre><code class="language-xml">
+&lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;
+      maxThreads=&quot;200&quot; SSLEnabled=&quot;true&quot; clientAuth=&quot;false&quot;&gt;
+    &lt;UpgradeProtocol className=&quot;org.apache.coyote.http2.Http2Protocol&quot; /&gt;
+    &lt;SSLHostConfig&gt;
+        &lt;Certificate certificateKeystoreFile=&quot;conf/tomcat-keystore.jks&quot;
+                     certificateKeystorePassword=&quot;password&quot; /&gt;
+        &lt;Truststore certificateKeystoreFile=&quot;conf/tomcat-truststore.jks&quot;
+                    certificateKeystorePassword=&quot;password&quot; /&gt;
+    &lt;/SSLHostConfig&gt;
+&lt;/Connector&gt;
+</code></pre>
+<ol start="8">
+<li>Tomcat Truststore Configuration in catalina.sh</li>
+</ol>
+<ul>
+<li>Update the Tomcat catalina.sh to specify the truststore:</li>
+</ul>
+<pre><code class="language-bash">JAVA_OPTS=&quot;$JAVA_OPTS -Djavax.net.ssl.trustStore=/path/to/tomcat-truststore.jks&quot;
+JAVA_OPTS=&quot;$JAVA_OPTS -Djavax.net.ssl.trustStorePassword=password&quot;
+JAVA_OPTS=&quot;$JAVA_OPTS -Djavax.net.debug=ssl,handshake&quot;
+</code></pre>
+<ol start="9">
+<li>Keycloak Client Configurations for HTTPS</li>
+</ol>
+<ul>
+<li>To update client configurations in Keycloak, log into the admin console and ensure the settings for URLs use HTTPS.</li>
+<li>add following to apache http.conf file:</li>
+</ul>
+<pre><code class="language-conf">&lt;VirtualHost *:443&gt;
+    ServerName &lt;DOMAIN_NAME&gt;
+    ServerAlias &lt;ALIAS_NAME&gt;
+
+    # SSL Certificate Files
+    SSLEngine On
+    SSLCertificateFile &lt;SSL_CERTIFICATE_PATH&gt;
+    SSLCertificateKeyFile &lt;SSL_KEY_PATH&gt;
+    SSLCertificateChainFile &lt;SSL_CHAIN_CERTIFICATE_PATH&gt;
+
+    # Proxy Settings
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    # Forward requests to Keycloak
+    ProxyPass /admin-ui https://&lt;KEYCLOAK_SERVER&gt;:&lt;KEYCLOAK_PORT&gt;/admin-ui
+    ProxyPassReverse /admin-ui https://&lt;KEYCLOAK_SERVER&gt;:&lt;KEYCLOAK_PORT&gt;/admin-ui
+
+    ProxyPass / https://&lt;KEYCLOAK_SERVER&gt;:&lt;KEYCLOAK_PORT&gt;/
+    ProxyPassReverse / https://&lt;KEYCLOAK_SERVER&gt;:&lt;KEYCLOAK_PORT&gt;/
+
+    # Fix Cookie Paths for Reverse Proxy
+    ProxyPassReverseCookiePath / /
+
+    # Security Headers
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection &quot;1; mode=block&quot;
+    Header always set X-Content-Type-Options nosniff
+    Header always set Strict-Transport-Security &quot;max-age=63072000; includeSubDomains; preload&quot;
+    Header always set Referrer-Policy &quot;no-referrer-when-downgrade&quot;
+    Header always set Content-Security-Policy &quot;default-src &#39;self&#39; https:; script-src &#39;self&#39; &#39;unsafe-inline&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;&quot;
+    Header always set Permissions-Policy &quot;geolocation=(), microphone=(), camera=()&quot;
+
+    # Logging (optional)
+    ErrorLog ${APACHE_LOG_DIR}/reverse-proxy-ssl-error.log
+    CustomLog ${APACHE_LOG_DIR}/reverse-proxy-ssl-access.log combined
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerName &lt;DOMAIN_NAME&gt;
+    ServerAlias &lt;ALIAS_NAME&gt;
+
+    # Redirect HTTP to HTTPS
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^/(.*)$ https://&lt;DOMAIN_NAME&gt;/$1 [R=301,L]
+
+    # Logging (optional)
+    ErrorLog ${APACHE_LOG_DIR}/reverse-proxy-error.log
+    CustomLog ${APACHE_LOG_DIR}/reverse-proxy-access.log combined
+&lt;/VirtualHost&gt;
+
+</code></pre>
+<ol start="10">
+<li>Tomcat Admin UI Configuration</li>
+</ol>
+<ul>
+<li>Update the URLs for the admin UI in admin-ui.properties:</li>
+</ul>
+<pre><code class="language-conf">spring.security.oauth2.client.logout.keycloak.base.url=https://localhost:9443/realms/&lt;REALM&gt;/protocol/openid-connect/logout
+spring.security.oauth2.client.provider.keycloak.token-uri=https://localhost:9443/realms/&lt;REALM&gt;/protocol/openid-connect/token
+spring.security.oauth2.client.provider.keycloak.jwk.set.uri=https://localhost:9443/realms/&lt;REALM&gt;/protocol/openid-connect/certs
+spring.security.oauth2.client.provider.keycloak.authorization.uri=https://localhost:9443/realms/&lt;REALM&gt;/protocol/openid-connect/auth
+</code></pre>
+<hr>
+<pre><code class="language-bash">
+Login with OAuth 2.0
+[invalid_token_response] An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: I/O error on POST request for &quot;https://&lt;ip&gt;:9443/realms/demo-realm/protocol/openid-connect/token&quot;: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+keycloak again this is coming
+</code></pre>
+<ul>
+<li>this occure mostly tomcat dont take trustore =&gt; in tomcat log check for trustore path.</li>
+</ul>
+<pre><code class="language-bash">tail -f /path/tomcat/logs/catalina.out
+</code></pre>
+<pre><code class="language-log">29-Jan-2025 00:35:35.883 INFO [main] org.apache.tomcat.util.net.AbstractEndpoint.logCertificate Connector [https-jsse-nio-8443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [/path/tomcat-11.0.2/conf/tomcat-keystore.jks] using alias [tomcat] with trust store [null]
+</code></pre>
+<h5>check where you added $JAVA_OPTS in tomcat <code>server.xml</code> and added it under JAVA_OPTS parameter set.</h5>
+<hr>
+<h3>Two way SSL Configuration for module-a and module-b Platform Server</h3>
+<h4>Generating key, certificate and keystore for module-a-gw</h4>
+<ul>
+<li>Execute the following in order to generate the relevant config files for module-a-gw</li>
+</ul>
+<pre><code>openssl genrsa -out module-a-key.pem 2048
+</code></pre>
+<pre><code>openssl req -x509 -new -nodes -key module-a-key.pem -sha256 -days 365 \
+-out module-a-cert.pem \
+-subj &quot;/C=LK/ST=WP/L=CMB/O=HMS/OU=module-a/CN=localhost&quot;
+</code></pre>
+<pre><code>openssl pkcs12 -export -out module-a-keystore.p12 \
+-inkey module-a-key.pem -in module-a-cert.pem -name module-a \
+-password pass:password
+</code></pre>
+<ul>
+<li>Generating module-a-gw server keystore</li>
+</ul>
+<pre><code>$JAVA_HOME/bin/keytool -importkeystore -destkeystore module-a-keystore.jks \
+-srckeystore module-a-keystore.p12 -srcstoretype pkcs12 \
+-alias module-a -deststorepass password -srcstorepass password
+</code></pre>
+<h4>Generating key, certificate and keystore for module-b Platform Server</h4>
+<ul>
+<li>Execute the following in order to generate the relevant config files for module-b</li>
+</ul>
+<pre><code>openssl genrsa -out eqp-key.pem 2048
+</code></pre>
+<pre><code>openssl req -x509 -new -nodes -key eqp-key.pem -sha256 -days 365 \
+-out eqp-cert.pem \
+-subj &quot;/C=LK/ST=WP/L=CMB/O=HMS/OU=eqp/CN=localhost&quot;
+</code></pre>
+<pre><code>openssl pkcs12 -export -out eqp-keystore.p12 \
+-inkey eqp-key.pem -in eqp-cert.pem -name eqp \
+-password pass:password
+</code></pre>
+<ul>
+<li>Generating module-buery server keystore</li>
+</ul>
+<pre><code>$JAVA_HOME/bin/keytool -importkeystore -destkeystore eqp-keystore.jks \
+-srckeystore eqp-keystore.p12 -srcstoretype pkcs12 \
+-alias eqp -deststorepass password -srcstorepass password
+</code></pre>
+<h4>Generating truststore for module-a-gw and module-buery server</h4>
+<ul>
+<li>Generating truststore for module-a-gw using module-buery server certificate</li>
+</ul>
+<pre><code>$JAVA_HOME/bin/keytool -import -trustcacerts -alias eqp -file eqp-cert.pem \
+    -keystore module-a-truststore.jks -storepass password
+</code></pre>
+<ul>
+<li>Generating truststore for module-buery server using module-a-gw certificate</li>
+</ul>
+<pre><code>$JAVA_HOME/bin/keytool -import -trustcacerts -alias module-a -file module-a-cert.pem \
+    -keystore eqp-truststore.jks -storepass password
+</code></pre>
+<h4>Application Configuration</h4>
+<ul>
+<li>Please configure the relevant truststore and keystore in each server to support two ssl</li>
+</ul>
+<h4>Note:</h4>
+<ul>
+<li>If any issues faced related to two way ssl being not successful, Please add the following property to the wrapper.conf for the both server application</li>
+</ul>
+<pre><code>wrapper.java.additional.1=-Djavax.net.ssl.trustStore=&lt;relevant-trustore.jks&gt;
+wrapper.java.additional.2=-Djavax.net.ssl.trustStorePassword=&lt;truststore-password&gt;
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

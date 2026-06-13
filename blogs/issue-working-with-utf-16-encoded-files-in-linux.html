@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Working With Utf 16 Encoded Files In Linux | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Issue Working With Utf 16 Encoded Files In Linux, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/issue-working-with-utf-16-encoded-files-in-linux.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Issue Working With Utf 16 Encoded Files In Linux | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/issue-working-with-utf-16-encoded-files-in-linux.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Issue Working With Utf 16 Encoded Files In Linux">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/issue-working-with-utf-16-encoded-files-in-linux.html"
+      },
+      "headline": "Issue Working With Utf 16 Encoded Files In Linux",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h3>Issue: Working with UTF-16 Encoded Files in Linux</h3>
+<h4>Problem:</h4>
+<p>When trying to process a binary/encoded file (<code>IPG_APP1_DISK_old.log</code>), tools like <code>grep</code>, <code>strings</code>, and <code>less</code> don&#39;t return expected results. The file is identified as <strong>UTF-16 encoding (little-endian)</strong> with CRLF line terminators, causing issues when searching or processing with typical text-processing tools.</p>
+<h4>Solution:</h4>
+<p>To resolve the issue, the file needs to be <strong>converted from UTF-16 to UTF-8 encoding</strong>.</p>
+<h4>Steps to Fix:</h4>
+<ol>
+<li><strong>Convert the File from UTF-16 to UTF-8</strong>:
+Use the <code>iconv</code> tool to convert the file encoding to UTF-8:</li>
+</ol>
+<pre><code class="language-bash">   iconv -f UTF-16 -t UTF-8 IPG_APP1_DISK_old.log &gt; IPG_APP1_DISK_old_utf8.log
+</code></pre>
+<ul>
+<li>-f UTF-16: Specifies the input encoding as UTF-16.</li>
+<li>-t UTF-8: Specifies the output encoding as UTF-8.</li>
+</ul>
+<h4>The converted file will be saved as IPG_APP1_DISK_old_utf8.log.</h4>
+<ul>
+<li>Verify the File Encoding: After converting the file, verify the encoding with the file command:</li>
+</ul>
+<pre><code class="language-bash">file IPG_APP1_DISK_old_utf8.log
+</code></pre>
+<h4>Ensure it now shows UTF-8.</h4>
+<h3>Search the Converted File: Now that the file is in UTF-8 format, use standard text-processing tools like grep to search for specific terms (e.g., &quot;hms&quot;):</h3>
+<pre><code class="language-bash">grep &quot;hms&quot; IPG_APP1_DISK_old_utf8.log
+</code></pre>
+<ul>
+<li>Alternatively, extract printable strings and search with strings:</li>
+</ul>
+<pre><code class="language-bash">strings IPG_APP1_DISK_old_utf8.log | grep &quot;hms&quot;
+</code></pre>
+<ul>
+<li>Why This Happens:
+UTF-16 encoding may cause issues with text-processing tools, which expect the file to be in more common formats like UTF-8 or ASCII.
+iconv is a versatile tool for encoding conversion and is helpful when dealing with files that have non-standard encodings.</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Exception in Tomcat with CAS | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="SSL Exception in Tomcat with CAS, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/ssl-exception-in-tomcat-with-cas.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SSL Exception in Tomcat with CAS | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/ssl-exception-in-tomcat-with-cas.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SSL Exception in Tomcat with CAS">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/ssl-exception-in-tomcat-with-cas.html"
+      },
+      "headline": "SSL Exception in Tomcat with CAS",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>SSL Exception in Tomcat with CAS</h1>
+<h2>Issue</h2>
+<p>While running Tomcat with CAS authentication, the following error occurs:</p>
+<p><code>javax.net.ssl.SSLException: Received fatal alert: protocol_version</code></p>
+<h2>Cause</h2>
+<p>This error indicates that the server does not support the TLS version being used by the client. It is likely that an older TLS version is being used, causing the connection to fail.</p>
+<h2>Solution</h2>
+<p>To explicitly enforce TLS 1.2, update the <code>JAVA_OPTS</code> environment variable as follows:</p>
+<pre><code class="language-bash">export JAVA_OPTS=&quot;$JAVA_OPTS -Dhttps.protocols=TLSv1.2 -Djdk.tls.client.protocols=TLSv1.2&quot;
+</code></pre>
+<p>Additional Steps
+Verify the Java version using:</p>
+<pre><code class="language-bash">java -version
+</code></pre>
+<p>Ensure it supports TLS 1.2.</p>
+<p>Check if your application is running an older Java version that does not support modern TLS versions. If so, consider upgrading.</p>
+<p>Restart Tomcat after applying the changes:</p>
+<pre><code class="language-bash">shutdown.sh
+startup.sh
+</code></pre>
+<pre><code class="language-log">2025-02-13 11:53:07,370 ERROR [org.jasig.cas.util.HttpClient] - &lt;javax.net.ssl.SSLException: Received fatal alert: protocol_version&gt;
+javax.net.ssl.SSLException: Received fatal alert: protocol_version
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:208)
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:154)
+	at sun.security.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:1959)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1077)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1312)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1339)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1323)
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:563)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1091)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getOutputStream(HttpsURLConnectionImpl.java:250)
+	at org.jasig.cas.util.HttpClient.sendMessageToEndPoint(HttpClient.java:70)
+	at org.jasig.cas.authentication.principal.AbstractWebApplicationService.logOutOfService(AbstractWebApplicationService.java:147)
+	at org.jasig.cas.ticket.TicketGrantingTicketImpl.logOutOfServices(TicketGrantingTicketImpl.java:115)
+	at org.jasig.cas.ticket.TicketGrantingTicketImpl.expire(TicketGrantingTicketImpl.java:125)
+	at org.jasig.cas.CentralAuthenticationServiceImpl.destroyTicketGrantingTicket(CentralAuthenticationServiceImpl.java:153)
+	at org.jasig.cas.web.LogoutController.handleRequestInternal(LogoutController.java:63)
+	at org.springframework.web.servlet.mvc.AbstractController.handleRequest(AbstractController.java:153)
+	at org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter.handle(SimpleControllerHandlerAdapter.java:48)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:875)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:809)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:523)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:453)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:723)
+	at org.jasig.cas.web.init.SafeDispatcherServlet.service(SafeDispatcherServlet.java:115)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.inspektr.common.web.ClientInfoThreadLocalFilter.doFilterInternal(ClientInfoThreadLocalFilter.java:48)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:861)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:606)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:744)
+2025-02-13 11:53:16,726 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - &lt;AuthenticationHandler: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated the user which provided the following credentials: [username: admin]&gt;
+2025-02-13 11:53:16,726 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-2-KLy6snBeqYeu4eGFDRcr-cas] for service [https://dialoglbsn.hsenidmobile.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
+2025-02-13 11:53:17,232 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-3-LXs0JZaA7NwZfmWJUeDo-cas] for service [https://dialoglbsn.hsenidmobile.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
+2025-02-13 11:53:34,588 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-4-0QPS6PyeRg9JRPS
+</code></pre>
+<ul>
+<li>Next Steps</li>
+</ul>
+<ol>
+<li>If the issue persists, check the TLS settings in your CAS server configuration.</li>
+<li>Ensure Tomcat&#39;s server.xml is configured to support TLS 1.2.</li>
+<li>Investigate Java security policies that might be restricting the allowed protocols.</li>
+</ol>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

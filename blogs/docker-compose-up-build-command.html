@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Compose: `up --build` Command | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Docker Compose: `up --build` Command, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/docker-compose-up-build-command.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Docker Compose: `up --build` Command | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/docker-compose-up-build-command.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Docker Compose: `up --build` Command">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/docker-compose-up-build-command.html"
+      },
+      "headline": "Docker Compose: `up --build` Command",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Docker Compose: <code>up --build</code> Command</h1>
+<h2>Overview</h2>
+<p><code>docker compose up --build</code> is used to build (or rebuild) and start Docker containers as defined in your <code>docker-compose.yml</code> file. This ensures your containers use the latest code and configuration.</p>
+<hr>
+<h2>Command Breakdown</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docker compose up</code></td>
+<td>Starts containers using existing images.</td>
+</tr>
+<tr>
+<td><code>docker compose up --build</code></td>
+<td><strong>Rebuilds</strong> images before starting containers (ensures latest changes).</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>When to Use <code>--build</code></h2>
+<h3>✅ Use <code>--build</code> when:</h3>
+<ul>
+<li>You’ve updated your <code>Dockerfile</code>.</li>
+<li>You’ve changed your application code and need it reflected in the container.</li>
+<li>You suspect the existing image is outdated or corrupted.</li>
+</ul>
+<h3>❌ Avoid <code>--build</code> when:</h3>
+<ul>
+<li>No changes have been made to the code or <code>Dockerfile</code>.</li>
+<li>You want to save time (rebuilding can be slow).</li>
+</ul>
+<hr>
+<h2>Example Workflow</h2>
+<h3>1. First Run (or after changes):</h3>
+<pre><code class="language-bash">docker compose up --build
+</code></pre>
+<p><em>Builds images and starts containers with the latest changes.</em></p>
+<hr>
+<h3>2. Normal Start (no changes):</h3>
+<pre><code class="language-bash">docker compose up
+</code></pre>
+<p><em>Uses cached images for faster startup.</em></p>
+<hr>
+<h3>3. After Code or Dockerfile Updates:</h3>
+<pre><code class="language-bash">docker compose up --build
+</code></pre>
+<p><em>Ensures containers use the latest code and configuration.</em></p>
+<hr>
+<h2>Tips</h2>
+<ul>
+<li>Use <code>--build</code> sparingly to save time during development.</li>
+<li>To rebuild only a specific service, use:<pre><code class="language-bash">docker compose build &lt;service_name&gt;
+docker compose up
+</code></pre>
+</li>
+<li>Check your <code>docker-compose.yml</code> and <code>Dockerfile</code> for changes before deciding to rebuild.</li>
+</ul>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

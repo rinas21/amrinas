@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTRS Installation Guide on Ubuntu (with Custom MySQL Binary) | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="OTRS Installation Guide on Ubuntu (with Custom MySQL Binary), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="OTRS Installation Guide on Ubuntu (with Custom MySQL Binary) | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html"
+      },
+      "headline": "OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)</h1>
+<h2>1. System Preparation</h2>
+<p><strong>Update system packages:</strong></p>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre>
+<p><strong>Install required packages (Apache, Perl, modules, wget, unzip):</strong></p>
+<pre><code class="language-bash">sudo apt install apache2 libapache2-mod-perl2 perl unzip libdbi-perl libdbd-mysql-perl libdbd-odbc-perl -y
+</code></pre>
+<p><strong>Enable Apache modules needed by OTRS:</strong></p>
+<pre><code class="language-bash">sudo a2enmod perl deflate headers filter rewrite
+sudo systemctl restart apache2
+</code></pre>
+<hr>
+<h2>2. Install and Configure MySQL (Using Custom Binary)</h2>
+<p><strong>Assume MySQL binary is extracted at <code>/path/mysql-8.4.3-linux-glibc2.28-x86_64</code>.</strong></p>
+<p><strong>Prepare <code>/etc/my.cnf</code> with:</strong></p>
+<pre><code class="language-ini">[mysqld]
+basedir=/path/mysql-8.4.3-linux-glibc2.28-x86_64
+datadir=/path/mysql-8.4.3-linux-glibc2.28-x86_64/data
+socket=/path/mysql-8.4.3-linux-glibc2.28-x86_64/mysql.sock
+port=3306
+innodb_log_file_size=512M
+character-set-server=utf8
+collation-server=utf8_general_ci
+</code></pre>
+<p><strong>Start MySQL server:</strong></p>
+<pre><code class="language-bash">cd /path/mysql-8.4.3-linux-glibc2.28-x86_64
+./bin/mysqld --defaults-file=/etc/my.cnf --console &amp;
+</code></pre>
+<p><strong>Connect to MySQL:</strong></p>
+<pre><code class="language-bash">./bin/mysql -uroot -p --socket=./mysql.sock
+</code></pre>
+<p><strong>Create OTRS database and user:</strong></p>
+<pre><code class="language-sql">CREATE DATABASE otrs CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE USER &#39;otrs&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;your_password_here&#39;;
+GRANT ALL PRIVILEGES ON otrs.* TO &#39;otrs&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+EXIT;
+</code></pre>
+<hr>
+<h2>3. Install OTRS</h2>
+<p><strong>Download and extract OTRS:</strong></p>
+<pre><code class="language-bash">cd /opt
+sudo wget https://ftp.otrs.org/pub/otrs/otrs-latest.tar.gz
+sudo tar -xzvf otrs-latest.tar.gz
+sudo mv otrs-*/ otrs
+sudo chown -R otrs:www-data /opt/otrs
+</code></pre>
+<hr>
+<h2>4. Set Permissions</h2>
+<pre><code class="language-bash">sudo chown -R otrs:www-data /opt/otrs
+sudo /opt/otrs/bin/otrs.SetPermissions.pl --otrs-user=otrs --web-group=www-data
+</code></pre>
+<hr>
+<h2>5. Configure Apache for OTRS</h2>
+<p><strong>Link OTRS Apache config:</strong></p>
+<pre><code class="language-bash">sudo ln -s /opt/otrs/scripts/apache2-httpd.include.conf /etc/apache2/sites-enabled/zzz_otrs.conf
+</code></pre>
+<p><strong>Enable required Apache modules (verify):</strong></p>
+<pre><code class="language-bash">sudo a2enmod perl deflate headers filter rewrite
+sudo systemctl restart apache2
+</code></pre>
+<hr>
+<h2>6. Configure OTRS Database Connection</h2>
+<p><strong>Set database connection (or use web installer):</strong></p>
+<pre><code class="language-bash">sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Config::Set --key=&quot;DatabaseHost&quot; --value=&quot;127.0.0.1&quot;
+sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Config::Set --key=&quot;Database&quot; --value=&quot;otrs&quot;
+sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Config::Set --key=&quot;DatabaseUser&quot; --value=&quot;otrs&quot;
+sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Config::Set --key=&quot;DatabasePw&quot; --value=&quot;your_password_here&quot;
+sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Config::Set --key=&quot;DatabaseDSN&quot; --value=&quot;DBI:mysql:database=otrs;host=127.0.0.1&quot;
+</code></pre>
+<hr>
+<h2>7. Initialize OTRS Database Schema</h2>
+<pre><code class="language-bash">sudo -u otrs /opt/otrs/bin/otrs.Console.pl Maint::Database::Install
+</code></pre>
+<hr>
+<h2>8. Start OTRS Daemons</h2>
+<pre><code class="language-bash">sudo systemctl start otrs.service
+sudo systemctl enable otrs.service
+</code></pre>
+<p><strong>If no service is set up, start manually:</strong></p>
+<pre><code class="language-bash">sudo -u otrs /opt/otrs/bin/otrs.Daemon.pl start
+</code></pre>
+<hr>
+<h2>9. Access OTRS Web Interface</h2>
+<ul>
+<li>Open browser: <a href="http://localhost/otrs/installer.pl">http://localhost/otrs/installer.pl</a> to complete installation<br>  or directly access <a href="http://localhost/otrs/index.pl">http://localhost/otrs/index.pl</a></li>
+</ul>
+<hr>
+<h2>10. Troubleshooting</h2>
+<p><strong>Check logs for errors:</strong></p>
+<pre><code class="language-bash">sudo tail -f /var/log/apache2/error.log
+sudo tail -f /opt/otrs/var/log/apache2.error
+</code></pre>
+<p><strong>Common issue:</strong> missing Perl modules like <code>DBD::mysql</code> — install with:</p>
+<pre><code class="language-bash">sudo cpan DBD::mysql
+</code></pre>
+<p><strong>Database connection errors?</strong><br>Double-check your MySQL socket, user, password, and privileges.</p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

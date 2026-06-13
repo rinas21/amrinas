@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes for 2025-04-10 | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Notes for 2025-04-10, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/notes-for-2025-04-10.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Notes for 2025-04-10 | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/notes-for-2025-04-10.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Notes for 2025-04-10">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/notes-for-2025-04-10.html"
+      },
+      "headline": "Notes for 2025-04-10",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Notes for 2025-04-10</h1>
+<h2>Resolving APR Not Found Error in Apache Build</h2>
+<pre><code class="language-bash">./configure --enable-proxy --enable-proxy-http --enable-ssl --enable-rewrite
+checking for chosen layout... Apache
+checking for working mkdir -p... yes
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+configure: 
+configure: Configuring Apache Portable Runtime library...
+configure: 
+checking for APR... no
+configure: error: APR not found.  Please read the documentation.
+</code></pre>
+<p>When building Apache and encountering the error <code>APR not found. Please read the documentation.</code>, follow these steps based on your operating system:</p>
+<h3>CentOS/RHEL-based Systems</h3>
+<p>Run the following command to install the required dependencies:</p>
+<pre><code class="language-bash">yum install -y apr-devel apr-util-devel
+</code></pre>
+<h3>Debian/Ubuntu-based Systems</h3>
+<p>Run the following command to install the required dependencies:</p>
+<pre><code class="language-bash">apt-get install -y libapr1-dev libaprutil1-dev
+</code></pre>
+<h3>Re-run the Configuration</h3>
+<p>After installing the dependencies, re-run the configuration command:</p>
+<pre><code class="language-bash">./configure --enable-proxy --enable-proxy-http --enable-ssl --enable-rewrite
+</code></pre>
+<pre><code class="language-bash"> ./configure --enable-proxy --enable-proxy-http --enable-ssl --enable-rewrite
+checking for chosen layout... Apache
+checking for working mkdir -p... yes
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+configure: 
+configure: Configuring Apache Portable Runtime library...
+configure: 
+checking for APR... yes
+  setting CC to &quot;gcc&quot;
+  setting CPP to &quot;gcc -E&quot;
+  setting CFLAGS to &quot;  -pthread&quot;
+  setting CPPFLAGS to &quot; -DLINUX -D_REENTRANT -D_GNU_SOURCE&quot;
+  setting LDFLAGS to &quot; &quot;
+configure: 
+configure: Configuring Apache Portable Runtime Utility library...
+configure: 
+checking for APR-util... yes
+checking for gcc... gcc
+checking whether the C compiler works... no
+configure: error: in /hms/installs/httpd-2.4.43&#39;:
+configure: error: C compiler cannot create executables
+See config.log&#39; for more details
+</code></pre>
+<h3>Step-by-step Fix</h3>
+<ol>
+<li>Check if gcc is installed and working</li>
+</ol>
+<pre><code class="language-bash">gcc --version
+</code></pre>
+<ol start="2">
+<li>If that fails, install it:</li>
+</ol>
+<pre><code class="language-bash">yum groupinstall &quot;Development Tools&quot; -y
+</code></pre>
+<p>or individually:</p>
+<pre><code class="language-bash">yum install gcc -y
+</code></pre>
+<pre><code class="language-bash">./configure --enable-proxy --enable-proxy-http --enable-ssl --enable-rewrite
+checking for chosen layout... Apache
+checking for working mkdir -p... yes
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+configure: 
+configure: Configuring Apache Portable Runtime library...
+configure: 
+checking for APR... yes
+  setting CC to &quot;gcc&quot;
+  setting CPP to &quot;gcc -E&quot;
+  setting CFLAGS to &quot;  -pthread&quot;
+  setting CPPFLAGS to &quot; -DLINUX -D_REENTRANT -D_GNU_SOURCE&quot;
+  setting LDFLAGS to &quot; &quot;
+configure: 
+configure: Configuring Apache Portable Runtime Utility library...
+configure: 
+checking for APR-util... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for gcc option to accept ISO C99... none needed
+checking for pcre-config... false
+configure: error: pcre-config for libpcre not found. PCRE is required and available from http://pcre.org/
+</code></pre>
+<h3>Fix: Install PCRE development libraries</h3>
+<ol>
+<li>Since you&#39;re on a CentOS/RHEL-like system, run:</li>
+</ol>
+<pre><code class="language-bash">yum install -y pcre-devel
+</code></pre>
+<ol start="2">
+<li>If you&#39;re on a Debian/Ubuntu system, use:</li>
+</ol>
+<pre><code class="language-bash">apt-get install -y libpcre3-dev
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

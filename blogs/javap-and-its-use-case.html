@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javap And Its Use Case | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Javap And Its Use Case, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/javap-and-its-use-case.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Javap And Its Use Case | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/javap-and-its-use-case.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Javap And Its Use Case">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/javap-and-its-use-case.html"
+      },
+      "headline": "Javap And Its Use Case",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h3>javap and its Use Case</h3>
+<p>javap is a command-line tool provided by the Java Development Kit (JDK) that disassembles Java class files. It allows you to view the bytecode of a class file and obtain details such as the version of the class file and other metadata.</p>
+<h2>Use Case:</h2>
+<ul>
+<li>The primary use case for javap is to inspect compiled .class files to understand their structure, such as methods, fields, and bytecode instructions. This is especially useful when you need to verify the compatibility of a class file with a specific Java version.</li>
+</ul>
+<p>For example, you can use the following command to check the major version of a class file:</p>
+<pre><code class="language-bash">javap -v MyClass.class | grep &quot;major version&quot;
+</code></pre>
+<p>This will show the major version of the class file, which tells you which version of Java was used to compile the code.</p>
+<h3>Major Version Table:</h3>
+<table>
+<thead>
+<tr>
+<th>Java Version</th>
+<th>Major Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Java 1.1</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Java 1.2</td>
+<td>46</td>
+</tr>
+<tr>
+<td>Java 1.3</td>
+<td>47</td>
+</tr>
+<tr>
+<td>Java 1.4</td>
+<td>48</td>
+</tr>
+<tr>
+<td>Java 5</td>
+<td>49</td>
+</tr>
+<tr>
+<td>Java 6</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Java 7</td>
+<td>51</td>
+</tr>
+<tr>
+<td>Java 8</td>
+<td>52</td>
+</tr>
+<tr>
+<td>Java 9</td>
+<td>53</td>
+</tr>
+<tr>
+<td>Java 10</td>
+<td>54</td>
+</tr>
+<tr>
+<td>Java 11</td>
+<td>55</td>
+</tr>
+<tr>
+<td>Java 12</td>
+<td>56</td>
+</tr>
+<tr>
+<td>Java 13</td>
+<td>57</td>
+</tr>
+<tr>
+<td>Java 14</td>
+<td>58</td>
+</tr>
+<tr>
+<td>Java 15</td>
+<td>59</td>
+</tr>
+<tr>
+<td>Java 16</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Java 17</td>
+<td>61</td>
+</tr>
+<tr>
+<td>Java 18</td>
+<td>62</td>
+</tr>
+<tr>
+<td>Java 19</td>
+<td>63</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Example:
+If you run the following command on a class file:</li>
+</ul>
+<pre><code class="language-bash">javap -v /path/to/your/ClassFile.class | grep &quot;major version&quot;
+</code></pre>
+<p>It will output something like:</p>
+<pre><code class="language-bash">major version: 50
+</code></pre>
+<p>This means that the class file was compiled using Java 6 (major version 50).</p>
+<h2>Common Usages of <code>javap</code></h2>
+<p><code>javap</code> is a command-line tool that disassembles Java class files. It provides detailed information about the structure and content of compiled Java classes. Here&#39;s a breakdown of common usages:</p>
+<p><strong>Viewing Class Metadata:</strong></p>
+<p>You can use <code>javap</code> to display detailed information about a class file, such as its methods, fields, and other structural details.</p>
+<pre><code class="language-bash">javap MyClass.class
+</code></pre>
+<p>This will show information about the class, such as:</p>
+<ul>
+<li>Fields</li>
+<li>Constructors</li>
+<li>Methods</li>
+<li>Modifiers (public, private, etc.)</li>
+</ul>
+<p><strong>Viewing Bytecode with -v (Verbose) Option:</strong></p>
+<p>The -v (verbose) option will display more detailed information, including bytecode instructions, stack map tables, and constant pool entries.</p>
+<pre><code class="language-Bash">javap -v MyClass.class
+</code></pre>
+<p>Example output:</p>
+<ul>
+<li>Method signatures</li>
+<li>Line numbers</li>
+<li>Bytecode instructions</li>
+<li>Inspecting Methods in a Class:</li>
+</ul>
+<p>You can view the methods of a class using the -public, -private, or -protected flags to see the methods for a particular access level.</p>
+<pre><code class="language-Bash">javap -public MyClass.class
+</code></pre>
+<p><code>This shows only public methods in the class.</code></p>
+<p><strong>Displaying the Method Signatures:</strong></p>
+<p>If you only want to see the method signatures (i.e., method names and parameters), you can use the -s (summary) option:</p>
+<pre><code class="language-Bash">javap -s MyClass.class
+</code></pre>
+<p><strong>Displaying the Constant Pool:</strong></p>
+<p>The constant pool contains constants used by the class file, such as literals, references to methods, fields, etc. You can display the constant pool using the -c option.</p>
+<pre><code class="language-Bash">javap -c MyClass.class
+</code></pre>
+<p>Disassembling the Code of a Method:</p>
+<p>You can use javap to display the bytecode for a specific method within the class. Use the method name as an argument:</p>
+<pre><code class="language-Bash">
+javap -c MyClass className.methodName
+</code></pre>
+<p><strong>Viewing the Class Hierarchy (Superclasses and Interfaces):</strong></p>
+<p>Use the -p option to display both the private and public members (fields and methods) of a class. This is useful for analyzing the complete class hierarchy.</p>
+<pre><code class="language-Bash">
+javap -p MyClass.class
+</code></pre>
+<p><strong>Disassembling the Entire Package of Classes:</strong></p>
+<p>You can use javap on a directory to analyze multiple class files within a package at once.</p>
+<pre><code class="language-Bash">
+javap -v -p path/to/classes/*.class
+</code></pre>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>

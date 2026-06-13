@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Binary Instalation On Ubuntu | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Java Binary Instalation On Ubuntu, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/java-binary-instalation-on-ubuntu.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Java Binary Instalation On Ubuntu | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/java-binary-instalation-on-ubuntu.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Java Binary Instalation On Ubuntu">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/java-binary-instalation-on-ubuntu.html"
+      },
+      "headline": "Java Binary Instalation On Ubuntu",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h3>java binary instalation on ubuntu</h3>
+<ol>
+<li>Download tar file and extract</li>
+<li>then use location of that</li>
+</ol>
+<pre><code class="language-bash">
+export JAVA_HOME=/hms/installs/jdk-21.0.5
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+java -version
+</code></pre>
+<h3>installing maven binary in ubuntu</h3>
+<ol>
+<li>Download tar file and extract</li>
+<li>then use the location of that</li>
+</ol>
+<pre><code class="language-bash">
+M2_HOME=/hms/installs/mvn-3-2-3/
+PATH=$M2_HOME/bin:$PATH
+export PATH
+
+mvn -version
+</code></pre>
+<hr>
+<h3>starting working on ansible</h3>
+<ol>
+<li>Install ansible</li>
+<li>Create ansible.cfg file</li>
+</ol>
+<pre><code class="language-markdown">[defaults]
+inventory = ./inventory.ini
+host_key_checking = False
+retry_files_enabled = False
+</code></pre>
+<ol start="3">
+<li>now create inventory.ini file</li>
+</ol>
+<pre><code class="language-markdown">
+[enum]
+172.16.3.23 ansible_user=cloud-user ansible_ssh_private_key_file=/home/rinas/.ssh/m1-sec.pem
+
+[radius]
+172.27.2.43 ansible_user=cloud-user ansible_ssh_private_key_file=/home/rinas/.ssh/m1-radius.pem
+
+[hutch]
+172.16.3.114 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/etisalat-ipg-keypair.pem
+</code></pre>
+<ol start="4">
+<li>if want playbook now cretate my-any-name.yml</li>
+</ol>
+<pre><code class="language-yml">---
+- name: Gather system information
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Display disk usage
+      ansible.builtin.command: df -h
+      register: disk_usage
+
+    - name: Show disk usage output
+      ansible.builtin.debug:
+        var: disk_usage.stdout_lines
+
+    - name: Check uptime
+      ansible.builtin.command: uptime
+      register: system_uptime
+
+    - name: Show system uptime
+      ansible.builtin.debug:
+        var: system_uptime.stdout
+</code></pre>
+<ol start="5">
+<li>Try without playbook</li>
+</ol>
+<pre><code class="language-bash">ansible all -m ping -i inventory.ini
+</code></pre>
+<ol start="6">
+<li>Try with playbook</li>
+</ol>
+<pre><code class="language-bash">ansible-playbook my-any-name.yml -i inventory.ini
+</code></pre>
+<hr>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+    </article>
+</body>
+</html>
