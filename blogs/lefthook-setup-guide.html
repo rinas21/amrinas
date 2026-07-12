@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lefthook Setup Guide | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Lefthook setup guide. Run automated checks before commit.">
+    <meta name="keywords" content="Lefthook, Git hooks, Setup Guide, Tech, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/lefthook-setup-guide.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Lefthook Setup Guide | A.M. Rinas Blog">
+    <meta property="og:description" content="Lefthook setup guide. Run automated checks before commit.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/lefthook-setup-guide.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lefthook Setup Guide">
+    <meta name="twitter:description" content="Lefthook setup guide. Run automated checks before commit.">
+    
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/lefthook-setup-guide.html"
+      },
+      "headline": "Lefthook Setup Guide",
+      "description": "Lefthook setup guide. Run automated checks before commit.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-07-12",
+      "dateModified": "2026-07-12"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+<h1>Lefthook Setup Guide</h1>
+<h2>Why Lefthook?</h2>
+<p>Lefthook run automated checks before code commit. Catch bugs, format issues, lint errors before production.</p>
+<ul>
+<li>Frontend ESLint validation</li>
+<li>Backend Go tests</li>
+<li>Backend format checks</li>
+</ul>
+<p>Commit fail if checks fail.</p>
+<hr>
+<h2>Prerequisites</h2>
+<p>Need:</p>
+<ul>
+<li>Node.js 18+</li>
+<li>npm</li>
+<li>Go 1.21+</li>
+</ul>
+<p>Check versions:</p>
+<pre><code class="language-bash">node -v
+npm -v
+go version
+</code></pre>
+<hr>
+<h2>Install Lefthook</h2>
+<p>From project root:</p>
+<pre><code class="language-bash">npm install --save-dev lefthook
+npx lefthook install
+</code></pre>
+<p>Output show <code>sync hooks: ✔️</code>.</p>
+<hr>
+<h2>Verify Installation</h2>
+<pre><code class="language-bash">npx lefthook run pre-commit
+</code></pre>
+<p>Execute configured checks.</p>
+<hr>
+<h2>Normal Development Flow</h2>
+<p>Before commit:</p>
+<pre><code class="language-bash">git add .
+git commit -m "your message"
+</code></pre>
+<p>Lefthook run automatically. If check fail, commit rejected. Fix issue, commit again.</p>
+<hr>
+<h2>Troubleshooting</h2>
+<p>Lefthook not running:</p>
+<pre><code class="language-bash">npx lefthook install
+</code></pre>
+<p>Skip hooks temporarily (emergency only):</p>
+<pre><code class="language-bash">git commit --no-verify -m "message"
+</code></pre>
+<hr>
+<h2>Configuration</h2>
+<p>Config file: <code>lefthook.yml</code>.</p>
+<p>Add new checks example:</p>
+<pre><code class="language-yaml">pre-commit:
+  jobs:
+    backend-test:
+      root: backend/
+      run: go test ./...
+    frontend-lint:
+      root: customer/
+      run: npm run lint
+</code></pre>
+<p>Run <code>npx lefthook install</code> after change.</p>
+<hr>
+<h2>Team Rule</h2>
+<p>All developers must install Lefthook before contribute. Do not commit code with failing tests, lint errors, broken builds, format issues.</p>
+<p>Commit <code>package.json</code>, <code>package-lock.json</code>, <code>lefthook.yml</code> to Git. Do NOT commit <code>.git/hooks</code>. Other devs clone and run <code>npm install</code> then <code>npx lefthook install</code>.</p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+          Written by <strong>A.M. Rinas</strong>
+        </p>
+    </article>
+</body>
+</html>
