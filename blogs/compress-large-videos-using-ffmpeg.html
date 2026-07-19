@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Compress Large Videos Without Losing Much Quality Using FFmpeg | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags -->
+    <!-- Mohomad Rinas -->
+    <meta name="description" content="Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.">
+    <meta name="keywords" content="FFmpeg, FFmpeg compression, Compress video, Reduce MP4 size, H264, Video optimization, Linux FFmpeg, OBS recordings, Video encoding, FFmpeg tutorial, Tech, DevOps, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/compress-large-videos-using-ffmpeg.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Compress Large Videos Without Losing Much Quality Using FFmpeg | A.M. Rinas Blog">
+    <meta property="og:description" content="Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/compress-large-videos-using-ffmpeg.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Compress Large Videos Without Losing Much Quality Using FFmpeg">
+    <meta name="twitter:description" content="Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.">
+    
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/compress-large-videos-using-ffmpeg.html"
+      },
+      "headline": "How to Compress Large Videos Without Losing Much Quality Using FFmpeg",
+      "description": "Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-07-20",
+      "dateModified": "2026-07-20"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- Mohomad Rinas -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+<article class="blog-post-container">
+
+    <h1>How to Compress Large Videos Without Losing Much Quality Using FFmpeg</h1>
+
+    <p>
+        Recording tutorials, gameplay, or OBS sessions often results in videos that are several gigabytes in size.
+        Uploading or storing these files quickly becomes expensive, especially when working with limited disk space or
+        slower internet connections.
+        Fortunately, <strong>FFmpeg</strong> makes it possible to reduce video size significantly while maintaining
+        excellent visual quality.
+    </p>
+
+    <p>
+        In this guide, you'll learn how to compress MP4, MKV, and other video formats using FFmpeg, understand the most
+        important encoding options, and avoid common mistakes that lead to poor quality or corrupted files.
+    </p>
+
+    <h2>What is FFmpeg?</h2>
+
+    <p>
+        FFmpeg is a free and open source multimedia framework that allows you to record, convert, compress, stream, and
+        edit audio and video directly from the command line. It is available for Windows, Linux, and macOS and is
+        trusted by developers, video editors, and streaming platforms.
+    </p>
+
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
+        alt="Using FFmpeg to compress large video files">
+
+    <h2>Why Compress Videos?</h2>
+
+    <p>Compressing videos has several advantages:</p>
+
+    <ul>
+        <li>Save storage space</li>
+        <li>Upload videos faster</li>
+        <li>Reduce bandwidth usage</li>
+        <li>Share files more easily</li>
+        <li>Archive recordings efficiently</li>
+    </ul>
+
+    <h2>Installing FFmpeg</h2>
+
+    <p>Ubuntu:</p>
+
+    <pre><code>sudo apt update
+sudo apt install ffmpeg</code></pre>
+
+    <p>Verify the installation:</p>
+
+    <pre><code>ffmpeg -version</code></pre>
+
+    <h2>Basic Compression Command</h2>
+
+    <p>The following command provides a great balance between quality and file size:</p>
+
+    <pre><code>ffmpeg -i input.mp4 \
+-c:v libx264 \
+-crf 23 \
+-preset medium \
+-c:a aac \
+-b:a 128k \
+output.mp4</code></pre>
+
+    <h2>Understanding Each Option</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>libx264</td>
+                <td>Uses the H.264 video encoder.</td>
+            </tr>
+            <tr>
+                <td>CRF</td>
+                <td>Controls video quality. Lower values produce higher quality and larger files.</td>
+            </tr>
+            <tr>
+                <td>Preset</td>
+                <td>Determines encoding speed versus compression efficiency.</td>
+            </tr>
+            <tr>
+                <td>AAC</td>
+                <td>Compresses audio while maintaining good quality.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Choosing the Right CRF Value</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>CRF</th>
+                <th>Quality</th>
+                <th>File Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>18</td>
+                <td>Excellent</td>
+                <td>Large</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>Recommended</td>
+                <td>Balanced</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>Acceptable</td>
+                <td>Small</td>
+            </tr>
+            <tr>
+                <td>35+</td>
+                <td>Poor</td>
+                <td>Very Small</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Compress Every Video Inside a Folder</h2>
+
+    <p>If you have many recordings, use a simple Bash loop:</p>
+
+    <pre><code>mkdir compressed
+
+for file in *.mkv; do
+    ffmpeg -i "$file" \
+    -c:v libx264 \
+    -crf 23 \
+    -preset medium \
+    -c:a aac \
+    -b:a 128k \
+    "compressed/${file%.mkv}.mp4"
+done</code></pre>
+
+    <p>
+        This script converts every MKV file in the current directory into a compressed MP4 version inside the
+        <code>compressed</code> folder.
+    </p>
+
+    <h2>Speed vs Compression</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Preset</th>
+                <th>Encoding Speed</th>
+                <th>Compression</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ultrafast</td>
+                <td>Very Fast</td>
+                <td>Poor</td>
+            </tr>
+            <tr>
+                <td>fast</td>
+                <td>Fast</td>
+                <td>Good</td>
+            </tr>
+            <tr>
+                <td>medium</td>
+                <td>Balanced</td>
+                <td>Very Good</td>
+            </tr>
+            <tr>
+                <td>slow</td>
+                <td>Slow</td>
+                <td>Excellent</td>
+            </tr>
+            <tr>
+                <td>veryslow</td>
+                <td>Very Slow</td>
+                <td>Best</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Common Mistakes</h2>
+
+    <ul>
+        <li>Using a CRF value that is too high, resulting in blurry videos.</li>
+        <li>Choosing the ultrafast preset for permanent archives.</li>
+        <li>Overwriting the original recording before checking the compressed version.</li>
+        <li>Compressing an already compressed video multiple times.</li>
+        <li>Ignoring audio bitrate, which can noticeably reduce sound quality.</li>
+    </ul>
+
+    <h2>Recommended Settings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Purpose</th>
+                <th>CRF</th>
+                <th>Preset</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>YouTube Upload</td>
+                <td>23</td>
+                <td>medium</td>
+            </tr>
+            <tr>
+                <td>OBS Recordings</td>
+                <td>22</td>
+                <td>slow</td>
+            </tr>
+            <tr>
+                <td>Long-term Archive</td>
+                <td>18</td>
+                <td>slow</td>
+            </tr>
+            <tr>
+                <td>Quick Sharing</td>
+                <td>28</td>
+                <td>fast</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Final Thoughts</h2>
+
+    <p>
+        FFmpeg is one of the most powerful tools available for video compression. By combining the H.264 encoder with a
+        sensible CRF value and an appropriate preset, you can reduce file sizes dramatically while preserving excellent
+        visual quality. Whether you're compressing tutorial videos, OBS recordings, or personal archives, these settings
+        provide a reliable starting point for most workflows.
+    </p>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+
+    <p style="font-size:14px;font-style:italic;color:var(--ink-muted);text-align:right;">
+        Written by <strong>A.M. Rinas</strong>
+    </p>
+
+    <!-- SEO Keywords:
+FFmpeg, FFmpeg compression, Compress video, Reduce MP4 size, H264, Video optimization, Linux FFmpeg, OBS recordings, Video encoding, FFmpeg tutorial -->
+
+</article>
+</body>
+</html>
