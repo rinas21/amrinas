@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags -->
+    <!-- Mohomad Rinas -->
+    <meta name="description" content="Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.">
+    <meta name="keywords" content="FFmpeg Ubuntu, Compress videos Ubuntu, Batch video compression, Compress MKV to MP4, Reduce video file size, FFmpeg H265, Ubuntu Bash Script, Linux Video Compression, Tech, DevOps, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/compress-videos-ffmpeg-ubuntu.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu | A.M. Rinas Blog">
+    <meta property="og:description" content="Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/compress-videos-ffmpeg-ubuntu.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu">
+    <meta name="twitter:description" content="Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.">
+    
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/compress-videos-ffmpeg-ubuntu.html"
+      },
+      "headline": "Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu",
+      "description": "Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-07-20",
+      "dateModified": "2026-07-20"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+</head>
+<body>
+    <!-- Mohomad Rinas -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+<article class="blog-post-container">
+
+    <h1>Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu</h1>
+
+    <p>
+        If you record tutorials, gameplay, lectures, or meetings, you've probably noticed how quickly video files
+        consume storage. A few recordings can easily take tens or even hundreds of gigabytes.
+    </p>
+
+    <p>
+        The good news is that you don't need expensive video editing software to reduce file sizes. With
+        <strong>FFmpeg</strong> and a simple Bash script, you can compress every video in a folder automatically while
+        keeping excellent visual quality.
+    </p>
+
+    <p>
+        In this article, I'll show you how to install FFmpeg on Ubuntu, explain the compression settings, and share a
+        script that processes every MKV video automatically.
+    </p>
+
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+        alt="Compress videos using FFmpeg on Ubuntu">
+
+    <h2>Why Use FFmpeg?</h2>
+
+    <p>
+        FFmpeg is a free, open source command line tool used by developers, video editors, and streaming platforms
+        worldwide. It supports almost every video and audio format while offering professional grade compression.
+    </p>
+
+    <p>Benefits include:</p>
+
+    <ul>
+        <li>Completely free</li>
+        <li>No watermark</li>
+        <li>No file size limits</li>
+        <li>Works offline</li>
+        <li>Supports batch processing</li>
+        <li>Available for Linux, Windows, and macOS</li>
+    </ul>
+
+    <h2>Install FFmpeg on Ubuntu</h2>
+
+    <p>Update your package list:</p>
+
+    <pre><code>sudo apt update</code></pre>
+
+    <p>Install FFmpeg:</p>
+
+    <pre><code>sudo apt install ffmpeg</code></pre>
+
+    <p>Verify the installation:</p>
+
+    <pre><code>ffmpeg -version</code></pre>
+
+    <p>If you see version information, you're ready to start compressing videos.</p>
+
+    <h2>Create the Compression Script</h2>
+
+    <p>Create a new file:</p>
+
+    <pre><code>nano compress.sh</code></pre>
+
+    <p>Paste the following script:</p>
+
+    <pre><code>#!/bin/bash
+
+mkdir -p compressed
+
+for file in *.mkv; do
+    echo "Compressing: $file"
+
+    ffmpeg -i "$file" \
+    -c:v libx265 \
+    -preset medium \
+    -crf 28 \
+    -c:a aac \
+    -b:a 128k \
+    "compressed/${file%.mkv}.mp4"
+
+done
+
+echo "Done"</code></pre>
+
+    <h2>Make the Script Executable</h2>
+
+    <pre><code>chmod +x compress.sh</code></pre>
+
+    <h2>Run the Script</h2>
+
+    <pre><code>./compress.sh</code></pre>
+
+    <p>
+        The script will automatically:
+    </p>
+
+    <ul>
+        <li>Create a folder named <code>compressed</code></li>
+        <li>Find every MKV file in the current directory</li>
+        <li>Compress each video</li>
+        <li>Save the new MP4 files inside the compressed folder</li>
+    </ul>
+
+    <h2>Understanding the Compression Settings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>libx265</td>
+                <td>Uses the H.265 encoder, producing smaller files than H.264.</td>
+            </tr>
+            <tr>
+                <td>preset medium</td>
+                <td>Balances encoding speed and compression.</td>
+            </tr>
+            <tr>
+                <td>crf 28</td>
+                <td>Controls visual quality. Lower values mean better quality and larger files.</td>
+            </tr>
+            <tr>
+                <td>aac</td>
+                <td>Modern audio codec with good compatibility.</td>
+            </tr>
+            <tr>
+                <td>128k</td>
+                <td>Audio bitrate suitable for most recordings.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Expected Results</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Original Size</th>
+                <th>Compressed Size</th>
+                <th>Typical Reduction</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2 GB</td>
+                <td>600 MB to 900 MB</td>
+                <td>55% to 70%</td>
+            </tr>
+            <tr>
+                <td>5 GB</td>
+                <td>1.5 GB to 2 GB</td>
+                <td>60% to 70%</td>
+            </tr>
+            <tr>
+                <td>10 GB</td>
+                <td>3 GB to 4 GB</td>
+                <td>60% to 70%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Actual results depend on the video's resolution, frame rate, and content. Videos with little movement generally
+        compress much better than fast action scenes.
+    </p>
+
+    <h2>Can You Compress Without Any Quality Loss?</h2>
+
+    <p>
+        This is one of the biggest misconceptions about video compression.
+    </p>
+
+    <p>
+        If you're re-encoding a video using codecs like H.264 or H.265, there is always some quality loss. However, by
+        choosing a sensible CRF value such as 22 to 28, the difference is often impossible to notice with the human eye
+        while achieving significant file size reductions.
+    </p>
+
+    <p>
+        If you need truly lossless compression, your file size reduction will be minimal. For most users, visually
+        lossless compression offers the best balance between quality and storage savings.
+    </p>
+
+    <h2>Tips</h2>
+
+    <ul>
+        <li>Keep your original files until you verify the compressed versions.</li>
+        <li>Use H.265 for maximum storage savings.</li>
+        <li>Use CRF 22 to 24 for higher quality.</li>
+        <li>Use CRF 28 for smaller files with excellent quality.</li>
+        <li>Store compressed videos in a separate folder to avoid overwriting originals.</li>
+    </ul>
+
+    <h2>Final Thoughts</h2>
+
+    <p>
+        You don't need premium software to manage large video collections. FFmpeg is powerful, reliable, and completely
+        free. Combined with a simple Bash script, it can automatically compress hundreds of videos with just one
+        command, saving both storage space and upload time while maintaining excellent visual quality.
+    </p>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+
+    <p style="font-size:14px;font-style:italic;color:var(--ink-muted);text-align:right;">
+        Written by <strong>A.M. Rinas</strong>
+    </p>
+
+    <!--
+SEO Keywords:
+FFmpeg Ubuntu
+Compress videos Ubuntu
+Batch video compression
+Compress MKV to MP4
+Reduce video file size
+FFmpeg H265
+Ubuntu Bash Script
+Linux Video Compression
+HEVC Compression
+Free Video Compressor
+-->
+
+</article>
+</body>
+</html>
