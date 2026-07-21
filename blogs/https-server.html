@@ -4,24 +4,8 @@
 <head>
     <meta name="author" content="Mohomad Rinas">
 
-    <!-- SEO Meta Tags -->
-    <!-- Mohomad Rinas -->
-    <meta name="description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-    <meta name="keywords" content="Tech, DevOps, Blog, A.M. Rinas, Software Engineering">
-    <meta name="author" content="A.M. Rinas">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Apache HTTP Server 2.4.x Installation and Configuration Guide | A.M. Rinas Blog">
-    <meta property="og:description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Apache HTTP Server 2.4.x Installation and Configuration Guide | A.M. Rinas Blog">
-    <meta name="twitter:description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apache HTTP Server 2.4.x Installation and Configuration Guide | A.M. Rinas Blog</title>
 
     <meta name="description"
         content="Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.">
@@ -44,34 +28,6 @@
     <meta name="twitter:description"
         content="Step-by-step source compilation guide for Apache 2.4 with advanced proxy, rewrite, and SSL configurations.">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/apache-installation-configuration.html"
-      },
-      "headline": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
-      "description": "Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.",
-      "author": {
-        "@type": "Person",
-        "name": "A.M. Rinas",
-        "url": "https://rinas21.github.io/amrinas/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-05-23",
-      "dateModified": "2026-05-23"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -84,28 +40,6 @@
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
     <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "headline": "Apache HTTP Server 2.4.x Installation and Configuration Guide | A.M. Rinas Blog",
-      "image": "https://rinas21.github.io/amrinas/favicon.png",
-      "author": {
-        "@type": "Person",
-        "name": "A.M. Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-05-23",
-      "dateModified": "2026-05-23"
-    }
-    </script>
 
 <style>
   /* Global Theme Switcher CSS */
@@ -197,6 +131,86 @@
   }
 </style>
 
+    <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+
+    <!-- JSON-LD Schemas -->
+
+
+    <!-- SEO Meta Tags -->
+    <title>Apache HTTP Server 2.4.x Installation and Configuration Guide | A.M. Rinas</title>
+    <meta name="description" content="Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/https-server.html">
+    <meta name="author" content="A.M.Rinas">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Apache HTTP Server 2.4.x Installation and Configuration Guide">
+    <meta property="og:description" content="Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/https-server.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apache HTTP Server 2.4.x Installation and Configuration Guide">
+    <meta name="twitter:description" content="Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.">
+    <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
+      "description": "Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.",
+      "image": "https://rinas21.github.io/amrinas/img/rinas.webp",
+      "author": {
+        "@type": "Person",
+        "name": "A.M.Rinas"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas Portfolio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "23 May 2026",
+      "dateModified": "23 May 2026",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/https-server.html"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rinas21.github.io/amrinas/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://rinas21.github.io/amrinas/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
+          "item": "https://rinas21.github.io/amrinas/blogs/https-server.html"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>

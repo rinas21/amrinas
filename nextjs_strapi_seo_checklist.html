@@ -1,0 +1,135 @@
+If your goal is **to maximize Google SEO and increase the chances of AI systems (ChatGPT, Perplexity, Claude, Gemini,
+etc.) citing your website**, I'd implement the following.
+
+## P0 (Must Have)
+
+* Allow AI crawlers in `robots.txt` (remove blocks for `GPTBot`, `Google-Extended`, etc.)
+* `BlogPosting` schema for every blog post
+* `Person` schema on your homepage
+* Unique `<title>` and `
+  <meta description>` for every page
+  * Canonical URL on every page
+  * Open Graph tags
+
+  * `og:title`
+  * `og:description`
+  * `og:image`
+  * `og:url`
+  * Twitter Card tags (except `twitter:site` since you don't have X)
+  * Proper H1 on every page
+  * One topic per page
+  * XML sitemap
+  * Fast loading images using WebP
+  * Image width and height attributes to reduce CLS
+
+  ## P1 (Highly Recommended)
+
+  * `BreadcrumbList` schema for blog posts
+  * FAQ section with `FAQPage` schema where appropriate
+  * Add a 40 to 60 word answer summary immediately after the H1
+  * `datePublished`
+  * `dateModified`
+  * Author information
+  * Reading time
+  * Related posts section
+  * Internal links between articles
+  * Consistent canonical URLs (avoid `/index.html` vs `/` mismatch)
+
+  ## P2 (Nice to Have)
+
+  * `SpeakableSpecification` schema
+  * `ContactPoint` schema
+  * Social sharing image at **1200 × 630 px**
+  * RSS feed
+  * Search box (`WebSite` SearchAction schema)
+
+  ## Blog Template Should Include
+
+  For every article:
+
+  * Title
+  * Meta description
+  * Canonical URL
+  * Open Graph tags
+  * Twitter Card
+  * `BlogPosting` JSON-LD
+  * Breadcrumb schema
+  * H1
+  * Summary paragraph (40 to 60 words)
+  * Author
+  * Published date
+  * Modified date
+  * Reading time
+  * Table of contents (for long articles)
+  * Proper H2/H3 structure
+  * Image alt text
+  * Related articles
+  * Previous/Next article links
+
+  ## Homepage Should Include
+
+  * `Person` schema
+  * `WebSite` schema
+  * `WebPage` schema
+  * Professional H1 containing your primary keyword (for example, "A.M. Rinas | Software Engineer")
+  * Links to your latest blog posts
+
+  ## robots.txt
+
+  Instead of blocking AI bots, allow them.
+
+  ```
+  User-agent: *
+  Allow: /
+
+  Sitemap: https://rinas21.github.io/amrinas/sitemap.xml
+  ```
+
+  Do **not** include:
+
+  ```
+  User-agent: GPTBot
+  Disallow: /
+
+  User-agent: Google-Extended
+  Disallow: /
+  ```
+
+  if your goal is AI visibility.
+
+  ## I'd skip
+
+  * `twitter:site` (no X account)
+  * `Organization` schema (you're an individual, so `Person` is more appropriate)
+  * Anything Next.js or Strapi specific
+
+  ## Final checklist
+
+  * AI-friendly `robots.txt`
+  * XML sitemap
+  * Person schema
+  * WebSite schema
+  * WebPage schema
+  * BlogPosting schema
+  * Breadcrumb schema
+  * FAQ schema (when applicable)
+  * Title
+  * Meta description
+  * Canonical
+  * Open Graph tags
+  * Twitter Card
+  * 1200 × 630 social image
+  * H1 with keywords
+  * Summary paragraph after H1
+  * Published and modified dates
+  * Author
+  * Reading time
+  * Related posts
+  * Internal links
+  * Image alt text
+  * Image width and height
+  * Consistent URLs
+  * Fast WebP images
+
+  That set covers essentially all of the high value SEO, AEO, and GEO improvements that make sense for a static GitHub
+  Pages blog and portfolio.

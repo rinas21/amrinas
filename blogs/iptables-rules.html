@@ -4,24 +4,8 @@
 <head>
     <meta name="author" content="Mohomad Rinas">
 
-    <!-- SEO Meta Tags -->
-    <!-- Mohomad Rinas -->
-    <meta name="description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-    <meta name="keywords" content="Tech, DevOps, Blog, A.M. Rinas, Software Engineering">
-    <meta name="author" content="A.M. Rinas">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog">
-    <meta property="og:description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog">
-    <meta name="twitter:description" content="A blog post by A.M. Rinas covering technical insights, DevOps, and programming guides.">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog</title>
 
     <meta name="description"
         content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
@@ -45,34 +29,6 @@
     <meta name="twitter:description"
         content="Learn how to inspect, create, and apply packet filtering rules across basic input and output chains in the Linux kernel.">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/understanding-iptables-linux.html"
-      },
-      "headline": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
-      "description": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
-      "author": {
-        "@type": "Person",
-        "name": "A.M. Rinas",
-        "url": "https://rinas21.github.io/amrinas/"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-05-21",
-      "dateModified": "2026-05-21"
-    }
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -85,28 +41,6 @@
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
     <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "headline": "Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas Blog",
-      "image": "https://rinas21.github.io/amrinas/favicon.png",
-      "author": {
-        "@type": "Person",
-        "name": "A.M. Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-05-21",
-      "dateModified": "2026-05-21"
-    }
-    </script>
 
 <style>
   /* Global Theme Switcher CSS */
@@ -198,6 +132,86 @@
   }
 </style>
 
+    <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+
+    <!-- JSON-LD Schemas -->
+
+
+    <!-- SEO Meta Tags -->
+    <title>Understanding iptables in Linux: Firewall Packet Filtering Guide | A.M. Rinas</title>
+    <meta name="description" content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
+    <link rel="canonical" href="https://rinas21.github.io/amrinas/blogs/iptables-rules.html">
+    <meta name="author" content="A.M.Rinas">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Understanding iptables in Linux: Firewall Packet Filtering Guide">
+    <meta property="og:description" content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
+    <meta property="og:url" content="https://rinas21.github.io/amrinas/blogs/iptables-rules.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Understanding iptables in Linux: Firewall Packet Filtering Guide">
+    <meta name="twitter:description" content="An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.">
+    <meta name="twitter:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
+      "description": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
+      "image": "https://rinas21.github.io/amrinas/img/rinas.webp",
+      "author": {
+        "@type": "Person",
+        "name": "A.M.Rinas"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas Portfolio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "21 May 2026",
+      "dateModified": "21 May 2026",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/iptables-rules.html"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rinas21.github.io/amrinas/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://rinas21.github.io/amrinas/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
+          "item": "https://rinas21.github.io/amrinas/blogs/iptables-rules.html"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
