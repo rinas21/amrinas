@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="author" content="Mohomad Rinas">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Docker Compose | A.M. Rinas Blog</title>
-    
-    <meta name="description" content="A beginner's guide to using Docker Compose to orchestrate multi-container applications.">
-    <meta name="keywords" content="docker, docker-compose, devops">
-    <meta name="author" content="A.M. Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
+import os
+import glob
 
+# The CSS to inject
+css_code = """
 <style>
   /* Global Theme Switcher CSS */
   :root {
@@ -104,29 +92,10 @@
     pointer-events: none;
   }
 </style>
+"""
 
-</head>
-<body>
-    <!-- Mohomad Rinas -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html" style="color: var(--ink);">Home</a>
-            <a href="../blog.html" style="color: var(--ink);">Blog</a>
-        </nav>
-    </header>
-
-    <article class="blog-post-container">
-        <h1>Introduction to Docker Compose</h1>
-        <p>A beginner's guide to using Docker Compose to orchestrate multi-container applications.</p>
-        <h2>What is Docker Compose?</h2>
-        <p>Docker Compose is a tool for defining and running multi-container Docker applications using a YAML file.</p>
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-          Written by <strong>A.M. Rinas</strong>
-        </p>
-    </article>
-
+# The HTML and JS to inject
+html_js_code = """
   <!-- Theme Switcher UI -->
   <div class="theme-switcher-container" id="themeSwitcher"></div>
 
@@ -179,6 +148,40 @@
       setTheme(currentTheme);
     }
   </script>
+"""
 
-</body>
-</html>
+# Find all html files
+target_dir = "/home/rinas/Desktop/project/amrinas"
+html_files = glob.glob(f"{target_dir}/**/*.html", recursive=True)
+
+for filepath in html_files:
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Check if already injected
+        if "<!-- Global Theme Switcher CSS -->" in content or "theme-switcher-container" in content:
+            print(f"Skipping already injected: {filepath}")
+            continue
+
+        # Inject CSS before </head>
+        if "</head>" in content:
+            content = content.replace("</head>", css_code + "\n</head>")
+        else:
+            print(f"No </head> found in {filepath}")
+            continue
+            
+        # Inject HTML/JS before </body>
+        if "</body>" in content:
+            content = content.replace("</body>", html_js_code + "\n</body>")
+        else:
+            print(f"No </body> found in {filepath}")
+            continue
+
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(content)
+            
+        print(f"Successfully injected in: {filepath}")
+
+    except Exception as e:
+        print(f"Error processing {filepath}: {e}")
