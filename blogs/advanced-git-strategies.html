@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.">
     <meta name="keywords" content="git, version control, devops">
-    <meta name="author" content="A.M. Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta name="robots" content="index, follow">
     
     <link rel="stylesheet" href="../files/style.css">
@@ -110,10 +110,10 @@
 
 
     <!-- SEO Meta Tags -->
-    <title>Advanced Git Strategies | A.M. Rinas</title>
+    <title>Advanced Git Strategies | A.M Rinas</title>
     <meta name="description" content="Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.">
     <link rel="canonical" href="https://rinas.tech/blogs/advanced-git-strategies.html">
-    <meta name="author" content="A.M.Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
@@ -139,7 +139,7 @@
       "image": "https://rinas21.github.io/amrinas/img/rinas.webp",
       "author": {
         "@type": "Person",
-        "name": "A.M.Rinas"
+        "name": "A.M Rinas"
       },
       "publisher": {
         "@type": "Organization",
@@ -197,14 +197,99 @@
 
     <article class="blog-post-container">
         <h1>Advanced Git Strategies</h1>
-        <p>Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.</p>
-        <h2>Git Reflog</h2>
-        <p>The git reflog command allows you to view the history of your HEAD and branches, enabling you to recover lost commits.</p>
+        <p>
+            Git is far more than just <code>commit</code>, <code>push</code>, and <code>pull</code>. When working in complex software engineering teams, advanced Git commands become essential for recovering lost work, managing complex branching strategies, and collaborating safely without breaking the main codebase. In this tutorial, we will explore some of the most powerful and underutilized features of Git, including Reflog, Rebase, Cherry-Pick, and Bisect.
+        </p>
+
+        <h2>1. Git Reflog: The Ultimate Safety Net</h2>
+        <p>
+            Have you ever accidentally deleted a branch, performed a hard reset, or messed up a rebase and lost your commits? <code>git reflog</code> is your ultimate safety net. While standard Git history (<code>git log</code>) only shows commits reachable from your current branch, the <strong>reflog</strong> (reference log) records every time your <code>HEAD</code> or branch references move, even if those commits are no longer part of the official history.
+        </p>
+        <pre><code>git reflog</code></pre>
+        <p>
+            When you run the command above, you will see output that looks like this:
+        </p>
+        <pre><code>e1b2c3d HEAD@{0}: commit: Add advanced features
+f4g5h6i HEAD@{1}: reset: moving to HEAD~1
+a1b2c3d HEAD@{2}: checkout: moving from feature to main</code></pre>
+        <p>
+            If you realize you shouldn't have done that reset at <code>HEAD@{1}</code>, you can simply reset your branch back to the state it was in before the mistake by referencing the SHA or the HEAD pointer:
+        </p>
+        <pre><code>git reset --hard e1b2c3d</code></pre>
+        <p>
+            This brings your lost commit back to life. Keep in mind that reflog entries expire after a certain period (usually 90 days), so don't wait too long to recover lost work!
+        </p>
+
+        <h2>2. Git Rebase: Keeping History Clean</h2>
+        <p>
+            Merging branches is the standard way to integrate changes, but it can lead to a messy, non-linear history filled with "Merge branch X into Y" commits. <strong>Rebasing</strong> rewrites your branch's history so that it appears as if you created your commits sequentially on top of the latest changes from the target branch.
+        </p>
+        <p>To rebase your current feature branch onto <code>main</code>, run:</p>
+        <pre><code>git checkout feature-branch
+git rebase main</code></pre>
+        <p>
+            During a rebase, Git temporarily sets aside your commits, updates your branch to match `main`, and then reapplies your commits one by one. If there are conflicts, Git will pause and ask you to resolve them. Once resolved, use:
+        </p>
+        <pre><code>git add .
+git rebase --continue</code></pre>
+        <p><strong>Warning:</strong> Never rebase commits that have already been pushed to a public repository shared with other developers. Rebasing rewrites history, and changing shared history will cause massive synchronization headaches for your team.</p>
+
+        <h2>3. Git Interactive Rebase: Squashing Commits</h2>
+        <p>
+            Interactive rebasing allows you to modify commits before they are finalized. You can reorder, edit, or squash multiple small commits into a single, cohesive commit. This is excellent for cleaning up a messy local history before opening a Pull Request.
+        </p>
+        <pre><code>git rebase -i HEAD~4</code></pre>
+        <p>
+            This opens an editor with your last 4 commits. You can change the word <code>pick</code> to <code>squash</code> (or <code>s</code>) for the commits you want to merge into the one above them. When you save and close the editor, Git will prompt you to write a new commit message for the combined commit.
+        </p>
+
+        <h2>4. Git Cherry-Pick: Selectively Applying Commits</h2>
+        <p>
+            Sometimes you make a commit on the wrong branch, or you need to apply a specific hotfix from a feature branch directly into `main` without merging the entire feature. <strong>Cherry-picking</strong> allows you to grab a specific commit by its SHA hash and apply it to your current branch.
+        </p>
+        <pre><code>git checkout main
+git cherry-pick 9f8e7d6</code></pre>
+        <p>
+            This creates a new commit on `main` that introduces the exact same changes as commit `9f8e7d6`. Use this sparingly, as it duplicates commits (which can complicate future merges), but it is invaluable for surgical hotfixes.
+        </p>
+
+        <h2>5. Git Bisect: Finding the Bug</h2>
+        <p>
+            When a bug is introduced into the codebase but you have no idea which commit caused it, finding the culprit manually can take hours. <code>git bisect</code> uses a binary search algorithm to quickly isolate the exact commit that introduced the bug.
+        </p>
+        <p>To start a bisect session:</p>
+        <pre><code>git bisect start
+git bisect bad                 # Mark current commit as broken
+git bisect good 1a2b3c4        # Mark a known-good older commit</code></pre>
+        <p>
+            Git will automatically check out a commit halfway between the good and bad commits. You test your application to see if the bug exists:
+        </p>
+        <ul>
+            <li>If the bug is present, type <code>git bisect bad</code>.</li>
+            <li>If the bug is NOT present, type <code>git bisect good</code>.</li>
+        </ul>
+        <p>
+            Git will continue halving the search space until it pinpoints the exact commit that broke the code. Once you're done, run <code>git bisect reset</code> to return to your original state.
+        </p>
+
         <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
         <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
           Written by <strong>A.M. Rinas</strong>
         </p>
     </article>
+
+  
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
 
   <!-- Theme Switcher UI -->
   <div class="theme-switcher-container" id="themeSwitcher"></div>

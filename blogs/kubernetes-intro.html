@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.">
     <meta name="keywords" content="kubernetes, devops, architecture">
-    <meta name="author" content="A.M. Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta name="robots" content="index, follow">
     
     <link rel="stylesheet" href="../files/style.css">
@@ -110,10 +110,10 @@
 
 
     <!-- SEO Meta Tags -->
-    <title>Introduction to Kubernetes Architecture | A.M. Rinas</title>
+    <title>Introduction to Kubernetes Architecture | A.M Rinas</title>
     <meta name="description" content="A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.">
     <link rel="canonical" href="https://rinas.tech/blogs/kubernetes-intro.html">
-    <meta name="author" content="A.M.Rinas">
+    <meta name="author" content="A.M Rinas">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
@@ -139,7 +139,7 @@
       "image": "https://rinas21.github.io/amrinas/img/rinas.webp",
       "author": {
         "@type": "Person",
-        "name": "A.M.Rinas"
+        "name": "A.M Rinas"
       },
       "publisher": {
         "@type": "Organization",
@@ -196,15 +196,88 @@
     </header>
 
     <article class="blog-post-container">
-        <h1>Introduction to Kubernetes Architecture</h1>
-        <p>A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.</p>
-        <h2>Pods</h2>
-        <p>The smallest deployable unit in Kubernetes.</p>
+
+        <h1>Introduction to Kubernetes</h1>
+        <p>
+            As organizations move towards microservices architectures, managing thousands of containers across dozens of servers becomes impossible to do manually. <strong>Kubernetes</strong> (often abbreviated as K8s) is an open-source container orchestration system designed to automate the deployment, scaling, and management of containerized applications.
+        </p>
+
+        <h2>Why do we need Kubernetes?</h2>
+        <p>
+            While Docker helps you package and run an application in a container, Kubernetes solves the problem of running those containers in production. If a container crashes, Kubernetes restarts it. If traffic spikes, Kubernetes scales the application across multiple servers. It abstracts away the underlying hardware and allows you to treat a cluster of machines as a single computing resource.
+        </p>
+
+        <h2>Core Kubernetes Components</h2>
+        
+        <h3>1. Pods</h3>
+        <p>
+            A Pod is the smallest deployable computing unit in Kubernetes. Unlike Docker, where you deploy containers directly, in Kubernetes you deploy Pods. A Pod usually encapsulates one container, but it can contain multiple tightly-coupled containers that share storage and a local network.
+        </p>
+
+        <h3>2. Deployments</h3>
+        <p>
+            While you can deploy a Pod manually, it's rarely done in practice because Pods are mortal—they don't self-heal. Instead, you use a <strong>Deployment</strong>. A Deployment instructs Kubernetes on how many replicas of a Pod should be running. If a node fails and takes down three of your Pods, the Deployment controller automatically spins up three new Pods on healthy nodes.
+        </p>
+        <p>Here is an example of a simple Nginx Deployment in YAML:</p>
+        <pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+</code></pre>
+
+        <h3>3. Services</h3>
+        <p>
+            Since Pods are constantly being created and destroyed, their IP addresses change constantly. A <strong>Service</strong> provides a stable IP address and DNS name that routes traffic to a specific set of Pods (usually selected via labels). This allows the frontend of your application to always know how to talk to the backend, regardless of which specific Pods are currently alive.
+        </p>
+
+        <h2>Basic kubectl Commands</h2>
+        <p>
+            <code>kubectl</code> is the command-line tool used to interact with a Kubernetes cluster.
+        </p>
+        <ul>
+            <li><code>kubectl apply -f deployment.yaml</code>: Creates or updates resources defined in a YAML file.</li>
+            <li><code>kubectl get pods</code>: Lists all running Pods in the current namespace.</li>
+            <li><code>kubectl describe pod [pod-name]</code>: Provides detailed information and event logs for a specific Pod, useful for debugging CrashLoopBackOff errors.</li>
+            <li><code>kubectl logs [pod-name]</code>: Fetches the standard output logs of the container inside the Pod.</li>
+        </ul>
+        
+        <p>
+            Kubernetes has a steep learning curve, but mastering its declarative configuration model is essential for modern DevOps and site reliability engineering.
+        </p>
+    
         <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
         <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
           Written by <strong>A.M. Rinas</strong>
         </p>
     </article>
+
+  
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
 
   <!-- Theme Switcher UI -->
   <div class="theme-switcher-container" id="themeSwitcher"></div>
