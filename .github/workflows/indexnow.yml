@@ -1,0 +1,35 @@
+name: IndexNow Auto Submit
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.html'
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get changed HTML files and Submit
+        run: |
+          # Get list of added or modified HTML files in the last commit
+          FILES=$(git diff --name-only HEAD^ HEAD | grep '\.html$' || true)
+          if [ -n "$FILES" ]; then
+            echo "Changed HTML files:"
+            echo "$FILES"
+            # Pass as a space separated list to the script
+            node scripts/indexnow.js --files $FILES
+          else
+            echo "No HTML files changed."
+          fi
