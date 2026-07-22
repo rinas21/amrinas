@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rinas21.github.io/amrinas/sitemap.xml
+Sitemap: https://rinas.tech/sitemap.xml
