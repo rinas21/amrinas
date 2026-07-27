@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The SEO Mistakes Developers Make When Building Websites | A.M. Rinas Blog</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.">
+    <meta name="keywords" content="The SEO Mistakes Developers Make When Building Websites, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas.tech/blogs/seo-mistakes-developers-make.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The SEO Mistakes Developers Make When Building Websites | A.M. Rinas Blog">
+    <meta property="og:description" content="Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.">
+    <meta property="og:url" content="https://rinas.tech/blogs/seo-mistakes-developers-make.html">
+    <meta property="og:image" content="https://rinas21.github.io/amrinas/img/rinas.webp">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The SEO Mistakes Developers Make When Building Websites">
+    <meta name="twitter:description" content="Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/seo-mistakes-developers-make.html"
+      },
+      "headline": "The SEO Mistakes Developers Make When Building Websites",
+      "description": "Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-07-27",
+      "dateModified": "2026-07-27"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+
+<style>
+  /* Global Theme Switcher CSS */
+  :root {
+    --background: #ffffff;
+    --foreground: #0d0d0d;
+    --theme-accent: #4338ca;
+    --transition-speed: 0.6s;
+    --bg: var(--background);
+    --text: var(--foreground);
+    --ink: var(--foreground);
+    --rule: var(--theme-accent);
+  }
+  html[data-theme="dark"] {
+    --background: #111111;
+    --foreground: #f5f5f5;
+    --theme-accent: #ccff00;
+    --bg: var(--background);
+    --text: var(--foreground);
+    --ink: var(--foreground);
+    --rule: var(--theme-accent);
+  }
+  html[data-theme="luxury"] {
+    --background: #05050a;
+    --foreground: #e0e0ff;
+    --theme-accent: #ff0055;
+    --bg: var(--background);
+    --text: var(--foreground);
+    --ink: var(--foreground);
+    --rule: var(--theme-accent);
+  }
+
+  body {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  }
+
+  .theme-switcher-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 9999;
+  }
+
+  .theme-btn {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background: transparent;
+  }
+
+  .theme-btn.active {
+    border-color: rgba(128, 128, 128, 0.5);
+    transform: scale(1.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+
+  .theme-btn:not(.active):hover {
+    transform: scale(1.1);
+  }
+
+  .theme-bg-preview {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .theme-accent-preview {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    transform: translate(15%, 15%);
+    z-index: 2;
+    pointer-events: none;
+  }
+</style>
+
+</head>
+<body>
+    <!-- Mohomad Rinas -->
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="../index.html" style="color: var(--ink);">Home</a>
+            <a href="../blog.html" style="color: var(--ink);">Blog</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+
+        <h1>The SEO Mistakes Developers Make When Building Websites (And How I Fixed Mine)</h1>
+
+
+        <p>
+            When developers build websites, the main focus is usually code quality, features, and user experience.
+            However, many developers forget one important part of building a successful website: Search Engine
+            Optimization (SEO).
+        </p>
+
+        <p>
+            I made many of these mistakes myself while building and maintaining websites. The websites worked perfectly,
+            but search engines could not fully understand the content. After performing SEO audits and implementing
+            fixes,
+            I learned that good SEO is not only a marketing task. It is also a developer responsibility.
+        </p>
+
+
+        <h2>1. Missing or Poor Metadata</h2>
+
+        <p>
+            One of the most common SEO mistakes developers make is ignoring page metadata.
+            A website without proper title tags and descriptions gives search engines less information about the page.
+        </p>
+
+        <p>
+            Every important page should have:
+        </p>
+
+        <ul>
+            <li>A unique title</li>
+            <li>A meaningful meta description</li>
+            <li>Open Graph metadata for social sharing</li>
+            <li>Canonical URL information</li>
+        </ul>
+
+        <p>
+            For example, instead of using a generic title like "Home Page", use something meaningful:
+        </p>
+
+        <pre><code>&lt;title&gt;Full Stack Developer Portfolio | A.M. Rinas&lt;/title&gt;</code></pre>
+
+
+        <h2>2. Poor Image Optimization</h2>
+
+        <p>
+            Images are often ignored during development. Developers usually upload images with names like:
+        </p>
+
+        <pre><code>
+IMG_20260727.png
+image-final-new.png
+screenshot1.jpg
+</code></pre>
+
+        <p>
+            These filenames provide no information to search engines.
+        </p>
+
+        <p>
+            A better approach is descriptive naming:
+        </p>
+
+        <pre><code>
+salon-booking-dashboard.png
+nextjs-seo-optimization-guide.webp
+</code></pre>
+
+        <p>
+            Image SEO also requires:
+        </p>
+
+        <ul>
+            <li>Proper alt text</li>
+            <li>Compressed file sizes</li>
+            <li>Modern formats like WebP</li>
+            <li>Responsive image loading</li>
+        </ul>
+
+
+        <h2>3. Forgetting Sitemap Generation</h2>
+
+        <p>
+            A sitemap helps search engines discover website pages.
+            Many developers build websites and deploy them without creating sitemap.xml.
+        </p>
+
+        <p>
+            For a small static website, a sitemap can be simple:
+        </p>
+
+        <pre><code>
+&lt;url&gt;
+  &lt;loc&gt;https://rinas.tech/blog.html&lt;/loc&gt;
+&lt;/url&gt;
+</code></pre>
+
+
+        <h2>4. Incorrect robots.txt Configuration</h2>
+
+        <p>
+            The robots.txt file controls how search engine crawlers access your website.
+            A wrong configuration can accidentally block pages from appearing in search results.
+        </p>
+
+        <p>
+            Always check:
+        </p>
+
+        <ul>
+            <li>Googlebot access</li>
+            <li>Sitemap location</li>
+            <li>Blocked important pages</li>
+            <li>Unnecessary crawler restrictions</li>
+        </ul>
+
+
+        <h2>5. Missing Structured Data</h2>
+
+        <p>
+            Search engines understand websites better when developers provide structured data.
+        </p>
+
+        <p>
+            For blogs, BlogPosting schema can provide:
+        </p>
+
+        <ul>
+            <li>Author information</li>
+            <li>Publishing date</li>
+            <li>Article title</li>
+            <li>Article description</li>
+        </ul>
+
+        <p>
+            This can improve how your content appears in search results.
+        </p>
+
+
+        <h2>6. Ignoring Technical SEO in Modern Frameworks</h2>
+
+        <p>
+            Frameworks like Next.js make it easier to build applications, but developers still need to configure SEO
+            properly.
+        </p>
+
+        <p>
+            Important areas include:
+        </p>
+
+        <ul>
+            <li>Dynamic metadata generation</li>
+            <li>Proper URL structures</li>
+            <li>Fast page loading</li>
+            <li>Server-side rendering</li>
+            <li>Optimized images</li>
+        </ul>
+
+
+        <h2>7. No SEO Audit Before Launch</h2>
+
+        <p>
+            Many developers launch websites after testing functionality only.
+            A website can work perfectly while still having SEO problems.
+        </p>
+
+        <p>
+            Before deployment, check:
+        </p>
+
+        <ul>
+            <li>Google Search Console indexing</li>
+            <li>Mobile responsiveness</li>
+            <li>Page speed</li>
+            <li>Broken links</li>
+            <li>Missing metadata</li>
+            <li>Schema validation</li>
+        </ul>
+
+
+        <h2>What I Changed After My SEO Audit</h2>
+
+        <p>
+            After reviewing my websites, I focused on improving:
+        </p>
+
+        <ul>
+            <li>Better page titles and descriptions</li>
+            <li>SEO-friendly image naming</li>
+            <li>Structured data implementation</li>
+            <li>Improved sitemap handling</li>
+            <li>Better content organization</li>
+            <li>Technical SEO improvements</li>
+        </ul>
+
+
+        <h2>Final Thoughts</h2>
+
+        <p>
+            SEO is not something added after development. It should be considered while designing and building the
+            website.
+            A technically strong website should also be understandable by search engines.
+        </p>
+
+        <p>
+            Developers who learn SEO have an advantage because they can build websites that are not only functional,
+            but also discoverable.
+        </p>
+
+
+        <hr style="margin:40px 0;border:none;border-top:1px solid var(--rule);">
+
+        <p style="font-size:14px;font-style:italic;text-align:right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+
+
+    </article>
+
+  
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+  <!-- Theme Switcher UI -->
+  <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+  <script>
+    const THEMES = [
+      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+    ];
+
+    let currentTheme = localStorage.getItem('selected_theme') || "default";
+    const container = document.getElementById("themeSwitcher");
+
+    function setTheme(themeId) {
+      currentTheme = themeId;
+      document.documentElement.setAttribute("data-theme", themeId);
+      localStorage.setItem('selected_theme', themeId);
+      
+      document.querySelectorAll(".theme-btn").forEach(btn => {
+        if (btn.dataset.theme === themeId) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    if(container) {
+      THEMES.forEach(theme => {
+        const btn = document.createElement("button");
+        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+        btn.dataset.theme = theme.id;
+        btn.title = theme.label;
+        
+        const bgPreview = document.createElement("div");
+        bgPreview.className = "theme-bg-preview";
+        bgPreview.style.backgroundColor = theme.bg;
+        
+        const accentPreview = document.createElement("div");
+        accentPreview.className = "theme-accent-preview";
+        accentPreview.style.backgroundColor = theme.color;
+
+        btn.appendChild(bgPreview);
+        btn.appendChild(accentPreview);
+
+        btn.addEventListener("click", () => setTheme(theme.id));
+        container.appendChild(btn);
+      });
+      // Initialize on load
+      setTheme(currentTheme);
+    }
+  </script>
+
+</body>
+</html>
