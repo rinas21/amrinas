@@ -57,11 +57,11 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cyber-theme.css">
-    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="stylesheet" href="../css/codelab.css">
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
@@ -85,31 +85,44 @@
         </nav>
     </header>
 
-    <article class="blog-post-container">
-        <h1>Your Blog Post Title Goes Here</h1>
+        <div class="wrap">
+        <div class="head">
+            <h1>code<span>lab</span></h1>
+            <p>A collection of algorithmic problems with execution simulations, complexity breakdowns, and
+                multi-language solutions (Java, Python, Go).</p>
+        </div>
 
+        <!-- Controls & Search -->
+        <div class="controls">
+            <div class="search"><input id="search" type="text" placeholder="Search title or problem #..."></div>
 
+            <div class="filters" id="filters">
+                <button class="active" data-filter="All">All</button>
+                <button data-filter="Easy">Easy</button>
+                <button data-filter="Medium">Medium</button>
+                <button data-filter="Hard">Hard</button>
+            </div>
+        </div>
 
-<p>
-  This is your introductory paragraph. It should grab the reader's attention and 
-  explain what this blog post is about. It's fully optimized for SEO.
-</p>
+        <!-- Topic Filter Pills Bar -->
+        <div class="topic-filter-bar" id="topicBar">
+            <span class="topic-filter-title">Topics:</span>
+            <!-- Dynamic topic pills rendered here -->
+        </div>
 
-<h2>Adding Images</h2>
-<p>To add an image, use standard HTML tags.</p>
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="SEO friendly alt text goes here">
+        <!-- Table Container -->
+        <div class="editor">
+            <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="path"><b>codelab</b> — problems</span>
+            </div>
+            <div class="table-head">
+                <span></span><span>PROBLEM</span><span>LEVEL</span><span>TOPICS</span><span>LANGS</span><span></span>
+            </div>
+            <div id="rows"></div>
+        </div>
+    </div>
 
-<h2>Code Snippets</h2>
-<pre><code>console.log("Fully SEO optimized post!");</code></pre>
-    
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-          Written by <strong>A.M. Rinas</strong>
-        </p>
-        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
-            <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
-    </article>
 
   
     <!-- ===== FOOTER ===== -->
@@ -129,5 +142,6 @@
 
   <script src="../js/theme.js" defer></script>
 
+<script src="../js/codelab.js" defer></script>
 </body>
 </html>

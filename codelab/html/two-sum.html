@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum — CodeLab | A.M. Rinas</title>
+    <meta name="description"
+        content="Two Sum solved in Java, Python, and Go — comparing Brute Force, Hash Map, and Two-Pointer strategies with multi-language side-by-side comparison.">
+    <link rel="canonical" href="https://rinas.tech/codelab-two-sum.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+    <link rel="stylesheet" href="../css/two-sum.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="../../index.html" class="logo">Portfolio</a>
+        <nav class="navbar">
+            <a href="../../index.html#Home">Home</a>
+            <a href="../../index.html#About">About</a>
+            <a href="../../index.html#Experience">Experience</a>
+            <a href="../../pages/projects.html">Projects</a>
+            <a href="../../pages/blog.html">Blog</a>
+            <a href="../../pages/codelab.html" class="active">CodeLab</a>
+            <a href="../../index.html#Contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="wrap">
+        <div class="crumb"><a href="../../pages/codelab.html">CodeLab</a> / Problems / #1</div>
+
+        <div class="ptitle-row">
+            <h1>1. Two Sum</h1>
+            <span class="diff-badge">Easy</span>
+        </div>
+        <div class="topic-badges"><span>Array</span><span>Hash Map</span><span>Two Pointers</span></div>
+
+        <div class="card">
+            <div class="card-title">Problem Statement</div>
+            <div class="card-body">
+                Given an array of integers <code>nums</code> and an integer <code>target</code>, return the indices of
+                the
+                two numbers that add up to <code>target</code>. Assume exactly one solution exists, and you cannot use
+                the
+                same element twice.
+                <div class="example">
+                    <b>Input:</b> nums = [3, 2, 4, 6, 5], target = 10<br>
+                    <b>Output:</b> [2, 3] &nbsp;<span style="color:var(--text-dim)">// nums[2] + nums[3] = 4 + 6 =
+                        10</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">High-Level Algorithm Steps</div>
+            <div class="card-body">
+                <ol class="steps-list" id="highLevelSteps"></ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Multi-Language Code &amp; Execution Simulation</div>
+
+            <div class="switch-row">
+                <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                    <span class="seg-title">Strategy:</span>
+                    <div class="seg" id="approachSeg">
+                        <button data-approach="brute" class="active">Brute Force</button>
+                        <button data-approach="ai1">AI 1: Hash Map</button>
+                        <button data-approach="ai2">AI 2: Two Pointers</button>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                    <span class="seg-title">Compare Languages:</span>
+                    <div class="lang-toggle-group" id="langToggles">
+                        <label class="lang-btn selected"><input type="checkbox" value="java" checked> Java</label>
+                        <label class="lang-btn selected"><input type="checkbox" value="python" checked> Python</label>
+                        <label class="lang-btn"><input type="checkbox" value="go"> Go</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi Code Panel -->
+            <div class="code-comparison-grid" id="codeComparisonGrid"></div>
+
+            <!-- Visualizer Output -->
+            <div class="sim-visual">
+                <div class="arr-row" id="arrRow"></div>
+                <div id="mapPanelWrap"></div>
+                <div class="desc-line" id="descLine">Press play to start the simulation.</div>
+            </div>
+
+            <div class="controls-row">
+                <button id="btnReset" title="Reset">⟲</button>
+                <button id="btnPrev" title="Previous step">◀</button>
+                <button id="btnPlay" class="play" title="Play / Pause">▶</button>
+                <button id="btnNext" title="Next step">▶|</button>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+                <span class="step-count" id="stepCount">Step 0 / 0</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Algorithm Performance &amp; Complexity Chart</div>
+            <div class="complexity-body">
+                <div class="complexity-badges">
+                    <div class="cbadge">
+                        <div class="label">SELECTED APPROACH</div>
+                        <div class="value" id="approachLabel">Brute Force</div>
+                    </div>
+                    <div class="cbadge">
+                        <div class="label">TIME COMPLEXITY</div>
+                        <div class="value" id="timeVal">O(n²)</div>
+                    </div>
+                    <div class="cbadge">
+                        <div class="label">SPACE COMPLEXITY</div>
+                        <div class="value" id="spaceVal">O(1)</div>
+                    </div>
+                </div>
+
+                <div class="chart-wrap">
+                    <svg id="complexityChart" viewBox="0 0 480 180" width="100%" height="180"></svg>
+                    <div class="chart-legend">
+                        <span><span class="swatch" style="background:#f2705a"></span>O(n²) — Quadratic (Brute
+                            Force)</span>
+                        <span><span class="swatch" style="background:#c792ea"></span>O(n log n) — Linearithmic (Sorting
+                            + Two Pointers)</span>
+                        <span><span class="swatch" style="background:#5ec98f"></span>O(n) — Linear (Hash Map)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Comprehensive Strategy Matrix</div>
+            <div class="card-body" style="padding:0;">
+                <table class="compare">
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Time</th>
+                        <th>Space</th>
+                        <th>Key Idea / Trade-offs</th>
+                    </tr>
+                    <tr>
+                        <td>Brute Force</td>
+                        <td>O(n²)</td>
+                        <td>O(1)</td>
+                        <td class="hl">Checks every pair. Simple, zero added memory, inefficient on large datasets.</td>
+                    </tr>
+                    <tr>
+                        <td>AI 1 — Hash Map</td>
+                        <td>O(n)</td>
+                        <td>O(n)</td>
+                        <td class="hl">Single pass. Stores seen values to instantly find complement in O(1) time.</td>
+                    </tr>
+                    <tr>
+                        <td>AI 2 — Two Pointers</td>
+                        <td>O(n log n)</td>
+                        <td>O(n)</td>
+                        <td class="hl">Sorts elements with original indices, then shrinks inward using two pointers.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/two-sum.js" defer></script>
+
+</body>
+
+</html>
