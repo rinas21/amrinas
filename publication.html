@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | A.M. Rinas Portfolio</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Your SEO friendly description goes here.">
+    <meta name="keywords" content="Your Blog Title Here, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas.tech/blogs/template.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Your Blog Title Here | A.M. Rinas Blog">
+    <meta property="og:description" content="Your SEO friendly description goes here.">
+    <meta property="og:url" content="https://rinas.tech/blogs/template.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Your Blog Title Here">
+    <meta name="twitter:description" content="Your SEO friendly description goes here.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/template.html"
+      },
+      "headline": "Your Blog Title Here",
+      "description": "Your SEO friendly description goes here.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+
+<link rel="stylesheet" href="./files/theme-switcher.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+     crossorigin="anonymous"></script>
+
+<style>
+
+.publication-container {
+    max-width: 1200px;
+    margin: 120px auto 80px;
+    padding: 0 24px;
+    line-height: 1.8;
+    font-size: 16px;
+}
+.pub-container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 20px;
+}
+.pub-detail-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 50px;
+    scroll-margin-top: 120px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.pub-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, #F2A85F, #CCFF00);
+    border-radius: 24px 0 0 24px;
+}
+.pub-detail-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+.pub-detail-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+.pub-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    color: #ccc;
+    font-size: 0.95rem;
+    align-items: center;
+}
+.pub-detail-meta i {
+    color: #F2A85F;
+    margin-right: 5px;
+}
+.pub-badge-premium {
+    background: rgba(242, 168, 95, 0.15);
+    color: #F2A85F;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(242, 168, 95, 0.3);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.pub-content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+@media (min-width: 768px) {
+    .pub-content-grid {
+        grid-template-columns: 3fr 2fr;
+    }
+}
+.pub-abstract h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+.pub-abstract p {
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+.pub-sidebar {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.pub-sidebar h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.pub-links {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+.pub-links li {
+    margin-bottom: 10px;
+}
+.pub-links a {
+    display: block;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+}
+.pub-links a:hover {
+    background: rgba(242, 168, 95, 0.2);
+    border-color: #F2A85F;
+    color: #F2A85F;
+    transform: translateX(5px);
+}
+.image-placeholder {
+    width: 100%;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+    <!-- Mohomad Rinas -->
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="index.html#Home" style="--i:1">Home</a>
+            <a href="index.html#About" style="--i:2">About</a>
+            <a href="index.html#Experience" style="--i:3">Experience</a>
+            <a href="projects.html" style="--i:4">Projects</a>
+            <a href="blog.html" style="--i:5">Blog</a>
+            <a href="codelab.html" style="--i:6">CodeLab</a>
+            <a href="index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="publication-container">
+<h1 style="text-align:center; padding: 2rem 0; margin-top: 80px;">Research Publications</h1>
+
+    <div class="pub-container">
+        
+        <div class="pub-detail-card" id="pub-1">
+            <h2 class="pub-detail-title">A Version-Aware Metric for Measuring Innovation in Software Code Patterns</h2>
+            <div class="pub-detail-meta">
+                <span class="pub-badge-premium"><i class="fas fa-award"></i> IEEE Highlight</span>
+                <span><i class="bx bx-user"></i> Mohomad Rinas, Saliya Wickramasinghe</span>
+                <span><i class="bx bx-calendar"></i> Feb 2026</span>
+                <span><i class="bx bx-map"></i> ICARC 2026 - IEEE</span>
+            </div>
+            
+            <div class="pub-content-grid">
+                <div class="pub-abstract">
+                    <h3>Abstract</h3>
+                    <p>[Insert your detailed abstract here. This space is designed for a comprehensive overview of your research methodology, findings, and conclusions. You can format this with multiple paragraphs as needed.]</p>
+                </div>
+                <div class="pub-sidebar">
+                    <div class="image-placeholder">
+                        <i class="bx bx-image-alt" style="font-size: 2rem; margin-right: 10px;"></i> [Conference Image]
+                    </div>
+                    <h4>Research Materials</h4>
+                    <ul class="pub-links">
+                        <li><a href="#"><i class="bx bx-file-blank"></i> Read Full Paper</a></li>
+                        <li><a href="#"><i class="bx bx-slideshow"></i> Presentation Slides</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-detail-card" id="pub-2" style="--accent: #4CAF50;">
+            <h2 class="pub-detail-title">Bridging the Academic Management Support Gap and Enhancing Student Autonomy: A Needs-Assessment for a Smart Assistant</h2>
+            <div class="pub-detail-meta">
+                <span class="pub-badge-premium" style="color: #4CAF50; background: rgba(76,175,80,0.15); border-color: rgba(76,175,80,0.3);"><i class="bx bx-globe"></i> International Conference</span>
+                <span><i class="bx bx-user"></i> Mohomad Rinas, B.K.S. Mendis, D.A.G. De Silva, et al.</span>
+                <span><i class="bx bx-calendar"></i> Feb 2026</span>
+                <span><i class="bx bx-map"></i> 9th IRC of Uva Wellassa University 2025</span>
+            </div>
+            
+            <div class="pub-content-grid">
+                <div class="pub-abstract">
+                    <h3>Abstract</h3>
+                    <p>[Insert your detailed abstract here. Explain the motivation behind the Smart Assistant and how it bridges the academic management gap.]</p>
+                </div>
+                <div class="pub-sidebar">
+                    <div class="image-placeholder">
+                        <i class="bx bx-image-alt" style="font-size: 2rem; margin-right: 10px;"></i> [Conference Image]
+                    </div>
+                    <h4>Research Materials</h4>
+                    <ul class="pub-links">
+                        <li><a href="#"><i class="bx bx-file-blank"></i> Read Full Paper</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-detail-card" id="pub-3">
+            <h2 class="pub-detail-title">SinglishGPT: Enhancing Real-Time Translation and Information Retrieval for Singlish Chatbots</h2>
+            <div class="pub-detail-meta">
+                <span class="pub-badge-premium" style="color: #4CAF50; background: rgba(76,175,80,0.15); border-color: rgba(76,175,80,0.3);"><i class="bx bx-globe"></i> International Conference</span>
+                <span><i class="bx bx-user"></i> Mohomad Rinas, Saliya Wickramasinghe</span>
+                <span><i class="bx bx-calendar"></i> Feb 2026</span>
+                <span><i class="bx bx-map"></i> 9th IRC of Uva Wellassa University 2025</span>
+            </div>
+            
+            <div class="pub-content-grid">
+                <div class="pub-abstract">
+                    <h3>Abstract</h3>
+                    <p>[Insert your detailed abstract here. Describe the architecture of SinglishGPT and its real-time translation capabilities.]</p>
+                </div>
+                <div class="pub-sidebar">
+                    <div class="image-placeholder">
+                        <i class="bx bx-image-alt" style="font-size: 2rem; margin-right: 10px;"></i> [Conference Image]
+                    </div>
+                    <h4>Research Materials</h4>
+                    <ul class="pub-links">
+                        <li><a href="#"><i class="bx bx-file-blank"></i> Read Full Paper</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pub-detail-card" id="pub-4">
+            <h2 class="pub-detail-title">Pioneering Large Language Model Integration for Proactive Error Detection and Code Modification Recommendations</h2>
+            <div class="pub-detail-meta">
+                <span class="pub-badge-premium" style="color: #4CAF50; background: rgba(76,175,80,0.15); border-color: rgba(76,175,80,0.3);"><i class="bx bx-globe"></i> International Conference</span>
+                <span><i class="bx bx-user"></i> Mohomad Rinas, Saliya Wickramasinghe</span>
+                <span><i class="bx bx-calendar"></i> Feb 2026</span>
+                <span><i class="bx bx-map"></i> 9th IRC of Uva Wellassa University 2025</span>
+            </div>
+            
+            <div class="pub-content-grid">
+                <div class="pub-abstract">
+                    <h3>Abstract</h3>
+                    <p>[Insert your detailed abstract here. Detail how LLMs are used for proactive error detection in integration testing.]</p>
+                </div>
+                <div class="pub-sidebar">
+                    <div class="image-placeholder">
+                        <i class="bx bx-image-alt" style="font-size: 2rem; margin-right: 10px;"></i> [Conference Image]
+                    </div>
+                    <h4>Research Materials</h4>
+                    <ul class="pub-links">
+                        <li><a href="#"><i class="bx bx-file-blank"></i> Read Full Paper</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</article>
+
+  
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+  <!-- Theme Switcher UI -->
+  <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+  <script>
+    const THEMES = [
+      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+    ];
+
+    let currentTheme = localStorage.getItem('selected_theme') || "default";
+    const container = document.getElementById("themeSwitcher");
+
+    function setTheme(themeId) {
+      currentTheme = themeId;
+      document.documentElement.setAttribute("data-theme", themeId);
+      localStorage.setItem('selected_theme', themeId);
+      
+      document.querySelectorAll(".theme-btn").forEach(btn => {
+        if (btn.dataset.theme === themeId) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    if(container) {
+      THEMES.forEach(theme => {
+        const btn = document.createElement("button");
+        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+        btn.dataset.theme = theme.id;
+        btn.title = theme.label;
+        
+        const bgPreview = document.createElement("div");
+        bgPreview.className = "theme-bg-preview";
+        bgPreview.style.backgroundColor = theme.bg;
+        
+        const accentPreview = document.createElement("div");
+        accentPreview.className = "theme-accent-preview";
+        accentPreview.style.backgroundColor = theme.color;
+
+        btn.appendChild(bgPreview);
+        btn.appendChild(accentPreview);
+
+        btn.addEventListener("click", () => setTheme(theme.id));
+        container.appendChild(btn);
+      });
+      // Initialize on load
+      setTheme(currentTheme);
+    }
+  </script>
+
+</body>
+</html>

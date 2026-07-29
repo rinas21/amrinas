@@ -4,7 +4,7 @@
     <meta name="author" content="Mohomad Rinas">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | A.M. Rinas Portfolio</title>
+    <title>Publications | A.M. Rinas Portfolio</title>
     
     <!-- SEO Meta Tags for Google AdSense -->
     <meta name="description" content="A collection of coding labs and tutorials.">
@@ -220,166 +220,207 @@
     </header>
 
     
-<h1 style="text-align:center; padding: 2rem 0; margin-top: 80px;">My Projects</h1>
-    <!-- ===== LIVE PROJECTS ===== -->
-    <section id="LiveProjects">
-        <div class="section-glow"></div>
-        <h2 class="subtitle gsap-fade-up">Live <span class="gradient-text">Projects</span></h2>
-        <div class="live-projects-grid">
+<h1 style="text-align:center; padding: 2rem 0; margin-top: 80px;">Research Publications</h1>
 
-            <a href="https://cse-atlas.vercel.app" target="_blank" class="simple-live-card gsap-card">
-                <i class='bx bx-link-external'></i>
-                <div class="simple-live-info">
-                    <h3>CSE Atlas</h3>
-                    <p>cse-atlas.vercel.app</p>
-                </div>
-            </a>
+<style>
+.expanded-pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+.expanded-pub-item {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #F2A85F;
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+.expanded-pub-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.expanded-pub-item h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.expanded-pub-item .pub-authors {
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+.expanded-pub-item .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+.expanded-pub-item .pub-badge {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.expanded-pub-item .pub-badge.ieee {
+    background: #F2A85F;
+    color: #000;
+    border-color: #F2A85F;
+    box-shadow: 0 0 10px rgba(242, 168, 95, 0.4);
+}
+.pub-abstract {
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.6;
+}
+.pub-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.pub-image-placeholder {
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed rgba(255,255,255,0.2);
+    border-radius: 8px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+.pub-actions {
+    display: flex;
+    gap: 15px;
+}
+.pub-btn {
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+.pub-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+.pub-btn.primary {
+    background: #F2A85F;
+    color: #000;
+}
+.pub-btn.primary:hover {
+    background: #d99654;
+}
+</style>
 
-            <!-- Add more live project cards here -->
 
+<div class="expanded-pub-list">
+    <!-- Pub 1 -->
+    <div class="expanded-pub-item" id="pub-1">
+        <h2>A Version-Aware Metric for Measuring Innovation in Software Code Patterns</h2>
+        <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+        <div class="pub-meta">
+            <span class="pub-badge ieee"><i class="fas fa-award"></i> IEEE Highlight</span>
+            <span><i class="bx bx-calendar"></i> Feb 2026</span>
+            <span><i class="bx bx-map"></i> ICARC 2026 - IEEE</span>
         </div>
-    </section>
+        <div class="pub-abstract">
+            <strong>Abstract:</strong>
+            <br>
+            [Your abstract content goes here. Describe the research methodology, findings, and conclusion.]
+        </div>
+        <div class="pub-images">
+            <div class="pub-image-placeholder">Conference Image Placeholder</div>
+            <div class="pub-image-placeholder">Presentation Slide Placeholder</div>
+        </div>
+        <div class="pub-actions">
+            <a href="#" class="pub-btn primary">Read Full Paper</a>
+            <a href="#" class="pub-btn">View Presentation</a>
+        </div>
+    </div>
 
-    <!-- ===== PROJECTS ===== -->
-    <section id="Projects">
-        <div class="section-glow"></div>
-        <div id="portfolio">
-            <div class="main-text" id="serv">
-                <h2 class="gsap-fade-up">My <span>Projects</span></h2>
-                <div class="bento-grid">
-<div class="bento-card bento-large gsap-card">
-                        <i class='bx bx-cog project-icon'></i>
-                        <h3>Campaign Management System</h3>
-                        <p><strong>Role:</strong> Developer Associate, Production Support</p>
-                        <p>• Bonus offering for SIM users based on user profile and transactions.</p>
-                        <p>• Worked on production-related issues and solved many critical system problems.</p>
-                        <p>• Worked with technologies such as Java, Servlet, JSX, JS, Bash scripting, Ant, Maven.</p>
-                        
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
-<span class="project-tag"><i class="devicon-java-plain colored"></i> Servlet</span>
-<span class="project-tag"><i class="devicon-react-original colored"></i> JSX</span>
-<span class="project-tag"><i class="devicon-bash-plain colored"></i> Bash Scripting</span>
-<span class="project-tag"><i class="devicon-maven-plain colored"></i> Maven</span>
-</div></div>
-<div class="bento-card bento-tall gsap-card">
-                        <i class='bx bx-group project-icon'></i>
-                        <h3>Customer Segmentation &amp; Rewards</h3>
-                        <p><strong>Role:</strong> QA &amp; Manual Tester</p>
-                        <p>• Worked on a segmentation and rewarding application supporting peak-level promotions.</p>
-                        <p>• Conducted bug fixing and manual testing on over 1000 modules.</p>
-                        
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-mysql-plain colored"></i> SQL</span>
-<span class="project-tag"><i class="bx bx-data"></i> IBM Db2</span>
-<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
-<span class="project-tag"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
-<span class="project-tag"><i class="devicon-graphql-plain colored"></i> GraphQL</span>
-</div></div>
-<div class="bento-card gsap-card">
-                        <i class='bx bx-transfer-alt project-icon'></i>
-                        <h3>Mobile Number Portability</h3>
-                        <p><strong>Role:</strong> QA &amp; API Tester</p>
-                        <p>• Mobile number portability enabling SIM card network conversion while keeping phone number.
-                        </p>
-                        <p>• Implemented testing servers, API simulators, and testing pipelines.</p>
-                        
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
-<span class="project-tag"><i class="devicon-postman-plain colored"></i> Postman</span>
-<span class="project-tag"><i class="bx bx-network-chart"></i> Wireshark</span>
-<span class="project-tag"><i class="bx bx-transfer-alt"></i> REST APIs</span>
-<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-</div></div>
-<div class="bento-card bento-wide gsap-card">
-                        <i class='bx bx-bar-chart-alt project-icon'></i>
-                        <h3>System Monitoring Dashboard</h3>
-                        <p><strong>Role:</strong> Developer</p>
-                        <p>• Architected a system monitoring dashboard for clustered servers.</p>
-                        <p>• Created dashboards with Grafana, Prometheus, Promtail, Loki, and Node Exporter.</p>
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-grafana-original colored"></i> Grafana</span>
-<span class="project-tag"><i class="devicon-prometheus-original colored"></i> Prometheus</span>
-<span class="project-tag"><i class="bx bx-file"></i> Loki</span>
-<span class="project-tag"><i class="bx bx-server"></i> Node Exporter</span>
-</div></div>
-<div class="bento-card gsap-card">
-                        <i class='bx bx-wifi project-icon'></i>
-                        <h3>Wi-Fi Authentication App</h3>
-                        <p><strong>Role:</strong> QA</p>
-                        <p>• Mobile Wi-Fi authentication application for network user authentication.</p>
-                        <p>• Implemented testing servers and API simulators with networking tools.</p>
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-redhat-plain colored"></i> Red Hat</span>
-<span class="project-tag"><i class="devicon-bash-plain colored"></i> Shell Scripting</span>
-<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-<span class="project-tag"><i class="bx bx-wifi"></i> Networking</span>
-</div></div>
-<div class="bento-card bento-wide gsap-card">
-                        <i class='bx bx-book-reader project-icon'></i>
-                        <h3>Education Suggestion System</h3>
-                        <p><strong>Role:</strong> Full Stack Developer</p>
-                        <p>• Built an educational suggestion system to help students focus on areas of improvement.</p>
-                        <p>• Full SDLC including requirements gathering and system maintenance.</p>
-                        
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-php-plain colored"></i> PHP</span>
-<span class="project-tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
-<span class="project-tag"><i class="devicon-react-original colored"></i> React Native</span>
-<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-<span class="project-tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
-</div></div>
-<div class="bento-card gsap-card">
-                        <i class='bx bx-bulb project-icon'></i>
-                        <h3>Other Contributions</h3>
-                        <p>• Built chatbots, web interfaces, and sample web pages in different frameworks.</p>
-                        <p>• Conducted research and development in Kubernetes, Docker, AI, and machine learning.</p>
-                        <p>• Completed numerous certifications and training in data science and various technologies.
-                        </p>
-                        
-                        
-                        
-                        
-                    <div class="bento-tags">
-<span class="project-tag"><i class="devicon-python-plain colored"></i> Python</span>
-<span class="project-tag"><i class="devicon-docker-plain colored"></i> Docker</span>
-<span class="project-tag"><i class="devicon-kubernetes-plain colored"></i> Kubernetes</span>
-<span class="project-tag"><i class="bx bx-brain"></i> AI/ML</span>
-</div></div>
+    <!-- Pub 2 -->
+    <div class="expanded-pub-item" id="pub-2" style="border-left-color: #4CAF50;">
+        <h2>Bridging the Academic Management Support Gap and Enhancing Student Autonomy: A Needs-Assessment for a Smart Assistant Integrated with the OULMS at the Open University of Sri Lanka</h2>
+        <div class="pub-authors">Mohomad Rinas, B. K. S. Mendis, D. A. G. De Silva, P. G. P. Perera, Lakshan Gunasekara, Saliya Wickramasinghe</div>
+        <div class="pub-meta">
+            <span class="pub-badge"><i class="bx bx-globe"></i> International Conference</span>
+            <span><i class="bx bx-calendar"></i> Feb 2026</span>
+            <span><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
+        </div>
+        <div class="pub-abstract">
+            <strong>Abstract:</strong>
+            <br>
+            [Your abstract content goes here. Describe the research methodology, findings, and conclusion.]
+        </div>
+        <div class="pub-images">
+            <div class="pub-image-placeholder">Conference Image Placeholder</div>
+        </div>
+        <div class="pub-actions">
+            <a href="#" class="pub-btn primary">Read Full Paper</a>
+        </div>
+    </div>
+
+    <!-- Pub 3 -->
+    <div class="expanded-pub-item" id="pub-3" style="border-left-color: #4CAF50;">
+        <h2>SinglishGPT: Enhancing Real-Time Translation and Information Retrieval for Singlish Chatbots</h2>
+        <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+        <div class="pub-meta">
+            <span class="pub-badge"><i class="bx bx-globe"></i> International Conference</span>
+            <span><i class="bx bx-calendar"></i> Feb 2026</span>
+            <span><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
+        </div>
+        <div class="pub-abstract">
+            <strong>Abstract:</strong>
+            <br>
+            [Your abstract content goes here. Describe the research methodology, findings, and conclusion.]
+        </div>
+        <div class="pub-images">
+            <div class="pub-image-placeholder">Conference Image Placeholder</div>
+        </div>
+        <div class="pub-actions">
+            <a href="#" class="pub-btn primary">Read Full Paper</a>
+        </div>
+    </div>
+
+    <!-- Pub 4 -->
+    <div class="expanded-pub-item" id="pub-4" style="border-left-color: #4CAF50;">
+        <h2>Pioneering Large Language Model Integration for Proactive Error Detection and Code Modification Recommendations in Integration Testing</h2>
+        <div class="pub-authors">Mohomad Rinas, Saliya Wickramasinghe</div>
+        <div class="pub-meta">
+            <span class="pub-badge"><i class="bx bx-globe"></i> International Conference</span>
+            <span><i class="bx bx-calendar"></i> Feb 2026</span>
+            <span><i class="bx bx-map"></i> 9th International Research Conference of Uva Wellassa University 2025</span>
+        </div>
+        <div class="pub-abstract">
+            <strong>Abstract:</strong>
+            <br>
+            [Your abstract content goes here. Describe the research methodology, findings, and conclusion.]
+        </div>
+        <div class="pub-images">
+            <div class="pub-image-placeholder">Conference Image Placeholder</div>
+        </div>
+        <div class="pub-actions">
+            <a href="#" class="pub-btn primary">Read Full Paper</a>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</section>
 
-
-
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
         <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
             <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
