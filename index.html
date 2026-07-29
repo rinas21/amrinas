@@ -130,6 +130,7 @@
     <meta name="msvalidate.01" content="498A55A9680CBF5AF363996C7386169A" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="files/services.css">
 </head>
 
 <body>
@@ -621,55 +622,31 @@
     </section>
 
     <!-- ===== SERVICES ===== -->
-    <section id="Services">
+        <section class="services" id="Services">
         <div class="section-glow"></div>
-        <div class="project">
-            <div class="container">
-                <h2 class="sub-title gsap-fade-up">My <span class="gradient-text">Services</span></h2>
-                <div class="prj-list">
-                    <div class="gsap-card">
-                        <i class='bx bx-code' style="color: #F2A85F;"></i>
-                        <h2>Web Development</h2>
-                        <p>Specialized in developing dynamic, responsive websites and applications using modern
-                            frameworks like React and JavaScript. Proficient in integrating front-end technologies with
-                            backend systems.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class='bx bx-cube' style="color: #F2A85F;"></i>
-                        <h2>UI / UX Design</h2>
-                        <p>Focused on delivering clean and user-friendly designs that enhance usability and provide a
-                            seamless user experience across various platforms.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class='bx bxl-java' style="color: #F2A85F;"></i>
-                        <h2>Java &amp; Android Development</h2>
-                        <p>Experienced in Java programming, especially in building Android applications using Android
-                            Studio. Can develop both native and hybrid mobile apps.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class='bx bx-check-square' style="color: #F2A85F;"></i>
-                        <h2>QA &amp; Automation Testing</h2>
-                        <p>Strong background in manual and automated testing. Proficient in tools like Selenium and
-                            Katalon for writing test cases and ensuring high-quality code.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class='bx bxl-git' style="color: #F2A85F;"></i>
-                        <h2>Git &amp; CI/CD Pipelines</h2>
-                        <p>Proficient in using Git for version control and integrating CI/CD pipelines using GitLab for
-                            seamless deployment and continuous integration.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class="fas fa-database" style="color: #F2A85F;"></i>
-                        <h2>Database Development</h2>
-                        <p>Experienced in working with databases like MySQL and MongoDB, ensuring data integrity,
-                            optimized queries, and efficient database management.</p>
-                    </div>
-                    <div class="gsap-card">
-                        <i class='bx bx-shield-alt-2' style="color: #F2A85F;"></i>
-                        <h2>Performance &amp; Security Testing</h2>
-                        <p>Ensuring robust software performance through stress and load testing, along with securing
-                            applications by performing OWASP security testing.</p>
-                    </div>
+        <div class="services-head">
+            <h2 class="sub-title gsap-fade-up">My <span class="gradient-text">Services</span></h2>
+        </div>
+
+        <div class="editor gsap-fade-up">
+            <div class="editor-titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="path"><b>portfolio</b> &mdash; services</span>
+            </div>
+
+            <div class="table-head">
+                <span class="col-type">TYPE</span><span>SERVICE</span><span class="col-preview">PREVIEW</span><span></span>
+            </div>
+
+            <div id="rows"></div>
+
+            <div class="status-bar">
+                <span class="branch">main</span>
+                <div class="status-right">
+                    <span id="statCount"></span>
+                    <span>UTF-8</span>
+                    <span>Spaces: 2</span>
+                    <span>HTML/JS</span>
                 </div>
             </div>
         </div>
@@ -726,56 +703,9 @@
   <!-- Theme Switcher UI -->
   <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+  <script src="./files/theme.js" defer></script>
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
-
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
-
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
-
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
-
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
-
+    <script src="files/services.js" defer></script>
 </body>
 
 </html>
