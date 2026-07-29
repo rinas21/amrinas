@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Mohomad Rinas">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | A.M. Rinas Portfolio</title>
+    
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="A collection of coding labs and tutorials.">
+    <meta name="keywords" content="CodeLab, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://rinas.tech/blogs/template.html">
+    
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CodeLab | A.M. Rinas Blog">
+    <meta property="og:description" content="A collection of coding labs and tutorials.">
+    <meta property="og:url" content="https://rinas.tech/blogs/template.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="CodeLab">
+    <meta name="twitter:description" content="A collection of coding labs and tutorials.">
+    
+    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas21.github.io/amrinas/blogs/template.html"
+      },
+      "headline": "CodeLab",
+      "description": "A collection of coding labs and tutorials.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas21.github.io/amrinas/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas21.github.io/amrinas/favicon.png"
+        }
+      },
+      "datePublished": "2026-06-03",
+      "dateModified": "2026-06-03"
+    }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../files/style.css">
+    <link rel="stylesheet" href="../files/cyber-theme.css">
+    <link rel="stylesheet" href="../files/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+
+<link rel="stylesheet" href="./files/theme-switcher.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+<style>
+/* Bento Grid Styles */
+
+.live-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+}
+.simple-live-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+.simple-live-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(138, 43, 226, 0.2);
+}
+.simple-live-card i {
+    font-size: 2rem;
+    color: #CCFF00;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+@media (min-width: 900px) {
+    .bento-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 280px;
+    }
+    .bento-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    .bento-wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    .bento-tall {
+        grid-column: span 1;
+        grid-row: span 2;
+    }
+}
+.bento-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+.bento-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(138, 43, 226, 0.15);
+}
+.bento-card .project-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: -webkit-linear-gradient(45deg, #FF0055, #CCFF00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.bento-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.bento-card p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+.bento-tags {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 15px;
+}
+.bento-tags .project-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s ease;
+}
+.bento-tags .project-tag:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+.bento-tags i {
+    font-size: 1.1rem;
+}
+</style>
+</head>
+<body>
+    <!-- Mohomad Rinas -->
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
+        <nav class="navbar">
+            <a href="index.html#Home" style="--i:1">Home</a>
+            <a href="index.html#About" style="--i:2">About</a>
+            <a href="index.html#Experience" style="--i:3">Experience</a>
+            <a href="projects.html" style="--i:4" class="active">Projects</a>
+            <a href="blog.html" style="--i:5">Blog</a>
+            <a href="codelab.html" style="--i:6">CodeLab</a>
+            <a href="index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    
+<h1 style="text-align:center; padding: 2rem 0; margin-top: 80px;">My Projects</h1>
+    <!-- ===== LIVE PROJECTS ===== -->
+    <section id="LiveProjects">
+        <div class="section-glow"></div>
+        <h2 class="subtitle gsap-fade-up">Live <span class="gradient-text">Projects</span></h2>
+        <div class="live-projects-grid">
+
+            <a href="https://cse-atlas.vercel.app" target="_blank" class="simple-live-card gsap-card">
+                <i class='bx bx-link-external'></i>
+                <div class="simple-live-info">
+                    <h3>CSE Atlas</h3>
+                    <p>cse-atlas.vercel.app</p>
+                </div>
+            </a>
+
+            <!-- Add more live project cards here -->
+
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="Projects">
+        <div class="section-glow"></div>
+        <div id="portfolio">
+            <div class="main-text" id="serv">
+                <h2 class="gsap-fade-up">My <span>Projects</span></h2>
+                <div class="bento-grid">
+<div class="bento-card bento-large gsap-card">
+                        <i class='bx bx-cog project-icon'></i>
+                        <h3>Campaign Management System</h3>
+                        <p><strong>Role:</strong> Developer Associate, Production Support</p>
+                        <p>• Bonus offering for SIM users based on user profile and transactions.</p>
+                        <p>• Worked on production-related issues and solved many critical system problems.</p>
+                        <p>• Worked with technologies such as Java, Servlet, JSX, JS, Bash scripting, Ant, Maven.</p>
+                        
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
+<span class="project-tag"><i class="devicon-java-plain colored"></i> Servlet</span>
+<span class="project-tag"><i class="devicon-react-original colored"></i> JSX</span>
+<span class="project-tag"><i class="devicon-bash-plain colored"></i> Bash Scripting</span>
+<span class="project-tag"><i class="devicon-maven-plain colored"></i> Maven</span>
+</div></div>
+<div class="bento-card bento-tall gsap-card">
+                        <i class='bx bx-group project-icon'></i>
+                        <h3>Customer Segmentation &amp; Rewards</h3>
+                        <p><strong>Role:</strong> QA &amp; Manual Tester</p>
+                        <p>• Worked on a segmentation and rewarding application supporting peak-level promotions.</p>
+                        <p>• Conducted bug fixing and manual testing on over 1000 modules.</p>
+                        
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-mysql-plain colored"></i> SQL</span>
+<span class="project-tag"><i class="bx bx-data"></i> IBM Db2</span>
+<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
+<span class="project-tag"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+<span class="project-tag"><i class="devicon-graphql-plain colored"></i> GraphQL</span>
+</div></div>
+<div class="bento-card gsap-card">
+                        <i class='bx bx-transfer-alt project-icon'></i>
+                        <h3>Mobile Number Portability</h3>
+                        <p><strong>Role:</strong> QA &amp; API Tester</p>
+                        <p>• Mobile number portability enabling SIM card network conversion while keeping phone number.
+                        </p>
+                        <p>• Implemented testing servers, API simulators, and testing pipelines.</p>
+                        
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-java-plain colored"></i> Java</span>
+<span class="project-tag"><i class="devicon-postman-plain colored"></i> Postman</span>
+<span class="project-tag"><i class="bx bx-network-chart"></i> Wireshark</span>
+<span class="project-tag"><i class="bx bx-transfer-alt"></i> REST APIs</span>
+<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+</div></div>
+<div class="bento-card bento-wide gsap-card">
+                        <i class='bx bx-bar-chart-alt project-icon'></i>
+                        <h3>System Monitoring Dashboard</h3>
+                        <p><strong>Role:</strong> Developer</p>
+                        <p>• Architected a system monitoring dashboard for clustered servers.</p>
+                        <p>• Created dashboards with Grafana, Prometheus, Promtail, Loki, and Node Exporter.</p>
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-grafana-original colored"></i> Grafana</span>
+<span class="project-tag"><i class="devicon-prometheus-original colored"></i> Prometheus</span>
+<span class="project-tag"><i class="bx bx-file"></i> Loki</span>
+<span class="project-tag"><i class="bx bx-server"></i> Node Exporter</span>
+</div></div>
+<div class="bento-card gsap-card">
+                        <i class='bx bx-wifi project-icon'></i>
+                        <h3>Wi-Fi Authentication App</h3>
+                        <p><strong>Role:</strong> QA</p>
+                        <p>• Mobile Wi-Fi authentication application for network user authentication.</p>
+                        <p>• Implemented testing servers and API simulators with networking tools.</p>
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-redhat-plain colored"></i> Red Hat</span>
+<span class="project-tag"><i class="devicon-bash-plain colored"></i> Shell Scripting</span>
+<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+<span class="project-tag"><i class="bx bx-wifi"></i> Networking</span>
+</div></div>
+<div class="bento-card bento-wide gsap-card">
+                        <i class='bx bx-book-reader project-icon'></i>
+                        <h3>Education Suggestion System</h3>
+                        <p><strong>Role:</strong> Full Stack Developer</p>
+                        <p>• Built an educational suggestion system to help students focus on areas of improvement.</p>
+                        <p>• Full SDLC including requirements gathering and system maintenance.</p>
+                        
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-php-plain colored"></i> PHP</span>
+<span class="project-tag"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+<span class="project-tag"><i class="devicon-react-original colored"></i> React Native</span>
+<span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+<span class="project-tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+</div></div>
+<div class="bento-card gsap-card">
+                        <i class='bx bx-bulb project-icon'></i>
+                        <h3>Other Contributions</h3>
+                        <p>• Built chatbots, web interfaces, and sample web pages in different frameworks.</p>
+                        <p>• Conducted research and development in Kubernetes, Docker, AI, and machine learning.</p>
+                        <p>• Completed numerous certifications and training in data science and various technologies.
+                        </p>
+                        
+                        
+                        
+                        
+                    <div class="bento-tags">
+<span class="project-tag"><i class="devicon-python-plain colored"></i> Python</span>
+<span class="project-tag"><i class="devicon-docker-plain colored"></i> Docker</span>
+<span class="project-tag"><i class="devicon-kubernetes-plain colored"></i> Kubernetes</span>
+<span class="project-tag"><i class="bx bx-brain"></i> AI/ML</span>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+  
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+  <!-- Theme Switcher UI -->
+  <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+  <script>
+    const THEMES = [
+      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+    ];
+
+    let currentTheme = localStorage.getItem('selected_theme') || "default";
+    const container = document.getElementById("themeSwitcher");
+
+    function setTheme(themeId) {
+      currentTheme = themeId;
+      document.documentElement.setAttribute("data-theme", themeId);
+      localStorage.setItem('selected_theme', themeId);
+      
+      document.querySelectorAll(".theme-btn").forEach(btn => {
+        if (btn.dataset.theme === themeId) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    if(container) {
+      THEMES.forEach(theme => {
+        const btn = document.createElement("button");
+        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+        btn.dataset.theme = theme.id;
+        btn.title = theme.label;
+        
+        const bgPreview = document.createElement("div");
+        bgPreview.className = "theme-bg-preview";
+        bgPreview.style.backgroundColor = theme.bg;
+        
+        const accentPreview = document.createElement("div");
+        accentPreview.className = "theme-accent-preview";
+        accentPreview.style.backgroundColor = theme.color;
+
+        btn.appendChild(bgPreview);
+        btn.appendChild(accentPreview);
+
+        btn.addEventListener("click", () => setTheme(theme.id));
+        container.appendChild(btn);
+      });
+      // Initialize on load
+      setTheme(currentTheme);
+    }
+  </script>
+
+</body>
+</html>
