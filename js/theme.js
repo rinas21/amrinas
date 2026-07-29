@@ -1,6 +1,6 @@
 // Theme Switcher Logic
 const THEMES = [
-  { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+  { id: "default", label: "Deep Blue", color: "#60A5FA", bg: "#0A0A0A" },
   { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
   { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
 ];

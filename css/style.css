@@ -201,7 +201,7 @@ body {
 
 .home-sci a:hover {
     background-color: var(--accent);
-    color: #000;
+    color: var(--btn-text, #000);
     transform: translateY(-4px);
     box-shadow: 0 8px 24px var(--accent-glow);
 }
@@ -763,7 +763,7 @@ body {
 
 .contact-icons a:hover {
     background: var(--accent);
-    color: #000;
+    color: var(--btn-text, #000);
     transform: translateY(-4px);
     box-shadow: 0 8px 24px var(--accent-glow);
 }
@@ -810,7 +810,7 @@ body {
 }
 
 .top i {
-    color: #000;
+    color: var(--btn-text, #000);
     font-size: 20px;
 }
 
