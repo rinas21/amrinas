@@ -1,0 +1,98 @@
+.expanded-pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+
+.expanded-pub-item {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #F2A85F;
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.expanded-pub-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.expanded-pub-item h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.expanded-pub-item .pub-authors {
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.expanded-pub-item .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.expanded-pub-item .pub-badge {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.expanded-pub-item .pub-badge.ieee {
+    background: #F2A85F;
+    color: #000;
+    border-color: #F2A85F;
+    box-shadow: 0 0 10px rgba(242, 168, 95, 0.4);
+}
+
+.pub-abstract {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.pub-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.pub-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.pub-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.pub-btn.primary {
+    background: #F2A85F;
+    color: #000;
+}
+
+.pub-btn.primary:hover {
+    background: #d99654;
+}
