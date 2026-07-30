@@ -2,337 +2,339 @@
 <html lang="en">
 
 <head>
-    <meta name="author" content="A.M Rinas">
+ <meta name="author" content="A.M Rinas">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Read about SSH Setup: A Comprehensive Guide on the A.M Rinas tech blog.">
-    <meta name="keywords"
-        content="SSH setup Linux, OpenSSH server hardening, SSH key-keygen, asymmetric encryption, disabled password authentication, Linux administration, DevOps infrastructure security, A.M. Rinas">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
+ <meta name="description" content="Read about SSH Setup: A Comprehensive Guide on the A.M Rinas tech blog.">
+ <meta name="keywords"
+ content="SSH setup Linux, OpenSSH server hardening, SSH key-keygen, asymmetric encryption, disabled password authentication, Linux administration, DevOps infrastructure security, A.M. Rinas">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide | A.M. Rinas Blog">
-    <meta property="og:description"
-        content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
-    <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide | A.M. Rinas Blog">
+ <meta property="og:description"
+ content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
-    <meta name="twitter:description"
-        content="Step-by-step systems workflow for deploying OpenSSH server daemons, managing public key cryptography, and executing hardening profiles.">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
+ <meta name="twitter:description"
+ content="Step-by-step systems workflow for deploying OpenSSH server daemons, managing public key cryptography, and executing hardening profiles.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
-        rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link
+ href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+ rel="stylesheet">
 
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <!-- JSON-LD Schema -->
+ <!-- JSON-LD Schema -->
 
-<link rel="stylesheet" href="../files/theme-switcher.css">
+<link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
+ <!-- JSON-LD Schemas -->
 
 
-    <!-- SEO Meta Tags -->
-    <title>SSH Setup: A Comprehensive Guide | A.M Rinas</title>
-    <meta name="description" content="Read about SSH Setup: A Comprehensive Guide on the A.M Rinas tech blog.">
-    <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide">
-    <meta property="og:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
-    <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
-    <meta name="twitter:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <title>SSH Setup: A Comprehensive Guide | A.M Rinas</title>
+ <meta name="description" content="Read about SSH Setup: A Comprehensive Guide on the A.M Rinas tech blog.">
+ <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide">
+ <meta property="og:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
+ <meta name="twitter:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Comprehensive SSH Setup and Hardening Guide",
-      "description": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
-      "image": "https://rinas.tech/img/100blog.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "A.M Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "15 May 2026",
-      "dateModified": "15 May 2026",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://rinas21.github.io/amrinas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://rinas21.github.io/amrinas/blog.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Comprehensive SSH Setup and Hardening Guide",
-          "item": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
-        }
-      ]
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Comprehensive SSH Setup and Hardening Guide",
+ "description": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "15 May 2026",
+ "dateModified": "15 May 2026",
+ "mainEntityOfPage": {
+ "@type": "WebPage",
+ "@id": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
+ }
+ }
+ </script>
+ 
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "Comprehensive SSH Setup and Hardening Guide",
+ "item": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
+ }
+ ]
+ }
+ </script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Mohomad Rinas -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="../projects.html" style="--i:4">Projects</a>
-            <a href="../blog.html" style="--i:5">Blog</a>
-            <a href="../codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- Mohomad Rinas -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <nav class="navbar">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="../pages/projects.html" style="--i:4">Projects</a>
+ <a href="../pages/blog.html" style="--i:5">Blog</a>
+ <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <article class="blog-post-container">
-        <h1>SSH Setup: A Comprehensive Guide</h1>
+ <article class="blog-post-container">
+ <h1>SSH Setup: A Comprehensive Guide</h1>
 
 
 
-        <p>
-            Establishing secure, encrypted operational channels into remote Linux installations is a foundational
-            requirement for modern systems administration and DevOps infrastructure pipelines. Secure Shell (SSH)
-            provides a robust cryptographic protocol layout designed to safely transmit shell data streams, execute
-            remote commands, and securely forward transport endpoints over untrusted infrastructure networks.
-        </p>
+ <p>
+ Establishing secure, encrypted operational channels into remote Linux installations is a foundational
+ requirement for modern systems administration and DevOps infrastructure pipelines. Secure Shell (SSH)
+ provides a robust cryptographic protocol layout designed to safely transmit shell data streams, execute
+ remote commands, and securely forward transport endpoints over untrusted infrastructure networks.
+ </p>
 
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix3paezodtkOmM6USidx6dApoCyF78LCrolKmMnaqVMREuibkn5PykCAhQP7AH6bppF1ooUrqb9Bvbz_quvBeVGABJyKiq_kzWQM3OF3GHuBrHJgrRbgY06XuzI2pxsZLp7Qt29XoLAY2Pchs2PiaugOjxjYJ9uGqWO8Wjt9z8romh6v5W1XqJLtVR/s720/basic-ssh-commands.webp"
-            alt="Asymmetric cryptographic framework detailing public key exchange pipelines over an OpenSSH server interface banner">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEix3paezodtkOmM6USidx6dApoCyF78LCrolKmMnaqVMREuibkn5PykCAhQP7AH6bppF1ooUrqb9Bvbz_quvBeVGABJyKiq_kzWQM3OF3GHuBrHJgrRbgY06XuzI2pxsZLp7Qt29XoLAY2Pchs2PiaugOjxjYJ9uGqWO8Wjt9z8romh6v5W1XqJLtVR/s720/basic-ssh-commands.webp"
+ alt="Asymmetric cryptographic framework detailing public key exchange pipelines over an OpenSSH server interface banner">
 
-        <h2>Deploying and Enforcing the OpenSSH Daemon</h2>
-        <p>
-            To transform an isolated Linux installation into an accessible remote server node, you must configure the
-            OpenSSH server daemon (<code>sshd</code>). This service continuously monitors network interfaces for inbound
-            access requests.
-        </p>
+ <h2>Deploying and Enforcing the OpenSSH Daemon</h2>
+ <p>
+ To transform an isolated Linux installation into an accessible remote server node, you must configure the
+ OpenSSH server daemon (<code>sshd</code>). This service continuously monitors network interfaces for inbound
+ access requests.
+ </p>
 
-        <h3>Step 1: Install the OpenSSH Binary Suite</h3>
-        <p>
-            Ensure your server repository definitions index is fully refreshed, then fetch the foundational
-            cryptographic daemon:
-        </p>
-        <pre><code>sudo apt update
+ <h3>Step 1: Install the OpenSSH Binary Suite</h3>
+ <p>
+ Ensure your server repository definitions index is fully refreshed, then fetch the foundational
+ cryptographic daemon:
+ </p>
+ <pre><code>sudo apt update
 sudo apt install openssh-server</code></pre>
 
-        <h3>Step 2: Initialize Systemd Daemon Management Core</h3>
-        <p>
-            To guarantee connectivity states persist across unexpected machine restarts or scaling initialization
-            events, toggle the daemon's lifecycle properties to automatically boot:
-        </p>
-        <pre><code>sudo systemctl enable ssh
+ <h3>Step 2: Initialize Systemd Daemon Management Core</h3>
+ <p>
+ To guarantee connectivity states persist across unexpected machine restarts or scaling initialization
+ events, toggle the daemon's lifecycle properties to automatically boot:
+ </p>
+ <pre><code>sudo systemctl enable ssh
 sudo systemctl start ssh</code></pre>
-        <p>
-            Verify that your background orchestration structures are running actively without generating warnings or
-            configuration errors:
-        </p>
-        <pre><code>sudo systemctl status ssh</code></pre>
+ <p>
+ Verify that your background orchestration structures are running actively without generating warnings or
+ configuration errors:
+ </p>
+ <pre><code>sudo systemctl status ssh</code></pre>
 
-        <h2>Hardening Daemon Configurations</h2>
-        <p>
-            Relying solely on default network parameters leaves endpoints exposed to standard dictionary scan attempts.
-            Modifying server listening behaviors adds an initial layer of defense.
-        </p>
+ <h2>Hardening Daemon Configurations</h2>
+ <p>
+ Relying solely on default network parameters leaves endpoints exposed to standard dictionary scan attempts.
+ Modifying server listening behaviors adds an initial layer of defense.
+ </p>
 
-        <h3>Step 3: Modify Network Listening Assignments (Optional)</h3>
-        <p>
-            Isolate the configuration matrix file using a standard console text manager:
-        </p>
-        <pre><code>sudo nano /etc/ssh/sshd_config</code></pre>
-        <p>
-            Locate the explicit port configuration row (historically preconfigured as <code>Port 22</code>). Modify the
-            property parameter to target an unassigned, custom high-range port segment to mitigate simple automated port
-            scanning. Once completed, save your modifications and bounce the core listener:
-        </p>
-        <pre><code>sudo systemctl restart ssh</code></pre>
+ <h3>Step 3: Modify Network Listening Assignments (Optional)</h3>
+ <p>
+ Isolate the configuration matrix file using a standard console text manager:
+ </p>
+ <pre><code>sudo nano /etc/ssh/sshd_config</code></pre>
+ <p>
+ Locate the explicit port configuration row (historically preconfigured as <code>Port 22</code>). Modify the
+ property parameter to target an unassigned, custom high-range port segment to mitigate simple automated port
+ scanning. Once completed, save your modifications and bounce the core listener:
+ </p>
+ <pre><code>sudo systemctl restart ssh</code></pre>
 
-        <h2>Transitioning to Asymmetric Key Cryptography</h2>
-        <p>
-            Password structures are vulnerable to modern brute-force execution engines. Enforcing asymmetric key-pair
-            validation provides a substantially higher security baseline for your infrastructure.
-        </p>
+ <h2>Transitioning to Asymmetric Key Cryptography</h2>
+ <p>
+ Password structures are vulnerable to modern brute-force execution engines. Enforcing asymmetric key-pair
+ validation provides a substantially higher security baseline for your infrastructure.
+ </p>
 
-        <h3>Step 4: Generate a High-Entropy Cryptographic Pair</h3>
-        <p>
-            On your local management terminal, compile a 4096-bit RSA asymmetric key bundle. For enhanced security,
-            consider appending a strong passphrase to encrypt the local private file asset:
-        </p>
-        <pre><code>ssh-keygen -t rsa -b 4096</code></pre>
-        <p>
-            This operational flow records a private identifier asset internally alongside a secondary public
-            distribution asset mapped to <code>~/.ssh/id_rsa.pub</code>.
-        </p>
+ <h3>Step 4: Generate a High-Entropy Cryptographic Pair</h3>
+ <p>
+ On your local management terminal, compile a 4096-bit RSA asymmetric key bundle. For enhanced security,
+ consider appending a strong passphrase to encrypt the local private file asset:
+ </p>
+ <pre><code>ssh-keygen -t rsa -b 4096</code></pre>
+ <p>
+ This operational flow records a private identifier asset internally alongside a secondary public
+ distribution asset mapped to <code>~/.ssh/id_rsa.pub</code>.
+ </p>
 
-        <h3>Step 5: Provision Public Key Assets to the Remote Target Host</h3>
-        <p>
-            Transmit your generated public key fingerprint out to the remote architecture's authorized tracking indexes:
-        </p>
-        <pre><code>ssh-copy-id [YourUsername]@[YourServer]</code></pre>
-        <p>
-            Input your standard authentication passphrase one final time to seed the cryptographic asset into the remote
-            location.
-        </p>
+ <h3>Step 5: Provision Public Key Assets to the Remote Target Host</h3>
+ <p>
+ Transmit your generated public key fingerprint out to the remote architecture's authorized tracking indexes:
+ </p>
+ <pre><code>ssh-copy-id [YourUsername]@[YourServer]</code></pre>
+ <p>
+ Input your standard authentication passphrase one final time to seed the cryptographic asset into the remote
+ location.
+ </p>
 
-        <h3>Step 6: Enforce an Absolute Password-Less Security Policy</h3>
-        <p>
-            Once you verify that key-based authentication functions seamlessly on an independent login window, return to
-            the server's policy configuration matrix file:
-        </p>
-        <pre><code>sudo nano /etc/ssh/sshd_config</code></pre>
-        <p>
-            Locate or introduce the strict policy row and ensure it explicitly blocks standard text credentials:
-        </p>
-        <pre><code>PasswordAuthentication no</code></pre>
-        <p>
-            Commit your configuration adjustments and reload the service interface variables to seal the environment
-            against traditional credential guessing attacks:
-        </p>
-        <pre><code>sudo systemctl restart ssh</code></pre>
+ <h3>Step 6: Enforce an Absolute Password-Less Security Policy</h3>
+ <p>
+ Once you verify that key-based authentication functions seamlessly on an independent login window, return to
+ the server's policy configuration matrix file:
+ </p>
+ <pre><code>sudo nano /etc/ssh/sshd_config</code></pre>
+ <p>
+ Locate or introduce the strict policy row and ensure it explicitly blocks standard text credentials:
+ </p>
+ <pre><code>PasswordAuthentication no</code></pre>
+ <p>
+ Commit your configuration adjustments and reload the service interface variables to seal the environment
+ against traditional credential guessing attacks:
+ </p>
+ <pre><code>sudo systemctl restart ssh</code></pre>
 
-        <h2>Verifying Operational Infrastructure Integrity</h2>
-        <p>
-            Test your structural gateway configuration lines from an external operational platform using your encrypted
-            asymmetric credentials:
-        </p>
-        <pre><code>ssh [YourUsername]@[YourServer]</code></pre>
+ <h2>Verifying Operational Infrastructure Integrity</h2>
+ <p>
+ Test your structural gateway configuration lines from an external operational platform using your encrypted
+ asymmetric credentials:
+ </p>
+ <pre><code>ssh [YourUsername]@[YourServer]</code></pre>
 
-        <div class="additional-info"
-            style="margin-top: 40px; padding: 15px; background: rgba(138, 100, 64, 0.05); border-left: 4px solid var(--gold-deep); border-radius: 4px;">
-            <p style="margin: 0; font-size: 15px;">
-                Looking to sharpen your defensive security skills and interactive shell mechanics? Sharpen your
-                environment commands through interactive wargames on <a href="https://overthewire.org/wargames/bandit/"
-                    target="_blank">OverTheWire: Bandit Sandbox Lab Chambers</a>.
-            </p>
-        </div>
+ <div class="additional-info"
+ style="margin-top: 40px; padding: 15px; background: rgba(138, 100, 64, 0.05); border-left: 4px solid var(--gold-deep); border-radius: 4px;">
+ <p style="margin: 0; font-size: 15px;">
+ Looking to sharpen your defensive security skills and interactive shell mechanics? Sharpen your
+ environment commands through interactive wargames on <a href="https://overthewire.org/wargames/bandit/"
+ target="_blank">OverTheWire: Bandit Sandbox Lab Chambers</a>.
+ </p>
+ </div>
 
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-            Written by <strong>A.M. Rinas</strong>
-        </p>
-            <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-            <!-- Topic SEO Keywords: Comprehensive SSH Setup and Hardening Guide, DevOps, Guide, Tutorial -->
-    </article>
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <strong>A.M. Rinas</strong>
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <!-- Topic SEO Keywords: Comprehensive SSH Setup and Hardening Guide, DevOps, Guide, Tutorial -->
+ </article>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
 
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
 
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
 
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
 
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
 
 </body>
 

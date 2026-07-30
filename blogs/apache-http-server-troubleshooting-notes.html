@@ -1,129 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="A.M Rinas">
+ <meta name="author" content="A.M Rinas">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+ 
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
 
-    <!-- JSON-LD Schema -->
+ <!-- JSON-LD Schema -->
 
-<link rel="stylesheet" href="../files/theme-switcher.css">
+<link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
+ <!-- JSON-LD Schemas -->
 
 
-    <!-- SEO Meta Tags -->
-    <title>Apache HTTP Server Troubleshooting Notes | A.M Rinas</title>
-    <meta name="description" content="Read about Apache HTTP Server Troubleshooting Notes on the A.M Rinas tech blog.">
-    <link rel="canonical" href="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Apache HTTP Server Troubleshooting Notes">
-    <meta property="og:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
-    <meta property="og:url" content="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Apache HTTP Server Troubleshooting Notes">
-    <meta name="twitter:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <title>Apache HTTP Server Troubleshooting Notes | A.M Rinas</title>
+ <meta name="description" content="Read about Apache HTTP Server Troubleshooting Notes on the A.M Rinas tech blog.">
+ <link rel="canonical" href="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Apache HTTP Server Troubleshooting Notes">
+ <meta property="og:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
+ <meta property="og:url" content="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Apache HTTP Server Troubleshooting Notes">
+ <meta name="twitter:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Apache HTTP Server Troubleshooting Notes",
-      "description": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
-      "image": "https://rinas.tech/img/100blog.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "A.M Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "12 June 2026",
-      "dateModified": "12 June 2026",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://rinas21.github.io/amrinas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://rinas21.github.io/amrinas/blog.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Apache HTTP Server Troubleshooting Notes",
-          "item": "https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html"
-        }
-      ]
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Apache HTTP Server Troubleshooting Notes",
+ "description": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "12 June 2026",
+ "dateModified": "12 June 2026",
+ "mainEntityOfPage": {
+ "@type": "WebPage",
+ "@id": "https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html"
+ }
+ }
+ </script>
+ 
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "Apache HTTP Server Troubleshooting Notes",
+ "item": "https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html"
+ }
+ ]
+ }
+ </script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Mohomad Rinas -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="../projects.html" style="--i:4">Projects</a>
-            <a href="../blog.html" style="--i:5">Blog</a>
-            <a href="../codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- Mohomad Rinas -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <nav class="navbar">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="../pages/projects.html" style="--i:4">Projects</a>
+ <a href="../pages/blog.html" style="--i:5">Blog</a>
+ <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <article class="blog-post-container" id="content">
-    </article>
-    
-    <script type="text/markdown" id="md-content">
+ <article class="blog-post-container" id="content">
+ </article>
+ 
+ <script type="text/markdown" id="md-content">
 
 ## Apache HTTP Server Troubleshooting Notes
 
@@ -131,32 +133,32 @@
 
 ### Syntax Check
 - **Command:**
-  ```bash
-  ./httpd -t
-  ```
+ ```bash
+ ./httpd -t
+ ```
 - **Purpose:** Validates the syntax of Apache configuration files without restarting the server.
 - **Benefits:**
-  - Quickly identifies errors in configuration.
-  - Pinpoints the exact file and line number of the issue.
+ - Quickly identifies errors in configuration.
+ - Pinpoints the exact file and line number of the issue.
 
 ### Additional Options
 - **Dump Virtual Hosts:**
-  ```bash
-  ./httpd -t -D DUMP_VHOSTS
-  ```
-  Lists all configured virtual hosts and their respective settings.
+ ```bash
+ ./httpd -t -D DUMP_VHOSTS
+ ```
+ Lists all configured virtual hosts and their respective settings.
 
 - **Dump Modules:**
-  ```bash
-  ./httpd -t -D DUMP_MODULES
-  ```
-  Displays all loaded Apache modules.
+ ```bash
+ ./httpd -t -D DUMP_MODULES
+ ```
+ Displays all loaded Apache modules.
 
 - **Dump Runtime Configuration:**
-  ```bash
-  ./httpd -t -D DUMP_RUN_CFG
-  ```
-  Outputs the runtime configuration, useful for debugging.
+ ```bash
+ ./httpd -t -D DUMP_RUN_CFG
+ ```
+ Outputs the runtime configuration, useful for debugging.
 
 ---
 
@@ -164,19 +166,19 @@
 
 ### Error Description
 - **Error Message:**
-  ```
-  AH00526: Syntax error on line 209 of /path/to/httpd.conf:
-  SSLSessionCache cannot occur within <VirtualHost> section
-  ```
+ ```
+ AH00526: Syntax error on line 209 of /path/to/httpd.conf:
+ SSLSessionCache cannot occur within <VirtualHost> section
+ ```
 
 - **Cause:**
-  The `SSLSessionCache` directive was placed inside a `<VirtualHost>` block, which is not allowed. This directive should be in the global context.
+ The `SSLSessionCache` directive was placed inside a `<VirtualHost>` block, which is not allowed. This directive should be in the global context.
 
 ### Resolution Steps
 1. Open the Apache configuration file for editing:
-   ```bash
-   vim /path/to/httpd.conf
-   ```
+ ```bash
+ vim /path/to/httpd.conf
+ ```
 
 2. Locate the `SSLSessionCache` directive.
 
@@ -185,14 +187,14 @@
 4. Save and close the file.
 
 5. Validate the syntax:
-   ```bash
-   ./httpd -t
-   ```
+ ```bash
+ ./httpd -t
+ ```
 
 6. Restart the Apache server:
-   ```bash
-   ./httpd -k restart
-   ```
+ ```bash
+ ./httpd -k restart
+ ```
 
 ---
 
@@ -200,23 +202,23 @@
 
 ### Check the Error Log
 - **Command:**
-  ```bash
-  cat /path/to/apache/logs/error_log
-  ```
+ ```bash
+ cat /path/to/apache/logs/error_log
+ ```
 - **Purpose:** Provides detailed error messages and logs related to server operations.
 - **Example Logs:**
-  ```
-  [Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
-  [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down
-  ```
+ ```
+ [Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+ [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down
+ ```
 
 ### Key Warnings and Notices
 - **`AH01873`:**
-  - Warning: Session Cache is not configured.
-  - **Hint:** Ensure `SSLSessionCache` is configured in the global context.
+ - Warning: Session Cache is not configured.
+ - **Hint:** Ensure `SSLSessionCache` is configured in the global context.
 
 - **`AH00491`:**
-  - Notice: The server received a signal to terminate (e.g., `SIGTERM`).
+ - Notice: The server received a signal to terminate (e.g., `SIGTERM`).
 
 ---
 
@@ -276,112 +278,112 @@ SSLCertificateChainFile /hms/installs/apache/key/enum_hsenidmobile_com_chain.crt
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Steps to Verify HTTPS Certificate and Redirection:  
+## Steps to Verify HTTPS Certificate and Redirection: 
 
 1. **Verify HTTPS Certificate**
 
 Run the following command to check the HTTPS certificate:
-```bash     
-     curl -ikv https://localhost
+```bash 
+ curl -ikv https://localhost
 ```
 
 **Note**: Replace with the correct endpoint based on your environment (e.g., localhost for development or the production endpoint URL).
 
-1. curl -ikv http://localhost checks how the server responds to HTTP requests.  
+1. curl -ikv http://localhost checks how the server responds to HTTP requests. 
 
 2. curl -L http://localhost will follow any HTTP-to-HTTPS redirections.
 
 ## Expected Results:
 
-*   The certificate details (Subject, Issuer, Validity period) should be displayed.
-    
-    *   A warning might appear if using a self-signed certificate, which is acceptable if intentional.
-        
-*   The server should respond with a “301 Moved Permanently” or “302 Found” status code, indicating a redirection to HTTPS.
-    
-*   The request should follow the redirection to the HTTPS URL.
-    
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
-    <script>
+* The certificate details (Subject, Issuer, Validity period) should be displayed.
+ 
+ * A warning might appear if using a self-signed certificate, which is acceptable if intentional.
+ 
+* The server should respond with a “301 Moved Permanently” or “302 Found” status code, indicating a redirection to HTTPS.
+ 
+* The request should follow the redirection to the HTTPS URL.
+ 
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+ <script>
 const markdownContent = document.getElementById('md-content').textContent;
-        const htmlContent = marked.parse(markdownContent);
-        const footerHtml = `
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-            Written by <strong>A.M. Rinas</strong>
-        </p>
-        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-        <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
-        `;
-        document.getElementById('content').innerHTML = htmlContent + footerHtml;
-    </script>
+ const htmlContent = marked.parse(markdownContent);
+ const footerHtml = `
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <strong>A.M. Rinas</strong>
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
+ `;
+ document.getElementById('content').innerHTML = htmlContent + footerHtml;
+ </script>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
 
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
 
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
 
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
 
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
 
 </body>
 </html>

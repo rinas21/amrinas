@@ -2,296 +2,298 @@
 <html lang="en">
 
 <head>
-    <meta name="author" content="A.M Rinas">
+ <meta name="author" content="A.M Rinas">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Read about Installing XMIND on Ubuntu on the A.M Rinas tech blog.">
-    <meta name="keywords"
-        content="Install XMind Ubuntu, XMind Linux installation, snap install xmind, Linux productivity tools, mind mapping software Linux, Ubuntu system administration, A.M. Rinas">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rinas.tech/blogs/insall-xmind.html">
+ <meta name="description" content="Read about Installing XMIND on Ubuntu on the A.M Rinas tech blog.">
+ <meta name="keywords"
+ content="Install XMind Ubuntu, XMind Linux installation, snap install xmind, Linux productivity tools, mind mapping software Linux, Ubuntu system administration, A.M. Rinas">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://rinas.tech/blogs/insall-xmind.html">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide | A.M. Rinas Blog">
-    <meta property="og:description"
-        content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
-    <meta property="og:url" content="https://rinas.tech/blogs/insall-xmind.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide | A.M. Rinas Blog">
+ <meta property="og:description"
+ content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
+ <meta property="og:url" content="https://rinas.tech/blogs/insall-xmind.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
-    <meta name="twitter:description"
-        content="Step-by-step infrastructure workflow for installing XMind mind-mapping tools on Ubuntu via Snap deployment channels.">
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
+ <meta name="twitter:description"
+ content="Step-by-step infrastructure workflow for installing XMind mind-mapping tools on Ubuntu via Snap deployment channels.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
-        rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link
+ href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+ rel="stylesheet">
 
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <!-- JSON-LD Schema -->
+ <!-- JSON-LD Schema -->
 
-<link rel="stylesheet" href="../files/theme-switcher.css">
+<link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
+ <!-- JSON-LD Schemas -->
 
 
-    <!-- SEO Meta Tags -->
-    <title>Installing XMIND on Ubuntu | A.M Rinas</title>
-    <meta name="description" content="Read about Installing XMIND on Ubuntu on the A.M Rinas tech blog.">
-    <link rel="canonical" href="https://rinas.tech/blogs/insall-xmind.html">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
-    <meta property="og:description" content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
-    <meta property="og:url" content="https://rinas.tech/blogs/insall-xmind.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
-    <meta name="twitter:description" content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <title>Installing XMIND on Ubuntu | A.M Rinas</title>
+ <meta name="description" content="Read about Installing XMIND on Ubuntu on the A.M Rinas tech blog.">
+ <link rel="canonical" href="https://rinas.tech/blogs/insall-xmind.html">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
+ <meta property="og:description" content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
+ <meta property="og:url" content="https://rinas.tech/blogs/insall-xmind.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="How to Install XMind on Ubuntu: A Step-by-Step Guide">
+ <meta name="twitter:description" content="A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
-      "description": "A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.",
-      "image": "https://rinas.tech/img/100blog.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "A.M Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "22 May 2026",
-      "dateModified": "22 May 2026",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/insall-xmind.html"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://rinas21.github.io/amrinas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://rinas21.github.io/amrinas/blog.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
-          "item": "https://rinas21.github.io/amrinas/blogs/insall-xmind.html"
-        }
-      ]
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
+ "description": "A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "22 May 2026",
+ "dateModified": "22 May 2026",
+ "mainEntityOfPage": {
+ "@type": "WebPage",
+ "@id": "https://rinas21.github.io/amrinas/blogs/insall-xmind.html"
+ }
+ }
+ </script>
+ 
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
+ "item": "https://rinas21.github.io/amrinas/blogs/insall-xmind.html"
+ }
+ ]
+ }
+ </script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Mohomad Rinas -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="../projects.html" style="--i:4">Projects</a>
-            <a href="../blog.html" style="--i:5">Blog</a>
-            <a href="../codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- Mohomad Rinas -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <nav class="navbar">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="../pages/projects.html" style="--i:4">Projects</a>
+ <a href="../pages/blog.html" style="--i:5">Blog</a>
+ <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <article class="blog-post-container">
-        <h1>Installing XMIND on Ubuntu</h1>
+ <article class="blog-post-container">
+ <h1>Installing XMIND on Ubuntu</h1>
 
 
 
-        <p>
-            Mind mapping is an invaluable cognitive framework for decomposing complex technical architectures, plotting
-            data pipelines, and structuring software engineering requirements. XMind stands out as one of the most
-            versatile visualization utilities available. This guide details the installation parameters to get XMind
-            configured securely on an Ubuntu workstation or development workspace.
-        </p>
+ <p>
+ Mind mapping is an invaluable cognitive framework for decomposing complex technical architectures, plotting
+ data pipelines, and structuring software engineering requirements. XMind stands out as one of the most
+ versatile visualization utilities available. This guide details the installation parameters to get XMind
+ configured securely on an Ubuntu workstation or development workspace.
+ </p>
 
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitx6_rr1P0nDM8DkC-NYeBGg7Ar2-I0APHoI8AXCySo7pHiRWKk7IB6Vt7M_STMJgYDaNdGeDikvNbFHAqlEwopBwOUd5OqBZKnEW5spA3JhMWk2UmS2wOQxDyju9wVixVaBPOzI5or726eZBGgE3V05eHjxFYvA61cCmZQXV5Uf9wcDxapUqZFpLm/s225/download.jpeg"
-            alt="Official XMind software branding asset highlighting desktop productivity and brain mapping visualization tooling interfaces">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEitx6_rr1P0nDM8DkC-NYeBGg7Ar2-I0APHoI8AXCySo7pHiRWKk7IB6Vt7M_STMJgYDaNdGeDikvNbFHAqlEwopBwOUd5OqBZKnEW5spA3JhMWk2UmS2wOQxDyju9wVixVaBPOzI5or726eZBGgE3V05eHjxFYvA61cCmZQXV5Uf9wcDxapUqZFpLm/s225/download.jpeg"
+ alt="Official XMind software branding asset highlighting desktop productivity and brain mapping visualization tooling interfaces">
 
-        <h2>Understanding the Installation Pattern</h2>
-        <p>
-            Historically, Linux variants encountered packaging discrepancies when tracking dependency libraries for
-            standalone Java or Electron applications. Because XMind is not natively indexed inside standard APT upstream
-            mirrors (such as <code>apt install xmind</code>), attempting to invoke a direct APT installation will throw
-            broken package exceptions on modern Ubuntu LTS instances.
-        </p>
-        <p>
-            To address this, Canonical's universal <code>snapd</code> package framework serves as the primary deployment
-            channel. It isolates software binaries along with their corresponding dependencies into sandboxed runtime
-            containers.
-        </p>
+ <h2>Understanding the Installation Pattern</h2>
+ <p>
+ Historically, Linux variants encountered packaging discrepancies when tracking dependency libraries for
+ standalone Java or Electron applications. Because XMind is not natively indexed inside standard APT upstream
+ mirrors (such as <code>apt install xmind</code>), attempting to invoke a direct APT installation will throw
+ broken package exceptions on modern Ubuntu LTS instances.
+ </p>
+ <p>
+ To address this, Canonical's universal <code>snapd</code> package framework serves as the primary deployment
+ channel. It isolates software binaries along with their corresponding dependencies into sandboxed runtime
+ containers.
+ </p>
 
-        <h3>Prerequisites: Configuring the Snap Framework</h3>
-        <p>
-            While Snap infrastructure comes pre-installed on standard Ubuntu desktop setups, headless servers or custom
-            minimal builds may require it to be configured manually. Update the package definitions index and initialize
-            the Snap utility stack with the following commands:
-        </p>
-        <pre><code>sudo apt update
+ <h3>Prerequisites: Configuring the Snap Framework</h3>
+ <p>
+ While Snap infrastructure comes pre-installed on standard Ubuntu desktop setups, headless servers or custom
+ minimal builds may require it to be configured manually. Update the package definitions index and initialize
+ the Snap utility stack with the following commands:
+ </p>
+ <pre><code>sudo apt update
 sudo apt install snapd
 sudo snap install snap-store</code></pre>
 
-        <h2>XMind Sandbox Installation Workspace Setup</h2>
-        <p>
-            Once your snap environment variables are initialized, open a clean shell terminal window
-            (<code>Ctrl + Alt + T</code>) and follow the structured deployment pipeline below.
-        </p>
+ <h2>XMind Sandbox Installation Workspace Setup</h2>
+ <p>
+ Once your snap environment variables are initialized, open a clean shell terminal window
+ (<code>Ctrl + Alt + T</code>) and follow the structured deployment pipeline below.
+ </p>
 
-        <h3>Step 1: Refresh System Repositories</h3>
-        <p>
-            Ensure your local package tracker is aligned with remote mirrors before introducing new system
-            configurations:
-        </p>
-        <pre><code>sudo apt update</code></pre>
+ <h3>Step 1: Refresh System Repositories</h3>
+ <p>
+ Ensure your local package tracker is aligned with remote mirrors before introducing new system
+ configurations:
+ </p>
+ <pre><code>sudo apt update</code></pre>
 
-        <h3>Step 2: Initialize the XMind Container Layer</h3>
-        <p>
-            Pull the official distribution bundle from the Snap sandbox registry. This isolates the platform's running
-            resources from critical core host frameworks:
-        </p>
-        <pre><code>sudo snap install xmind</code></pre>
-        <p>
-            During execution, the terminal will mount container structures, hook network access bindings, and map
-            graphic drivers for real-world interface rendering. Follow any remaining configuration prompts to conclude
-            the installation loop.
-        </p>
+ <h3>Step 2: Initialize the XMind Container Layer</h3>
+ <p>
+ Pull the official distribution bundle from the Snap sandbox registry. This isolates the platform's running
+ resources from critical core host frameworks:
+ </p>
+ <pre><code>sudo snap install xmind</code></pre>
+ <p>
+ During execution, the terminal will mount container structures, hook network access bindings, and map
+ graphic drivers for real-world interface rendering. Follow any remaining configuration prompts to conclude
+ the installation loop.
+ </p>
 
-        <h2>Verifying System Operation and Workspace Status</h2>
-        <p>
-            Verify that your execution pathways map cleanly to the container layers by querying the snap registry
-            environment:
-        </p>
-        <pre><code>snap info xmind</code></pre>
-        <p>
-            Alternatively, test application initialization states by calling the execution binary path directly through
-            your system's desktop application menu or terminal interface:
-        </p>
-        <pre><code>xmind</code></pre>
-        <p>
-            Once validated, you can immediately begin translating brainstorming workflows into structured technical
-            models.
-        </p>
+ <h2>Verifying System Operation and Workspace Status</h2>
+ <p>
+ Verify that your execution pathways map cleanly to the container layers by querying the snap registry
+ environment:
+ </p>
+ <pre><code>snap info xmind</code></pre>
+ <p>
+ Alternatively, test application initialization states by calling the execution binary path directly through
+ your system's desktop application menu or terminal interface:
+ </p>
+ <pre><code>xmind</code></pre>
+ <p>
+ Once validated, you can immediately begin translating brainstorming workflows into structured technical
+ models.
+ </p>
 
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-            Written by <strong>A.M. Rinas</strong>
-        </p>
-            <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-            <!-- Topic SEO Keywords: How to Install XMind on Ubuntu: A Step-by-Step Guide, DevOps, Guide, Tutorial -->
-    </article>
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <strong>A.M. Rinas</strong>
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <!-- Topic SEO Keywords: How to Install XMind on Ubuntu: A Step-by-Step Guide, DevOps, Guide, Tutorial -->
+ </article>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
 
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
 
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
 
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
 
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
 
 </body>
 

@@ -1,146 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="A.M Rinas">
+ <meta name="author" content="A.M Rinas">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO Meta Tags for Google AdSense -->
-    <meta name="description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managi...">
-    <meta name="keywords" content="How to Create a Docker Network, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rinas.tech/blogs/docker-network-guide.html">
-    
-    <!-- Open Graph for Facebook/LinkedIn -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="How to Create a Docker Network | A.M. Rinas Blog">
-    <meta property="og:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
-    <meta property="og:url" content="https://rinas.tech/blogs/docker-network-guide.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="How to Create a Docker Network">
-    <meta name="twitter:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
-    
-    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+ <!-- SEO Meta Tags for Google AdSense -->
+ <meta name="description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managi...">
+ <meta name="keywords" content="How to Create a Docker Network, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://rinas.tech/blogs/docker-network-guide.html">
+ 
+ <!-- Open Graph for Facebook/LinkedIn -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="How to Create a Docker Network | A.M. Rinas Blog">
+ <meta property="og:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
+ <meta property="og:url" content="https://rinas.tech/blogs/docker-network-guide.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter Cards -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="How to Create a Docker Network">
+ <meta name="twitter:description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for...">
+ 
+ <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+ 
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <!-- JSON-LD Schema -->
+ <!-- JSON-LD Schema -->
 
-<link rel="stylesheet" href="../files/theme-switcher.css">
+<link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
+ <!-- JSON-LD Schemas -->
 
 
-    <!-- SEO Meta Tags -->
-    <title>How to Create a Docker Network | A.M Rinas</title>
-    <meta name="description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managi...">
-    <link rel="canonical" href="https://rinas.tech/blogs/docker-network-guide.html">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Docker Network Guide">
-    <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
-    <meta property="og:url" content="https://rinas.tech/blogs/docker-network-guide.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Docker Network Guide">
-    <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <title>How to Create a Docker Network | A.M Rinas</title>
+ <meta name="description" content="Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managi...">
+ <link rel="canonical" href="https://rinas.tech/blogs/docker-network-guide.html">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Docker Network Guide">
+ <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta property="og:url" content="https://rinas.tech/blogs/docker-network-guide.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Docker Network Guide">
+ <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Docker Network Guide",
-      "description": "A blog post covering technical insights, DevOps, and programming guides.",
-      "image": "https://rinas.tech/img/100blog.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "A.M Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-06-11",
-      "dateModified": "2026-06-11",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/docker-network-guide.html"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://rinas21.github.io/amrinas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://rinas21.github.io/amrinas/blog.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Docker Network Guide",
-          "item": "https://rinas21.github.io/amrinas/blogs/docker-network-guide.html"
-        }
-      ]
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Docker Network Guide",
+ "description": "A blog post covering technical insights, DevOps, and programming guides.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "2026-06-11",
+ "dateModified": "2026-06-11",
+ "mainEntityOfPage": {
+ "@type": "WebPage",
+ "@id": "https://rinas21.github.io/amrinas/blogs/docker-network-guide.html"
+ }
+ }
+ </script>
+ 
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "Docker Network Guide",
+ "item": "https://rinas21.github.io/amrinas/blogs/docker-network-guide.html"
+ }
+ ]
+ }
+ </script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Mohomad Rinas -->
-    <!-- ===== NAVBAR ===== -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="../projects.html" style="--i:4">Projects</a>
-            <a href="../blog.html" style="--i:5">Blog</a>
-            <a href="../codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- Mohomad Rinas -->
+ <!-- ===== NAVBAR ===== -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <nav class="navbar">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="../pages/projects.html" style="--i:4">Projects</a>
+ <a href="../pages/blog.html" style="--i:5">Blog</a>
+ <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <article class="blog-post-container">
-        <h1>How to Create a Docker Network</h1>
+ <article class="blog-post-container">
+ <h1>How to Create a Docker Network</h1>
 
 
 <p>Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managing services that need to interact within a defined network. Follow these steps to create a Docker network:</p>
@@ -167,80 +169,80 @@ ping other_container_name
 </code></pre>
 <p>This will confirm that the containers are able to see each other through the Docker network.</p>
 
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-          Written by <strong>A.M. Rinas</strong>
-        </p>
-        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <strong>A.M. Rinas</strong>
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
-            <!-- Topic SEO Keywords: Docker network setup, Docker networking tutorial, Container communication, DevOps Docker guide, Docker bridge network, isolate containers, Docker IP -->
-    </article>
+ <!-- Topic SEO Keywords: Docker network setup, Docker networking tutorial, Container communication, DevOps Docker guide, Docker bridge network, isolate containers, Docker IP -->
+ </article>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
 
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
 
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
 
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
 
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
 
 </body>
 </html>

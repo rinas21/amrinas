@@ -2,302 +2,304 @@
 <html lang="en">
 
 <head>
-    <meta name="author" content="A.M Rinas">
+ <meta name="author" content="A.M Rinas">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- SEO Meta Tags for Google AdSense -->
-    <meta name="description" content="Read about NPM &amp; NuGet Package Versioning Guide on the A.M Rinas tech blog.">
-    <meta name="keywords"
-        content="NPM Versioning Guide, Semantic Versioning, SemVer, DevOps, NuGet Package Versioning, Software Engineering, A.M. Rinas">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://rinas.tech/blogs/npm-version-understand.html">
+ <!-- SEO Meta Tags for Google AdSense -->
+ <meta name="description" content="Read about NPM &amp; NuGet Package Versioning Guide on the A.M Rinas tech blog.">
+ <meta name="keywords"
+ content="NPM Versioning Guide, Semantic Versioning, SemVer, DevOps, NuGet Package Versioning, Software Engineering, A.M. Rinas">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://rinas.tech/blogs/npm-version-understand.html">
 
-    <!-- Open Graph for Facebook/LinkedIn -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide | A.M. Rinas Blog">
-    <meta property="og:description"
-        content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
-    <meta property="og:url" content="https://rinas.tech/blogs/npm-version-understand.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- Open Graph for Facebook/LinkedIn -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide | A.M. Rinas Blog">
+ <meta property="og:description"
+ content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
+ <meta property="og:url" content="https://rinas.tech/blogs/npm-version-understand.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
-    <meta name="twitter:description"
-        content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems.">
+ <!-- Twitter Cards -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
+ <meta name="twitter:description"
+ content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems.">
 
-    <!-- Google Structured Data (JSON-LD) for Rich Results -->
+ <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
-        rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link
+ href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+ rel="stylesheet">
 
-    <link rel="stylesheet" href="../files/style.css">
-    <link rel="stylesheet" href="../files/cyber-theme.css">
-    <link rel="stylesheet" href="../files/blog.css">
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <!-- JSON-LD Schema -->
+ <!-- JSON-LD Schema -->
 
-<link rel="stylesheet" href="../files/theme-switcher.css">
+<link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
+ <!-- JSON-LD Schemas -->
 
 
-    <!-- SEO Meta Tags -->
-    <title>NPM &amp; NuGet Package Versioning Guide | A.M Rinas</title>
-    <meta name="description" content="Read about NPM &amp; NuGet Package Versioning Guide on the A.M Rinas tech blog.">
-    <link rel="canonical" href="https://rinas.tech/blogs/npm-version-understand.html">
-    <meta name="author" content="A.M Rinas">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
-    <meta property="og:description" content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
-    <meta property="og:url" content="https://rinas.tech/blogs/npm-version-understand.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
-    <meta name="twitter:description" content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <title>NPM &amp; NuGet Package Versioning Guide | A.M Rinas</title>
+ <meta name="description" content="Read about NPM &amp; NuGet Package Versioning Guide on the A.M Rinas tech blog.">
+ <link rel="canonical" href="https://rinas.tech/blogs/npm-version-understand.html">
+ <meta name="author" content="A.M Rinas">
+ <meta name="robots" content="index, follow">
+ 
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
+ <meta property="og:description" content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
+ <meta property="og:url" content="https://rinas.tech/blogs/npm-version-understand.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ 
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Demystifying Semantic Versioning: An NPM and NuGet Guide">
+ <meta name="twitter:description" content="A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <!-- JSON-LD Schemas -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
-      "description": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
-      "image": "https://rinas.tech/img/100blog.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "A.M Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "18 May 2026",
-      "dateModified": "18 May 2026",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rinas21.github.io/amrinas/blogs/npm-version-understand.html"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://rinas21.github.io/amrinas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://rinas21.github.io/amrinas/blog.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
-          "item": "https://rinas21.github.io/amrinas/blogs/npm-version-understand.html"
-        }
-      ]
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
+ "description": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "18 May 2026",
+ "dateModified": "18 May 2026",
+ "mainEntityOfPage": {
+ "@type": "WebPage",
+ "@id": "https://rinas21.github.io/amrinas/blogs/npm-version-understand.html"
+ }
+ }
+ </script>
+ 
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+ {
+ "@type": "ListItem",
+ "position": 3,
+ "name": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
+ "item": "https://rinas21.github.io/amrinas/blogs/npm-version-understand.html"
+ }
+ ]
+ }
+ </script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Mohomad Rinas -->
-    <!-- ===== NAVBAR ===== -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="../projects.html" style="--i:4">Projects</a>
-            <a href="../blog.html" style="--i:5">Blog</a>
-            <a href="../codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- Mohomad Rinas -->
+ <!-- ===== NAVBAR ===== -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <nav class="navbar">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="../pages/projects.html" style="--i:4">Projects</a>
+ <a href="../pages/blog.html" style="--i:5">Blog</a>
+ <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <article class="blog-post-container">
-        <h1>NPM &amp; NuGet Package Versioning Guide</h1>
+ <article class="blog-post-container">
+ <h1>NPM &amp; NuGet Package Versioning Guide</h1>
 
 
 
-        <p>
-            Managing dependencies effectively requires a clear strategy. Both modern JavaScript development with NPM and
-            .NET ecosystem development with NuGet rely heavily on <strong>Semantic Versioning (SemVer)</strong> to
-            maintain predictability and avoid runtime breaks. This guide highlights the essential mechanics of SemVer
-            structure, constraints, and package updates.
-        </p>
+ <p>
+ Managing dependencies effectively requires a clear strategy. Both modern JavaScript development with NPM and
+ .NET ecosystem development with NuGet rely heavily on <strong>Semantic Versioning (SemVer)</strong> to
+ maintain predictability and avoid runtime breaks. This guide highlights the essential mechanics of SemVer
+ structure, constraints, and package updates.
+ </p>
 
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfXoVnCAJaAmEVKEsGpvVWg3psfoT7lrJElW7AxPaM658IwondX0jkdrwHACg1hLXQr6w8BlGCCUhhcgNcAZljJMX2ficFL1G1tB_23jBFHX9jBsPcNpFF3-O2vXmNLS4J20b-__DbQFiKf7W1AsudINOYvN8XPHqfA69gW77VRkcPPT1evdBhjZsg"
-            alt="NPM and NuGet Semantic Versioning Overview Diagram">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfXoVnCAJaAmEVKEsGpvVWg3psfoT7lrJElW7AxPaM658IwondX0jkdrwHACg1hLXQr6w8BlGCCUhhcgNcAZljJMX2ficFL1G1tB_23jBFHX9jBsPcNpFF3-O2vXmNLS4J20b-__DbQFiKf7W1AsudINOYvN8XPHqfA69gW77VRkcPPT1evdBhjZsg"
+ alt="NPM and NuGet Semantic Versioning Overview Diagram">
 
-        <h2>Semantic Versioning Basics</h2>
-        <p>
-            NPM leverages SemVer structure rules strictly to categorize dependency logic. Standard versions follow the
-            strict structural format: <code>Major.Minor.Patch</code>.
-        </p>
+ <h2>Semantic Versioning Basics</h2>
+ <p>
+ NPM leverages SemVer structure rules strictly to categorize dependency logic. Standard versions follow the
+ strict structural format: <code>Major.Minor.Patch</code>.
+ </p>
 
-        <h3>Version Number Breakdown:</h3>
-        <ul>
-            <li>
-                <strong>Major:</strong> Incremented immediately when breaking API changes are introduced. Upstream
-                shifts make the newer version incompatible with previous instances (e.g., transitioning to
-                <code>2.0.0</code>).
-            </li>
-            <li>
-                <strong>Minor:</strong> Incremented when fully backward-compatible functionalities or new features are
-                safely added to the codebase (e.g., progressing to <code>1.2.0</code>).
-            </li>
-            <li>
-                <strong>Patch:</strong> Incremented strictly for internal bug fixes, patches, or optimization
-                adjustments that retain full backward-compatibility (e.g., moving to <code>1.1.1</code>).
-            </li>
-            <li>
-                <strong>Suffix (optional):</strong> Appended using a trailing hyphen to indicate pre-release states or
-                development tracks (e.g., <code>1.1.1-beta</code>).
-            </li>
-        </ul>
+ <h3>Version Number Breakdown:</h3>
+ <ul>
+ <li>
+ <strong>Major:</strong> Incremented immediately when breaking API changes are introduced. Upstream
+ shifts make the newer version incompatible with previous instances (e.g., transitioning to
+ <code>2.0.0</code>).
+ </li>
+ <li>
+ <strong>Minor:</strong> Incremented when fully backward-compatible functionalities or new features are
+ safely added to the codebase (e.g., progressing to <code>1.2.0</code>).
+ </li>
+ <li>
+ <strong>Patch:</strong> Incremented strictly for internal bug fixes, patches, or optimization
+ adjustments that retain full backward-compatibility (e.g., moving to <code>1.1.1</code>).
+ </li>
+ <li>
+ <strong>Suffix (optional):</strong> Appended using a trailing hyphen to indicate pre-release states or
+ development tracks (e.g., <code>1.1.1-beta</code>).
+ </li>
+ </ul>
 
-        <h2>NuGet Package Versioning</h2>
-        <p>
-            NuGet implements a similar Semantic Versioning logic framework optimized for cross-platform .NET application
-            structures.
-        </p>
+ <h2>NuGet Package Versioning</h2>
+ <p>
+ NuGet implements a similar Semantic Versioning logic framework optimized for cross-platform .NET application
+ structures.
+ </p>
 
-        <h3>Key Points:</h3>
-        <ul>
-            <li><strong>Package Versioning:</strong> Core structures communicate intentional system alterations
-                explicitly through targeted SemVer values.</li>
-            <li><strong>Pre-release Versions:</strong> Suffix allocations flag tentative releases (e.g.,
-                <code>1.0.0-beta</code>) to designate testing status.</li>
-            <li><strong>Version Constraints:</strong> Developers define explicit target boundaries using mathematical
-                interval bounds to declare compatible scopes (e.g., <code>[1.0.0, 2.0.0)</code>).</li>
-            <li><strong>Floating Versions:</strong> Configures automated resolution chains to match the latest built
-                patches or updates within specific minor version trees (e.g., <code>1.0.*</code>).</li>
-            <li><strong>Version Resolution:</strong> NuGet algorithms parse designated bounds dynamically, resolving
-                conflicting requirements to supply the highest compatible build variant.</li>
-        </ul>
+ <h3>Key Points:</h3>
+ <ul>
+ <li><strong>Package Versioning:</strong> Core structures communicate intentional system alterations
+ explicitly through targeted SemVer values.</li>
+ <li><strong>Pre-release Versions:</strong> Suffix allocations flag tentative releases (e.g.,
+ <code>1.0.0-beta</code>) to designate testing status.</li>
+ <li><strong>Version Constraints:</strong> Developers define explicit target boundaries using mathematical
+ interval bounds to declare compatible scopes (e.g., <code>[1.0.0, 2.0.0)</code>).</li>
+ <li><strong>Floating Versions:</strong> Configures automated resolution chains to match the latest built
+ patches or updates within specific minor version trees (e.g., <code>1.0.*</code>).</li>
+ <li><strong>Version Resolution:</strong> NuGet algorithms parse designated bounds dynamically, resolving
+ conflicting requirements to supply the highest compatible build variant.</li>
+ </ul>
 
-        <h3>Practical Example Scenarios:</h3>
-        <p>
-            Consider tracking a common utility NuGet dependency named <code>ExampleLib</code>:
-        </p>
-        <ul>
-            <li>Referencing fixed version <code>1.2.3</code> locks development directly to a stable release profile
-                containing definite features.</li>
-            <li>If a version numbered <code>2.0.0</code> releases, it serves as a warning that immediate architectural
-                breaking changes exist.</li>
-            <li>Encountering a new release at <code>1.3.0</code> indicates newly available elements that remain
-                completely backward-compatible with older <code>1.x.x</code> targets.</li>
-            <li>An adjustment yielding a <code>1.2.4</code> identifier indicates targeted patch code corrections
-                maintaining full compatibility inside <code>1.2.x</code> boundaries.</li>
-            <li>A flag indicating <code>1.2.3-beta</code> alerts you to an untested development milestone built prior to
-                formal baseline releases.</li>
-        </ul>
+ <h3>Practical Example Scenarios:</h3>
+ <p>
+ Consider tracking a common utility NuGet dependency named <code>ExampleLib</code>:
+ </p>
+ <ul>
+ <li>Referencing fixed version <code>1.2.3</code> locks development directly to a stable release profile
+ containing definite features.</li>
+ <li>If a version numbered <code>2.0.0</code> releases, it serves as a warning that immediate architectural
+ breaking changes exist.</li>
+ <li>Encountering a new release at <code>1.3.0</code> indicates newly available elements that remain
+ completely backward-compatible with older <code>1.x.x</code> targets.</li>
+ <li>An adjustment yielding a <code>1.2.4</code> identifier indicates targeted patch code corrections
+ maintaining full compatibility inside <code>1.2.x</code> boundaries.</li>
+ <li>A flag indicating <code>1.2.3-beta</code> alerts you to an untested development milestone built prior to
+ formal baseline releases.</li>
+ </ul>
 
-        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
-        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
-            Written by <strong>A.M. Rinas</strong>
-        </p>
-        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-        <!-- Topic SEO Keywords: NPM Versioning Guide, Semantic Versioning, SemVer, NuGet Packages, Dependency Management, Devops, Version Constraints -->
-    </article>
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <strong>A.M. Rinas</strong>
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <!-- Topic SEO Keywords: NPM Versioning Guide, Semantic Versioning, SemVer, NuGet Packages, Dependency Management, Devops, Version Constraints -->
+ </article>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script>
-    const THEMES = [
-      { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
-      { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
-      { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
-    ];
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
 
-    let currentTheme = localStorage.getItem('selected_theme') || "default";
-    const container = document.getElementById("themeSwitcher");
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
 
-    function setTheme(themeId) {
-      currentTheme = themeId;
-      document.documentElement.setAttribute("data-theme", themeId);
-      localStorage.setItem('selected_theme', themeId);
-      
-      document.querySelectorAll(".theme-btn").forEach(btn => {
-        if (btn.dataset.theme === themeId) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
 
-    if(container) {
-      THEMES.forEach(theme => {
-        const btn = document.createElement("button");
-        btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
-        btn.dataset.theme = theme.id;
-        btn.title = theme.label;
-        
-        const bgPreview = document.createElement("div");
-        bgPreview.className = "theme-bg-preview";
-        bgPreview.style.backgroundColor = theme.bg;
-        
-        const accentPreview = document.createElement("div");
-        accentPreview.className = "theme-accent-preview";
-        accentPreview.style.backgroundColor = theme.color;
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
 
-        btn.appendChild(bgPreview);
-        btn.appendChild(accentPreview);
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
 
-        btn.addEventListener("click", () => setTheme(theme.id));
-        container.appendChild(btn);
-      });
-      // Initialize on load
-      setTheme(currentTheme);
-    }
-  </script>
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
 
 </body>
 

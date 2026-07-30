@@ -2,1532 +2,1534 @@
 <html lang="en">
 
 <head>
-    <meta name="author" content="Mohomad Rinas">
+ <meta name="author" content="Mohomad Rinas">
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="A.M. Rinas's Blog — technical articles, experiments, solutions, and lessons about software engineering, DevOps, AI, and web development.">
-    <meta name="keywords" content="A.M. Rinas blog, software engineering articles, DevOps tutorials, AI experiments, Java, Python, Docker, Kubernetes, web development">
-    <meta name="author" content="A.M. Rinas">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph / LinkedIn Preview -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="A.M. Rinas Blog | Software Engineering, DevOps & AI">
-    <meta property="og:description" content="Technical articles, experiments, solutions, and lessons about software engineering, web development, DevOps, and AI.">
-    <meta property="og:url" content="https://rinas.tech/pages/blog.html">
-    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="627">
-    <meta property="og:site_name" content="A.M. Rinas Portfolio">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="A.M. Rinas Blog | 100 Technical Blog Posts">
-    <meta name="twitter:description" content="100 technical articles covering software engineering, DevOps, AI, and web development.">
-    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+ <!-- SEO Meta Tags -->
+ <meta name="description" content="A.M. Rinas's Blog — technical articles, experiments, solutions, and lessons about software engineering, DevOps, AI, and web development.">
+ <meta name="keywords" content="A.M. Rinas blog, software engineering articles, DevOps tutorials, AI experiments, Java, Python, Docker, Kubernetes, web development">
+ <meta name="author" content="A.M. Rinas">
+ <meta name="robots" content="index, follow">
+ <!-- Open Graph / LinkedIn Preview -->
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="A.M. Rinas Blog | Software Engineering, DevOps & AI">
+ <meta property="og:description" content="Technical articles, experiments, solutions, and lessons about software engineering, web development, DevOps, and AI.">
+ <meta property="og:url" content="https://rinas.tech/pages/blog.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+ <meta property="og:image:width" content="1200">
+ <meta property="og:image:height" content="627">
+ <meta property="og:site_name" content="A.M. Rinas Portfolio">
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="A.M. Rinas Blog | 100 Technical Blog Posts">
+ <meta name="twitter:description" content="100 technical articles covering software engineering, DevOps, AI, and web development.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.M. Rinas Blog | Software Engineering, DevOps & AI Articles</title>
-    <link rel="canonical" href="https://rinas.tech/pages/blog.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
-        rel="stylesheet">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>A.M. Rinas Blog | Software Engineering, DevOps & AI Articles</title>
+ <link rel="canonical" href="https://rinas.tech/pages/blog.html">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link
+ href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+ rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/cyber-theme.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        /* V3 — PURE TYPOGRAPHY ARCHIVE */
-        :root {
-            --cream: #faf7f2;
-            --warm: #f1ece3;
-            --paper: #ece8e0;
-            --ink: #1f1b16;
-            --ink-soft: #3b342c;
-            --ink-muted: #6f685e;
-            --green: #1b4332;
-            --green-soft: #2d5a47;
-            --green-pale: #e8f0eb;
-            --gold: #b8895a;
-            --gold-deep: #8a6440;
-            --gold-light: #f5ede0;
-            --rose: #8b3a2a;
-            --rose-pale: #f5e8e5;
-            --sky: #1a3a5c;
-            --sky-pale: #e5edf5;
-            --rule: rgba(31, 27, 22, .1);
-            --rule-strong: rgba(31, 27, 22, .2);
-            --cormorant: 'Cormorant Garamond', Georgia, serif;
-            --playfair: 'Playfair Display', Georgia, serif;
-            --dm: 'DM Sans', system-ui, sans-serif;
-            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-        }
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ <style>
+ /* V3 — PURE TYPOGRAPHY ARCHIVE */
+ :root {
+ --cream: #faf7f2;
+ --warm: #f1ece3;
+ --paper: #ece8e0;
+ --ink: #1f1b16;
+ --ink-soft: #3b342c;
+ --ink-muted: #6f685e;
+ --green: #1b4332;
+ --green-soft: #2d5a47;
+ --green-pale: #e8f0eb;
+ --gold: #b8895a;
+ --gold-deep: #8a6440;
+ --gold-light: #f5ede0;
+ --rose: #8b3a2a;
+ --rose-pale: #f5e8e5;
+ --sky: #1a3a5c;
+ --sky-pale: #e5edf5;
+ --rule: rgba(31, 27, 22, .1);
+ --rule-strong: rgba(31, 27, 22, .2);
+ --cormorant: 'Cormorant Garamond', Georgia, serif;
+ --playfair: 'Playfair Display', Georgia, serif;
+ --dm: 'DM Sans', system-ui, sans-serif;
+ --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+ }
 
-        #v3 {
-            margin-top: 100px;
-            background: var(--cream);
-            font-family: 'DM Sans', sans-serif;
-            color: var(--ink);
-        }
+ #v3 {
+ margin-top: 100px;
+ background: var(--cream);
+ font-family: 'DM Sans', sans-serif;
+ color: var(--ink);
+ }
 
-        #v3 .demo {
-            background: var(--cream)
-        }
+ #v3 .demo {
+ background: var(--cream)
+ }
 
-        #v3 .arch-header {
-            padding: 80px clamp(24px, 6vw, 120px) 60px;
-            border-bottom: 2px solid var(--ink);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+ #v3 .arch-header {
+ padding: 80px clamp(24px, 6vw, 120px) 60px;
+ border-bottom: 2px solid var(--ink);
+ max-width: 1200px;
+ margin: 0 auto;
+ }
 
-        #v3 .arch-meta-row {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin-bottom: 24px
-        }
+ #v3 .arch-meta-row {
+ display: flex;
+ align-items: baseline;
+ justify-content: space-between;
+ gap: 24px;
+ flex-wrap: wrap;
+ margin-bottom: 24px
+ }
 
-        #v3 .arch-title {
-            font-family: var(--cormorant);
-            font-size: clamp(48px, 7vw, 96px);
-            font-weight: 300;
-            color: var(--ink);
-            letter-spacing: -.02em;
-            line-height: 1
-        }
+ #v3 .arch-title {
+ font-family: var(--cormorant);
+ font-size: clamp(48px, 7vw, 96px);
+ font-weight: 300;
+ color: var(--ink);
+ letter-spacing: -.02em;
+ line-height: 1
+ }
 
-        #v3 .arch-sub {
-            font-size: 12px;
-            color: var(--ink-muted);
-            line-height: 1.6;
-            max-width: 320px;
-            text-align: right
-        }
+ #v3 .arch-sub {
+ font-size: 12px;
+ color: var(--ink-muted);
+ line-height: 1.6;
+ max-width: 320px;
+ text-align: right
+ }
 
-        #v3 .arch-search {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--rule-strong);
-            max-width: 360px;
-            margin-top: 32px;
-            border-radius: 20px;
-        }
+ #v3 .arch-search {
+ display: flex;
+ align-items: center;
+ border: 1px solid var(--rule-strong);
+ max-width: 360px;
+ margin-top: 32px;
+ border-radius: 20px;
+ }
 
-        #v3 .arch-search input {
-            flex: 1;
-            padding: 12px 16px;
-            font-family: var(--dm);
-            font-size: 13px;
-            color: var(--ink);
-            background: transparent;
-            border: none;
-            outline: none
-        }
+ #v3 .arch-search input {
+ flex: 1;
+ padding: 12px 16px;
+ font-family: var(--dm);
+ font-size: 13px;
+ color: var(--ink);
+ background: transparent;
+ border: none;
+ outline: none
+ }
 
-        #v3 .arch-search input::placeholder {
-            color: var(--ink-muted)
-        }
+ #v3 .arch-search input::placeholder {
+ color: var(--ink-muted)
+ }
 
-        #v3 .arch-search-icon {
-            padding: 12px 16px;
-            color: var(--ink-muted)
-        }
+ #v3 .arch-search-icon {
+ padding: 12px 16px;
+ color: var(--ink-muted)
+ }
 
-        /* Archive list */
-        #v3 .arch-list {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-bottom: 80px;
-        }
+ /* Archive list */
+ #v3 .arch-list {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding-bottom: 80px;
+ }
 
-        #v3 .arch-item {
-            display: grid;
-            grid-template-columns: 1fr 200px;
-            align-items: start;
-            padding: 0;
-            border-bottom: 1px solid var(--rule);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-            border-radius: 8px;
-            margin-bottom: 4px;
-        }
+ #v3 .arch-item {
+ display: grid;
+ grid-template-columns: 1fr 200px;
+ align-items: start;
+ padding: 0;
+ border-bottom: 1px solid var(--rule);
+ cursor: pointer;
+ position: relative;
+ overflow: hidden;
+ transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+ border-radius: 8px;
+ margin-bottom: 4px;
+ }
 
-        #v3 .arch-item:hover {
-            background: var(--warm);
-            transform: scale(1.01);
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-            z-index: 2;
-        }
+ #v3 .arch-item:hover {
+ background: var(--warm);
+ transform: scale(1.01);
+ border-color: transparent;
+ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+ z-index: 2;
+ }
 
-        #v3 .arch-item-center {
-            padding: 28px 32px 28px clamp(24px, 6vw, 120px)
-        }
+ #v3 .arch-item-center {
+ padding: 28px 32px 28px clamp(24px, 6vw, 120px)
+ }
 
-        #v3 .arch-cat-strip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            margin-bottom: 10px
-        }
+ #v3 .arch-cat-strip {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ font-size: 9px;
+ font-weight: 600;
+ letter-spacing: .18em;
+ text-transform: uppercase;
+ color: var(--ink-muted);
+ margin-bottom: 10px
+ }
 
-        #v3 .arch-cat-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%
-        }
+ #v3 .arch-cat-dot {
+ width: 6px;
+ height: 6px;
+ border-radius: 50%
+ }
 
-        .cat-dot-visa {
-            background: var(--gold)
-        }
+ .cat-dot-visa {
+ background: var(--gold)
+ }
 
-        .cat-dot-german {
-            background: var(--green)
-        }
+ .cat-dot-german {
+ background: var(--green)
+ }
 
-        .cat-dot-ausbildung {
-            background: var(--rose)
-        }
+ .cat-dot-ausbildung {
+ background: var(--rose)
+ }
 
-        .cat-dot-story {
-            background: var(--sky)
-        }
+ .cat-dot-story {
+ background: var(--sky)
+ }
 
-        #v3 .arch-item-title {
-            font-family: var(--cormorant);
-            font-size: clamp(20px, 2vw, 28px);
-            font-weight: 500;
-            color: var(--ink);
-            line-height: 1.2;
-            transition: color .15s;
-            margin-top: 5px;
-        }
+ #v3 .arch-item-title {
+ font-family: var(--cormorant);
+ font-size: clamp(20px, 2vw, 28px);
+ font-weight: 500;
+ color: var(--ink);
+ line-height: 1.2;
+ transition: color .15s;
+ margin-top: 5px;
+ }
 
-        #v3 .arch-item:hover .arch-item-title {
-            color: var(--gold-deep)
-        }
+ #v3 .arch-item:hover .arch-item-title {
+ color: var(--gold-deep)
+ }
 
-        #v3 .arch-excerpt {
-            font-size: 12px;
-            color: var(--ink-muted);
-            line-height: 1.6;
-            margin-top: 10px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+ #v3 .arch-excerpt {
+ font-size: 12px;
+ color: var(--ink-muted);
+ line-height: 1.6;
+ margin-top: 10px;
+ display: -webkit-box;
+ -webkit-line-clamp: 2;
+ -webkit-box-orient: vertical;
+ overflow: hidden;
+ }
 
-        #v3 .arch-item-right {
-            padding: 28px clamp(24px, 6vw, 120px) 28px 0;
-            text-align: right;
-            align-self: center
-        }
+ #v3 .arch-item-right {
+ padding: 28px clamp(24px, 6vw, 120px) 28px 0;
+ text-align: right;
+ align-self: center
+ }
 
-        #v3 .arch-date {
-            font-size: 11px;
-            color: var(--ink-muted);
-            margin-bottom: 4px
-        }
+ #v3 .arch-date {
+ font-size: 11px;
+ color: var(--ink-muted);
+ margin-bottom: 4px
+ }
 
-        #v3 .arch-readtime {
-            font-family: var(--cormorant);
-            font-size: 14px;
-            font-style: italic;
-            color: var(--gold-deep)
-        }
+ #v3 .arch-readtime {
+ font-family: var(--cormorant);
+ font-size: 14px;
+ font-style: italic;
+ color: var(--gold-deep)
+ }
 
-        #v3 .arch-read-arrow {
-            display: block;
-            font-size: 18px;
-            color: var(--ink-muted);
-            margin-top: 8px;
-            transition: transform .3s ease-out, color .3s ease-out;
-        }
+ #v3 .arch-read-arrow {
+ display: block;
+ font-size: 18px;
+ color: var(--ink-muted);
+ margin-top: 8px;
+ transition: transform .3s ease-out, color .3s ease-out;
+ }
 
-        #v3 .arch-item:hover .arch-read-arrow {
-            transform: translateX(10px);
-            color: var(--gold-deep)
-        }
+ #v3 .arch-item:hover .arch-read-arrow {
+ transform: translateX(10px);
+ color: var(--gold-deep)
+ }
 
-        @media(max-width:700px) {
-            #v3 .arch-item {
-                grid-template-columns: 1fr
-            }
+ @media(max-width:700px) {
+ #v3 .arch-item {
+ grid-template-columns: 1fr
+ }
 
-            #v3 .arch-item-right {
-                display: none
-            }
-        }
+ #v3 .arch-item-right {
+ display: none
+ }
+ }
 
-        .category-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+ .category-tags {
+ display: flex;
+ gap: 10px;
+ flex-wrap: wrap;
+ }
 
-        .cat-tag {
-            padding: 6px 12px;
-            border: 1px solid var(--ink);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            background: transparent;
-            color: var(--ink);
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
+ .cat-tag {
+ padding: 6px 12px;
+ border: 1px solid var(--ink);
+ border-radius: 20px;
+ font-size: 12px;
+ font-weight: 600;
+ cursor: pointer;
+ background: transparent;
+ color: var(--ink);
+ transition: all 0.2s ease;
+ text-transform: uppercase;
+ letter-spacing: 0.1em;
+ }
 
-        .cat-tag.active,
-        .cat-tag:hover {
-            background: var(--ink);
-            color: var(--cream);
-        }
+ .cat-tag.active,
+ .cat-tag:hover {
+ background: var(--ink);
+ color: var(--cream);
+ }
 
-        /* Modal Styles */
-        #post-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(31, 27, 22, 0.9);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
+ /* Modal Styles */
+ #post-modal {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background: rgba(31, 27, 22, 0.9);
+ z-index: 1000;
+ display: none;
+ justify-content: center;
+ align-items: center;
+ backdrop-filter: blur(5px);
+ }
 
-        .modal-content {
-            background: #f8f4ed;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            position: relative;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            font-family: 'DM Sans', sans-serif;
-        }
+ .modal-content {
+ background: #f8f4ed;
+ width: 90%;
+ max-width: 900px;
+ max-height: 90vh;
+ overflow-y: auto;
+ padding: 40px;
+ position: relative;
+ border-radius: 10px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+ font-family: 'DM Sans', sans-serif;
+ }
 
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: var(--ink);
-            background: none;
-            border: none;
-        }
+ .close-btn {
+ position: absolute;
+ top: 20px;
+ right: 20px;
+ font-size: 30px;
+ cursor: pointer;
+ color: var(--ink);
+ background: none;
+ border: none;
+ }
 
-        .markdown-body {
-            color: var(--ink);
-            line-height: 1.6;
-        }
+ .markdown-body {
+ color: var(--ink);
+ line-height: 1.6;
+ }
 
-        .markdown-body h1,
-        .markdown-body h2,
-        .markdown-body h3 {
-            font-family: var(--playfair);
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            color: var(--ink);
-        }
+ .markdown-body h1,
+ .markdown-body h2,
+ .markdown-body h3 {
+ font-family: var(--playfair);
+ margin-top: 1.5em;
+ margin-bottom: 0.5em;
+ color: var(--ink);
+ }
 
-        .markdown-body pre {
-            background: var(--ink);
-            color: var(--cream);
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
+ .markdown-body pre {
+ background: var(--ink);
+ color: var(--cream);
+ padding: 15px;
+ border-radius: 5px;
+ overflow-x: auto;
+ }
 
-        .markdown-body code {
-            font-family: monospace;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
+ .markdown-body code {
+ font-family: monospace;
+ background: rgba(0, 0, 0, 0.05);
+ padding: 2px 4px;
+ border-radius: 3px;
+ }
 
-        .markdown-body pre code {
-            background: transparent;
-            padding: 0;
-        }
+ .markdown-body pre code {
+ background: transparent;
+ padding: 0;
+ }
 
-        .markdown-body img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
+ .markdown-body img {
+ max-width: 100%;
+ height: auto;
+ border-radius: 5px;
+ margin: 20px 0;
+ }
 
-        .markdown-body a {
-            color: var(--gold-deep);
-            text-decoration: none;
-        }
+ .markdown-body a {
+ color: var(--gold-deep);
+ text-decoration: none;
+ }
 
-        .markdown-body a:hover {
-            text-decoration: underline;
-        }
-    </style>
+ .markdown-body a:hover {
+ text-decoration: underline;
+ }
+ </style>
 
-    <!-- Marked.js for Markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <!-- Marked.js for Markdown parsing -->
+ <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "headline": "A.M. Rinas | Blog",
-      "image": "https://rinas21.github.io/amrinas/favicon.png",
-      "author": {
-        "@type": "Person",
-        "name": "A.M. Rinas"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "A.M. Rinas Portfolio",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://rinas21.github.io/amrinas/favicon.png"
-        }
-      },
-      "datePublished": "2026-06-11",
-      "dateModified": "2026-06-11"
-    }
-    </script>
+ <!-- JSON-LD Schema -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "headline": "A.M. Rinas | Blog",
+ "image": "https://rinas21.github.io/amrinas/favicon.png",
+ "author": {
+ "@type": "Person",
+ "name": "A.M. Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "2026-06-11",
+ "dateModified": "2026-06-11"
+ }
+ </script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "A.M. Rinas | Blog",
-      "description": "A.M. Rinas's Archive of Insights & Guides. Research, technical guides, and honest advice.",
-      "url": "https://rinas21.github.io/amrinas/blog.html"
-    }
-    </script>
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "A.M. Rinas | Blog",
+ "description": "A.M. Rinas's Archive of Insights & Guides. Research, technical guides, and honest advice.",
+ "url": "https://rinas21.github.io/amrinas/blog.html"
+ }
+ </script>
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
-     crossorigin="anonymous"></script>
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Mohomad Rinas -->
+ <!-- Mohomad Rinas -->
 
-    <!-- ===== NAVBAR ===== -->
-    <header class="header">
-        <a href="../index.html" class="logo" style="opacity: 1;">Portfolio</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <nav class="navbar" id="myLinks">
-            <a href="../index.html#Home" style="--i:1">Home</a>
-            <a href="../index.html#About" style="--i:2">About</a>
-            <a href="../index.html#Experience" style="--i:3">Experience</a>
-            <a href="projects.html" style="--i:4">Projects</a>
-            <a href="blog.html" style="--i:5" class="active">Blog</a>
-            <a href="codelab.html" style="--i:6">CodeLab</a>
-            <a href="../index.html#Contact" style="--i:7">Contact</a>
-        </nav>
-    </header>
+ <!-- ===== NAVBAR ===== -->
+ <header class="header">
+ <a href="../index.html" class="logo">
+ <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+ </a>
+ <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+ <span></span><span></span><span></span>
+ </button>
+ <nav class="navbar" id="myLinks">
+ <a href="../index.html#Home" style="--i:1">Home</a>
+ <a href="../index.html#About" style="--i:2">About</a>
+ <a href="../index.html#Experience" style="--i:3">Experience</a>
+ <a href="projects.html" style="--i:4">Projects</a>
+ <a href="blog.html" style="--i:5" class="active">Blog</a>
+ <a href="codelab.html" style="--i:6">CodeLab</a>
+ <a href="../index.html#Contact" style="--i:7">Contact</a>
+ </nav>
+ </header>
 
-    <div id="v3">
-        <div class="demo">
-            <div class="arch-header">
-                <div class="arch-meta-row">
-                    <h2 class="arch-title">Insights<br>&amp; Guides</h2>
-                    <p class="arch-sub">Research, guides, and honest advice. New posts published regularly.<br><span
-                            id="total-blogs-count"
-                            style="color: var(--gold-deep); font-weight: 800; margin-top: 5px; display: inline-block;"></span>
-                    </p>
-                
+ <div id="v3">
+ <div class="demo">
+ <div class="arch-header">
+ <div class="arch-meta-row">
+ <h2 class="arch-title">Insights<br>&amp; Guides</h2>
+ <p class="arch-sub">Research, guides, and honest advice. New posts published regularly.<br><span
+ id="total-blogs-count"
+ style="color: var(--gold-deep); font-weight: 800; margin-top: 5px; display: inline-block;"></span>
+ </p>
+ 
 
 </div>
 
-                <div class="category-tags" id="category-container" style="margin-bottom: 20px; margin-top: 10px;">
-                    <button class="cat-tag active" data-category="All">All</button>
-                    <button class="cat-tag" data-category="Tech">Tech</button>
-                    <button class="cat-tag" data-category="DevOps">DevOps</button>
-                    <button class="cat-tag" data-category="Frontend">Frontend</button>
-                    <button class="cat-tag" data-category="Backend">Backend</button>
-                    <button class="cat-tag" data-category="AI">AI</button>
-                    <button class="cat-tag" data-category="Databases">Databases</button>
-                </div>
+ <div class="category-tags" id="category-container" style="margin-bottom: 20px; margin-top: 10px;">
+ <button class="cat-tag active" data-category="All">All</button>
+ <button class="cat-tag" data-category="Tech">Tech</button>
+ <button class="cat-tag" data-category="DevOps">DevOps</button>
+ <button class="cat-tag" data-category="Frontend">Frontend</button>
+ <button class="cat-tag" data-category="Backend">Backend</button>
+ <button class="cat-tag" data-category="AI">AI</button>
+ <button class="cat-tag" data-category="Databases">Databases</button>
+ </div>
 
-                <div class="arch-search">
-                    <input type="text" id="search-input" placeholder="Search the archive...">
-                    <span class="arch-search-icon">
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3" />
-                            <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
-                        </svg>
-                    </span>
-                </div>
-            </div>
+ <div class="arch-search">
+ <input type="text" id="search-input" placeholder="Search the archive...">
+ <span class="arch-search-icon">
+ <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+ <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3" />
+ <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+ </svg>
+ </span>
+ </div>
+ </div>
 
-            <div class="arch-list" id="blog-grid">
-                <!-- JS injected content goes here -->
-            </div>
-        </div>
-    </div>
+ <div class="arch-list" id="blog-grid">
+ <!-- JS injected content goes here -->
+ </div>
+ </div>
+ </div>
 
-    <script>
-        const blogGrid = document.getElementById('blog-grid');
-        const searchInput = document.getElementById('search-input');
-        const categoryButtons = document.querySelectorAll('.cat-tag');
+ <script>
+ const blogGrid = document.getElementById('blog-grid');
+ const searchInput = document.getElementById('search-input');
+ const categoryButtons = document.querySelectorAll('.cat-tag');
 
-        // Add your blog posts here manually. This ensures it works perfectly locally and on GitHub Pages!
-        const blogPosts = [
-            {
-                "title": "Hostinger Domain Redirect Missing? Here's the Fix That Finally Worked",
-                "category": "DevOps",
-                "excerpt": "Learn why the Hostinger redirect option disappears for some domains and how disconnecting the website allowed a permanent 301 redirect to another domain.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "28 July 2026",
-                "file": "hostinger-domain-redirect-missing-fix.html"
-            },
-            {
-                "title": "The SEO Mistakes Developers Make When Building Websites",
-                "category": "Tech",
-                "excerpt": "Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "27 July 2026",
-                "file": "seo-mistakes-developers-make.html"
-            },
-            {
-                "title": "The Image Naming Strategy That Improved My Website SEO",
-                "category": "Tech",
-                "excerpt": "Learn how descriptive image filenames can significantly improve your website SEO and accessibility over generic names like IMG_001.jpg.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "25 July 2026",
-                "file": "image-naming-strategy-for-seo.html"
-            },
-            {
-                "title": "I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication",
-                "category": "Tech",
-                "excerpt": "A real debugging story about fixing a 401 Unauthorized error in a full stack application. The issue was not authentication but an incorrect API request flow and configuration.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "23 July 2026",
-                "file": "debugging-401-error.html"
-            },
-            {
-                "title": "Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu",
-                "category": "Tech",
-                "excerpt": "Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "21 July 2026",
-                "file": "compress-videos-ffmpeg-ubuntu.html"
-            },
-            {
-                "title": "How to Compress Large Videos Without Losing Much Quality Using FFmpeg",
-                "category": "Tech",
-                "excerpt": "Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "19 July 2026",
-                "file": "compress-large-videos-using-ffmpeg.html"
-            },
-            {
-                "title": "Lefthook Setup Guide",
-                "category": "Tech",
-                "excerpt": "Lefthook run automated checks before code commit. Catch bugs, format issues, lint errors before production.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "17 July 2026",
-                "file": "lefthook-setup-guide.html"
-            },
-            {
-                "title": "Disabling the Pager in `psql` for the `postgres` User",
-                "category": "Tech",
-                "excerpt": "Great! It looks like you successfully created the .psqlrc file in the postgres user&#39;s home directory (/var/lib/postgresql/) and confirmed that ...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "15 July 2026",
-                "file": "disabling-the-pager-in-psql-for-the-postgres-user.html"
-            },
-            {
-                "title": "Docker Compose: `up --build` Command",
-                "category": "Tech",
-                "excerpt": "docker compose up --build is used to build (or rebuild) and start Docker containers as defined in your docker-compose.yml file. This ensures your c...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "13 July 2026",
-                "file": "docker-compose-up-build-command.html"
-            },
-            {
-                "title": "Error Explanation Why It Happens How To Fix",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "11 July 2026",
-                "file": "error-explanation-why-it-happens-how-to-fix.html"
-            },
-            {
-                "title": "Error Message",
-                "category": "Tech",
-                "excerpt": "Incorrect keystore password: The password in server.xml may not match the actual keystore password.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "09 July 2026",
-                "file": "error-message.html"
-            },
-            {
-                "title": "📁 File Permissions in Linux (Owner, Group, Others)",
-                "category": "Tech",
-                "excerpt": "In Linux/Unix, each file and directory has permissions assigned to three types of users:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "07 July 2026",
-                "file": "file-permissions-in-linux-owner-group-others.html"
-            },
-            {
-                "title": "Initialize the database",
-                "category": "Tech",
-                "excerpt": "superset db upgrade superset fab create-admin  # Create admin user superset init",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "05 July 2026",
-                "file": "initialize-the-database.html"
-            },
-            {
-                "title": "Issue Working With Utf 16 Encoded Files In Linux",
-                "category": "Tech",
-                "excerpt": "When trying to process a binary/encoded file (IPG_APP1_DISK_old.log), tools like grep, strings, and less don&#39;t return expected results. The fil...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "03 July 2026",
-                "file": "issue-working-with-utf-16-encoded-files-in-linux.html"
-            },
-            {
-                "title": "Java Binary Instalation On Ubuntu",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "01 July 2026",
-                "file": "java-binary-instalation-on-ubuntu.html"
-            },
-            {
-                "title": "Java Process Info Command",
-                "category": "Tech",
-                "excerpt": "The following settings help manage timeouts, session limits, and authentication attempts for SSH connections:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "29 June 2026",
-                "file": "java-process-info-command.html"
-            },
-            {
-                "title": "Javap And Its Use Case",
-                "category": "Tech",
-                "excerpt": "javap is a command-line tool provided by the Java Development Kit (JDK) that disassembles Java class files. It allows you to view the bytecode of a...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "27 June 2026",
-                "file": "javap-and-its-use-case.html"
-            },
-            {
-                "title": "Keycloak Configuration For Ssl Requirement",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "25 June 2026",
-                "file": "keycloak-configuration-for-ssl-requirement.html"
-            },
-            {
-                "title": "Keycloak Login Error Expiredcode Non Secure Cookie Context",
-                "category": "Tech",
-                "excerpt": "When using Keycloak, you may encounter the following log warnings related to authentication errors and non-secure cookies:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "23 June 2026",
-                "file": "keycloak-login-error-expiredcode-non-secure-cookie-context.html"
-            },
-            {
-                "title": "🔍 `locate` Command Cheat Sheet",
-                "category": "Tech",
-                "excerpt": "The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "21 June 2026",
-                "file": "locate-command-cheat-sheet.html"
-            },
-            {
-                "title": "Manually delete the migration folder",
-                "category": "Tech",
-                "excerpt": "rm -rf prisma/migrations/",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "19 June 2026",
-                "file": "manually-delete-the-migration-folder.html"
-            },
-            {
-                "title": "Note Google Apps Script To Clone Data Up To Column J",
-                "category": "Tech",
-                "excerpt": "Use the following function to replicate all sheets from a source Google Spreadsheet to a target Spreadsheet, copying only columns A-J. Existing she...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "17 June 2026",
-                "file": "note-google-apps-script-to-clone-data-up-to-column-j.html"
-            },
-            {
-                "title": "Note",
-                "category": "Tech",
-                "excerpt": "The error configure: error: pcre(2)-config for libpcre not found. PCRE is required and available from http://pcre.org/ indicates that the PCRE (Per...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "15 June 2026",
-                "file": "note.html"
-            },
-            {
-                "title": "Notes for 2025-04-10",
-                "category": "Tech",
-                "excerpt": "When building Apache and encountering the error APR not found. Please read the documentation., follow these steps based on your operating system:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "13 June 2026",
-                "file": "notes-for-2025-04-10.html"
-            },
-            {
-                "title": "Notes for 2025-04-30",
-                "category": "Tech",
-                "excerpt": "To replace a file in Ubuntu (Linux), you can use the mv (move) or cp (copy) command, depending on whether you want to move or overwrite a file.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "11 June 2026",
-                "file": "notes-for-2025-04-30.html"
-            },
-            {
-                "title": "Optional: Load modular configs from ~/.bashrc.d/",
-                "category": "Tech",
-                "excerpt": "if [ -d ~/.bashrc.d ]; then     for rc in ~/.bashrc.d/*; do         if [ -f &quot;$rc&quot; ]; then             . &quot;$rc&quot;         fi     do...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "09 June 2026",
-                "file": "optional-load-modular-configs-from-bashrcd.html"
-            },
-            {
-                "title": "OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)",
-                "category": "Tech",
-                "excerpt": "Update system packages:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "07 June 2026",
-                "file": "otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html"
-            },
-            {
-                "title": "Paging vs. Segmentation",
-                "category": "Tech",
-                "excerpt": "Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "05 June 2026",
-                "file": "paging-vs-segmentation.html"
-            },
-            {
-                "title": "PostgreSQL Setup Issues",
-                "category": "Tech",
-                "excerpt": "Error: Warning: No existing cluster is suitable as a default target. Please see man pg_wrapper(1) how to specify one. Error: You must install at le...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "03 June 2026",
-                "file": "postgresql-setup-issues.html"
-            },
-            {
-                "title": "🐍 Python Virtual Environment Setup Guide (Ubuntu/Linux)",
-                "category": "Tech",
-                "excerpt": "Make sure Python and pip are installed:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "01 June 2026",
-                "file": "python-virtual-environment-setup-guide-ubuntulinux.html"
-            },
-            {
-                "title": "Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "30 May 2026",
-                "file": "reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html"
-            },
-            {
-                "title": "Ruby on Rails Installation Notes (2025-05-19)",
-                "category": "Tech",
-                "excerpt": "Verify Ruby and gem are installed:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "28 May 2026",
-                "file": "ruby-on-rails-installation-notes-2025-05-19.html"
-            },
-            {
-                "title": "**Sed Command and Its Different Usages**",
-                "category": "Tech",
-                "excerpt": "sed (Stream Editor) is a powerful command-line tool used for text processing, including search, replace, insert, and delete operations.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "26 May 2026",
-                "file": "sed-command-and-its-different-usages.html"
-            },
-            {
-                "title": "Setting Up a .NET Solution with xUnit Test Project",
-                "category": "Tech",
-                "excerpt": "Purpose: Creates a new xUnit test project.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "24 May 2026",
-                "file": "setting-up-a-net-solution-with-xunit-test-project.html"
-            },
-            {
-                "title": "SSL Exception in Tomcat with CAS",
-                "category": "Tech",
-                "excerpt": "While running Tomcat with CAS authentication, the following error occurs:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "22 May 2026",
-                "file": "ssl-exception-in-tomcat-with-cas.html"
-            },
-            {
-                "title": "Steps To Enable Sslproxyengine In Apache",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "20 May 2026",
-                "file": "steps-to-enable-sslproxyengine-in-apache.html"
-            },
-            {
-                "title": "The Order By Clause Does Not Work With Distinct In That Way If You Want To Order The Results By The Name Column You Should Simply Use",
-                "category": "Tech",
-                "excerpt": "If you want to get distinct role names (though in this case, they are already unique), you can use:",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "18 May 2026",
-                "file": "the-order-by-clause-does-not-work-with-distinct-in-that-way-if-you-want-to-order-the-results-by-the-name-column-you-should-simply-use.html"
-            },
-            {
-                "title": "This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak",
-                "category": "Tech",
-                "excerpt": "Insights and technical documentation.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "16 May 2026",
-                "file": "this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html"
-            },
-            {
-                "title": "Troubleshooting Prisma DB Seeding Failure",
-                "category": "Tech",
-                "excerpt": "This note documents the process of resolving a PrismaClientKnownRequestError that occurred during database seeding. The root cause was a mismatch b...",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "14 May 2026",
-                "file": "troubleshooting-prisma-db-seeding-failure.html"
-            },
-            {
-                "title": "🔐 View Saved Wi-Fi Passwords on Ubuntu",
-                "category": "Tech",
-                "excerpt": "You can view previously connected Wi-Fi passwords by accessing the NetworkManager configuration files.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "12 May 2026",
-                "file": "view-saved-wi-fi-passwords-on-ubuntu.html"
-            },
-            {
-                "title": "Note on Handling Local Variables in Inner Classes (Java)",
-                "category": "Backend",
-                "excerpt": "In Java, when using local variables within an inner class or anonymous class, they must be declared as final or effectively final. This post explains why and how to resolve compilation errors.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "10 May 2026",
-                "file": "note-on-handling-local-variables-in-inner-classes-java.html"
-            },
-            {
-                "title": "PostgreSQL connection to actual data source (if applicable)",
-                "category": "Databases",
-                "excerpt": "Configuration details for connecting Cube.js to a PostgreSQL database and setting up Apache Superset.",
-                "author": "A.M.Rinas",
-                "readTime": "2 min",
-                "date": "08 May 2026",
-                "file": "postgresql-connection-to-actual-data-source-if-applicable.html"
-            },
-            {
-                "title": "Network Interfaces and Their Levels & Usage",
-                "category": "DevOps",
-                "excerpt": "A breakdown of physical and virtual network interfaces, their usage, and how they operate across the different layers of the OSI model.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "06 May 2026",
-                "file": "network-interfaces-and-their-levels-usage.html"
-            },
-            {
-                "title": "Git Bisect Process to Debug Issue",
-                "category": "Tech",
-                "excerpt": "A guide on how to use git bisect to perform a binary search and find the exact commit that introduced a bug in your codebase.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "04 May 2026",
-                "file": "git-bisect-process-to-debug-issue.html"
-            },
-            {
-                "title": "Oracle JDK vs OpenJDK",
-                "category": "Tech",
-                "excerpt": "A comparison between Oracle JDK and OpenJDK, detailing licensing, performance, support, and installation differences to help you choose the right JDK for your project.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "02 May 2026",
-                "file": "oracle-jdk-vs-openjdk.html"
-            },
-            {
-                "title": "Fixing Apache Ant Deploytask Issue In Tomcat",
-                "category": "DevOps",
-                "excerpt": "While running ant clean dist, the build failed with taskdef class org.apache.catalina.ant.DeployTask cannot be found. This article details steps to fix the issue by correcting the Tomcat path and classpath in build.xml.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "30 April 2026",
-                "file": "fixing-apache-ant-deploytask-issue-in-tomcat.html"
-            },
-            {
-                "title": "Rsync and Its Usages",
-                "category": "DevOps",
-                "excerpt": "Rsync (Remote Sync) is a fast and versatile command-line tool for copying and synchronizing files and directories between locations. It efficiently transfers only the differences between the source and destination, making it ideal for backups and file synchronization.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "28 April 2026",
-                "file": "rsync-and-its-usages.html"
-            },
-            {
-                "title": "Git Stash Notes",
-                "category": "Tech",
-                "excerpt": "Git stash is a command that temporarily saves your uncommitted changes so you can switch branches or pull updates without losing your work.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "26 April 2026",
-                "file": "git-stash-notes.html"
-            },
-            {
-                "title": "Developer Notes - April 8, 2025",
-                "category": "Tech",
-                "excerpt": "Issue: Java Virtual Machine Initialization Error. Notes on resolving HPI library initialization failure when running java -version.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "24 April 2026",
-                "file": "developer-notes-april-8-2025.html"
-            },
-            {
-                "title": "Python Troubleshooting and Installation Summary",
-                "category": "Tech",
-                "excerpt": "This document summarizes the issues encountered and troubleshooting steps taken for Python installation and version management.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "22 April 2026",
-                "file": "python-troubleshooting-and-installation-summary.html"
-            },
-            {
-                "title": "Cube.js Concepts Summary",
-                "category": "Backend",
-                "excerpt": "A summary of Cube.js concepts including Cubes, Measures, Dimensions, Pre-aggregations, and more.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "20 April 2026",
-                "file": "cubejs-concepts-summary.html"
-            },
-            {
-                "title": "n8n Custom Node Development Guide",
-                "category": "DevOps",
-                "excerpt": "This guide explains how to create, build, and test a custom n8n node locally.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "18 April 2026",
-                "file": "n8n-custom-node-development-guide.html"
-            },
-            {
-                "title": "CPU Cycle and its Relation to Time",
-                "category": "Tech",
-                "excerpt": "Understanding CPU cycles and how they relate to execution time and processing speed.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "16 April 2026",
-                "file": "cpu-cycle-and-its-relation-to-time.html"
-            },
-            {
-                "title": "Eulerian and Hamiltonian Graphs",
-                "category": "Tech",
-                "excerpt": "A deep dive into Eulerian and Hamiltonian graphs in Graph Theory.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "14 April 2026",
-                "file": "eulerian-and-hamiltonian-graphs.html"
-            },
-            {
-                "title": "Flutter Installation Notes",
-                "category": "Frontend",
-                "excerpt": "Notes and steps for setting up and installing Flutter for mobile development.",
-                "author": "A.M.Rinas",
-                "readTime": "6 min",
-                "date": "12 April 2026",
-                "file": "flutter-installation-notes.html"
-            },
-            {
-                "title": "docker ps",
-                "category": "DevOps",
-                "excerpt": "A quick guide on using docker ps and troubleshooting Postgres container issues.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "10 April 2026",
-                "file": "docker-ps.html"
-            },
-            {
-                "title": "Downloading Files from Google Drive using gdown",
-                "category": "Tech",
-                "excerpt": "How to download files from Google Drive using gdown and Python.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "08 April 2026",
-                "file": "downloading-files-from-google-drive-using-gdown.html"
-            },
-            {
-                "title": "How to Enable Swap Memory on Linux",
-                "category": "DevOps",
-                "excerpt": "A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "06 April 2026",
-                "file": "how-to-enable-swap-memory-on-linux.html"
-            },
-            {
-                "title": "Adding Google Chat to the Ubuntu Desktop Bar",
-                "category": "Tech",
-                "excerpt": "To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.",
-                "author": "A.M.Rinas",
-                "readTime": "2 min",
-                "date": "04 April 2026",
-                "file": "adding-google-chat-to-the-ubuntu-desktop-bar.html",
-                "featured": true
-            },
-            {
-                "title": "Airbyte Local Installation Steps",
-                "category": "DevOps",
-                "excerpt": "Steps for installing Airbyte locally and handling common permission errors during setup.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "02 April 2026",
-                "file": "airbyte-local-installation-steps.html"
-            },
-            {
-                "title": "Apache HTTP Server Troubleshooting Notes",
-                "category": "DevOps",
-                "excerpt": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "31 March 2026",
-                "file": "apache-http-server-troubleshooting-notes.html"
-            },
-            {
-                "title": "Adding a Custom Node to n8n in Docker",
-                "category": "DevOps",
-                "excerpt": "A step-by-step guide on how to inject a custom node into an n8n Docker container by mounting volumes and restarting the service.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "29 March 2026",
-                "file": "adding-a-custom-node-to-n8n-in-docker.html",
-                "featured": true
-            },
-            {
-                "title": "Linux, Maven, and Git Cheat Sheet",
-                "category": "Tech",
-                "excerpt": "A compilation of useful commands for Linux file searching, SSH proxy jumps, Maven proxy settings, and Git tagging.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "27 March 2026",
-                "file": "linux-maven-git-cheat-sheet.html"
-            },
-            {
-                "title": "MongoDB Backup & Restore with Docker",
-                "category": "Databases",
-                "excerpt": "A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "25 March 2026",
-                "file": "mongodb-backup-restore-with-docker.html",
-                "featured": true
-            },
-            {
-                "title": "Checking If A User Group Exists In Rhel",
-                "category": "DevOps",
-                "excerpt": "To check whether a user group exists in RHEL (Red Hat Enterprise Linux), use the grep or getent commands.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "23 March 2026",
-                "file": "checking-if-a-user-group-exists-in-rhel.html"
-            },
-            {
-                "title": "Checking Port Availability Using Netcat (`nc`)",
-                "category": "DevOps",
-                "excerpt": "Netcat (`nc`) is a powerful networking tool that can be used for a variety of tasks, such as scanning ports, connecting to remote systems, and troubleshooting network issues.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "21 March 2026",
-                "file": "checking-port-availability-using-netcat-nc.html"
-            },
-            {
-                "title": "Configuring SSH Authentication for GitHub",
-                "category": "DevOps",
-                "excerpt": "A complete guide on setting up SSH authentication for GitHub, generating a new SSH key (ed25519), and adding it to your GitHub account.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "19 March 2026",
-                "file": "configuring-ssh-authentication-for-github.html"
-            },
-            {
-                "title": "How to Disable Auto-Start for a Docker Container",
-                "category": "DevOps",
-                "excerpt": "Learn how to stop Docker containers from starting automatically after a machine reboot by updating restart policies.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "17 March 2026",
-                "file": "how-to-disable-auto-start-for-a-docker-container.html"
-            },
-            {
-                "title": "Why Docker Builds Fail Differently on Linux and Windows",
-                "category": "DevOps",
-                "excerpt": "A practical breakdown of Docker build issues across Linux and Windows environments.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "15 March 2026",
-                "file": "docker-build-failures-linux-vs-windows.html",
-                "featured": true
-            },
-            {
-                "title": "Understanding .gitattributes: Solving Cross-Platform Line Ending Problems",
-                "category": "DevOps",
-                "excerpt": "A practical guide to .gitattributes and Git line ending normalization between Windows and Linux systems.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "13 March 2026",
-                "file": "gitattributes-crlf-lf-line-endings-git.html"
-            },
-            {
-                "title": "Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)",
-                "category": "DevOps",
-                "excerpt": "A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "11 March 2026",
-                "file": "ffmpeg-video-trimming-linux-no-reencoding.html"
-            },
-            {
-                "title": "MySQL 8.0 Binary Installation and MariaDB Cleanup Guide",
-                "category": "Databases",
-                "excerpt": "A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runtime dependencies, and purge conflicting MariaDB footprints.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "09 March 2026",
-                "file": "mysql-binary.html",
-                "featured": true
-            },
-            {
-                "title": "Introduction: Overview of Grafana, Prometheus, and Node Exporter",
-                "category": "DevOps",
-                "excerpt": "Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali...",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "07 March 2026",
-                "file": "grafana-prometheus-node-exporter.html",
-                "featured": true
-            },
-            {
-                "title": "Creating Docker Networks for Container Communication",
-                "category": "DevOps",
-                "excerpt": "Learn how Docker bridge networks work and how to connect multiple containers securely.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "05 March 2026",
-                "file": "docker-network-guide.html",
-                "featured": true
-            },
-            {
-                "title": "How to Enable and Monitor the MySQL General Log",
-                "category": "Databases",
-                "excerpt": "Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries....",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "03 March 2026",
-                "file": "mysql-general-log.html",
-                "featured": true
-            },
-            {
-                "title": "Fixing \"Could Not Initialize Java Virtual Machine\" After Installing Oracle JDK on Linux",
-                "category": "DevOps",
-                "excerpt": "Step-by-step systems debugging guide to resolve the Java HPI library dependency error 'Could not initialize Java Virtual Machine' after deploying an Oracle JDK binary on Linux kernels.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "01 March 2026",
-                "file": "fix-java-virtual-machine-error-linux.html"
-            },
-            {
-                "title": "Essential Linux System Commands: A Systems Engineering Reference",
-                "category": "Databases",
-                "excerpt": "An advanced systems administration reference for fundamental Linux commands. Covers multi-tenant user management, programmatic file and stream manipulation, kernel process analysis, and low-level network interface monitoring.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "27 February 2026",
-                "file": "basic-linux.html"
-            },
-            {
-                "title": "Essential SQL Queries for Database Exploration and Management",
-                "category": "Databases",
-                "excerpt": "Structured Query Language (SQL) is the backbone of database management, enabling users to interact with databases to retrieve, manipulate, and manage ...",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "25 February 2026",
-                "file": "essential-sql-queries.html"
-            },
-            {
-                "title": "A Developer's Guide to the OpenAI GPT Playground",
-                "category": "DevOps",
-                "excerpt": "Master OpenAI's GPT Playground parameters including Temperature, Top P, and Stop Sequences. Learn how to configure structural LLM workflows for reliable bug reporting.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "23 February 2026",
-                "file": "gpt-playground.html"
-            },
-            {
-                "title": "Grafana Installation on Ubuntu using Docker",
-                "category": "DevOps",
-                "excerpt": "Install Grafana OSS (open-source version) on Ubuntu using Docker....",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "21 February 2026",
-                "file": "grafana-installation-docker.html"
-            },
-            {
-                "title": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
-                "category": "DevOps",
-                "excerpt": "Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "19 February 2026",
-                "file": "https-server.html"
-            },
-            {
-                "title": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
-                "category": "DevOps",
-                "excerpt": "A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "17 February 2026",
-                "file": "insall-xmind.html"
-            },
-            {
-                "title": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
-                "category": "DevOps",
-                "excerpt": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "15 February 2026",
-                "file": "iptables-rules.html"
-            },
-            {
-                "title": "Installing Katalon Studio on Ubuntu",
-                "category": "DevOps",
-                "excerpt": "Katalon Studio is a powerful tool for automating web, API, and mobile testing. In this guide, we&#39;ll walk you through the installation process and ...",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "13 February 2026",
-                "file": "katalon-studio-guide.html"
-            },
-            {
-                "title": "Mastering netstat Commands for Linux Network Analysis",
-                "category": "DevOps",
-                "excerpt": "A practical networking guide to using netstat commands in Linux. Learn how to inspect open sockets, audit listening TCP/UDP ports, map Process IDs (PIDs), and analyze kernel routing tables.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "11 February 2026",
-                "file": "netstat-commnd.html"
-            },
-            {
-                "title": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
-                "category": "DevOps",
-                "excerpt": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "09 February 2026",
-                "file": "npm-version-understand.html"
-            },
-            {
-                "title": "How to Install Postman via Binary Tarball on Ubuntu",
-                "category": "DevOps",
-                "excerpt": "A structural DevOps guide to manually installing Postman on Ubuntu using official Linux binary tarballs. Learn how to extract binaries, map symbolic execution paths, and provision desktop application configuration entries.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "07 February 2026",
-                "file": "postman-ubunut.html"
-            },
-            {
-                "title": "Mastering SCP Commands for Secure File Transfers",
-                "category": "DevOps",
-                "excerpt": "A practical DevOps guide to using SCP (Secure Copy Protocol) for secure file and directory transfers between local and remote Linux machines. Learn key syntax, flags, and real-world examples.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "05 February 2026",
-                "file": "scp-commnd.html"
-            },
-            {
-                "title": "Comprehensive SSH Setup and Hardening Guide",
-                "category": "DevOps",
-                "excerpt": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "03 February 2026",
-                "file": "ssh-commnd.html"
-            },
-            {
-                "title": "How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide",
-                "category": "DevOps",
-                "excerpt": "A comprehensive step-by-step tutorial on installing Apache Tomcat 9.0.21 on Linux (Ubuntu/Debian). Learn how to configure JDK, manage dedicated service users, and establish environment path variables safely.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "01 February 2026",
-                "file": "tomcat-on-ubuntu.html"
-            },
-            {
-                "title": "Mastering the Vi/Vim Editor: A Comprehensive Systems Guide",
-                "category": "DevOps",
-                "excerpt": "A structural DevOps and systems engineering guide to mastering the Vi/Vim terminal text editor. Learn modal switching mechanics, regex string replacement, regex escaping, buffer yank arrays, and efficient pipeline management.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "30 January 2026",
-                "file": "vim-editor.html"
-            },
-            {
-                "title": "Introduction to Kubernetes Architecture",
-                "category": "DevOps",
-                "excerpt": "A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.",
-                "author": "A.M.Rinas",
-                "readTime": "6 min",
-                "date": "28 January 2026",
-                "file": "kubernetes-intro.html"
-            },
-            {
-                "title": "Mastering Python Generators",
-                "category": "Backend",
-                "excerpt": "Learn how to use Python generators for efficient memory management and elegant code design.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "26 January 2026",
-                "file": "python-generators.html"
-            },
-            {
-                "title": "Understanding React Hooks",
-                "category": "Frontend",
-                "excerpt": "A deep dive into React Hooks: useState, useEffect, and how they simplify functional components.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "24 January 2026",
-                "file": "react-hooks.html"
-            },
-            {
-                "title": "Introduction to Docker Compose",
-                "category": "DevOps",
-                "excerpt": "A beginner's guide to using Docker Compose to orchestrate multi-container applications.",
-                "author": "A.M.Rinas",
-                "readTime": "6 min",
-                "date": "22 January 2026",
-                "file": "docker-compose-intro.html"
-            },
-            {
-                "title": "Advanced Git Strategies",
-                "category": "Tech",
-                "excerpt": "Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.",
-                "author": "A.M.Rinas",
-                "readTime": "7 min",
-                "date": "20 January 2026",
-                "file": "advanced-git-strategies.html"
-            },
-            {
-                "title": "CSS Grid vs Flexbox",
-                "category": "Frontend",
-                "excerpt": "When to use CSS Grid and when to use Flexbox to build modern, responsive web layouts.",
-                "author": "A.M.Rinas",
-                "readTime": "5 min",
-                "date": "18 January 2026",
-                "file": "css-grid-vs-flexbox.html"
-            },
-            {
-                "title": "Connecting Cube.js to Superset (PostgreSQL SQL API)",
-                "category": "Databases",
-                "excerpt": "Connect Apache Superset to Cube.js using Cube's PostgreSQL SQL API on port 15432, allowing Superset to query Cube.js pre-aggregated data.",
-                "author": "A.M.Rinas",
-                "readTime": "4 min",
-                "date": "16 January 2026",
-                "file": "connecting-cubejs-to-superset-postgresql-sql-api.html"
-            },
-            {
-                "title": "Connecting GitBD (GitLab) to Airbyte using OAuth2.0",
-                "category": "DevOps",
-                "excerpt": "A step-by-step guide to configuring an OAuth2.0 application in GitLab (GitBD) and authenticating Airbyte to use it as a source.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "14 January 2026",
-                "file": "connecting-gitbd-gitlab-to-airbyte-using-oauth20.html"
-            },
-            {
-                "title": "Copy The Sql File To The Container",
-                "category": "Databases",
-                "excerpt": "A short guide on how to copy a SQL file from a local machine into a running Docker container.",
-                "author": "A.M.Rinas",
-                "readTime": "2 min",
-                "date": "12 January 2026",
-                "file": "copy-the-sql-file-to-the-container.html"
-            },
-            {
-                "title": "Creating a Temporary Admin User in Keycloak",
-                "category": "DevOps",
-                "excerpt": "A short tutorial on how to bootstrap a temporary admin user in Keycloak and install MySQL Workbench.",
-                "author": "A.M.Rinas",
-                "readTime": "3 min",
-                "date": "10 January 2026",
-                "file": "creating-a-temporary-admin-user-in-keycloak.html"
-            }
-        ];
+ // Add your blog posts here manually. This ensures it works perfectly locally and on GitHub Pages!
+ const blogPosts = [
+ {
+ "title": "Hostinger Domain Redirect Missing? Here's the Fix That Finally Worked",
+ "category": "DevOps",
+ "excerpt": "Learn why the Hostinger redirect option disappears for some domains and how disconnecting the website allowed a permanent 301 redirect to another domain.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "28 July 2026",
+ "file": "hostinger-domain-redirect-missing-fix.html"
+ },
+ {
+ "title": "The SEO Mistakes Developers Make When Building Websites",
+ "category": "Tech",
+ "excerpt": "Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "27 July 2026",
+ "file": "seo-mistakes-developers-make.html"
+ },
+ {
+ "title": "The Image Naming Strategy That Improved My Website SEO",
+ "category": "Tech",
+ "excerpt": "Learn how descriptive image filenames can significantly improve your website SEO and accessibility over generic names like IMG_001.jpg.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "25 July 2026",
+ "file": "image-naming-strategy-for-seo.html"
+ },
+ {
+ "title": "I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication",
+ "category": "Tech",
+ "excerpt": "A real debugging story about fixing a 401 Unauthorized error in a full stack application. The issue was not authentication but an incorrect API request flow and configuration.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "23 July 2026",
+ "file": "debugging-401-error.html"
+ },
+ {
+ "title": "Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu",
+ "category": "Tech",
+ "excerpt": "Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "21 July 2026",
+ "file": "compress-videos-ffmpeg-ubuntu.html"
+ },
+ {
+ "title": "How to Compress Large Videos Without Losing Much Quality Using FFmpeg",
+ "category": "Tech",
+ "excerpt": "Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "19 July 2026",
+ "file": "compress-large-videos-using-ffmpeg.html"
+ },
+ {
+ "title": "Lefthook Setup Guide",
+ "category": "Tech",
+ "excerpt": "Lefthook run automated checks before code commit. Catch bugs, format issues, lint errors before production.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "17 July 2026",
+ "file": "lefthook-setup-guide.html"
+ },
+ {
+ "title": "Disabling the Pager in `psql` for the `postgres` User",
+ "category": "Tech",
+ "excerpt": "Great! It looks like you successfully created the .psqlrc file in the postgres user&#39;s home directory (/var/lib/postgresql/) and confirmed that ...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "15 July 2026",
+ "file": "disabling-the-pager-in-psql-for-the-postgres-user.html"
+ },
+ {
+ "title": "Docker Compose: `up --build` Command",
+ "category": "Tech",
+ "excerpt": "docker compose up --build is used to build (or rebuild) and start Docker containers as defined in your docker-compose.yml file. This ensures your c...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "13 July 2026",
+ "file": "docker-compose-up-build-command.html"
+ },
+ {
+ "title": "Error Explanation Why It Happens How To Fix",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "11 July 2026",
+ "file": "error-explanation-why-it-happens-how-to-fix.html"
+ },
+ {
+ "title": "Error Message",
+ "category": "Tech",
+ "excerpt": "Incorrect keystore password: The password in server.xml may not match the actual keystore password.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "09 July 2026",
+ "file": "error-message.html"
+ },
+ {
+ "title": " File Permissions in Linux (Owner, Group, Others)",
+ "category": "Tech",
+ "excerpt": "In Linux/Unix, each file and directory has permissions assigned to three types of users:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "07 July 2026",
+ "file": "file-permissions-in-linux-owner-group-others.html"
+ },
+ {
+ "title": "Initialize the database",
+ "category": "Tech",
+ "excerpt": "superset db upgrade superset fab create-admin # Create admin user superset init",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "05 July 2026",
+ "file": "initialize-the-database.html"
+ },
+ {
+ "title": "Issue Working With Utf 16 Encoded Files In Linux",
+ "category": "Tech",
+ "excerpt": "When trying to process a binary/encoded file (IPG_APP1_DISK_old.log), tools like grep, strings, and less don&#39;t return expected results. The fil...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "03 July 2026",
+ "file": "issue-working-with-utf-16-encoded-files-in-linux.html"
+ },
+ {
+ "title": "Java Binary Instalation On Ubuntu",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "01 July 2026",
+ "file": "java-binary-instalation-on-ubuntu.html"
+ },
+ {
+ "title": "Java Process Info Command",
+ "category": "Tech",
+ "excerpt": "The following settings help manage timeouts, session limits, and authentication attempts for SSH connections:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "29 June 2026",
+ "file": "java-process-info-command.html"
+ },
+ {
+ "title": "Javap And Its Use Case",
+ "category": "Tech",
+ "excerpt": "javap is a command-line tool provided by the Java Development Kit (JDK) that disassembles Java class files. It allows you to view the bytecode of a...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "27 June 2026",
+ "file": "javap-and-its-use-case.html"
+ },
+ {
+ "title": "Keycloak Configuration For Ssl Requirement",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "25 June 2026",
+ "file": "keycloak-configuration-for-ssl-requirement.html"
+ },
+ {
+ "title": "Keycloak Login Error Expiredcode Non Secure Cookie Context",
+ "category": "Tech",
+ "excerpt": "When using Keycloak, you may encounter the following log warnings related to authentication errors and non-secure cookies:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "23 June 2026",
+ "file": "keycloak-login-error-expiredcode-non-secure-cookie-context.html"
+ },
+ {
+ "title": " `locate` Command Cheat Sheet",
+ "category": "Tech",
+ "excerpt": "The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "21 June 2026",
+ "file": "locate-command-cheat-sheet.html"
+ },
+ {
+ "title": "Manually delete the migration folder",
+ "category": "Tech",
+ "excerpt": "rm -rf prisma/migrations/",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "19 June 2026",
+ "file": "manually-delete-the-migration-folder.html"
+ },
+ {
+ "title": "Note Google Apps Script To Clone Data Up To Column J",
+ "category": "Tech",
+ "excerpt": "Use the following function to replicate all sheets from a source Google Spreadsheet to a target Spreadsheet, copying only columns A-J. Existing she...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "17 June 2026",
+ "file": "note-google-apps-script-to-clone-data-up-to-column-j.html"
+ },
+ {
+ "title": "Note",
+ "category": "Tech",
+ "excerpt": "The error configure: error: pcre(2)-config for libpcre not found. PCRE is required and available from http://pcre.org/ indicates that the PCRE (Per...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "15 June 2026",
+ "file": "note.html"
+ },
+ {
+ "title": "Notes for 2025-04-10",
+ "category": "Tech",
+ "excerpt": "When building Apache and encountering the error APR not found. Please read the documentation., follow these steps based on your operating system:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "13 June 2026",
+ "file": "notes-for-2025-04-10.html"
+ },
+ {
+ "title": "Notes for 2025-04-30",
+ "category": "Tech",
+ "excerpt": "To replace a file in Ubuntu (Linux), you can use the mv (move) or cp (copy) command, depending on whether you want to move or overwrite a file.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "11 June 2026",
+ "file": "notes-for-2025-04-30.html"
+ },
+ {
+ "title": "Optional: Load modular configs from ~/.bashrc.d/",
+ "category": "Tech",
+ "excerpt": "if [ -d ~/.bashrc.d ]; then for rc in ~/.bashrc.d/*; do if [ -f &quot;$rc&quot; ]; then . &quot;$rc&quot; fi do...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "09 June 2026",
+ "file": "optional-load-modular-configs-from-bashrcd.html"
+ },
+ {
+ "title": "OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)",
+ "category": "Tech",
+ "excerpt": "Update system packages:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "07 June 2026",
+ "file": "otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html"
+ },
+ {
+ "title": "Paging vs. Segmentation",
+ "category": "Tech",
+ "excerpt": "Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "05 June 2026",
+ "file": "paging-vs-segmentation.html"
+ },
+ {
+ "title": "PostgreSQL Setup Issues",
+ "category": "Tech",
+ "excerpt": "Error: Warning: No existing cluster is suitable as a default target. Please see man pg_wrapper(1) how to specify one. Error: You must install at le...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "03 June 2026",
+ "file": "postgresql-setup-issues.html"
+ },
+ {
+ "title": " Python Virtual Environment Setup Guide (Ubuntu/Linux)",
+ "category": "Tech",
+ "excerpt": "Make sure Python and pip are installed:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "01 June 2026",
+ "file": "python-virtual-environment-setup-guide-ubuntulinux.html"
+ },
+ {
+ "title": "Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "30 May 2026",
+ "file": "reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html"
+ },
+ {
+ "title": "Ruby on Rails Installation Notes (2025-05-19)",
+ "category": "Tech",
+ "excerpt": "Verify Ruby and gem are installed:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "28 May 2026",
+ "file": "ruby-on-rails-installation-notes-2025-05-19.html"
+ },
+ {
+ "title": "**Sed Command and Its Different Usages**",
+ "category": "Tech",
+ "excerpt": "sed (Stream Editor) is a powerful command-line tool used for text processing, including search, replace, insert, and delete operations.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "26 May 2026",
+ "file": "sed-command-and-its-different-usages.html"
+ },
+ {
+ "title": "Setting Up a .NET Solution with xUnit Test Project",
+ "category": "Tech",
+ "excerpt": "Purpose: Creates a new xUnit test project.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "24 May 2026",
+ "file": "setting-up-a-net-solution-with-xunit-test-project.html"
+ },
+ {
+ "title": "SSL Exception in Tomcat with CAS",
+ "category": "Tech",
+ "excerpt": "While running Tomcat with CAS authentication, the following error occurs:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "22 May 2026",
+ "file": "ssl-exception-in-tomcat-with-cas.html"
+ },
+ {
+ "title": "Steps To Enable Sslproxyengine In Apache",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "20 May 2026",
+ "file": "steps-to-enable-sslproxyengine-in-apache.html"
+ },
+ {
+ "title": "The Order By Clause Does Not Work With Distinct In That Way If You Want To Order The Results By The Name Column You Should Simply Use",
+ "category": "Tech",
+ "excerpt": "If you want to get distinct role names (though in this case, they are already unique), you can use:",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "18 May 2026",
+ "file": "the-order-by-clause-does-not-work-with-distinct-in-that-way-if-you-want-to-order-the-results-by-the-name-column-you-should-simply-use.html"
+ },
+ {
+ "title": "This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak",
+ "category": "Tech",
+ "excerpt": "Insights and technical documentation.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "16 May 2026",
+ "file": "this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html"
+ },
+ {
+ "title": "Troubleshooting Prisma DB Seeding Failure",
+ "category": "Tech",
+ "excerpt": "This note documents the process of resolving a PrismaClientKnownRequestError that occurred during database seeding. The root cause was a mismatch b...",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "14 May 2026",
+ "file": "troubleshooting-prisma-db-seeding-failure.html"
+ },
+ {
+ "title": " View Saved Wi-Fi Passwords on Ubuntu",
+ "category": "Tech",
+ "excerpt": "You can view previously connected Wi-Fi passwords by accessing the NetworkManager configuration files.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "12 May 2026",
+ "file": "view-saved-wi-fi-passwords-on-ubuntu.html"
+ },
+ {
+ "title": "Note on Handling Local Variables in Inner Classes (Java)",
+ "category": "Backend",
+ "excerpt": "In Java, when using local variables within an inner class or anonymous class, they must be declared as final or effectively final. This post explains why and how to resolve compilation errors.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "10 May 2026",
+ "file": "note-on-handling-local-variables-in-inner-classes-java.html"
+ },
+ {
+ "title": "PostgreSQL connection to actual data source (if applicable)",
+ "category": "Databases",
+ "excerpt": "Configuration details for connecting Cube.js to a PostgreSQL database and setting up Apache Superset.",
+ "author": "A.M.Rinas",
+ "readTime": "2 min",
+ "date": "08 May 2026",
+ "file": "postgresql-connection-to-actual-data-source-if-applicable.html"
+ },
+ {
+ "title": "Network Interfaces and Their Levels & Usage",
+ "category": "DevOps",
+ "excerpt": "A breakdown of physical and virtual network interfaces, their usage, and how they operate across the different layers of the OSI model.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "06 May 2026",
+ "file": "network-interfaces-and-their-levels-usage.html"
+ },
+ {
+ "title": "Git Bisect Process to Debug Issue",
+ "category": "Tech",
+ "excerpt": "A guide on how to use git bisect to perform a binary search and find the exact commit that introduced a bug in your codebase.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "04 May 2026",
+ "file": "git-bisect-process-to-debug-issue.html"
+ },
+ {
+ "title": "Oracle JDK vs OpenJDK",
+ "category": "Tech",
+ "excerpt": "A comparison between Oracle JDK and OpenJDK, detailing licensing, performance, support, and installation differences to help you choose the right JDK for your project.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "02 May 2026",
+ "file": "oracle-jdk-vs-openjdk.html"
+ },
+ {
+ "title": "Fixing Apache Ant Deploytask Issue In Tomcat",
+ "category": "DevOps",
+ "excerpt": "While running ant clean dist, the build failed with taskdef class org.apache.catalina.ant.DeployTask cannot be found. This article details steps to fix the issue by correcting the Tomcat path and classpath in build.xml.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "30 April 2026",
+ "file": "fixing-apache-ant-deploytask-issue-in-tomcat.html"
+ },
+ {
+ "title": "Rsync and Its Usages",
+ "category": "DevOps",
+ "excerpt": "Rsync (Remote Sync) is a fast and versatile command-line tool for copying and synchronizing files and directories between locations. It efficiently transfers only the differences between the source and destination, making it ideal for backups and file synchronization.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "28 April 2026",
+ "file": "rsync-and-its-usages.html"
+ },
+ {
+ "title": "Git Stash Notes",
+ "category": "Tech",
+ "excerpt": "Git stash is a command that temporarily saves your uncommitted changes so you can switch branches or pull updates without losing your work.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "26 April 2026",
+ "file": "git-stash-notes.html"
+ },
+ {
+ "title": "Developer Notes - April 8, 2025",
+ "category": "Tech",
+ "excerpt": "Issue: Java Virtual Machine Initialization Error. Notes on resolving HPI library initialization failure when running java -version.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "24 April 2026",
+ "file": "developer-notes-april-8-2025.html"
+ },
+ {
+ "title": "Python Troubleshooting and Installation Summary",
+ "category": "Tech",
+ "excerpt": "This document summarizes the issues encountered and troubleshooting steps taken for Python installation and version management.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "22 April 2026",
+ "file": "python-troubleshooting-and-installation-summary.html"
+ },
+ {
+ "title": "Cube.js Concepts Summary",
+ "category": "Backend",
+ "excerpt": "A summary of Cube.js concepts including Cubes, Measures, Dimensions, Pre-aggregations, and more.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "20 April 2026",
+ "file": "cubejs-concepts-summary.html"
+ },
+ {
+ "title": "n8n Custom Node Development Guide",
+ "category": "DevOps",
+ "excerpt": "This guide explains how to create, build, and test a custom n8n node locally.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "18 April 2026",
+ "file": "n8n-custom-node-development-guide.html"
+ },
+ {
+ "title": "CPU Cycle and its Relation to Time",
+ "category": "Tech",
+ "excerpt": "Understanding CPU cycles and how they relate to execution time and processing speed.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "16 April 2026",
+ "file": "cpu-cycle-and-its-relation-to-time.html"
+ },
+ {
+ "title": "Eulerian and Hamiltonian Graphs",
+ "category": "Tech",
+ "excerpt": "A deep dive into Eulerian and Hamiltonian graphs in Graph Theory.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "14 April 2026",
+ "file": "eulerian-and-hamiltonian-graphs.html"
+ },
+ {
+ "title": "Flutter Installation Notes",
+ "category": "Frontend",
+ "excerpt": "Notes and steps for setting up and installing Flutter for mobile development.",
+ "author": "A.M.Rinas",
+ "readTime": "6 min",
+ "date": "12 April 2026",
+ "file": "flutter-installation-notes.html"
+ },
+ {
+ "title": "docker ps",
+ "category": "DevOps",
+ "excerpt": "A quick guide on using docker ps and troubleshooting Postgres container issues.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "10 April 2026",
+ "file": "docker-ps.html"
+ },
+ {
+ "title": "Downloading Files from Google Drive using gdown",
+ "category": "Tech",
+ "excerpt": "How to download files from Google Drive using gdown and Python.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "08 April 2026",
+ "file": "downloading-files-from-google-drive-using-gdown.html"
+ },
+ {
+ "title": "How to Enable Swap Memory on Linux",
+ "category": "DevOps",
+ "excerpt": "A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "06 April 2026",
+ "file": "how-to-enable-swap-memory-on-linux.html"
+ },
+ {
+ "title": "Adding Google Chat to the Ubuntu Desktop Bar",
+ "category": "Tech",
+ "excerpt": "To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.",
+ "author": "A.M.Rinas",
+ "readTime": "2 min",
+ "date": "04 April 2026",
+ "file": "adding-google-chat-to-the-ubuntu-desktop-bar.html",
+ "featured": true
+ },
+ {
+ "title": "Airbyte Local Installation Steps",
+ "category": "DevOps",
+ "excerpt": "Steps for installing Airbyte locally and handling common permission errors during setup.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "02 April 2026",
+ "file": "airbyte-local-installation-steps.html"
+ },
+ {
+ "title": "Apache HTTP Server Troubleshooting Notes",
+ "category": "DevOps",
+ "excerpt": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "31 March 2026",
+ "file": "apache-http-server-troubleshooting-notes.html"
+ },
+ {
+ "title": "Adding a Custom Node to n8n in Docker",
+ "category": "DevOps",
+ "excerpt": "A step-by-step guide on how to inject a custom node into an n8n Docker container by mounting volumes and restarting the service.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "29 March 2026",
+ "file": "adding-a-custom-node-to-n8n-in-docker.html",
+ "featured": true
+ },
+ {
+ "title": "Linux, Maven, and Git Cheat Sheet",
+ "category": "Tech",
+ "excerpt": "A compilation of useful commands for Linux file searching, SSH proxy jumps, Maven proxy settings, and Git tagging.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "27 March 2026",
+ "file": "linux-maven-git-cheat-sheet.html"
+ },
+ {
+ "title": "MongoDB Backup & Restore with Docker",
+ "category": "Databases",
+ "excerpt": "A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "25 March 2026",
+ "file": "mongodb-backup-restore-with-docker.html",
+ "featured": true
+ },
+ {
+ "title": "Checking If A User Group Exists In Rhel",
+ "category": "DevOps",
+ "excerpt": "To check whether a user group exists in RHEL (Red Hat Enterprise Linux), use the grep or getent commands.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "23 March 2026",
+ "file": "checking-if-a-user-group-exists-in-rhel.html"
+ },
+ {
+ "title": "Checking Port Availability Using Netcat (`nc`)",
+ "category": "DevOps",
+ "excerpt": "Netcat (`nc`) is a powerful networking tool that can be used for a variety of tasks, such as scanning ports, connecting to remote systems, and troubleshooting network issues.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "21 March 2026",
+ "file": "checking-port-availability-using-netcat-nc.html"
+ },
+ {
+ "title": "Configuring SSH Authentication for GitHub",
+ "category": "DevOps",
+ "excerpt": "A complete guide on setting up SSH authentication for GitHub, generating a new SSH key (ed25519), and adding it to your GitHub account.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "19 March 2026",
+ "file": "configuring-ssh-authentication-for-github.html"
+ },
+ {
+ "title": "How to Disable Auto-Start for a Docker Container",
+ "category": "DevOps",
+ "excerpt": "Learn how to stop Docker containers from starting automatically after a machine reboot by updating restart policies.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "17 March 2026",
+ "file": "how-to-disable-auto-start-for-a-docker-container.html"
+ },
+ {
+ "title": "Why Docker Builds Fail Differently on Linux and Windows",
+ "category": "DevOps",
+ "excerpt": "A practical breakdown of Docker build issues across Linux and Windows environments.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "15 March 2026",
+ "file": "docker-build-failures-linux-vs-windows.html",
+ "featured": true
+ },
+ {
+ "title": "Understanding .gitattributes: Solving Cross-Platform Line Ending Problems",
+ "category": "DevOps",
+ "excerpt": "A practical guide to .gitattributes and Git line ending normalization between Windows and Linux systems.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "13 March 2026",
+ "file": "gitattributes-crlf-lf-line-endings-git.html"
+ },
+ {
+ "title": "Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)",
+ "category": "DevOps",
+ "excerpt": "A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "11 March 2026",
+ "file": "ffmpeg-video-trimming-linux-no-reencoding.html"
+ },
+ {
+ "title": "MySQL 8.0 Binary Installation and MariaDB Cleanup Guide",
+ "category": "Databases",
+ "excerpt": "A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runtime dependencies, and purge conflicting MariaDB footprints.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "09 March 2026",
+ "file": "mysql-binary.html",
+ "featured": true
+ },
+ {
+ "title": "Introduction: Overview of Grafana, Prometheus, and Node Exporter",
+ "category": "DevOps",
+ "excerpt": "Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali...",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "07 March 2026",
+ "file": "grafana-prometheus-node-exporter.html",
+ "featured": true
+ },
+ {
+ "title": "Creating Docker Networks for Container Communication",
+ "category": "DevOps",
+ "excerpt": "Learn how Docker bridge networks work and how to connect multiple containers securely.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "05 March 2026",
+ "file": "docker-network-guide.html",
+ "featured": true
+ },
+ {
+ "title": "How to Enable and Monitor the MySQL General Log",
+ "category": "Databases",
+ "excerpt": "Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries....",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "03 March 2026",
+ "file": "mysql-general-log.html",
+ "featured": true
+ },
+ {
+ "title": "Fixing \"Could Not Initialize Java Virtual Machine\" After Installing Oracle JDK on Linux",
+ "category": "DevOps",
+ "excerpt": "Step-by-step systems debugging guide to resolve the Java HPI library dependency error 'Could not initialize Java Virtual Machine' after deploying an Oracle JDK binary on Linux kernels.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "01 March 2026",
+ "file": "fix-java-virtual-machine-error-linux.html"
+ },
+ {
+ "title": "Essential Linux System Commands: A Systems Engineering Reference",
+ "category": "Databases",
+ "excerpt": "An advanced systems administration reference for fundamental Linux commands. Covers multi-tenant user management, programmatic file and stream manipulation, kernel process analysis, and low-level network interface monitoring.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "27 February 2026",
+ "file": "basic-linux.html"
+ },
+ {
+ "title": "Essential SQL Queries for Database Exploration and Management",
+ "category": "Databases",
+ "excerpt": "Structured Query Language (SQL) is the backbone of database management, enabling users to interact with databases to retrieve, manipulate, and manage ...",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "25 February 2026",
+ "file": "essential-sql-queries.html"
+ },
+ {
+ "title": "A Developer's Guide to the OpenAI GPT Playground",
+ "category": "DevOps",
+ "excerpt": "Master OpenAI's GPT Playground parameters including Temperature, Top P, and Stop Sequences. Learn how to configure structural LLM workflows for reliable bug reporting.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "23 February 2026",
+ "file": "gpt-playground.html"
+ },
+ {
+ "title": "Grafana Installation on Ubuntu using Docker",
+ "category": "DevOps",
+ "excerpt": "Install Grafana OSS (open-source version) on Ubuntu using Docker....",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "21 February 2026",
+ "file": "grafana-installation-docker.html"
+ },
+ {
+ "title": "Apache HTTP Server 2.4.x Installation and Configuration Guide",
+ "category": "DevOps",
+ "excerpt": "Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "19 February 2026",
+ "file": "https-server.html"
+ },
+ {
+ "title": "How to Install XMind on Ubuntu: A Step-by-Step Guide",
+ "category": "DevOps",
+ "excerpt": "A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "17 February 2026",
+ "file": "insall-xmind.html"
+ },
+ {
+ "title": "Understanding iptables in Linux: Firewall Packet Filtering Guide",
+ "category": "DevOps",
+ "excerpt": "An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "15 February 2026",
+ "file": "iptables-rules.html"
+ },
+ {
+ "title": "Installing Katalon Studio on Ubuntu",
+ "category": "DevOps",
+ "excerpt": "Katalon Studio is a powerful tool for automating web, API, and mobile testing. In this guide, we&#39;ll walk you through the installation process and ...",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "13 February 2026",
+ "file": "katalon-studio-guide.html"
+ },
+ {
+ "title": "Mastering netstat Commands for Linux Network Analysis",
+ "category": "DevOps",
+ "excerpt": "A practical networking guide to using netstat commands in Linux. Learn how to inspect open sockets, audit listening TCP/UDP ports, map Process IDs (PIDs), and analyze kernel routing tables.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "11 February 2026",
+ "file": "netstat-commnd.html"
+ },
+ {
+ "title": "Demystifying Semantic Versioning: An NPM and NuGet Guide",
+ "category": "DevOps",
+ "excerpt": "A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "09 February 2026",
+ "file": "npm-version-understand.html"
+ },
+ {
+ "title": "How to Install Postman via Binary Tarball on Ubuntu",
+ "category": "DevOps",
+ "excerpt": "A structural DevOps guide to manually installing Postman on Ubuntu using official Linux binary tarballs. Learn how to extract binaries, map symbolic execution paths, and provision desktop application configuration entries.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "07 February 2026",
+ "file": "postman-ubunut.html"
+ },
+ {
+ "title": "Mastering SCP Commands for Secure File Transfers",
+ "category": "DevOps",
+ "excerpt": "A practical DevOps guide to using SCP (Secure Copy Protocol) for secure file and directory transfers between local and remote Linux machines. Learn key syntax, flags, and real-world examples.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "05 February 2026",
+ "file": "scp-commnd.html"
+ },
+ {
+ "title": "Comprehensive SSH Setup and Hardening Guide",
+ "category": "DevOps",
+ "excerpt": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "03 February 2026",
+ "file": "ssh-commnd.html"
+ },
+ {
+ "title": "How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide",
+ "category": "DevOps",
+ "excerpt": "A comprehensive step-by-step tutorial on installing Apache Tomcat 9.0.21 on Linux (Ubuntu/Debian). Learn how to configure JDK, manage dedicated service users, and establish environment path variables safely.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "01 February 2026",
+ "file": "tomcat-on-ubuntu.html"
+ },
+ {
+ "title": "Mastering the Vi/Vim Editor: A Comprehensive Systems Guide",
+ "category": "DevOps",
+ "excerpt": "A structural DevOps and systems engineering guide to mastering the Vi/Vim terminal text editor. Learn modal switching mechanics, regex string replacement, regex escaping, buffer yank arrays, and efficient pipeline management.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "30 January 2026",
+ "file": "vim-editor.html"
+ },
+ {
+ "title": "Introduction to Kubernetes Architecture",
+ "category": "DevOps",
+ "excerpt": "A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.",
+ "author": "A.M.Rinas",
+ "readTime": "6 min",
+ "date": "28 January 2026",
+ "file": "kubernetes-intro.html"
+ },
+ {
+ "title": "Mastering Python Generators",
+ "category": "Backend",
+ "excerpt": "Learn how to use Python generators for efficient memory management and elegant code design.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "26 January 2026",
+ "file": "python-generators.html"
+ },
+ {
+ "title": "Understanding React Hooks",
+ "category": "Frontend",
+ "excerpt": "A deep dive into React Hooks: useState, useEffect, and how they simplify functional components.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "24 January 2026",
+ "file": "react-hooks.html"
+ },
+ {
+ "title": "Introduction to Docker Compose",
+ "category": "DevOps",
+ "excerpt": "A beginner's guide to using Docker Compose to orchestrate multi-container applications.",
+ "author": "A.M.Rinas",
+ "readTime": "6 min",
+ "date": "22 January 2026",
+ "file": "docker-compose-intro.html"
+ },
+ {
+ "title": "Advanced Git Strategies",
+ "category": "Tech",
+ "excerpt": "Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.",
+ "author": "A.M.Rinas",
+ "readTime": "7 min",
+ "date": "20 January 2026",
+ "file": "advanced-git-strategies.html"
+ },
+ {
+ "title": "CSS Grid vs Flexbox",
+ "category": "Frontend",
+ "excerpt": "When to use CSS Grid and when to use Flexbox to build modern, responsive web layouts.",
+ "author": "A.M.Rinas",
+ "readTime": "5 min",
+ "date": "18 January 2026",
+ "file": "css-grid-vs-flexbox.html"
+ },
+ {
+ "title": "Connecting Cube.js to Superset (PostgreSQL SQL API)",
+ "category": "Databases",
+ "excerpt": "Connect Apache Superset to Cube.js using Cube's PostgreSQL SQL API on port 15432, allowing Superset to query Cube.js pre-aggregated data.",
+ "author": "A.M.Rinas",
+ "readTime": "4 min",
+ "date": "16 January 2026",
+ "file": "connecting-cubejs-to-superset-postgresql-sql-api.html"
+ },
+ {
+ "title": "Connecting GitBD (GitLab) to Airbyte using OAuth2.0",
+ "category": "DevOps",
+ "excerpt": "A step-by-step guide to configuring an OAuth2.0 application in GitLab (GitBD) and authenticating Airbyte to use it as a source.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "14 January 2026",
+ "file": "connecting-gitbd-gitlab-to-airbyte-using-oauth20.html"
+ },
+ {
+ "title": "Copy The Sql File To The Container",
+ "category": "Databases",
+ "excerpt": "A short guide on how to copy a SQL file from a local machine into a running Docker container.",
+ "author": "A.M.Rinas",
+ "readTime": "2 min",
+ "date": "12 January 2026",
+ "file": "copy-the-sql-file-to-the-container.html"
+ },
+ {
+ "title": "Creating a Temporary Admin User in Keycloak",
+ "category": "DevOps",
+ "excerpt": "A short tutorial on how to bootstrap a temporary admin user in Keycloak and install MySQL Workbench.",
+ "author": "A.M.Rinas",
+ "readTime": "3 min",
+ "date": "10 January 2026",
+ "file": "creating-a-temporary-admin-user-in-keycloak.html"
+ }
+ ];
 
-        function initBlog() {
-            const countEl = document.getElementById('total-blogs-count');
-            if (countEl) {
-                countEl.innerText = `Total Posts: ${blogPosts.length}`;
-            }
-            renderPosts();
-        }
+ function initBlog() {
+ const countEl = document.getElementById('total-blogs-count');
+ if (countEl) {
+ countEl.innerText = `Total Posts: ${blogPosts.length}`;
+ }
+ renderPosts();
+ }
 
-        // Render posts based on filters
-        function renderPosts(searchQuery = '', category = 'All') {
-            blogGrid.innerHTML = '';
+ // Render posts based on filters
+ function renderPosts(searchQuery = '', category = 'All') {
+ blogGrid.innerHTML = '';
 
-            const filtered = blogPosts.filter(post => {
-                const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesCategory = category === 'All' || post.category === category;
-                return matchesSearch && matchesCategory;
-            });
+ const filtered = blogPosts.filter(post => {
+ const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+ post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+ const matchesCategory = category === 'All' || post.category === category;
+ return matchesSearch && matchesCategory;
+ });
 
-            if (filtered.length === 0) {
-                blogGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--ink-muted);">No posts found.</p>';
-                return;
-            }
+ if (filtered.length === 0) {
+ blogGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--ink-muted);">No posts found.</p>';
+ return;
+ }
 
-            filtered.forEach((post, index) => {
-                const col = document.createElement('div');
-                col.className = 'arch-item';
-                col.onclick = () => window.location.href = './blogs/' + post.file;
+ filtered.forEach((post, index) => {
+ const col = document.createElement('div');
+ col.className = 'arch-item';
+ col.onclick = () => window.location.href = '../blogs/' + post.file;
 
-                let dotClass = 'cat-dot-visa';
-                if (post.category === 'Tech') dotClass = 'cat-dot-german';
-                else if (post.category === 'DevOps') dotClass = 'cat-dot-ausbildung';
-                else if (post.category === 'Databases') dotClass = 'cat-dot-story';
+ let dotClass = 'cat-dot-visa';
+ if (post.category === 'Tech') dotClass = 'cat-dot-german';
+ else if (post.category === 'DevOps') dotClass = 'cat-dot-ausbildung';
+ else if (post.category === 'Databases') dotClass = 'cat-dot-story';
 
-                const isFeatured = post.featured ? '⭐ ' : '';
-                col.innerHTML = `
-                        <div class="arch-item-center">
-                            <div class="arch-cat-strip"><span class="arch-cat-dot ${dotClass}"></span>${post.category}</div>
-                            <h3 class="arch-item-title"><a href="./blogs/${post.file}" style="text-decoration:none; color:inherit;">${isFeatured}${post.title}</a></h3>
-                            <p class="arch-excerpt">${post.excerpt}</p>
-                        </div>
-                        <div class="arch-item-right">
-                            <div class="arch-date">${post.date || '03 June 2026'}</div>
-                            <div class="arch-readtime">${post.readTime}</div>
-                            <span class="arch-read-arrow">→</span>
-                        </div>
-                    `;
-                blogGrid.appendChild(col);
-            });
-        }
+ const isFeatured = post.featured ? ' ' : '';
+ col.innerHTML = `
+ <div class="arch-item-center">
+ <div class="arch-cat-strip"><span class="arch-cat-dot ${dotClass}"></span>${post.category}</div>
+ <h3 class="arch-item-title"><a href="../blogs/${post.file}" style="text-decoration:none; color:inherit;">${isFeatured}${post.title}</a></h3>
+ <p class="arch-excerpt">${post.excerpt}</p>
+ </div>
+ <div class="arch-item-right">
+ <div class="arch-date">${post.date || '03 June 2026'}</div>
+ <div class="arch-readtime">${post.readTime}</div>
+ <span class="arch-read-arrow">→</span>
+ </div>
+ `;
+ blogGrid.appendChild(col);
+ });
+ }
 
-        // Event Listeners for Search and Categories
-        searchInput.addEventListener('input', (e) => {
-            const activeCategory = document.querySelector('.cat-tag.active').dataset.category;
-            renderPosts(e.target.value, activeCategory);
-        });
+ // Event Listeners for Search and Categories
+ searchInput.addEventListener('input', (e) => {
+ const activeCategory = document.querySelector('.cat-tag.active').dataset.category;
+ renderPosts(e.target.value, activeCategory);
+ });
 
-        categoryButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                categoryButtons.forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                renderPosts(searchInput.value, e.target.dataset.category);
-            });
-        });
+ categoryButtons.forEach(btn => {
+ btn.addEventListener('click', (e) => {
+ categoryButtons.forEach(b => b.classList.remove('active'));
+ e.target.classList.add('active');
+ renderPosts(searchInput.value, e.target.dataset.category);
+ });
+ });
 
-        // Set Date
-        const today = new Date();
-        // document.getElementById('current-date').innerText = 'Issue No. 1 · ' + today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+ // Set Date
+ const today = new Date();
+ // document.getElementById('current-date').innerText = 'Issue No. 1 · ' + today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
-        // Initial Render
-        initBlog();
-    </script>
+ // Initial Render
+ initBlog();
+ </script>
 
-  
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
-        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
-            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
-            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
-            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
-        </nav>
-        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
-    </footer>
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
 
-  <!-- Theme Switcher UI -->
-  <div class="theme-switcher-container" id="themeSwitcher"></div>
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
 
-  <script src="../js/theme.js" defer></script>
+ <script src="../js/theme.js" defer></script>
 <script>
-    const hamburger = document.getElementById("hamburger");
-    const navbar = document.getElementById("myLinks");
-    if (hamburger && navbar) {
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("open");
-            navbar.classList.toggle("nav-open");
-        });
-        navbar.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("open");
-                navbar.classList.remove("nav-open");
-            });
-        });
-        document.addEventListener("click", (e) => {
-            if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove("open");
-                navbar.classList.remove("nav-open");
-            }
-        });
-    }
+ const hamburger = document.getElementById("hamburger");
+ const navbar = document.getElementById("myLinks");
+ if (hamburger && navbar) {
+ hamburger.addEventListener("click", () => {
+ hamburger.classList.toggle("open");
+ navbar.classList.toggle("nav-open");
+ });
+ navbar.querySelectorAll("a").forEach(link => {
+ link.addEventListener("click", () => {
+ hamburger.classList.remove("open");
+ navbar.classList.remove("nav-open");
+ });
+ });
+ document.addEventListener("click", (e) => {
+ if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
+ hamburger.classList.remove("open");
+ navbar.classList.remove("nav-open");
+ }
+ });
+ }
 </script>
 </body>
 
