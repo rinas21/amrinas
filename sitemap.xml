@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core Pages -->
   <url>
     <loc>https://rinas.tech/</loc>
     <lastmod>2026-06-03</lastmod>
@@ -25,7 +24,42 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Blog Posts -->
+  <url>
+    <loc>https://rinas.tech/pages/projects.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/pages/codelab.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/pages/publications.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/pages/publication.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/pages/privacy.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/codelab/html/two-sum.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://rinas.tech/blogs/adding-a-custom-node-to-n8n-in-docker.html</loc>
     <lastmod>2026-07-28</lastmod>
