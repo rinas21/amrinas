@@ -416,6 +416,12 @@
         }
 
         @media (max-width:760px) {
+            .header {
+                padding: 16px 20px;
+            }
+            .wrap {
+                padding: 100px 16px 80px;
+            }
             .table-head {
                 display: none;
             }
@@ -423,6 +429,19 @@
             .prow {
                 grid-template-columns: 28px 1fr 24px;
                 row-gap: 6px;
+            }
+
+            /* Prevent flex and grid blowout on mobile */
+            .prow > div {
+                min-width: 0;
+            }
+            .pname {
+                min-width: 0;
+                flex-wrap: wrap;
+            }
+            .pname .title {
+                white-space: normal;
+                word-wrap: break-word;
             }
 
             .prow .meta-row {

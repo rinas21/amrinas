@@ -22,7 +22,10 @@
 
     <header class="header">
         <a href="../../index.html" class="logo">Portfolio</a>
-        <nav class="navbar">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navbar" id="myLinks">
             <a href="../../index.html#Home">Home</a>
             <a href="../../index.html#About">About</a>
             <a href="../../index.html#Experience">Experience</a>
@@ -143,7 +146,7 @@
 
         <div class="card">
             <div class="card-title">Comprehensive Strategy Matrix</div>
-            <div class="card-body" style="padding:0;">
+            <div class="card-body" style="padding:0; overflow-x: auto;">
                 <table class="compare">
                     <tr>
                         <th>Strategy</th>
@@ -176,7 +179,28 @@
     </div>
 
     <script src="../js/two-sum.js" defer></script>
-
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navbar = document.getElementById("myLinks");
+        if (hamburger && navbar) {
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("open");
+                navbar.classList.toggle("nav-open");
+            });
+            navbar.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    hamburger.classList.remove("open");
+                    navbar.classList.remove("nav-open");
+                });
+            });
+            document.addEventListener("click", (e) => {
+                if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove("open");
+                    navbar.classList.remove("nav-open");
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

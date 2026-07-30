@@ -1507,7 +1507,28 @@
   <div class="theme-switcher-container" id="themeSwitcher"></div>
 
   <script src="../js/theme.js" defer></script>
-
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const navbar = document.getElementById("myLinks");
+    if (hamburger && navbar) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("open");
+            navbar.classList.toggle("nav-open");
+        });
+        navbar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("open");
+                navbar.classList.remove("nav-open");
+            });
+        });
+        document.addEventListener("click", (e) => {
+            if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove("open");
+                navbar.classList.remove("nav-open");
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

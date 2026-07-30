@@ -74,7 +74,10 @@
     <!-- ===== NAVBAR ===== -->
     <header class="header">
         <a href="../index.html" class="logo" style="opacity: 1; color: var(--ink);">Portfolio</a>
-        <nav class="navbar">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="navbar" id="myLinks">
             <a href="../index.html#Home" style="--i:1">Home</a>
             <a href="../index.html#About" style="--i:2">About</a>
             <a href="../index.html#Experience" style="--i:3">Experience</a>
@@ -143,5 +146,27 @@
   <script src="../js/theme.js" defer></script>
 
 <script src="../js/codelab.js" defer></script>
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const navbar = document.getElementById("myLinks");
+    if (hamburger && navbar) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("open");
+            navbar.classList.toggle("nav-open");
+        });
+        navbar.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("open");
+                navbar.classList.remove("nav-open");
+            });
+        });
+        document.addEventListener("click", (e) => {
+            if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove("open");
+                navbar.classList.remove("nav-open");
+            }
+        });
+    }
+</script>
 </body>
 </html>
