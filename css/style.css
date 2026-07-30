@@ -27,7 +27,7 @@
     scroll-behavior: smooth;
 }
 
-body {
+body, html {
     color: var(--text);
     background-color: var(--bg);
     overflow-x: hidden;
@@ -134,6 +134,7 @@ body {
     top: -200px;
     right: -100px;
     width: 600px;
+    max-width: 100%;
     height: 600px;
     background: radial-gradient(circle, rgba(var(--secondary-rgb),0.07) 0%, transparent 70%);
     pointer-events: none;
@@ -1448,6 +1449,7 @@ body {
     .stat-suffix{ font-size: 16px; }
     .stat-label { font-size: 10px; }
     .stat-divider { height: 30px; }
+    .project-container { grid-template-columns: 1fr; }
 }
 
 /* ===== ANIMATED GRADIENT BORDER on tech groups ===== */
@@ -1626,6 +1628,7 @@ body {
 .section-glow {
     position: absolute;
     width: 600px;
+    max-width: 100%;
     height: 600px;
     background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.08) 0%, transparent 60%);
     top: 50%;

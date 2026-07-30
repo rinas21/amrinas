@@ -66,3 +66,38 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
+/* ===== RESPONSIVE: Tablet ===== */
+@media (max-width: 768px) {
+    .blog-post-container {
+        margin: 100px auto 60px;
+        padding: 0 20px;
+        font-size: 15px;
+    }
+    .blog-post-container h1 {
+        font-size: clamp(28px, 8vw, 48px);
+    }
+}
+
+/* ===== RESPONSIVE: Mobile ===== */
+@media (max-width: 480px) {
+    .blog-post-container {
+        margin: 80px auto 40px;
+        padding: 0 16px;
+        font-size: 14px;
+        line-height: 1.75;
+    }
+    .blog-post-container h1 {
+        font-size: clamp(24px, 9vw, 36px);
+        margin-bottom: 16px;
+    }
+    .blog-post-container h2,
+    .blog-post-container h3 {
+        font-size: clamp(18px, 6vw, 26px);
+    }
+    .blog-post-container pre {
+        padding: 14px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+}
