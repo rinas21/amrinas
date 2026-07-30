@@ -633,4 +633,89 @@
             .complexity-badges {
                 flex-direction: column;
             }
+            .code-line {
+                font-size: 11px;
+                white-space: pre-wrap;
+                word-break: break-all;
+            }
+            .desc-line, .example {
+                word-wrap: break-word;
+            }
+        }
+
+        /* Graph Visual Area */
+        .chart-stage {
+            position: relative;
+            height: 240px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 10px 0;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            max-width: 48px;
+            min-width: 24px;
+        }
+
+        .bar {
+            width: 100%;
+            background-color: var(--row-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px 4px 0 0;
+            transition: background-color 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+
+        .bar-value {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .pointer-marker {
+            position: absolute;
+            bottom: -32px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .pointer-marker.visible {
+            opacity: 1;
+        }
+
+        .pointer-marker.left {
+            color: #ff0055;
+        }
+
+        .pointer-marker.right {
+            color: #ff0055;
+        }
+
+        .pointer-marker.match {
+            color: #ccff00;
+        }
+
+        .bar.active {
+            background-color: rgba(255, 0, 85, 0.18) !important;
+            border-color: #ff0055 !important;
+        }
+
+        .bar.match {
+            background-color: rgba(204, 255, 0, 0.18) !important;
+            border-color: #ccff00 !important;
         }

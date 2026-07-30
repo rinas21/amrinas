@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Sum Visualizer</title>
+    <style>
+        :root {
+            --bg-color: #0d0f17;
+            --card-bg: #121624;
+            --bar-bg: #373b47;
+            --highlight-active: #00e699;
+            --highlight-checking: #00d5ff;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .visualizer-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .equation-display {
+            color: var(--highlight-checking);
+            font-size: 1.1rem;
+        }
+
+        /* Graph Visual Area */
+        .chart-stage {
+            position: relative;
+            height: 240px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 10px 0;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            max-width: 48px;
+        }
+
+        .bar {
+            width: 100%;
+            background-color: var(--bar-bg);
+            border-radius: 4px 4px 0 0;
+            transition: background-color 0.3s ease, height 0.3s ease;
+        }
+
+        .bar-value {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .pointer-marker {
+            position: absolute;
+            bottom: -32px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .pointer-marker.visible {
+            opacity: 1;
+        }
+
+        .pointer-marker.left {
+            color: var(--highlight-checking);
+        }
+
+        .pointer-marker.right {
+            color: var(--highlight-checking);
+        }
+
+        .pointer-marker.match {
+            color: var(--highlight-active);
+        }
+
+        /* Bar status colors */
+        .bar.active {
+            background-color: var(--highlight-checking) !important;
+        }
+
+        .bar.match {
+            background-color: var(--highlight-active) !important;
+        }
+
+        .message-banner {
+            height: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--highlight-active);
+            margin-bottom: 15px;
+        }
+
+        /* Controls Bar */
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #090c14;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            accent-color: var(--highlight-active);
+            cursor: pointer;
+        }
+
+        .step-counter {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            min-width: 45px;
+        }
+
+        select.speed-select {
+            background: #121624;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="visualizer-container">
+        <div class="header">
+            <div class="header-top">
+                <div class="title">Two Sum (Two Pointers)</div>
+                <button class="btn" id="randomizeBtn">🔀 Randomize</button>
+            </div>
+            <div class="subtitle">
+                On a sorted array, move two pointers inward: shrink sum from the right, grow it from the left.
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div id="equation" class="equation-display">3 + 25 = 28</div>
+            <div>target <span id="targetVal" style="color: #fff">20</span> • sum <span id="sumVal"
+                    style="color: #fff">28</span></div>
+        </div>
+
+        <!-- Graph Stage -->
+        <div class="chart-stage" id="chartStage"></div>
+
+        <!-- Status Message -->
+        <div class="message-banner" id="statusMessage"></div>
+
+        <!-- Controls -->
+        <div class="controls-bar">
+            <button class="btn" id="playBtn">▶</button>
+            <button class="btn" id="prevBtn">❮</button>
+            <button class="btn" id="nextBtn">❯</button>
+
+            <div class="progress-container">
+                <input type="range" id="progressBar" class="progress-bar" min="0" max="0" value="0" />
+                <span class="step-counter" id="stepCounter">0 / 0</span>
+            </div>
+
+            <select class="speed-select" id="speedSelect">
+                <option value="1500">0.5x</option>
+                <option value="800" selected>1x</option>
+                <option value="400">2x</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        // Initial Data
+        let array = [3, 7, 9, 10, 12, 13, 17, 18, 19, 22, 23, 25];
+        let target = 20;
+
+        // State
+        let steps = [];
+        let currentStepIndex = 0;
+        let isPlaying = false;
+        let timer = null;
+
+        // DOM Elements
+        const chartStage = document.getElementById('chartStage');
+        const equationEl = document.getElementById('equation');
+        const targetValEl = document.getElementById('targetVal');
+        const sumValEl = document.getElementById('sumVal');
+        const statusMessageEl = document.getElementById('statusMessage');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const stepCounter = document.getElementById('stepCounter');
+        const speedSelect = document.getElementById('speedSelect');
+        const randomizeBtn = document.getElementById('randomizeBtn');
+
+        // Generate Simulation Steps
+        function buildSteps() {
+            steps = [];
+            let left = 0;
+            let right = array.length - 1;
+
+            while (left < right) {
+                const sum = array[left] + array[right];
+
+                if (sum === target) {
+                    steps.push({
+                        left, right, sum, target,
+                        status: `found ${array[left]} + ${array[right]} = ${target} at indices ${left}, ${right}`,
+                        matched: true
+                    });
+                    break;
+                } else if (sum > target) {
+                    steps.push({
+                        left, right, sum, target,
+                        status: `Sum (${sum}) > Target (${target}). Shrink sum from right (R--)`,
+                        matched: false
+                    });
+                    right--;
+                } else {
+                    steps.push({
+                        left, right, sum, target,
+                        status: `Sum (${sum}) < Target (${target}). Grow sum from left (L++)`,
+                        matched: false
+                    });
+                    left++;
+                }
+            }
+
+            progressBar.max = steps.length - 1;
+        }
+
+        // Render DOM Bars
+        function renderChart() {
+            chartStage.innerHTML = '';
+            const maxVal = Math.max(...array);
+
+            array.forEach((val, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bar-wrapper';
+
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.id = `bar-${idx}`;
+                bar.style.height = `${(val / maxVal) * 160}px`;
+
+                const barVal = document.createElement('div');
+                barVal.className = 'bar-value';
+                barVal.innerText = val;
+
+                // Pointer elements
+                const pointer = document.createElement('div');
+                pointer.className = `pointer-marker`;
+                pointer.id = `pointer-${idx}`;
+
+                wrapper.appendChild(bar);
+                wrapper.appendChild(barVal);
+                wrapper.appendChild(pointer);
+                chartStage.appendChild(wrapper);
+            });
+        }
+
+        // Update Visual state to specific step
+        function applyStep(stepIdx) {
+            if (steps.length === 0) return;
+            currentStepIndex = stepIdx;
+            const step = steps[stepIdx];
+
+            // Reset styles
+            array.forEach((_, i) => {
+                const bar = document.getElementById(`bar-${i}`);
+                const pointer = document.getElementById(`pointer-${i}`);
+                bar.className = 'bar';
+                pointer.className = 'pointer-marker';
+                pointer.innerHTML = '';
+            });
+
+            const leftBar = document.getElementById(`bar-${step.left}`);
+            const rightBar = document.getElementById(`bar-${step.right}`);
+            const leftPointer = document.getElementById(`pointer-${step.left}`);
+            const rightPointer = document.getElementById(`pointer-${step.right}`);
+
+            const stateClass = step.matched ? 'match' : 'active';
+
+            leftBar.classList.add(stateClass);
+            rightBar.classList.add(stateClass);
+
+            leftPointer.classList.add('visible', stateClass);
+            leftPointer.innerHTML = `▲<br>L`;
+
+            rightPointer.classList.add('visible', stateClass);
+            rightPointer.innerHTML = `▲<br>R`;
+
+            // Text Updates
+            equationEl.innerText = `${array[step.left]} + ${array[step.right]} = ${step.sum}`;
+            targetValEl.innerText = step.target;
+            sumValEl.innerText = step.sum;
+            statusMessageEl.innerText = step.status;
+
+            // Control Updates
+            progressBar.value = currentStepIndex;
+            stepCounter.innerText = `${currentStepIndex + 1} / ${steps.length}`;
+        }
+
+        // Animation Controls
+        function play() {
+            if (currentStepIndex >= steps.length - 1) {
+                currentStepIndex = 0;
+            }
+            isPlaying = true;
+            playBtn.innerText = '⏸';
+            timer = setInterval(() => {
+                if (currentStepIndex < steps.length - 1) {
+                    currentStepIndex++;
+                    applyStep(currentStepIndex);
+                } else {
+                    pause();
+                }
+            }, parseInt(speedSelect.value));
+        }
+
+        function pause() {
+            isPlaying = false;
+            playBtn.innerText = '▶';
+            clearInterval(timer);
+        }
+
+        // Event Listeners
+        playBtn.addEventListener('click', () => isPlaying ? pause() : play());
+
+        prevBtn.addEventListener('click', () => {
+            pause();
+            if (currentStepIndex > 0) applyStep(--currentStepIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            pause();
+            if (currentStepIndex < steps.length - 1) applyStep(++currentStepIndex);
+        });
+
+        progressBar.addEventListener('input', (e) => {
+            pause();
+            applyStep(parseInt(e.target.value));
+        });
+
+        speedSelect.addEventListener('change', () => {
+            if (isPlaying) {
+                pause();
+                play();
+            }
+        });
+
+        randomizeBtn.addEventListener('click', () => {
+            pause();
+            // Generate new sorted array and target
+            const size = 10;
+            const newArr = Array.from({ length: size }, () => Math.floor(Math.random() * 25) + 1);
+            newArr.sort((a, b) => a - b);
+            array = [...new Set(newArr)]; // Unique values
+
+            // Select valid target or random
+            const randIndex1 = Math.floor(Math.random() * (array.length / 2));
+            const randIndex2 = Math.floor(Math.random() * (array.length / 2)) + Math.floor(array.length / 2);
+            target = array[randIndex1] + array[randIndex2];
+
+            renderChart();
+            buildSteps();
+            applyStep(0);
+        });
+
+        // Init
+        renderChart();
+        buildSteps();
+        applyStep(0);
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-const nums = [3, 2, 4, 6, 5];
+const nums = [3, 2, 4, 6, 5, 8, 9, 12, 1, 7];
         const target = 10;
 
         /* ---------- Strategy metadata ---------- */
@@ -301,15 +301,37 @@ const nums = [3, 2, 4, 6, 5];
 
         /* ---------- Simulation renderers ---------- */
         function renderArray(step) {
-            const arrRow = document.getElementById('arrRow');
-            arrRow.innerHTML = nums.map((n, idx) => {
-                let cls = 'arr-box';
+            const chartStage = document.getElementById('chartStage');
+            if(!chartStage) return;
+            const maxVal = Math.max(...nums);
+            chartStage.innerHTML = nums.map((n, idx) => {
+                let barClass = 'bar';
+                let pointerHTML = '';
+                let pointerClass = 'pointer-marker';
+                
                 if (step) {
-                    if (step.found && (idx === step.i || idx === step.j)) cls += ' found';
-                    else if (idx === step.i) cls += ' ptr-i';
-                    else if (idx === step.j) cls += ' ptr-j';
+                    if (step.found && (idx === step.i || idx === step.j)) {
+                        barClass += ' match';
+                        pointerClass += ' visible match';
+                        pointerHTML = `▲<br>${idx === step.i ? 'i' : 'j'}`;
+                    } else if (idx === step.i) {
+                        barClass += ' active';
+                        pointerClass += ' visible left';
+                        pointerHTML = `▲<br>i`;
+                    } else if (idx === step.j) {
+                        barClass += ' active';
+                        pointerClass += ' visible right';
+                        pointerHTML = `▲<br>j`;
+                    }
                 }
-                return `<div class="${cls}">${n}<span class="idx">${idx}${step && idx === step.i ? ' (i)' : ''}${step && idx === step.j ? ' (j)' : ''}</span></div>`;
+
+                return `
+                <div class="bar-wrapper">
+                    <div class="${barClass}" style="height: ${(n / maxVal) * 160}px"></div>
+                    <div class="bar-value">${n}</div>
+                    <div class="${pointerClass}">${pointerHTML}</div>
+                </div>
+                `;
             }).join('');
         }
 
