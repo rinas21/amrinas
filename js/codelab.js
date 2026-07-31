@@ -1,6 +1,8 @@
         // Define your problems array. Set available: true and provide an `href` when you publish an HTML page for it.
         const problems = [
             { num: 1, title: "Two Sum", difficulty: "Easy", topics: ["Array", "Hash Map"], langs: ["JAVA", "PY", "GO"], available: true, href: "../codelab/html/two-sum.html" },
+            { num: 4, title: "Median of Two Sorted Arrays", difficulty: "Hard", topics: ["Array", "Binary Search", "Divide & Conquer"], langs: ["JAVA", "PY", "GO"], available: true, href: "../codelab/html/median-two-arrays.html" },
+            { num: 453, title: "Minimum Moves to Equal Array Elements", difficulty: "Medium", topics: ["Array", "Math"], langs: ["JAVA", "PY", "GO"], available: true, href: "../codelab/html/min-moves.html" },
             { num: 20, title: "Valid Parentheses", difficulty: "Easy", topics: ["Stack", "String"], langs: ["JAVA", "PY"], available: false },
             { num: 206, title: "Reverse Linked List", difficulty: "Easy", topics: ["Linked List"], langs: ["JAVA"], available: false },
             { num: 704, title: "Binary Search", difficulty: "Easy", topics: ["Binary Search", "Array"], langs: ["GO"], available: false },

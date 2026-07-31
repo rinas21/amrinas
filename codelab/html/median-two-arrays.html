@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="author" content="Mohomad Rinas">
     <meta name="author" content="A.M. Rinas">
-    <meta property="og:title" content="Two Sum | CodeLab | A.M. Rinas">
+    <meta property="og:title" content="Median of Two Sorted Arrays | CodeLab | A.M. Rinas">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Two Sum | CodeLab | A.M. Rinas</title>
+    <title>Median of Two Sorted Arrays | CodeLab | A.M. Rinas</title>
     <meta name="description"
-        content="Two Sum solved in Java, Python, and Go — comparing Brute Force, Hash Map, and Two-Pointer strategies with multi-language side-by-side comparison.">
-    <link rel="canonical" href="https://rinas.tech/codelab-two-sum.html">
+        content="Median of Two Sorted Arrays solved in Java, Python, and Go — comparing Brute Force, Binary Search Partition, and K-th Element Elimination strategies.">
+    <link rel="canonical" href="https://rinas.tech/codelab-median-two-arrays.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
-    <link rel="stylesheet" href="../css/two-sum.css">
+    <link rel="stylesheet" href="../css/median-two-arrays.css">
 </head>
 
 <body>
@@ -42,26 +42,42 @@
     </header>
 
     <div class="wrap">
-        <div class="crumb"><a href="../../pages/codelab.html">CodeLab</a> / Problems / #1</div>
+        <div class="crumb"><a href="../../pages/codelab.html">CodeLab</a> / Problems / #4</div>
 
         <div class="ptitle-row">
-            <h1>1. Two Sum</h1>
-            <span class="diff-badge">Easy</span>
+            <h1>4. Median of Two Sorted Arrays</h1>
+            <span class="diff-badge hard">Hard</span>
         </div>
-        <div class="topic-badges"><span>Array</span><span>Hash Map</span><span>Two Pointers</span></div>
+        <div class="topic-badges"><span>Array</span><span>Binary Search</span><span>Divide &amp; Conquer</span></div>
 
         <div class="card">
             <div class="card-title">Problem Statement</div>
             <div class="card-body">
-                Given an array of integers <code>nums</code> and an integer <code>target</code>, return the indices of
-                the
-                two numbers that add up to <code>target</code>. Assume exactly one solution exists, and you cannot use
-                the
-                same element twice.
+                Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and
+                <code>n</code> respectively, return the <strong>median</strong> of the two sorted arrays.
+                The overall run time complexity should be <code>O(log(m+n))</code>.
                 <div class="example">
-                    <b>Input:</b> nums = [3, 2, 4, 6, 5], target = 10<br>
-                    <b>Output:</b> [2, 3] &nbsp;<span style="color:var(--text-dim)">// nums[2] + nums[3] = 4 + 6 =
-                        10</span>
+                    <b>Example 1:</b><br>
+                    <b>Input:</b> nums1 = [1,3], nums2 = [2]<br>
+                    <b>Output:</b> 2.00000 &nbsp;<span style="color:var(--text-dim)">// merged = [1,2,3], median = 2</span>
+                </div>
+                <div class="example" style="margin-top:8px">
+                    <b>Example 2:</b><br>
+                    <b>Input:</b> nums1 = [1,2], nums2 = [3,4]<br>
+                    <b>Output:</b> 2.50000 &nbsp;<span style="color:var(--text-dim)">// merged = [1,2,3,4], median = (2+3)/2 = 2.5</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">My Initial Solution</div>
+            <div class="card-body">
+                My first instinct was to merge both arrays, sort the result, then pick the middle element.
+                This is simple and correct, but runs in <code>O((m+n) log(m+n))</code> time &mdash; not optimal
+                for this problem's strict <code>O(log(m+n))</code> requirement.
+                <div class="example" style="margin-top:12px">
+                    <b>Strategy:</b> Merge &rarr; Sort &rarr; Median<br>
+                    <b>Time:</b> O((m+n) log(m+n)) &nbsp; <b>Space:</b> O(m+n)
                 </div>
             </div>
         </div>
@@ -80,9 +96,9 @@
                 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
                     <span class="seg-title">Strategy:</span>
                     <div class="seg" id="approachSeg">
-                        <button data-approach="brute" class="active">Brute Force</button>
-                        <button data-approach="ai1">AI 1: Hash Map</button>
-                        <button data-approach="ai2">AI 2: Two Pointers</button>
+                        <button data-approach="brute" class="active">My Answer</button>
+                        <button data-approach="ai1">AI 1: Binary Search</button>
+                        <button data-approach="ai2">AI 2: K-th Element</button>
                     </div>
                 </div>
 
@@ -101,16 +117,16 @@
 
             <!-- Visualizer Output -->
             <div class="sim-visual">
-                <div class="chart-stage" id="chartStage"></div>
-                <div id="mapPanelWrap"></div>
+                <div class="arrays-display" id="arraysDisplay"></div>
+                <div class="partition-display" id="partitionDisplay"></div>
                 <div class="desc-line" id="descLine">Press play to start the simulation.</div>
             </div>
 
             <div class="controls-row">
-                <button id="btnReset" title="Reset">⟲</button>
-                <button id="btnPrev" title="Previous step">◀</button>
-                <button id="btnPlay" class="play" title="Play / Pause">▶</button>
-                <button id="btnNext" title="Next step">▶|</button>
+                <button id="btnReset" title="Reset">&#x27F2;</button>
+                <button id="btnPrev" title="Previous step">&#9664;</button>
+                <button id="btnPlay" class="play" title="Play / Pause">&#9654;</button>
+                <button id="btnNext" title="Next step">&#9654;|</button>
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill" style="width:0%"></div>
                 </div>
@@ -124,26 +140,24 @@
                 <div class="complexity-badges">
                     <div class="cbadge">
                         <div class="label">SELECTED APPROACH</div>
-                        <div class="value" id="approachLabel">Brute Force</div>
+                        <div class="value" id="approachLabel">My Answer</div>
                     </div>
                     <div class="cbadge">
                         <div class="label">TIME COMPLEXITY</div>
-                        <div class="value" id="timeVal">O(n²)</div>
+                        <div class="value" id="timeVal">O((m+n)log(m+n))</div>
                     </div>
                     <div class="cbadge">
                         <div class="label">SPACE COMPLEXITY</div>
-                        <div class="value" id="spaceVal">O(1)</div>
+                        <div class="value" id="spaceVal">O(m+n)</div>
                     </div>
                 </div>
 
                 <div class="chart-wrap">
                     <svg id="complexityChart" viewBox="0 0 480 180" width="100%" height="180"></svg>
                     <div class="chart-legend">
-                        <span><span class="swatch" style="background:#f2705a"></span>O(n²) — Quadratic (Brute
-                            Force)</span>
-                        <span><span class="swatch" style="background:#c792ea"></span>O(n log n) — Linearithmic (Sorting
-                            + Two Pointers)</span>
-                        <span><span class="swatch" style="background:#5ec98f"></span>O(n) — Linear (Hash Map)</span>
+                        <span><span class="swatch" style="background:#f2705a"></span>O((m+n)log(m+n)) &mdash; My Answer (Merge &amp; Sort)</span>
+                        <span><span class="swatch" style="background:#5ec98f"></span>O(log(min(m,n))) &mdash; Binary Search Partition</span>
+                        <span><span class="swatch" style="background:#c792ea"></span>O(log(m+n)) &mdash; K-th Element Elimination</span>
                     </div>
                 </div>
             </div>
@@ -160,30 +174,29 @@
                         <th>Key Idea / Trade-offs</th>
                     </tr>
                     <tr>
-                        <td>Brute Force</td>
-                        <td>O(n²)</td>
+                        <td>My Answer &mdash; Merge &amp; Sort</td>
+                        <td>O((m+n)log(m+n))</td>
+                        <td>O(m+n)</td>
+                        <td class="hl">Merge arrays, sort, pick middle. Simple but not optimal. Ignores sorted property.</td>
+                    </tr>
+                    <tr>
+                        <td>AI 1 &mdash; Binary Search Partition</td>
+                        <td>O(log(min(m,n)))</td>
                         <td>O(1)</td>
-                        <td class="hl">Checks every pair. Simple, zero added memory, inefficient on large datasets.</td>
+                        <td class="hl">Binary search on shorter array to find valid partition. Optimal time &amp; space.</td>
                     </tr>
                     <tr>
-                        <td>AI 1 — Hash Map</td>
-                        <td>O(n)</td>
-                        <td>O(n)</td>
-                        <td class="hl">Single pass. Stores seen values to instantly find complement in O(1) time.</td>
-                    </tr>
-                    <tr>
-                        <td>AI 2 — Two Pointers</td>
-                        <td>O(n log n)</td>
-                        <td>O(n)</td>
-                        <td class="hl">Sorts elements with original indices, then shrinks inward using two pointers.
-                        </td>
+                        <td>AI 2 &mdash; K-th Element Elimination</td>
+                        <td>O(log(m+n))</td>
+                        <td>O(log(m+n))</td>
+                        <td class="hl">Finds k-th smallest by recursively discarding k/2 elements. Elegant recursion.</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 
-    <script src="../js/two-sum.js" defer></script>
+    <script src="../js/median-two-arrays.js" defer></script>
     <script>
         const hamburger = document.getElementById("hamburger");
         const navbar = document.getElementById("myLinks");

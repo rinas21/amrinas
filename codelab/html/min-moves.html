@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Mohomad Rinas">
     <meta name="author" content="A.M. Rinas">
-    <meta property="og:title" content="Two Sum | CodeLab | A.M. Rinas">
+    <meta property="og:title" content="Minimum Moves to Equal Array Elements | CodeLab | A.M. Rinas">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Two Sum | CodeLab | A.M. Rinas</title>
-    <meta name="description"
-        content="Two Sum solved in Java, Python, and Go — comparing Brute Force, Hash Map, and Two-Pointer strategies with multi-language side-by-side comparison.">
-    <link rel="canonical" href="https://rinas.tech/codelab-two-sum.html">
+    <title>Minimum Moves to Equal Array Elements | CodeLab | A.M. Rinas</title>
+    <meta name="description" content="Minimum Moves to Equal Array Elements solved in Java, Python, and Go — comparing Sort-based, Math Single-Pass, and Relative Accumulation strategies.">
+    <link rel="canonical" href="https://rinas.tech/codelab-min-moves.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
-    <link rel="stylesheet" href="../css/two-sum.css">
+    <link rel="stylesheet" href="../css/min-moves.css">
 </head>
-
 <body>
 
     <header class="header">
@@ -42,26 +37,41 @@
     </header>
 
     <div class="wrap">
-        <div class="crumb"><a href="../../pages/codelab.html">CodeLab</a> / Problems / #1</div>
+        <div class="crumb"><a href="../../pages/codelab.html">CodeLab</a> / Problems / #453</div>
 
         <div class="ptitle-row">
-            <h1>1. Two Sum</h1>
-            <span class="diff-badge">Easy</span>
+            <h1>453. Minimum Moves to Equal Array Elements</h1>
+            <span class="diff-badge medium">Medium</span>
         </div>
-        <div class="topic-badges"><span>Array</span><span>Hash Map</span><span>Two Pointers</span></div>
+        <div class="topic-badges"><span>Array</span><span>Math</span></div>
 
         <div class="card">
             <div class="card-title">Problem Statement</div>
             <div class="card-body">
-                Given an array of integers <code>nums</code> and an integer <code>target</code>, return the indices of
-                the
-                two numbers that add up to <code>target</code>. Assume exactly one solution exists, and you cannot use
-                the
-                same element twice.
+                Given an integer array <code>nums</code> of size <code>n</code>, return the minimum number of
+                moves required to make all array elements equal.
+                In one move, you can increment <code>n - 1</code> elements of the array by 1.
                 <div class="example">
-                    <b>Input:</b> nums = [3, 2, 4, 6, 5], target = 10<br>
-                    <b>Output:</b> [2, 3] &nbsp;<span style="color:var(--text-dim)">// nums[2] + nums[3] = 4 + 6 =
-                        10</span>
+                    <b>Example 1:</b><br>
+                    <b>Input:</b> nums = [1,2,3] &nbsp; <b>Output:</b> 3<br>
+                    <span style="color:var(--text-dim)">// [1,2,3] &rarr; [2,3,3] &rarr; [3,4,3] &rarr; [4,4,4]</span>
+                </div>
+                <div class="example" style="margin-top:8px">
+                    <b>Example 2:</b><br>
+                    <b>Input:</b> nums = [1,1,1] &nbsp; <b>Output:</b> 0
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">My Initial Solution</div>
+            <div class="card-body">
+                Sort the array first so the minimum is at index 0, then sum all differences
+                <code>nums[i] - nums[0]</code>. Correct, but sorting costs <code>O(n log n)</code> when
+                we can do it in <code>O(n)</code> — the sort is unnecessary.
+                <div class="example" style="margin-top:12px">
+                    <b>Strategy:</b> Sort &rarr; Accumulate differences from minimum<br>
+                    <b>Time:</b> O(n log n) &nbsp; <b>Space:</b> O(1)
                 </div>
             </div>
         </div>
@@ -80,12 +90,11 @@
                 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
                     <span class="seg-title">Strategy:</span>
                     <div class="seg" id="approachSeg">
-                        <button data-approach="brute" class="active">Brute Force</button>
-                        <button data-approach="ai1">AI 1: Hash Map</button>
-                        <button data-approach="ai2">AI 2: Two Pointers</button>
+                        <button data-approach="brute" class="active">My Answer</button>
+                        <button data-approach="ai1">AI 1: Math Single-Pass</button>
+                        <button data-approach="ai2">AI 2: Accumulation</button>
                     </div>
                 </div>
-
                 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
                     <span class="seg-title">Compare Languages:</span>
                     <div class="lang-toggle-group" id="langToggles">
@@ -96,21 +105,19 @@
                 </div>
             </div>
 
-            <!-- Multi Code Panel -->
             <div class="code-comparison-grid" id="codeComparisonGrid"></div>
 
-            <!-- Visualizer Output -->
             <div class="sim-visual">
                 <div class="chart-stage" id="chartStage"></div>
-                <div id="mapPanelWrap"></div>
+                <div class="info-panel" id="infoPanel"></div>
                 <div class="desc-line" id="descLine">Press play to start the simulation.</div>
             </div>
 
             <div class="controls-row">
-                <button id="btnReset" title="Reset">⟲</button>
-                <button id="btnPrev" title="Previous step">◀</button>
-                <button id="btnPlay" class="play" title="Play / Pause">▶</button>
-                <button id="btnNext" title="Next step">▶|</button>
+                <button id="btnReset" title="Reset">&#x27F2;</button>
+                <button id="btnPrev" title="Previous step">&#9664;</button>
+                <button id="btnPlay" class="play" title="Play / Pause">&#9654;</button>
+                <button id="btnNext" title="Next step">&#9654;|</button>
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill" style="width:0%"></div>
                 </div>
@@ -124,26 +131,23 @@
                 <div class="complexity-badges">
                     <div class="cbadge">
                         <div class="label">SELECTED APPROACH</div>
-                        <div class="value" id="approachLabel">Brute Force</div>
+                        <div class="value" id="approachLabel">My Answer</div>
                     </div>
                     <div class="cbadge">
                         <div class="label">TIME COMPLEXITY</div>
-                        <div class="value" id="timeVal">O(n²)</div>
+                        <div class="value" id="timeVal">O(n log n)</div>
                     </div>
                     <div class="cbadge">
                         <div class="label">SPACE COMPLEXITY</div>
                         <div class="value" id="spaceVal">O(1)</div>
                     </div>
                 </div>
-
                 <div class="chart-wrap">
                     <svg id="complexityChart" viewBox="0 0 480 180" width="100%" height="180"></svg>
                     <div class="chart-legend">
-                        <span><span class="swatch" style="background:#f2705a"></span>O(n²) — Quadratic (Brute
-                            Force)</span>
-                        <span><span class="swatch" style="background:#c792ea"></span>O(n log n) — Linearithmic (Sorting
-                            + Two Pointers)</span>
-                        <span><span class="swatch" style="background:#5ec98f"></span>O(n) — Linear (Hash Map)</span>
+                        <span><span class="swatch" style="background:#f2705a"></span>O(n log n) &mdash; My Answer (Sort)</span>
+                        <span><span class="swatch" style="background:#5ec98f"></span>O(n) &mdash; Math Single-Pass</span>
+                        <span><span class="swatch" style="background:#c792ea"></span>O(n) &mdash; Relative Accumulation</span>
                     </div>
                 </div>
             </div>
@@ -154,36 +158,32 @@
             <div class="card-body" style="padding:0; overflow-x: auto;">
                 <table class="compare">
                     <tr>
-                        <th>Strategy</th>
-                        <th>Time</th>
-                        <th>Space</th>
-                        <th>Key Idea / Trade-offs</th>
+                        <th>Strategy</th><th>Time</th><th>Space</th><th>Key Idea / Trade-offs</th>
                     </tr>
                     <tr>
-                        <td>Brute Force</td>
-                        <td>O(n²)</td>
-                        <td>O(1)</td>
-                        <td class="hl">Checks every pair. Simple, zero added memory, inefficient on large datasets.</td>
-                    </tr>
-                    <tr>
-                        <td>AI 1 — Hash Map</td>
-                        <td>O(n)</td>
-                        <td>O(n)</td>
-                        <td class="hl">Single pass. Stores seen values to instantly find complement in O(1) time.</td>
-                    </tr>
-                    <tr>
-                        <td>AI 2 — Two Pointers</td>
+                        <td>My Answer &mdash; Sort &amp; Sum</td>
                         <td>O(n log n)</td>
+                        <td>O(1)</td>
+                        <td class="hl">Sort places min at index 0. Sum all diffs. Simple but sort is wasteful.</td>
+                    </tr>
+                    <tr>
+                        <td>AI 1 &mdash; Math Single-Pass</td>
                         <td>O(n)</td>
-                        <td class="hl">Sorts elements with original indices, then shrinks inward using two pointers.
-                        </td>
+                        <td>O(1)</td>
+                        <td class="hl">Formula: sum &minus; n &times; min. One loop finds both. Risk of int overflow on sum.</td>
+                    </tr>
+                    <tr>
+                        <td>AI 2 &mdash; Relative Accumulation</td>
+                        <td>O(n)</td>
+                        <td>O(1)</td>
+                        <td class="hl">Find min first, then sum (nums[i] &minus; min). Overflow-safe; clean two-pass.</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 
-    <script src="../js/two-sum.js" defer></script>
+    <script src="../js/min-moves.js" defer></script>
     <script>
         const hamburger = document.getElementById("hamburger");
         const navbar = document.getElementById("myLinks");
@@ -207,5 +207,4 @@
         }
     </script>
 </body>
-
 </html>
