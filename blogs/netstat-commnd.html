@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +8,9 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="Read about netstat Commands: A Comprehensive Guide on the A.M Rinas tech blog.">
+ <meta name="description" content="Netstat guide: list listening ports, show connections with -tulpn, filter by port, and interpret the output.">
  <meta name="keywords"
- content="netstat commands Linux, network analysis, view listening ports, network troubleshooting, Linux routing table, socket diagnostics, DevOps, A.M. Rinas">
+ content="netstat commands Linux, network analysis, view listening ports, netstat tulpn, network troubleshooting, Linux routing table, socket diagnostics, ss alternative, DevOps, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/netstat-commnd.html">
 
@@ -49,7 +48,7 @@
 
  <!-- SEO Meta Tags -->
  <title>netstat Commands: A Comprehensive Guide | A.M Rinas</title>
- <meta name="description" content="Read about netstat Commands: A Comprehensive Guide on the A.M Rinas tech blog.">
+ <meta name="description" content="Netstat guide: list listening ports, show connections with -tulpn, filter by port, and interpret the output.">
  <link rel="canonical" href="https://rinas.tech/blogs/netstat-commnd.html">
  <meta name="robots" content="index, follow">
  
@@ -145,29 +144,28 @@
  <article class="blog-post-container">
  <h1>netstat Commands: A Comprehensive Guide</h1>
 
-
-
  <p>
- When diagnosing network connectivity, assessing security baselines, or verifying daemon listener paths,
- having visibility into the networking subsystem is essential. The <code>netstat</code> (Network Statistics)
- utility serves as a core diagnostic tool in Linux, exposing active sockets, protocol statistics, routing
- tables, and interface states. This blueprint details essential <code>netstat</code> execution profiles to
- debug network interactions effectively.
+ "Is anything listening on port 8080?" is a question you ask surprisingly often when running servers:
+ a port conflict, a service that failed to bind, or an unknown process holding a port. <code>netstat</code>
+ (Network Statistics) is the classic Linux tool for answering it. This guide covers the flags that matter,
+ shows real output so you know what you are looking at, and covers the errors you will meet — including the
+ one that happens the first time you try <code>-p</code> without root.
  </p>
 
  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUIO_0B_ylYEJEtXO0m0JSE9zOEwgV2Mw9neHmQCQrxV8nROjReeqjd5qF9fwkqwiz6h02eErnpdkgTOmqm_Tb-RuMS0d9BtAlp4goMc_0mW2ejbNeW4TOZZ3BBixhxIWRO3jO2AJkup2gzZVQ8SF8xlvWmnpCOoP7TMYKBFu6jJjWTeuIDNYUPNBT/s677/netstat.png"
- alt="Linux netstat command reference banner showing system network socket diagnostics and port monitoring metrics">
+ alt="Linux netstat command output showing listening ports and sockets">
 
- <h2>Understanding Netstat Capabilities</h2>
+ <h2>What netstat Can Tell You</h2>
+ <ul>
+ <li>Which ports are open and listening, and which process owns them</li>
+ <li>Active TCP connections (who is connected to your server right now)</li>
+ <li>Protocol statistics (dropped packets, checksum errors)</li>
+ <li>The kernel routing table and interface statistics</li>
+ </ul>
  <p>
- Operating systems handle remote connections by assigning endpoints to specific network sockets. While newer
- replacements like <code>ss</code> (Socket Statistics) exist, <code>netstat</code> remains deeply integrated
- into legacy server scripts and administrative runbooks.
- </p>
- <p>
- Before executing diagnostics, ensure the tooling dependencies are present on your host. If missing, install
- them via your distribution's package manager (packaged under <code>net-tools</code> on platforms like
- Debian, Ubuntu, or RHEL):
+ <code>netstat</code> is not always installed by default on modern systems; it is part of the
+ <code>net-tools</code> package. The newer alternative <code>ss</code> ships with iproute2 and is faster on
+ large outputs — see the comparison at the end.
  </p>
  <pre><code># On Debian/Ubuntu systems
 sudo apt-get install net-tools
@@ -175,98 +173,148 @@ sudo apt-get install net-tools
 # On RHEL/Rocky Linux/CentOS systems
 sudo yum install net-tools</code></pre>
 
- <h2>Essential netstat Command Blueprints</h2>
- <p>
- Combining command-line flags modifies the utility's reporting metrics. Below are highly effective invocation
- strings used during daily server maintenance.
- </p>
+ <h2>Essential netstat Commands</h2>
 
- <h3>1. Audit Listening TCP Sockets with Process PIDs</h3>
+ <h3>1. Find Which Process Is Listening on a Port</h3>
  <p>
- To isolate which backend programs are waiting for incoming socket connection requests over TCP, pass the
- following parameters:
+ This is the command I run most: every TCP listener with its PID and program name.
  </p>
  <pre><code>netstat -nlpt</code></pre>
+ <ul>
+ <li><code>-n</code> — numeric output, no slow DNS lookups or name resolution</li>
+ <li><code>-l</code> — only listening sockets</li>
+ <li><code>-p</code> — show the PID and program name (needs root to see other users' processes)</li>
+ <li><code>-t</code> — TCP only</li>
+ </ul>
+ <p>Example output on a machine running Keycloak and PostgreSQL:</p>
+ <pre><code>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      12879/java
+tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      1042/postgres
+tcp        0      0 127.0.0.1:22            0.0.0.0:*               LISTEN      890/sshd</code></pre>
  <p>
- Here, <code>-n</code> forces numeric output (preventing slow DNS lookups on hostnames), <code>-l</code>
- targets only listening sockets, <code>-p</code> reveals the target process ID (PID) and application name,
- and <code>-t</code> isolates TCP frames.
+ <code>0.0.0.0:8080</code> means the service listens on all interfaces — reachable from the network.
+ <code>127.0.0.1:5432</code> means local connections only. If you expected a service to be reachable
+ remotely and it only shows on 127.0.0.1, that is your answer.
  </p>
 
- <h3>2. List All Active TCP & UDP Listening Endpoints</h3>
- <p>
- To broaden your inspection profile to include both UDP sockets and TCP processes without translating port
- designations to service names, use:
- </p>
+ <h3>2. List All Listening TCP and UDP Ports</h3>
  <pre><code>netstat -tuln</code></pre>
- <p>
- The <code>-u</code> argument ensures that connectionless UDP traffic states are accurately captured.
- </p>
+ <p>Adds <code>-u</code> for UDP. Useful for a quick "what is open on this box" audit.</p>
 
- <h3>3. Isolate Active, Established Network Connections</h3>
- <p>
- To omit listening states and view only connections actively transmitting data to external hosts, run:
- </p>
+ <h3>3. Show Active (Established) Connections</h3>
  <pre><code>netstat -tn</code></pre>
- <p>
- This filters out system-level listeners, highlighting live inbound or outbound connections.
- </p>
+ <p>Hides listeners and shows live connections — handy when checking who is connected to your
+ application.</p>
 
- <h3>4. Dump Protocol Summary Statistics</h3>
- <p>
- To check for network abnormalities like packet drops, checksum failures, or buffer overflows, generate a
- global protocol execution report:
- </p>
+ <h3>4. Protocol Statistics</h3>
  <pre><code>netstat -s</code></pre>
+ <p>Per-protocol counters: packets sent/received, retransmissions, checksum errors, and dropped segments.
+ A growing <code>Retransmitted packets</code> count points to network loss or congestion.</p>
 
- <h3>5. Expose the Complete Socket Mapping Matrix</h3>
- <p>
- To capture the full state of your network subsystem—combining active connections, listening ports, and Unix
- domain sockets—request a comprehensive dump:
- </p>
+ <h3>5. Everything (Listeners + Connections + Unix Sockets)</h3>
  <pre><code>netstat -a</code></pre>
 
- <h3>6. Inspect Kernel Routing Tables</h3>
- <p>
- When diagnosing routing issues or verifying gateway interfaces, display the kernel's active routing metrics:
- </p>
+ <h3>6. Kernel Routing Table</h3>
  <pre><code>netstat -r</code></pre>
+ <p>Shows the default gateway and route rules. If your machine cannot reach the internet but networking is
+ "up", check here that a default route exists.</p>
 
- <h3>7. Comprehensive Port Audit (TCP/UDP with PIDs)</h3>
- <p>
- For a thorough security or operational audit, combine listing targets to display both TCP and UDP
- configurations alongside their system application contexts:
- </p>
+ <h3>7. Full Port Audit (TCP + UDP + PIDs)</h3>
  <pre><code>netstat -tulpn</code></pre>
+ <p>The standard "show me everything open on this box" command. The <code>n</code> keeps it fast on busy
+ servers.</p>
 
- <h3>8. Filter Sockets by Address Family (IPv4 & IPv6)</h3>
- <p>
- When debugging modern dual-stack environments, isolate connections by their IP address family to verify
- proper bindings:
- </p>
- <pre><code># Display IPv4 connections exclusively
-netstat -4
+ <h3>8. Filter by IP Version</h3>
+ <pre><code>netstat -4   # IPv4 only
+netstat -6   # IPv6 only</code></pre>
 
-# Display IPv6 connections exclusively
-netstat -6</code></pre>
-
- <h3>9. Map Established Sockets directly to Program Names</h3>
- <p>
- To trace running network threads back to their calling binaries without filtering by listening state,
- extract the application context directly:
- </p>
+ <h3>9. Map Connections to Program Names</h3>
  <pre><code>netstat -tp</code></pre>
+ <p>Same as <code>-nlpt</code> but without the listener filter — includes established connections.</p>
 
- <h2>Verifying System Network Status</h2>
+ <h2>Putting It Together: Diagnosing a Port Conflict</h2>
  <p>
- Network analysis is an iterative process. Run targeted <code>netstat</code> combinations regularly during
- deployments to confirm that software services bind securely to expected interfaces without conflicting with
- existing ports.
+ Suppose your new service refuses to start with "Address already in use" on port 8080. Here is the exact
+ sequence I use:
  </p>
+ <pre><code># 1. Confirm what is on 8080
+netstat -tulpn | grep 8080
+
+# 2. Result: another java process owns it
+tcp6       0      0 :::8080                 :::*                    LISTEN      12879/java
+
+# 3. Inspect that process to decide if it can be stopped
+ps -fp 12879</code></pre>
+ <p>
+ You can then either stop the conflicting service or configure yours to use a different port.
+ </p>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: "netstat: command not found"</h3>
+ <p><strong>Cause:</strong> net-tools is not installed on your distribution.</p>
+ <p><strong>Solution:</strong> install it (commands above), or use the built-in <code>ss</code>:
+ <code>ss -tulpn</code> is the direct modern equivalent.</p>
+
+ <h3>Problem 2: "You are not allowed to see the process info" or PIDs shown as "-"</h3>
+ <p><strong>Cause:</strong> <code>-p</code> needs root permission to see processes owned by other users.</p>
+ <p><strong>Solution:</strong> run with <code>sudo netstat -tulpn</code>.</p>
+
+ <h3>Problem 3: service listening but unreachable from outside</h3>
+ <p><strong>Cause:</strong> the process bound to <code>127.0.0.1</code> instead of <code>0.0.0.0</code>, or a
+ firewall rule is blocking the port.</p>
+ <p><strong>Solution:</strong> check the Local Address column in <code>netstat -tulpn</code>; then check
+ <a href="iptables-rules.html">iptables/firewall rules</a> and test the port with
+ <a href="checking-port-availability-using-netcat-nc.html">netcat</a>.</p>
+
+ <h3>Problem 4: slow output / netstat seems stuck</h3>
+ <p><strong>Cause:</strong> without <code>-n</code>, netstat performs reverse DNS lookups on every address.</p>
+ <p><strong>Solution:</strong> always include <code>-n</code> for production use.</p>
+
+ <h2>netstat vs ss</h2>
+ <table>
+ <thead>
+ <tr><th>Feature</th><th>netstat</th><th>ss</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Availability</td><td>net-tools (often needs install)</td><td>iproute2 (default on most distros)</td></tr>
+ <tr><td>Speed with many sockets</td><td>Slower</td><td>Faster</td></tr>
+ <tr><td>Key command</td><td><code>netstat -tulpn</code></td><td><code>ss -tulpn</code></td></tr>
+ <tr><td>Mature scripts</td><td>Still widely used in legacy scripts</td><td>Preferred for new work</td></tr>
+ </tbody>
+ </table>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Always use <code>-n</code> to avoid slow DNS lookups.</li>
+ <li>Learn <code>ss -tulpn</code> as the modern replacement; keep netstat knowledge for legacy servers.</li>
+ <li>When checking port conflicts, combine <code>netstat</code> with <code>ps -fp PID</code> to identify the
+ offending process before killing anything.</li>
+ <li>On containers and busy hosts, prefer <code>ss</code> — netstat can be slow with thousands of
+ sockets.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ <code>netstat -tulpn</code> answers most port questions in one line: what is listening, on which address,
+ and owned by which process. Read the Local Address column carefully (0.0.0.0 vs 127.0.0.1), remember that
+ <code>-p</code> wants root, and you will resolve the majority of binding and connection issues without
+ leaving the terminal.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="checking-port-availability-using-netcat-nc.html">Checking Port Availability Using Netcat (nc)</a></li>
+ <li><a href="iptables-rules.html">iptables Rules Explained</a></li>
+ <li><a href="network-interfaces-and-their-levels-usage.html">Network Interfaces and Their Usage</a></li>
+ <li><a href="java-process-info-command.html">Java Process Info Commands</a></li>
+ <li><a href="basic-linux.html">Basic Linux Commands</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
  <!-- Topic SEO Keywords: Mastering netstat Commands for Linux Network Analysis, DevOps, Guide, Tutorial -->
@@ -341,5 +389,3 @@ netstat -6</code></pre>
 </body>
 
 </html>
-
-```

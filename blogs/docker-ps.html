@@ -7,15 +7,15 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Read about docker ps on the A.M Rinas tech blog.">
- <meta name="keywords" content="docker ps, docker, postgres, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+ <meta name="description" content="Docker ps explained: list containers, read the STATUS column, filter with --filter, use --format, and understand exit codes.">
+ <meta name="keywords" content="docker ps, docker ps -a, docker container ls, docker exec error, docker troubleshooting, postgres docker, Software Engineering, DevOps, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/docker-ps.html">
  
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="docker ps | A.M. Rinas Blog">
- <meta property="og:description" content="A quick guide on using docker ps and troubleshooting Postgres container issues.">
+ <meta property="og:title" content="docker ps Explained: List Containers, Read the Output, Fix Common Errors | A.M. Rinas Blog">
+ <meta property="og:description" content="How to use docker ps, understand each column in its output, filter containers, and fix common docker exec errors — with real terminal examples.">
  <meta property="og:url" content="https://rinas.tech/blogs/docker-ps.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
@@ -43,15 +43,15 @@
 
 
  <!-- SEO Meta Tags -->
- <title>docker ps | A.M Rinas</title>
- <meta name="description" content="Read about docker ps on the A.M Rinas tech blog.">
+ <title>docker ps Explained: List, Filter and Debug Containers | A.M Rinas</title>
+ <meta name="description" content="Docker ps explained: list containers, read the STATUS column, filter with --filter, use --format, and understand exit codes.">
  <link rel="canonical" href="https://rinas.tech/blogs/docker-ps.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="docker ps">
- <meta property="og:description" content="A quick guide on using docker ps and troubleshooting Postgres container issues.">
+ <meta property="og:title" content="docker ps Explained: List, Filter and Debug Containers">
+ <meta property="og:description" content="How to use docker ps, understand each column in its output, filter containers, and fix common docker exec errors — with real terminal examples.">
  <meta property="og:url" content="https://rinas.tech/blogs/docker-ps.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
@@ -65,9 +65,9 @@
  <script type="application/ld+json">
  {
  "@context": "https://schema.org",
- "@type": "BlogPosting",
- "headline": "docker ps",
- "description": "A quick guide on using docker ps and troubleshooting Postgres container issues.",
+  "@type": "BlogPosting",
+  "headline": "docker ps Explained: List, Filter and Debug Containers",
+  "description": "How to use docker ps, understand each column in its output, filter containers, and fix common docker exec errors — with real terminal examples.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -138,39 +138,165 @@
  </header>
 
  <article class="blog-post-container">
- <h1>docker ps</h1>
-
-
+ <h1>docker ps Explained: List, Filter and Debug Containers</h1>
 
 <p>
- A quick guide on using <code>docker ps</code> to view running containers and troubleshooting common Postgres container execution issues.
-</p>
-<h2>Example: docker ps</h2>
-<pre><code>docker ps
+ <code>docker ps</code> is the first command you reach for when a container is not doing what you expect.
+ It lists the running containers on your Docker host, along with their IDs, images, ports and health
+ status. If you have ever asked "is my container actually running?", this command answers it in one line.
+ </p>
+
+ <h2>What is docker ps?</h2>
+ <p>
+ <code>docker ps</code> queries the Docker daemon and prints a table of containers that are currently
+ running. It is the CLI equivalent of the "Containers" view in Docker Desktop.
+ </p>
+
+ <h3>Basic syntax</h3>
+ <pre><code>docker ps [OPTIONS]</code></pre>
+
+ <p>With no options it shows only <em>running</em> containers. Stopped containers are hidden — that
+ surprises many people, so remember: if a container is not in the list, it may simply be stopped, not
+ gone.</p>
+
+ <h2>Common options</h2>
+ <pre><code>docker ps -a        # show all containers, including stopped ones
+docker ps -q        # print only container IDs (useful for scripting)
+docker ps -f status=exited   # filter: only exited containers
+docker ps --format "table {{.Names}}\t{{.Status}}"  # custom columns</code></pre>
+
+ <p>
+ <code>-q</code> is the option I use most in scripts, for example to stop every stopped container in one
+ command:
+ </p>
+ <pre><code>docker rm $(docker ps -aq -f status=exited)</code></pre>
+
+ <h2>Example: docker ps (real output)</h2>
+ <p>
+ Here is the actual output from my machine while I was debugging a ticket-generator project that uses
+ Keycloak and PostgreSQL:
+ </p>
+ <pre><code>$ docker ps
 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 b7b51543e151 quay.io/keycloak/keycloak:26.0 "/opt/keycloak/bin/k…" 4 days ago Up 2 hours 8443/tcp, 0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp, 9000/tcp ticket_keycloak
-e5311074829b postgres:17-alpine "docker-entrypoint.s…" 4 days ago Up 2 hours (healthy) 0.0.0.0:5434-&gt;5432/tcp, [::]:5434-&gt;5432/tcp ticket-generator-postgres
-</code></pre>
-<h2>Troubleshooting Exec</h2>
-<pre><code>rinas@HMS-LP-163:~/Desktop/project/ticket-generator$ docker exec e5311074829b -it
-OCI runtime exec failed: exec failed: unable to start container process: exec: "-it": executable file not found in $PATH: unknown
-</code></pre>
-<h2>Connecting to Postgres</h2>
-<pre><code>rinas@HMS-LP-163:~/Desktop/project/ticket-generator$ docker inspect e5311074829b | grep POSTGRES
+e5311074829b postgres:17-alpine "docker-entrypoint.s…" 4 days ago Up 2 hours (healthy) 0.0.0.0:5434-&gt;5432/tcp, [::]:5434-&gt;5432/tcp ticket-generator-postgres</code></pre>
+
+ <h3>How to read the output</h3>
+ <ul>
+ <li><strong>CONTAINER ID</strong> — short hash used to reference the container. Use it with
+ <code>docker logs</code>, <code>docker exec</code> and <code>docker inspect</code>.</li>
+ <li><strong>IMAGE</strong> — the image the container was created from. Note the tag, e.g.
+ <code>postgres:17-alpine</code>.</li>
+ <li><strong>STATUS</strong> — running time plus health. Here Postgres shows <code>(healthy)</code>, which
+ means it passed its healthcheck; Keycloak has no healthcheck configured, so no flag appears.</li>
+ <li><strong>PORTS</strong> — the port mapping. <code>0.0.0.0:5434-&gt;5432/tcp</code> means: connect to
+ port 5434 on your host and traffic is forwarded to port 5432 inside the container.</li>
+ <li><strong>NAMES</strong> — the friendly name Docker assigned (or you gave with
+ <code>--name</code>). This is the safest value to use in commands.</li>
+ </ul>
+
+ <h2>Troubleshooting: docker exec says "executable file not found"</h2>
+ <p>
+ While connecting to the Postgres container I first wrote the <code>-it</code> flags in the wrong
+ position:
+ </p>
+ <pre><code>$ docker exec e5311074829b -it
+OCI runtime exec failed: exec failed: unable to start container process: exec: "-it": executable file not found in $PATH: unknown</code></pre>
+ <p>
+ The error looks confusing, but the cause is simple: <code>docker exec</code> treats everything after the
+ container name as the <em>command to run inside the container</em>. Placed there, <code>-it</code> was
+ interpreted as a program name, and no program called <code>-it</code> exists.
+ </p>
+ <p>
+ <strong>Fix:</strong> the flags must come before the container name, and you must supply the actual
+ command to run (here, <code>psql</code>):
+ </p>
+ <pre><code>docker exec -it e5311074829b psql -U dev_user -d ticket_generator_dev</code></pre>
+
+ <h2>Connecting to a Postgres container from the host</h2>
+ <p>
+ To connect with the host's <code>psql</code>, first confirm the environment variables the container was
+ started with, because that is where the credentials live:
+ </p>
+ <pre><code>$ docker inspect e5311074829b | grep POSTGRES
  "POSTGRES_USER=dev_user",
  "POSTGRES_PASSWORD=dev_password",
  "POSTGRES_HOST_AUTH_METHOD=trust",
- "POSTGRES_DB=ticket_generator_dev",
-rinas@HMS-LP-163:~/Desktop/project/ticket-generator$ psql -h localhost -p 5434 -U dev_user -d ticket_generator_dev
+ "POSTGRES_DB=ticket_generator_dev"
+</code></pre>
+ <p>
+ Then connect through the published host port (<code>5434</code>, not the internal <code>5432</code>):
+ </p>
+ <pre><code>$ psql -h localhost -p 5434 -U dev_user -d ticket_generator_dev
 psql (14.19 (Ubuntu 14.19-0ubuntu0.22.04.1), server 17.6)
 WARNING: psql major version 14, server major version 17.
  Some psql features might not work.
-Type "help" for help.
-</code></pre>
- 
+Type "help" for help.</code></pre>
+ <p>
+ The warning appears because the host psql is older than the server version inside the container. It is
+ usually harmless — the connection works — but if you rely on newer PostgreSQL features, upgrade the host
+ client or use <code>docker exec</code> to get the client version that matches the container image.
+ </p>
+
+ <h2>Common problems</h2>
+
+ <h3>Problem 1: docker ps shows nothing, but my container was running</h3>
+ <p><strong>Error:</strong> empty table, or only a header line.</p>
+ <p><strong>Cause:</strong> the container stopped or restarted after a reboot; stopped containers are
+ hidden by default.</p>
+ <p><strong>Solution:</strong></p>
+ <pre><code>docker ps -a -f status=exited
+docker logs &lt;container-name&gt; --tail 50</code></pre>
+ <p>If it exits immediately on every start, the logs will tell you why. To make a container start again on
+ boot, see <a href="how-to-disable-auto-start-for-a-docker-container.html">how Docker restart policies
+ work</a>.</p>
+
+ <h3>Problem 2: docker: command not found</h3>
+ <p><strong>Cause:</strong> Docker Engine is not installed, or the current user has no permission to talk
+ to the daemon.</p>
+ <p><strong>Solution:</strong> Install Docker, then add your user to the <code>docker</code> group and
+ re-login:</p>
+ <pre><code>sudo usermod -aG docker $USER</code></pre>
+
+ <h3>Problem 3: "Cannot connect to the Docker daemon"</h3>
+ <p><strong>Cause:</strong> the daemon is not running.</p>
+ <p><strong>Solution:</strong></p>
+ <pre><code>sudo systemctl start docker
+sudo systemctl enable docker</code></pre>
+
+ <h2>Best practices</h2>
+ <ul>
+ <li>Always give containers a <code>--name</code> in <code>docker run</code> or in Compose; numeric IDs
+ are easy to mistype.</li>
+ <li>Use <code>docker ps --format</code> to strip the table to the columns you actually need in scripts.</li>
+ <li>Put flags (<code>-it</code>, <code>-d</code>) before the container name in <code>docker exec</code> —
+ always.</li>
+ <li>Check <code>STATUS</code> for <code>(healthy)</code> to confirm readiness before connecting to
+ databases.</li>
+ <li>Combine <code>docker ps -q</code> with filters for bulk cleanup; never kill containers by regex on
+ names.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ <code>docker ps</code> answers "what is running and what is its state?" in a single glance. Read the
+ STATUS and PORTS columns carefully — they explain most container mysteries — and when an
+ <code>exec</code> error appears, check argument order before anything else.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="docker-compose-intro.html">Docker Compose Introduction</a></li>
+ <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ <li><a href="docker-build-failures-linux-vs-windows.html">Docker Build Failures: Linux vs Windows</a></li>
+ <li><a href="how-to-disable-auto-start-for-a-docker-container.html">How to Disable Auto-Start for a Docker Container</a></li>
+ <li><a href="mongodb-backup-restore-with-docker.html">MongoDB Backup and Restore with Docker</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 

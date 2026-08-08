@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="This will copy the number_cache.sql file from your /tmp directory into the /tmp directory of your running mysql-container.">
+ <meta name="description" content="Copy a SQL file into a Docker container with docker cp and import it into MySQL using docker exec, with verification steps and a direct-exec alternative.">
  <meta name="keywords" content="Copy The Sql File To The Container, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/copy-the-sql-file-to-the-container.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Copy The Sql File To The Container | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Copy a SQL file into a Docker container with docker cp and import it into MySQL using docker exec, with verification steps and a direct-exec alternative.">
  <meta property="og:url" content="https://rinas.tech/blogs/copy-the-sql-file-to-the-container.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Copy The Sql File To The Container">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Copy a SQL file into a Docker container with docker cp and import it into MySQL using docker exec, with verification steps and a direct-exec alternative.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Copy The Sql File To The Container | A.M Rinas</title>
- <meta name="description" content="This will copy the number_cache.sql file from your /tmp directory into the /tmp directory of your running mysql-container.">
+ <meta name="description" content="Copy a SQL file into a Docker container with docker cp and import it into MySQL using docker exec, with verification steps and a direct-exec alternative.">
  <link rel="canonical" href="https://rinas.tech/blogs/copy-the-sql-file-to-the-container.html">
  <meta name="robots" content="index, follow">
  
@@ -138,22 +138,60 @@
  </header>
 
  <article class="blog-post-container">
-<h3>Copy the SQL File to the Container:</h3>
-<ul>
-<li>First, copy the number_cache.sql file from your local machine to the Docker container. You can use docker cp for this:</li>
-</ul>
-<pre><code class="language-bash">docker cp /tmp/number_cache.sql mysql-container:/tmp/number_cache.sql
-</code></pre>
-<p>This will copy the number_cache.sql file from your /tmp directory into the /tmp directory of your running mysql-container.</p>
-<hr>
+ <h1>Copy the SQL File to the Container</h1>
+ <p>
+ To import a SQL file into a database running in Docker — for example a
+ <code>number_cache.sql</code> into a MySQL container — you first get the file
+ inside the container, then run it with the database client.
+ </p>
+
+ <h2>1. Copy the SQL File into the Container</h2>
+ <p>
+ Use <code>docker cp</code> to copy <code>number_cache.sql</code> from your
+ local machine into the running MySQL container:
+ </p>
+ <pre><code class="language-bash">docker cp /tmp/number_cache.sql mysql-container:/tmp/number_cache.sql</code></pre>
+ <p>
+ This copies the file from your <code>/tmp</code> directory into the
+ <code>/tmp</code> directory of your running <code>mysql-container</code>.
+ The target path is inside the container's filesystem, not the volume — the
+ file stays available even while the container's data volume is untouched.
+ </p>
+
+ <h2>2. Import the SQL File into the Database</h2>
+ <p>With the file inside the container, pipe it into the MySQL client:</p>
+ <pre><code class="language-bash">docker exec -i mysql-container mysql -u root -p number_cache_db &lt; /tmp/number_cache.sql</code></pre>
+ <p>
+ The <code>-i</code> flag keeps stdin open so the shell redirection can feed
+ the file to the client running inside the container. Replace
+ <code>number_cache_db</code> with the target database name.
+ </p>
+
+ <h2>3. Verify the Import</h2>
+ <pre><code class="language-bash">docker exec -it mysql-container mysql -u root -p -e "USE number_cache_db; SHOW TABLES; SELECT COUNT(*) FROM number_cache;"</code></pre>
+
+ <h2>Alternative: Run the File Directly in the Container</h2>
+ <p>
+ If the SQL file is already inside the container (e.g., baked into the image),
+ run it directly:
+ </p>
+ <pre><code class="language-bash">docker exec -i mysql-container mysql -u root -p number_cache_db &lt; /tmp/number_cache.sql</code></pre>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="mongodb-backup-restore-with-docker.html">MongoDB Backup and Restore with Docker</a></li>
+ <li><a href="docker-ps.html">Docker PS: A Complete Guide</a></li>
+ <li><a href="docker-compose-intro.html">Docker Compose: An Introduction</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Docker, docker cp, MySQL, SQL import, container -->
  </article>
 
  

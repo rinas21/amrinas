@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
 
  <!-- JSON-LD Schema -->
 
@@ -29,21 +28,21 @@
 
  <!-- SEO Meta Tags -->
  <title>Airbyte Local Installation Steps | A.M Rinas</title>
- <meta name="description" content="Read about Airbyte Local Installation Steps on the A.M Rinas tech blog.">
+ <meta name="description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
  <link rel="canonical" href="https://rinas.tech/blogs/airbyte-local-installation-steps.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Airbyte Local Installation Steps">
- <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta property="og:description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
  <meta property="og:url" content="https://rinas.tech/blogs/airbyte-local-installation-steps.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Airbyte Local Installation Steps">
- <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta name="twitter:description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -52,7 +51,7 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Airbyte Local Installation Steps",
- "description": "A blog post covering technical insights, DevOps, and programming guides.",
+ "description": "Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -122,57 +121,71 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content">
- </article>
- 
- <script type="text/markdown" id="md-content">
+ <article class="blog-post-container">
+ <h1>Airbyte Local Installation Steps</h1>
+ <p>
+ Airbyte's recommended local setup is <code>abctl</code>, the command-line
+ tool that spins up the platform (web app, API and database) with a single
+ command. This guide covers the install path, the install command, and the
+ database permission error you are most likely to hit.
+ </p>
 
-## Airbyte Local Installation Steps
+ <h2>1. Create and Set Permissions for the Installation Path</h2>
+ <p>Create the install directory and hand ownership to your user:</p>
+ <pre><code>sudo mkdir -p /opt/airbyte
+ sudo chown -R $USER:$(id -gn) /opt/airbyte</code></pre>
+ <p>
+ The second command is what prevents most permission problems later — the
+ installer and its containers write into this directory.
+ </p>
 
-### 1. Create and Set Permissions for Airbyte Installation Path
+ <h2>2. Install Airbyte Locally</h2>
+ <p>Set the installation path and run the Airbyte install command:</p>
+ <pre><code>ABCTL_LOCAL_PATH=/opt/airbyte abctl local install</code></pre>
+ <p>
+ <strong>Note:</strong> Replace <code>/opt/airbyte</code> with your preferred
+ installation directory if needed.
+ </p>
 
-```bash
-sudo mkdir -p /opt/airbyte
-sudo chown -R $USER:$(id -gn) /opt/airbyte
-```
+ <h2>Troubleshooting: airbyte-db Container in BackOff</h2>
+ <p>If the install stalls or the database pod never becomes ready, you will see a log like this:</p>
+ <pre><code>Pod: airbyte-db-0.1841d606b9647c61
+ Reason: BackOff
+ Message: Back-off restarting failed container airbyte-db-container...
+ Logs:
+  chown: /var/lib/postgresql/data/pgdata: Operation not permitted
+  chmod: /var/lib/postgresql/data/pgdata: Operation not permitted
+  initdb: error: could not access directory "/var/lib/postgresql/data/pgdata": Permission denied</code></pre>
+ <p>
+ This means the PostgreSQL container cannot write to its data directory. The
+ usual causes are:
+ </p>
+ <ul>
+ <li>The <code>/opt/airbyte</code> directory (or the volume backing
+ <code>pgdata</code>) is not writable by the container's user — re-run
+ <code>sudo chown -R $USER:$(id -gn) /opt/airbyte</code> and retry.</li>
+ <li>A previous failed install left a stale volume with wrong ownership —
+ remove the leftover Airbyte state (e.g. <code>abctl local reset</code>) and
+ run the install again.</li>
+ <li>The host filesystem (NFS, some virtualized setups) does not support
+ <code>chown</code> — install on a local disk instead.</li>
+ </ul>
 
-### 2. Install Airbyte Locally
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="docker-compose-intro.html">Docker Compose: An Introduction</a></li>
+ <li><a href="mongodb-backup-restore-with-docker.html">MongoDB Backup and Restore with Docker</a></li>
+ <li><a href="how-to-disable-auto-start-for-a-docker-container.html">How to Disable Auto-Start for a Docker Container</a></li>
+ </ul>
 
-Set the installation path and run the Airbyte installation command:
-
-```bash
-ABCTL_LOCAL_PATH=/opt/airbyte abctl local install
-```
-
-> **Note:** Replace `/opt/airbyte` with your preferred installation directory if needed.
-
-for simular error like below:
-```log
-Pod: airbyte-db-0.1841d606b9647c61
-Reason: BackOff
-Message: Back-off restarting failed container airbyte-db-container...
-Logs:
- chown: /var/lib/postgresql/data/pgdata: Operation not permitted
- chmod: /var/lib/postgresql/data/pgdata: Operation not permitted
- initdb: error: could not access directory "/var/lib/postgresql/data/pgdata": Permission denied
-
-```
- 
- </script>
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
- <script>
-const markdownContent = document.getElementById('md-content').textContent;
- const htmlContent = marked.parse(markdownContent);
- const footerHtml = `
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
  <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
- `;
- document.getElementById('content').innerHTML = htmlContent + footerHtml;
- </script>
+ </article>
 
  
  <!-- ===== FOOTER ===== -->

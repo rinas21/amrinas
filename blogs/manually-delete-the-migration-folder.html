@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="rm -rf prisma/migrations/">
+ <meta name="description" content="When Prisma migrations break: delete the prisma/migrations folder and sync the schema to the database with prisma db push --accept-data-loss.">
  <meta name="keywords" content="Manually delete the migration folder, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/manually-delete-the-migration-folder.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Manually delete the migration folder | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="When Prisma migrations break: delete the prisma/migrations folder and sync the schema to the database with prisma db push --accept-data-loss.">
  <meta property="og:url" content="https://rinas.tech/blogs/manually-delete-the-migration-folder.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Manually delete the migration folder">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="When Prisma migrations break: delete the prisma/migrations folder and sync the schema to the database with prisma db push --accept-data-loss.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Manually delete the migration folder | A.M Rinas</title>
- <meta name="description" content="rm -rf prisma/migrations/">
+ <meta name="description" content="When Prisma migrations break: delete the prisma/migrations folder and sync the schema to the database with prisma db push --accept-data-loss.">
  <link rel="canonical" href="https://rinas.tech/blogs/manually-delete-the-migration-folder.html">
  <meta name="robots" content="index, follow">
  
@@ -141,22 +141,31 @@
 <h1>Manually delete the migration folder</h1>
 
 
-<p>rm -rf prisma/migrations/<migration_name></p>
-<pre><code>
-## 3. The Solution: `prisma db push`
+<p><code>rm -rf prisma/migrations/&lt;migration_name&gt;</code></p>
+<h2>3. The Solution: <code>prisma db push</code></h2>
 
-When `prisma migrate` is not working due to a corrupted migration history or when you just want to quickly sync your schema with the development database, `prisma db push` is the right tool. It inspects the Prisma schema and makes the database match it, bypassing the migration history.
+<p>
+ When <code>prisma migrate</code> is not working due to a corrupted migration
+ history or when you just want to quickly sync your schema with the
+ development database, <code>prisma db push</code> is the right tool. It
+ inspects the Prisma schema and makes the database match it, bypassing the
+ migration history.
+</p>
+<p>
+ <strong>This is especially useful in development when you don't need to
+ preserve migration history.</strong> The following commands fixed the issue:
+</p>
 
-**This is especially useful in development when you don&#39;t need to preserve migration history.**
+<h3>Step 1: Push the Schema to the Database</h3>
+<p>
+ This command synchronizes the database schema with the
+ <code>schema.prisma</code> file, creating the missing
+ <code>promo_discount_amount</code> column. The <code>--accept-data-loss</code>
+ flag is used to confirm that we are okay with potential data loss, which is
+ acceptable in a development environment.
+</p>
 
-The following commands fixed the issue:
-
-**Step 1: Push the schema to the database**
-
-This command synchronizes the database schema with the `schema.prisma` file, creating the missing `promo_discount_amount` column. The `--accept-data-loss` flag is used to confirm that we are okay with potential data loss, which is acceptable in a development environment.
-
-```bash
-pnpm prisma db push --accept-data-loss
+<pre><code class="language-bash">pnpm prisma db push --accept-data-loss
 </code></pre>
 <p><strong>Output:</strong></p>
 <pre><code> Your database is now in sync with your Prisma schema.
@@ -178,11 +187,12 @@ pnpm prisma db push --accept-data-loss
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Prisma, migrations, prisma db push, schema sync, database -->
  </article>
 
  

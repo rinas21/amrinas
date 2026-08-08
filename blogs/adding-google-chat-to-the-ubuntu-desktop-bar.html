@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
 
  <!-- JSON-LD Schema -->
 
@@ -29,21 +28,21 @@
 
  <!-- SEO Meta Tags -->
  <title>Adding Google Chat To The Ubuntu Desktop Bar | A.M Rinas</title>
- <meta name="description" content="Read about Adding Google Chat To The Ubuntu Desktop Bar on the A.M Rinas tech blog.">
+ <meta name="description" content="Pin Google Chat to the Ubuntu desktop bar: create a .desktop entry, set the browser Exec command, make it executable, and pin it from the apps menu.">
  <link rel="canonical" href="https://rinas.tech/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Adding Google Chat To The Ubuntu Desktop Bar">
- <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta property="og:description" content="Pin Google Chat to the Ubuntu desktop bar: create a .desktop entry, set the browser Exec command, make it executable, and pin it from the apps menu.">
  <meta property="og:url" content="https://rinas.tech/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Adding Google Chat To The Ubuntu Desktop Bar">
- <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta name="twitter:description" content="Pin Google Chat to the Ubuntu desktop bar: create a .desktop entry, set the browser Exec command, make it executable, and pin it from the apps menu.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -52,7 +51,7 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Adding Google Chat To The Ubuntu Desktop Bar",
- "description": "A blog post covering technical insights, DevOps, and programming guides.",
+ "description": "Pin Google Chat to the Ubuntu desktop bar: create a .desktop entry, set the browser Exec command, make it executable, and pin it from the apps menu.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -122,60 +121,60 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content">
- </article>
- 
- <script type="text/markdown" id="md-content">
+ <article class="blog-post-container">
+ <h1>Adding Google Chat to the Ubuntu Desktop Bar</h1>
+ <p>
+ Google Chat has no official native Linux client, but you can make it feel like
+ one: create a desktop entry that opens the web app in a dedicated browser
+ window, then pin it to your desktop bar.
+ </p>
 
-### Adding Google Chat to the Ubuntu Desktop Bar
+ <h2>Create the Desktop Entry File</h2>
+ <p>Open a terminal and create a desktop entry:</p>
+ <pre><code>nano ~/.local/share/applications/google-chat.desktop</code></pre>
 
-To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry:
-
-1. **Create the desktop entry file** 
- Open a terminal and run:
- ```bash
- nano ~/.local/share/applications/google-chat.desktop
- ```
-
-2. **Paste the following content:**
- ```ini
- [Desktop Entry]
+ <h2>Paste the Following Content</h2>
+ <pre><code>[Desktop Entry]
  Name=Google Chat
  Comment=Google Chat Web Application
  Exec=opera --new-window https://chat.google.com
  Icon=google-chat # Or use a full path to a custom icon (e.g., /home/youruser/Pictures/chat_icon.png)
  Terminal=false
  Type=Application
- Categories=Network;Web;
- ```
+ Categories=Network;Web;</code></pre>
+ <p>
+ <code>Exec</code> defines how the entry launches: replace <code>opera</code>
+ with <code>google-chrome</code>, <code>chromium</code> or <code>firefox</code>
+ depending on the browser you use.
+ </p>
 
-3. **Make the file executable:**
- ```bash
- chmod +x ~/.local/share/applications/google-chat.desktop
- ```
+ <h2>Make the File Executable</h2>
+ <pre><code>chmod +x ~/.local/share/applications/google-chat.desktop</code></pre>
 
-4. **Verify the file:**
- ```bash
- ls -l ~/.local/share/applications/google-chat.desktop
- ```
+ <h2>Verify the File</h2>
+ <pre><code>ls -l ~/.local/share/applications/google-chat.desktop</code></pre>
+ <p>
+ You can now search for "Google Chat" in your applications menu and pin it to
+ your desktop bar. If the entry does not show up immediately, log out and back
+ in, or refresh the menu cache with:
+ </p>
+ <pre><code>update-desktop-database ~/.local/share/applications</code></pre>
 
-You can now search for "Google Chat" in your applications menu and pin it to your desktop bar.
- 
- </script>
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
- <script>
-const markdownContent = document.getElementById('md-content').textContent;
- const htmlContent = marked.parse(markdownContent);
- const footerHtml = `
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="basic-linux.html">Basic Linux Commands</a></li>
+ <li><a href="file-permissions-in-linux-owner-group-others.html">File Permissions in Linux: Owner, Group, Others</a></li>
+ <li><a href="ssh-commnd.html">SSH Setup: A Comprehensive Guide</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
  <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
- `;
- document.getElementById('content').innerHTML = htmlContent + footerHtml;
- </script>
+ </article>
 
  
  <!-- ===== FOOTER ===== -->

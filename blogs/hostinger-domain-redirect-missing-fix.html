@@ -108,14 +108,14 @@
 </p>
 
 <ul>
- <li>malirosa.de → malirosa.lk</li>
- <li>malirosa.at → malirosa.lk</li>
- <li>malirosa.ch → malirosa.lk</li>
- <li>malirosa.ae → malirosa.lk</li>
+ <li>example.de → example.lk</li>
+ <li>example.at → example.lk</li>
+ <li>example.ch → example.lk</li>
+ <li>example.ae → example.lk</li>
 </ul>
 
 <p>
- Every domain redirected correctly except <strong>malirosa.com</strong>.
+ Every domain redirected correctly except <strong>example.com</strong>.
 </p>
 
 <p>
@@ -130,7 +130,7 @@
 
 <pre><code>A @ 2.57.91.91
 AAAA @ 2a02:4780:84::32
-CNAME www malirosa.com
+CNAME www example.com
 </code></pre>
 
 <p>
@@ -141,8 +141,8 @@ CNAME www malirosa.com
  Running DNS checks confirmed the records were resolving correctly.
 </p>
 
-<pre><code>dig malirosa.com
-dig www.malirosa.com
+<pre><code>dig example.com
+dig www.example.com
 </code></pre>
 
 <p>
@@ -155,7 +155,7 @@ dig www.malirosa.com
  I then inspected the HTTP response.
 </p>
 
-<pre><code>curl -I https://malirosa.com
+<pre><code>curl -I https://example.com
 </code></pre>
 
 <p>
@@ -163,7 +163,7 @@ dig www.malirosa.com
 </p>
 
 <pre><code>HTTP/2 301
-Location: https://malirosa.lk
+Location: https://example.lk
 </code></pre>
 
 <p>
@@ -261,7 +261,8 @@ Location: https://your-new-domain.com
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 

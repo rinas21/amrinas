@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Read about PostgreSQL connection to actual data source (if applicable) on the A.M Rinas tech blog.">
+ <meta name="description" content="Point Cube.js at your real PostgreSQL database with CUBEJS_DB_* env variables, then install Apache Superset in a virtual environment.">
  <meta name="keywords" content="PostgreSQL connection to actual data source (if applicable), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/postgresql-connection-to-actual-data-source-if-applicable.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="PostgreSQL connection to actual data source (if applicable) | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Point Cube.js at your real PostgreSQL database with CUBEJS_DB_* env variables, then install Apache Superset in a virtual environment.">
  <meta property="og:url" content="https://rinas.tech/blogs/postgresql-connection-to-actual-data-source-if-applicable.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="PostgreSQL connection to actual data source (if applicable)">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Point Cube.js at your real PostgreSQL database with CUBEJS_DB_* env variables, then install Apache Superset in a virtual environment.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>PostgreSQL connection to actual data source (if applicable) | A.M Rinas</title>
- <meta name="description" content="Read about PostgreSQL connection to actual data source (if applicable) on the A.M Rinas tech blog.">
+ <meta name="description" content="Point Cube.js at your real PostgreSQL database with CUBEJS_DB_* env variables, then install Apache Superset in a virtual environment.">
  <link rel="canonical" href="https://rinas.tech/blogs/postgresql-connection-to-actual-data-source-if-applicable.html">
  <meta name="robots" content="index, follow">
  
@@ -138,36 +138,67 @@
  </header>
 
  <article class="blog-post-container">
-<h1>PostgreSQL connection to actual data source (if applicable)</h1>
+ <h1>PostgreSQL Connection to the Actual Data Source</h1>
+ <p>
+ This page covers the two halves of a Cube.js + Superset stack: pointing
+ Cube.js at your real PostgreSQL database, and installing Apache Superset in a
+ Python virtual environment to visualize the data.
+ </p>
 
+ <h2>1. Point Cube.js at the Actual Database</h2>
+ <p>
+ Replace the in-memory demo data with your real PostgreSQL source by setting
+ these values in <code>.env</code>:
+ </p>
+ <pre><code>CUBEJS_DB_TYPE=postgres
+ CUBEJS_DB_HOST=localhost
+ CUBEJS_DB_PORT=5432
+ CUBEJS_DB_NAME=demodb
+ CUBEJS_DB_USER=postgres
+ CUBEJS_DB_PASS=password
+ CUBEJS_DB_SCHEMA=demodata</code></pre>
+ <ul>
+ <li><code>CUBEJS_DB_SCHEMA</code> tells Cube.js which schema to read table metadata from — with the driver configured, tables from that schema appear in your data model.</li>
+ <li><code>CUBEJS_DB_USER</code> / <code>CUBEJS_DB_PASS</code> must match a role that has read access to the target schema.</li>
+ </ul>
+ <p>Start Cube.js with the new configuration:</p>
+ <pre><code class="language-bash">npm run dev</code></pre>
 
-<p>CUBEJS_DB_TYPE=postgres
-CUBEJS_DB_HOST=localhost
-CUBEJS_DB_PORT=5432
-CUBEJS_DB_NAME=hviewtest
-CUBEJS_DB_USER=postgres
-CUBEJS_DB_PASS=password
-CUBEJS_DB_SCHEMA=hviewdemo</p>
-<pre><code>
-Start Cube.js:
+ <h2>2. Apache Superset Setup</h2>
+ <h3>Installation (inside a virtual environment)</h3>
+ <pre><code class="language-bash">python3 -m venv venv
+ source venv/bin/activate</code></pre>
+ <p>
+ Keep Superset isolated in this virtual environment, then install Superset and
+ the PostgreSQL driver:
+ </p>
+ <pre><code class="language-bash">pip install apache-superset
+ pip install psycopg2-binary
+ superset db upgrade
+ superset fab create-admin   # create the admin user
+ superset init</code></pre>
+ <p>
+ Once Superset runs, add a new database connection pointing at Cube.js's
+ PostgreSQL SQL API on port <code>15432</code> — see
+ <a href="connecting-cubejs-to-superset-postgresql-sql-api.html">Connecting
+ Cube.js to Superset (PostgreSQL SQL API)</a> for the exact steps.
+ </p>
 
-```bash
-npm run dev
-</code></pre>
-<hr>
-<h2> 2. Apache Superset Setup</h2>
-<h3> Installation (inside a virtual environment)</h3>
-<pre><code class="language-bash">python3 -m venv venv
-source venv/bin/activate
-</code></pre>
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="connecting-cubejs-to-superset-postgresql-sql-api.html">Connecting Cube.js to Superset (PostgreSQL SQL API)</a></li>
+ <li><a href="initialize-the-database.html">Initialize the Database</a></li>
+ <li><a href="copy-the-sql-file-to-the-container.html">Copy the SQL File to the Container</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Cube.js, PostgreSQL, Superset, env configuration, data source -->
  </article>
 
  

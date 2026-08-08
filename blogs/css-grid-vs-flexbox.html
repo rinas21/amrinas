@@ -118,13 +118,119 @@
  <article class="blog-post-container">
  <h1>CSS Grid vs Flexbox</h1>
 
+ <p>
+ When to use CSS Grid and when to use Flexbox to build modern, responsive web
+ layouts — a question every CSS developer asks. The short answer: Flexbox
+ handles <strong>one-dimensional</strong> layouts (a row <em>or</em> a
+ column), while Grid handles <strong>two-dimensional</strong> layouts (rows
+ <em>and</em> columns at the same time). This guide explains the difference,
+ shows when each is the better choice, and gives you a decision rule you can
+ apply immediately.
+ </p>
 
- <p>When to use CSS Grid and when to use Flexbox to build modern, responsive web layouts.</p>
  <h2>Flexbox</h2>
- <p>Flexbox is ideal for one-dimensional layouts, arranging items either in a row or a column.</p>
+ <p>
+ Flexbox is ideal for one-dimensional layouts, arranging items either in a row
+ or a column. Its main axis follows the direction you choose
+ (<code>flex-direction</code>), and its main strengths are distributing space
+ between items and aligning them:
+ </p>
+ <pre><code>display: flex;
+ justify-content: space-between; /* horizontal distribution */
+ align-items: center;            /* vertical alignment */</code></pre>
+ <p>
+ Because items grow, shrink and wrap along a single axis, Flexbox is the
+ natural fit for components whose size is content-driven:
+ </p>
+ <ul>
+ <li>Navigation bars and toolbars</li>
+ <li>Card rows and media lists (avatar + text)</li>
+ <li>Form fields and button groups</li>
+ <li>Centering an element inside a container</li>
+ </ul>
+
+ <h2>CSS Grid</h2>
+ <p>
+ Grid is ideal for two-dimensional layouts: you define both columns and rows
+ up front, then place items into that structure:
+ </p>
+ <pre><code>display: grid;
+ grid-template-columns: repeat(12, 1fr);
+ grid-template-rows: auto 1fr auto;
+ gap: 16px;</code></pre>
+ <p>
+ Grid is the right tool whenever the layout structure matters more than the
+ content size:
+ </p>
+ <ul>
+ <li>Full-page layouts (header, sidebar, main, footer)</li>
+ <li>Dashboards and data-heavy screens</li>
+ <li>Photo galleries with aligned cards</li>
+ <li>Any design that needs explicit overlapping or spanning</li>
+ </ul>
+
+ <h2>Side by Side</h2>
+ <table>
+ <thead>
+ <tr><th>Aspect</th><th>Flexbox</th><th>Grid</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Dimensions</td><td>One (row or column)</td><td>Two (rows and columns)</td></tr>
+ <tr><td>Content-driven</td><td>Items size based on content</td><td>Tracks are defined first, then content placed</td></tr>
+ <tr><td>Best for</td><td>Components and alignment</td><td>Page and dashboard layouts</td></tr>
+ <tr><td>Flow</td><td>Items flow and wrap automatically</td><td>Explicit placement and spanning</td></tr>
+ <tr><td>Overlap</td><td>Not natural</td><td>Native (grid areas, z-index)</td></tr>
+ </tbody>
+ </table>
+
+ <h2>The Common Approach</h2>
+ <p>
+ Most real pages use both: Grid to define the overall page skeleton, and
+ Flexbox inside each region to lay out the components. A practical example —
+ a page shell in Grid with a toolbar laid out by Flexbox:
+ </p>
+ <pre><code>.page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr;
+}
+ .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }</code></pre>
+
+ <h2>How to Decide</h2>
+ <ol>
+ <li>Ask: "do I control rows <em>and</em> columns?" If yes → Grid.</li>
+ <li>Is it a component whose items should flow, wrap and align in one direction? → Flexbox.</li>
+ <li>Need items to span multiple rows or overlap? → Grid.</li>
+ <li>Just centering something? → Flexbox (or <code>place-items: center</code>).</li>
+ </ol>
+ <p>
+ If you're still unsure, start with Flexbox — a flex container can be
+ composed with nested containers to solve most problems, and you can upgrade
+ to Grid when the layout stops being one-dimensional.
+ </p>
+
+ <h2>Conclusion</h2>
+ <p>
+ Grid and Flexbox are not competitors; they complement each other. Grid builds
+ the page structure, Flexbox arranges the pieces inside it. Choosing by
+ dimensionality — one axis versus two — gives you clean, maintainable CSS
+ instead of fighting the layout system.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="react-hooks.html">React Hooks: useState, useEffect and More</a></li>
+ <li><a href="paging-vs-segmentation.html">Paging vs Segmentation</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  </article>
 

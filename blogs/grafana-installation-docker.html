@@ -8,22 +8,22 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker.">
- <meta name="keywords" content="Grafana Installation on Ubuntu using Docker, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+ <meta name="description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
+ <meta name="keywords" content="Grafana installation Docker, Grafana OSS Ubuntu, Docker compose Grafana, Grafana data persistence, Grafana troubleshooting, DevOps monitoring, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/grafana-installation-docker.html">
  
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Grafana Installation on Ubuntu using Docker | A.M. Rinas Blog">
- <meta property="og:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker....">
+ <meta property="og:description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
  <meta property="og:url" content="https://rinas.tech/blogs/grafana-installation-docker.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Grafana Installation on Ubuntu using Docker">
- <meta name="twitter:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker....">
+ <meta name="twitter:description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -47,7 +47,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Grafana Installation on Ubuntu using Docker | A.M Rinas</title>
- <meta name="description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker.">
+ <meta name="description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
  <link rel="canonical" href="https://rinas.tech/blogs/grafana-installation-docker.html">
  <meta name="robots" content="index, follow">
  
@@ -143,72 +143,148 @@
  <article class="blog-post-container">
  <h1>Grafana Installation on Ubuntu using Docker</h1>
 
+ <p>
+ Grafana turns metrics into dashboards — you point it at a data source (Prometheus, InfluxDB, PostgreSQL)
+ and build visual panels on top. Running it with Docker is the fastest install on Ubuntu: one command, no
+ repository setup. This guide covers the container itself, the verification steps, and — most importantly —
+ the volume mount that keeps your dashboards alive when the container is recreated, which is the step most
+ guides leave out.
+ </p>
 
-<h3>Aim :</h3>
-<p>Install Grafana OSS (open-source version) on Ubuntu using Docker.</p>
-<h2>Grafana Installation Steps</h2>
-<h3>Step 1: Pull and Run the Grafana Container</h3>
-<ul>
-<li>Pull and start the Grafana container:<pre><code class="language-bash">sudo docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
-</code></pre>
-<ul>
-<li><code>-d</code>: Detaches the container and runs it in the background.</li>
-<li><code>-p 3000:3000</code>: Maps port 3000 on your host machine to port 3000 inside the container, enabling access to Grafana&#39;s web interface.</li>
-<li><code>--name=grafana</code>: Specifies the name of the container as <code>grafana</code>.</li>
-</ul>
-</li>
-</ul>
-<h3>Step 2: Access Grafana</h3>
-<ul>
-<li>Once the container is running, access Grafana by opening a web browser and navigating to:<pre><code class="language-text">http://localhost:3000
-</code></pre>
-If Grafana is running on a remote server or different IP, replace <code>localhost</code> with the server&#39;s IP or hostname.</li>
-</ul>
-<h3>Step 3: Initial Setup</h3>
-<ul>
-<li>On the first visit, you&#39;ll be prompted to:<ul>
-<li>Set up an admin password (default username: <code>admin</code>).</li>
-<li>Configure data sources and dashboards as needed.</li>
-</ul>
-</li>
-</ul>
-<h3>Step 4: Change Admin Password</h3>
-<ul>
-<li>After logging in with the default credentials:<ul>
-<li>Click on the user icon in the lower-left corner, then select &quot;Admin&quot; to access the Admin menu.</li>
-<li>Go to &quot;Profile&quot; and then &quot;Change password&quot; to update the admin password.</li>
-</ul>
-</li>
-</ul>
-<h3>Useful Grafana and Docker Commands</h3>
-<ul>
-<li><strong>Grafana Commands:</strong><ul>
-<li>Restart Grafana container:<pre><code class="language-bash">sudo docker restart grafana
-</code></pre>
-</li>
-<li>View logs of Grafana container:<pre><code class="language-bash">sudo docker logs grafana
-</code></pre>
-</li>
-</ul>
-</li>
-<li><strong>Docker Commands:</strong><ul>
-<li>List all running containers:<pre><code class="language-bash">sudo docker ps
-</code></pre>
-</li>
-<li>Stop and remove Grafana container:<pre><code class="language-bash">sudo docker stop grafana
-sudo docker rm grafana
-</code></pre>
-</li>
-<li>Clean up unused Docker resources (containers, images, networks):<pre><code class="language-bash">sudo docker system prune
-</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+ <h2>Prerequisites</h2>
+ <ul>
+ <li>Docker installed and the daemon running (test with <code>docker ps</code>)</li>
+ <li>A free port 3000 on your host</li>
+ </ul>
+
+ <h2>Step 1: Pull and Run the Grafana Container</h2>
+ <pre><code class="language-bash">sudo docker run -d -p 3000:3000 --name=grafana grafana/grafana-oss
+ </code></pre>
+ <p>What each flag does:</p>
+ <ul>
+ <li><code>-d</code> — run detached (in the background)</li>
+ <li><code>-p 3000:3000</code> — map host port 3000 to the container's port 3000, exposing the web
+ interface</li>
+ <li><code>--name=grafana</code> — give the container a stable name so later commands are easy to type</li>
+ <li><code>grafana/grafana-oss</code> — the open-source edition image</li>
+ </ul>
+
+ <h2>Step 2: Verify the Container Is Running</h2>
+ <pre><code class="language-bash">sudo docker ps | grep grafana</code></pre>
+ <p>Expected output — STATUS should show <code>Up</code> (and <code>(healthy)</code> once the healthcheck
+ passes):</p>
+ <pre><code>CONTAINER ID   IMAGE                  STATUS          PORTS                    NAMES
+abc123def456   grafana/grafana-oss    Up 2 minutes   0.0.0.0:3000-&gt;3000/tcp   grafana</code></pre>
+ <p>
+ If the container is missing from the list, check the logs — they usually name the problem directly:
+ </p>
+ <pre><code class="language-bash">sudo docker logs grafana</code></pre>
+
+ <h2>Step 3: Access Grafana</h2>
+ <p>
+ Open your browser and navigate to <code>http://localhost:3000</code>. If Grafana runs on a remote server,
+ use its IP or hostname instead of <code>localhost</code>.
+ </p>
+
+ <h2>Step 4: Initial Setup and Password Change</h2>
+ <ul>
+ <li>First login: username <code>admin</code>, password <code>admin</code>.</li>
+ <li>Grafana immediately forces you to set a new admin password — this is mandatory, not optional.</li>
+ <li>If you skipped it or want to change it later: click the user icon (lower-left) &rarr; Admin &rarr;
+ Profile &rarr; Change password.</li>
+ </ul>
+ <p>
+ The default credentials are public knowledge, so on any machine reachable from a network, change the
+ password before doing anything else.
+ </p>
+
+ <h2>Step 5 (Important): Make Your Data Persistent</h2>
+ <p>
+ A bare <code>docker run</code> stores Grafana's database inside the container. The moment you stop and
+ remove the container, your dashboards and data sources are gone. To keep them, mount a host directory into
+ the container's data path:
+ </p>
+ <pre><code class="language-bash">sudo mkdir -p /var/lib/grafana-data
+sudo chown 472:472 /var/lib/grafana-data
+sudo docker run -d -p 3000:3000 --name=grafana \
+  -v /var/lib/grafana-data:/var/lib/grafana \
+  grafana/grafana-oss</code></pre>
+ <p>
+ <code>472</code> is the UID of the <code>grafana</code> user inside the container; without the
+ <code>chown</code>, Grafana cannot write and the container may exit.
+ </p>
+ <p>
+ If you prefer Compose, see <a href="docker-compose-intro.html">the Docker Compose introduction</a> — the
+ volume line is the same idea.
+ </p>
+
+ <h2>Useful Commands</h2>
+ <ul>
+ <li>Restart: <code>sudo docker restart grafana</code></li>
+ <li>Logs: <code>sudo docker logs grafana</code></li>
+ <li>List running containers: <code>sudo docker ps</code> — see the
+ <a href="docker-ps.html">docker ps guide</a> for reading the output</li>
+ <li>Stop and remove: <code>sudo docker stop grafana && sudo docker rm grafana</code></li>
+ <li>Clean unused resources: <code>sudo docker system prune</code></li>
+ </ul>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: "Bind for 0.0.0.0:3000 failed: port is already allocated"</h3>
+ <p><strong>Cause:</strong> another process (or another Grafana) already uses port 3000.</p>
+ <p><strong>Solution:</strong> find the occupant with <code>sudo netstat -tulpn | grep 3000</code> (see the
+ <a href="netstat-commnd.html">netstat guide</a>) and either stop it or publish Grafana on a different host
+ port: <code>-p 3001:3000</code>.</p>
+
+ <h3>Problem 2: container starts then immediately exits</h3>
+ <p><strong>Cause:</strong> usually the data directory permission (Grafana runs as UID 472) or a corrupted
+ volume.</p>
+ <p><strong>Solution:</strong> read <code>sudo docker logs grafana</code>; if the error mentions
+ <code>mkdir /var/lib/grafana: permission denied</code>, fix ownership:
+ <code>sudo chown 472:472 /var/lib/grafana-data</code>.</p>
+
+ <h3>Problem 3: Grafana loads but says it cannot connect to the data source</h3>
+ <p><strong>Cause:</strong> the data source is on the host, and localhost inside the container is the
+ container itself, not your machine.</p>
+ <p><strong>Solution:</strong> use <code>host.docker.internal</code> (or your host IP) as the data source
+ URL instead of <code>localhost</code>. For monitoring stacks, see
+ <a href="grafana-prometheus-node-exporter.html">Grafana + Prometheus + Node Exporter</a>.</p>
+
+ <h3>Problem 4: forgot the admin password</h3>
+ <p><strong>Solution:</strong> reset it through the Grafana CLI inside the running container:</p>
+ <pre><code class="language-bash">sudo docker exec -it grafana grafana-cli admin reset-admin-password &lt;newpassword&gt;</code></pre>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Always mount a volume for <code>/var/lib/grafana</code> — dashboards are work, not disposable data.</li>
+ <li>Change the default <code>admin/admin</code> password immediately.</li>
+ <li>Use <code>docker logs grafana</code> as your first diagnostic when the web UI does not come up.</li>
+ <li>Pin the image version (<code>grafana/grafana-oss:11.x</code>) for reproducible setups.</li>
+ <li>Persist configuration in environment variables or a compose file instead of editing files inside the
+ container — edits are lost on recreate.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ We ran the Grafana container, verified it with <code>docker ps</code> and <code>docker logs</code>, logged
+ in to change the default password, and added a volume so dashboards survive container recreation. The
+ important takeaway: the container itself is disposable — the data directory you mount is what you are
+ actually running.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="grafana-prometheus-node-exporter.html">Grafana, Prometheus and Node Exporter Setup</a></li>
+ <li><a href="docker-ps.html">docker ps Explained</a></li>
+ <li><a href="docker-compose-intro.html">Docker Compose Introduction</a></li>
+ <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ <li><a href="netstat-commnd.html">netstat Commands: A Comprehensive Guide</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 

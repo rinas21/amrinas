@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Read about Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) on the A.M Rinas tech blog.">
+ <meta name="description" content="Boot the RHEL 9.4 kernel after upgrading to RHEL 9.5: install the older kernel with dnf, reboot, verify with uname -r and pin it with versionlock.">
  <meta name="keywords" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Boot the RHEL 9.4 kernel after upgrading to RHEL 9.5: install the older kernel with dnf, reboot, verify with uname -r and pin it with versionlock.">
  <meta property="og:url" content="https://rinas.tech/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Boot the RHEL 9.4 kernel after upgrading to RHEL 9.5: install the older kernel with dnf, reboot, verify with uname -r and pin it with versionlock.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) | A.M Rinas</title>
- <meta name="description" content="Read about Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5) on the A.M Rinas tech blog.">
+ <meta name="description" content="Boot the RHEL 9.4 kernel after upgrading to RHEL 9.5: install the older kernel with dnf, reboot, verify with uname -r and pin it with versionlock.">
  <link rel="canonical" href="https://rinas.tech/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html">
  <meta name="robots" content="index, follow">
  
@@ -138,37 +138,66 @@
  </header>
 
  <article class="blog-post-container">
-<h1>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)</h1>
+ <h1>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)</h1>
+ <p>
+ After a RHEL minor-version upgrade, the system boots the newest kernel by
+ default. If your workload (drivers, security tooling, or applications) is not
+ yet certified for the new kernel, you can boot the previous RHEL 9.4 kernel
+ instead — while keeping the upgraded packages installed.
+ </p>
+ <ul>
+ <li><strong>Current Kernel Installed:</strong> <code>5.14.0-427.42.1.el9_4</code> (RHEL 9.4)</li>
+ <li><strong>Available Kernel Versions:</strong> Includes <code>5.14.0-503.x.x.el9_5</code> (RHEL 9.5) and multiple <code>5.14.0-427.x.x.el9_4</code> (RHEL 9.4)</li>
+ </ul>
 
+ <h2>Steps to Revert to a RHEL 9.4 Kernel Version</h2>
 
-<ul>
-<li><strong>Current Kernel Installed:</strong> <code>5.14.0-427.42.1.el9_4</code> (RHEL 9.4)</li>
-<li><strong>Available Kernel Versions:</strong> Includes <code>5.14.0-503.x.x.el9_5</code> (RHEL 9.5) and multiple <code>5.14.0-427.x.x.el9_4</code> (RHEL 9.4)</li>
-</ul>
-<h3>Steps to Revert to a RHEL 9.4 Kernel Version:</h3>
-<ol>
-<li><strong>Install Desired Kernel Version from RHEL 9.4:</strong></li>
-</ol>
-<pre><code class="language-bash"> sudo dnf install kernel-5.14.0-427.33.1.el9_4
-</code></pre>
-<ol start="2">
-<li><strong>Reboot the System to Apply the New Kernel:</strong></li>
-</ol>
-<pre><code class="language-bash">sudo reboot
-</code></pre>
-<ol start="3">
-<li><strong>Verify the Kernel Version</strong></li>
-</ol>
-<pre><code class="language-bash">uname -r
-</code></pre>
+ <h3>1. Install the Desired Kernel Version from RHEL 9.4</h3>
+ <p>Install the exact kernel version you want to run:</p>
+ <pre><code class="language-bash">sudo dnf install kernel-5.14.0-427.33.1.el9_4</code></pre>
+ <p>
+ If you are unsure which 9.4 builds are available, list them from the
+ repository first:
+ </p>
+ <pre><code class="language-bash">dnf list available kernel --showduplicates | grep el9_4</code></pre>
+
+ <h3>2. Reboot the System to Apply the New Kernel</h3>
+ <pre><code class="language-bash">sudo reboot</code></pre>
+ <p>
+ GRUB boots the highest-version kernel by default, so a newly installed
+ 9.4 kernel will be selected over the 9.5 one. If the system still boots the
+ 9.5 kernel, pick the 9.4 entry manually from the GRUB boot menu.
+ </p>
+
+ <h3>3. Verify the Kernel Version</h3>
+ <pre><code class="language-bash">uname -r</code></pre>
+ <p>Expect output similar to <code>5.14.0-427.33.1.el9_4.x86_64</code>.</p>
+
+ <h3>4. Make the Choice Permanent (Optional)</h3>
+ <p>
+ To prevent the 9.5 kernel from being used again until you are ready, pin the
+ installed 9.4 kernel so <code>dnf</code> does not upgrade it away:
+ </p>
+ <pre><code class="language-bash">sudo dnf install -y dnf-plugin-versionlock
+ sudo dnf versionlock add kernel-5.14.0-427.33.1.el9_4</code></pre>
+ <p>
+ Remove the lock later with <code>sudo dnf versionlock delete kernel-5.14.0-427.33.1.el9_4</code> once you move back to 9.5.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="checking-if-a-user-group-exists-in-rhel.html">Checking if a User Group Exists in RHEL</a></li>
+ <li><a href="cpu-cycle-and-its-relation-to-time.html">CPU Cycle and Its Relation to Time</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: RHEL, kernel, downgrade, revert, 9.4, 9.5, dnf -->
  </article>
 
  

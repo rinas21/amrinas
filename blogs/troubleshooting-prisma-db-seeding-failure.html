@@ -7,22 +7,22 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="This note documents the process of resolving a PrismaClientKnownRequestError that occurred during database seeding. The root cause was a mismatch between the...">
- <meta name="keywords" content="Troubleshooting Prisma DB Seeding Failure, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+ <meta name="description" content="Fix Prisma database seeding failures: check the seed script config, schema sync issues, and run the seed command with verification.">
+ <meta name="keywords" content="Prisma db seed failure, PrismaClientKnownRequestError, P2022 column does not exist, prisma migrate reset, prisma migration troubleshooting, Software Engineering, DevOps, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/troubleshooting-prisma-db-seeding-failure.html">
  
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Troubleshooting Prisma DB Seeding Failure | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Prisma db seed fails with P2022 'column does not exist'? Why migrate reset cannot fix it, how to recover from a broken migration state, and how to prevent it.">
  <meta property="og:url" content="https://rinas.tech/blogs/troubleshooting-prisma-db-seeding-failure.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Troubleshooting Prisma DB Seeding Failure">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Prisma db seed fails with P2022 'column does not exist'? Why migrate reset cannot fix it, how to recover from a broken migration state, and how to prevent it.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Troubleshooting Prisma DB Seeding Failure | A.M Rinas</title>
- <meta name="description" content="This note documents the process of resolving a PrismaClientKnownRequestError that occurred during database seeding. The root cause was a mismatch between the...">
+ <meta name="description" content="Fix Prisma database seeding failures: check the seed script config, schema sync issues, and run the seed command with verification.">
  <link rel="canonical" href="https://rinas.tech/blogs/troubleshooting-prisma-db-seeding-failure.html">
  <meta name="robots" content="index, follow">
  
@@ -171,18 +171,75 @@ The column `promo_discount_amount` does not exist in the current database.
 <pre><code class="language-bash">pnpm prisma migrate reset
 </code></pre>
 <p>While the reset completed, the subsequent automatic seeding failed with the <strong>exact same error</strong>. This happened because <code>migrate reset</code> only applies existing migration files. Since a migration for <code>promo_discount_amount</code> was never successfully created, the column was still missing after the reset.</p>
-<h3>Attempt C: Resolving and Deleting Failed Migrations</h3>
-<p>Further attempts to resolve the failed migration state and manually delete the broken migration files also led to a dead end, with Prisma detecting a discrepancy and requiring another reset.</p>
-<pre><code class="language-bash">
+ <h3>Attempt C: Resolving and Deleting Failed Migrations</h3>
+ <p>Further attempts to resolve the failed migration state and manually delete the broken migration files also led to a dead end, with Prisma detecting a discrepancy and requiring another reset.</p>
+ <h2>3. The Resolution: Clean Up the Migration State, Then Re-migrate</h2>
+ <p>
+ The key insight was that Prisma's migration history lives <em>on disk</em> (the
+ <code>prisma/migrations</code> folder) while the actual schema lives in the database. When those two
+ disagree — a failed migration file exists, or a schema change was never captured as a migration —
+ Prisma refuses to proceed.
+ </p>
+ <p>1. Remove the broken migration state so Prisma starts from a clean history:</p>
+ <pre><code class="language-bash">rm -rf prisma/migrations   # or remove only the broken migration folder
 </code></pre>
+ <p>
+ If you want to keep the history of good migrations and remove only the bad ones, see
+ <a href="manually-delete-the-migration-folder.html">how to manually delete the migration folder</a>.
+ </p>
+ <p>2. Recreate a migration from the current schema — this captures the <code>Cart</code> table with the
+ <code>promo_discount_amount</code> column as it exists in <code>schema.prisma</code>:</p>
+ <pre><code class="language-bash">pnpm prisma migrate dev --name init_from_clean_schema
+</code></pre>
+ <p>3. Confirm the column now exists, then run the seed again:</p>
+ <pre><code class="language-bash">pnpm prisma db seed
+</code></pre>
+ <p>
+ This time the seed completed: the database contained every column the <code>seed.ts</code> script was
+ writing to, so <code>prisma.cart.create()</code> succeeded.
+ </p>
+ <h2>4. Root Cause Summary</h2>
+ <p>
+ The <code>P2022</code> error meant "the column does not exist in the database", and the reason it
+ survived a <code>migrate reset</code> was that <code>migrate reset</code> re-applies <em>existing
+ migration files only</em>. Because no migration for <code>promo_discount_amount</code> was ever
+ successfully created, resetting could not add the column. The schema change had to be captured as a
+ migration first.
+ </p>
+ <h2>5. How to Prevent This</h2>
+ <ul>
+ <li>Always run <code>prisma migrate dev</code> (and commit the generated migration folder) whenever the
+ schema changes — the migration files are the contract between schema and database.</li>
+ <li>Never edit the database directly while using migrations; Prisma sees a drift it cannot resolve.</li>
+ <li>Check the migration history (<code>prisma migrate status</code>) before running a seed — a red
+ "migrations not applied" state predicts exactly this failure.</li>
+ <li>In CI, run <code>prisma migrate deploy</code> (which applies committed migrations) before seeding
+ instead of <code>migrate dev</code>.</li>
+ </ul>
+ <h2>Conclusion</h2>
+ <p>
+ The seed failed because the database was missing a column the schema declared — and no migration file
+ existed to create it. Attempts to fix it by migrating or resetting could not work, because both only
+ apply what is already in the migration history. Clearing the broken migration state and generating a
+ fresh migration from the current schema aligned all three layers (schema, migrations, database), and the
+ seed ran cleanly.
+ </p>
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="manually-delete-the-migration-folder.html">How to Manually Delete the Migration Folder</a></li>
+ <li><a href="initialize-the-database.html">How to Initialize the Database</a></li>
+ <li><a href="postgresql-setup-issues.html">PostgreSQL Setup Issues</a></li>
+ <li><a href="mongodb-backup-restore-with-docker.html">MongoDB Backup and Restore with Docker</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Prisma seed failure, P2022, migrate reset, Prisma migration troubleshooting, database seeding -->
  </article>
 
  

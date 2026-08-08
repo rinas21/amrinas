@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
  
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
  <style>
  .blog-post-container img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
  .blog-post-container pre { background: var(--ink); color: var(--cream); padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
@@ -38,7 +37,7 @@
 
  <!-- SEO Meta Tags -->
  <title>How to Disable Auto-Start for a Docker Container | A.M Rinas</title>
- <meta name="description" content="Read about How to Disable Auto-Start for a Docker Container on the A.M Rinas tech blog.">
+ <meta name="description" content="Stop Docker containers starting automatically after reboot: check the restart policy with docker inspect and change it with docker update --restart=no.">
  <link rel="canonical" href="https://rinas.tech/blogs/how-to-disable-auto-start-for-a-docker-container.html">
  <meta name="robots" content="index, follow">
  
@@ -130,71 +129,108 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content"></article>
-
- <script type="text/markdown" id="md-content">
-# How to Disable Auto-Start for a Docker Container
-
-When a Docker container (like Airbyte) keeps starting automatically after a machine reboot, it usually has a restart policy set to `always` or `unless-stopped`.
-
-## Steps to Disable Auto-Start
-
-### 1. Check the Container's Restart Policy
-Run the following command to inspect the restart policy of the container:
-
-```bash
-docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' <container-name>
-```
-
-**Example:**
-```bash
-docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' airbyte-abctl-control-plane
-```
-
-### 2. Update the Container to Not Auto-Restart
-Run this command to disable the auto-restart policy:
-
-```bash
-docker update --restart=no <container-name>
-```
-
-**Example:**
-```bash
-docker update --restart=no airbyte-abctl-control-plane
-```
-
- This will prevent the container from starting automatically after reboot.
-
-### 3. (Optional) Stop the Container Manually
-If the container is still running and you want to stop it now, use the following command:
-
-```bash
-docker stop <container-name>
-```
-
-**Example:**
-```bash
-docker stop airbyte-abctl-control-plane
-```
-
-## Quick Summary of Docker Restart Policies
-
-| Policy | Behavior |
-|------------------|---------------------------------------------------|
-| `no` | Never restart automatically. Only manual start. |
-| `always` | Always restart, even after reboot. |
-| `unless-stopped`| Restart unless you manually stop the container. |
-| `on-failure` | Restart only if the container exits with a non-zero status. |
- </script>
- <script>
- const markdownContent = document.getElementById('md-content').textContent;
- document.getElementById('content').innerHTML = marked.parse(markdownContent);
- </script>
-
  <article class="blog-post-container">
+ <h1>How to Disable Auto-Start for a Docker Container</h1>
+
+ <p>
+ When a Docker container (like Airbyte) keeps starting automatically after a machine reboot, it usually
+ has a restart policy set to <code>always</code> or <code>unless-stopped</code>. Docker reads that policy
+ at boot and brings the container back up — even if you stopped it manually before shutting down. This
+ guide shows how to check the policy and change it so the container stays off until you start it
+ yourself.
+ </p>
+
+ <h2>Steps to Disable Auto-Start</h2>
+
+ <h3>1. Check the Container's Restart Policy</h3>
+ <p>Run the following command to inspect the restart policy of the container:</p>
+ <pre><code>docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' &lt;container-name&gt;</code></pre>
+ <p><strong>Example:</strong></p>
+ <pre><code>docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' airbyte-abctl-control-plane</code></pre>
+ <p>
+ The output is the policy name — <code>always</code>, <code>unless-stopped</code>, <code>on-failure</code>
+ or <code>no</code>. If it is not <code>no</code>, that is why the container keeps coming back.
+ </p>
+
+ <h3>2. Update the Container to Not Auto-Restart</h3>
+ <p>Run this command to disable the auto-restart policy:</p>
+ <pre><code>docker update --restart=no &lt;container-name&gt;</code></pre>
+ <p><strong>Example:</strong></p>
+ <pre><code>docker update --restart=no airbyte-abctl-control-plane</code></pre>
+ <p>
+ This prevents the container from starting automatically after reboot. It applies immediately — no need to
+ recreate the container.
+ </p>
+
+ <h3>3. Verify the Change</h3>
+ <p>Run the inspect command again — the policy should now be <code>no</code>:</p>
+ <pre><code>docker inspect -f '{{ .HostConfig.RestartPolicy.Name }}' airbyte-abctl-control-plane
+no</code></pre>
+
+ <h3>4. (Optional) Stop the Container Manually</h3>
+ <p>If the container is still running and you want to stop it now, use:</p>
+ <pre><code>docker stop &lt;container-name&gt;</code></pre>
+ <p><strong>Example:</strong></p>
+ <pre><code>docker stop airbyte-abctl-control-plane</code></pre>
+
+ <h2>Quick Summary of Docker Restart Policies</h2>
+ <table>
+ <thead>
+ <tr><th>Policy</th><th>Behavior</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><code>no</code></td><td>Never restart automatically. Only manual start.</td></tr>
+ <tr><td><code>always</code></td><td>Always restart, even after reboot.</td></tr>
+ <tr><td><code>unless-stopped</code></td><td>Restart unless you manually stop the container.</td></tr>
+ <tr><td><code>on-failure</code></td><td>Restart only if the container exits with a non-zero status.</td></tr>
+ </tbody>
+ </table>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: the container still starts after reboot</h3>
+ <p><strong>Cause:</strong> the policy was changed on the wrong container, or the container was recreated
+ by a compose file that sets the restart policy again.</p>
+ <p><strong>Solution:</strong> verify the name with <code>docker ps -a</code> (see
+ <a href="docker-ps.html">docker ps explained</a>), and if you use Docker Compose, remove the
+ <code>restart:</code> line from the compose file and re-run
+ <code>docker compose up -d</code>.</p>
+
+ <h3>Problem 2: docker update is not supported for this container</h3>
+ <p><strong>Cause:</strong> some containers (e.g. managed by a separate orchestrator tool) block updates,
+ or you lack permission.</p>
+ <p><strong>Solution:</strong> run with sudo, or edit the container's policy in the orchestrator's config
+ (for Airbyte's abctl, this happens via its own management commands).</p>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Use <code>unless-stopped</code> instead of <code>always</code> for apps you sometimes stop manually —
+ it still survives reboots but respects your explicit <code>docker stop</code>.</li>
+ <li>Define the restart policy in your Compose file (<code>restart: no</code>) so a
+ <code>docker compose up -d</code> does not silently re-enable auto-start.</li>
+ <li>After any change, verify with <code>docker inspect</code> before rebooting the machine.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ We checked the container's restart policy with <code>docker inspect</code>, disabled it with
+ <code>docker update --restart=no</code>, and verified the change. The key idea: Docker's restart policy
+ decides what happens after reboot, so that single setting — not a manual stop — is what controls
+ auto-start.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="docker-ps.html">docker ps Explained</a></li>
+ <li><a href="docker-compose-intro.html">Docker Compose Introduction</a></li>
+ <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ <li><a href="docker-build-failures-linux-vs-windows.html">Docker Build Failures: Linux vs Windows</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  </article>
 

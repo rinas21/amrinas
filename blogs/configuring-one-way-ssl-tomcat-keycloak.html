@@ -7,22 +7,22 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Read about This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak on the A.M Rinas tech blog.">
+ <meta name="description" content="Configure one-way SSL between Tomcat and Keycloak: generate keystores with keytool, export certificates and import the Keycloak certificate into Tomcat's truststore.">
  <meta name="keywords" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
- <link rel="canonical" href="https://rinas.tech/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+ <link rel="canonical" href="https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html">
  
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
- <meta property="og:url" content="https://rinas.tech/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+ <meta property="og:title" content="Configuring One-Way SSL Between Tomcat and Keycloak | A.M. Rinas Blog">
+ <meta property="og:description" content="Configure one-way SSL between Tomcat and Keycloak: generate keystores with keytool, export certificates and import the Keycloak certificate into Tomcat's truststore.">
+ <meta property="og:url" content="https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:title" content="Configuring One-Way SSL Between Tomcat and Keycloak">
+ <meta name="twitter:description" content="Configure one-way SSL between Tomcat and Keycloak: generate keystores with keytool, export certificates and import the Keycloak certificate into Tomcat's truststore.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -43,21 +43,21 @@
 
 
  <!-- SEO Meta Tags -->
- <title>This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak | A.M Rinas</title>
- <meta name="description" content="Read about This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak on the A.M Rinas tech blog.">
- <link rel="canonical" href="https://rinas.tech/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+ <title>Configuring One-Way SSL Between Tomcat and Keycloak | A.M Rinas</title>
+ <meta name="description" content="Configure one-way SSL between Tomcat and Keycloak: generate keystores with keytool, export certificates and import the Keycloak certificate into Tomcat's truststore.">
+ <link rel="canonical" href="https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak">
+ <meta property="og:title" content="Configuring One-Way SSL Between Tomcat and Keycloak">
  <meta property="og:description" content="Insights and technical documentation.">
- <meta property="og:url" content="https://rinas.tech/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html">
+ <meta property="og:url" content="https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak">
+ <meta name="twitter:title" content="Configuring One-Way SSL Between Tomcat and Keycloak">
  <meta name="twitter:description" content="Insights and technical documentation.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
@@ -66,7 +66,7 @@
  {
  "@context": "https://schema.org",
  "@type": "BlogPosting",
- "headline": "This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak",
+ "headline": "Configuring One-Way SSL Between Tomcat and Keycloak",
  "description": "Insights and technical documentation.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
@@ -85,7 +85,7 @@
  "dateModified": "02 August 2026",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html"
+ "@id": "https://rinas21.github.io/amrinas/blogs/configuring-one-way-ssl-tomcat-keycloak.html"
  }
  }
  </script>
@@ -110,8 +110,8 @@
  {
  "@type": "ListItem",
  "position": 3,
- "name": "This Is A Overview Of Configuring One Way Ssl Between Tomcat And Keycloak",
- "item": "https://rinas21.github.io/amrinas/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html"
+ "name": "Configuring One-Way SSL Between Tomcat and Keycloak",
+ "item": "https://rinas21.github.io/amrinas/blogs/configuring-one-way-ssl-tomcat-keycloak.html"
  }
  ]
  }
@@ -337,7 +337,7 @@ keycloak again this is coming
 </code></pre>
 <pre><code>openssl req -x509 -new -nodes -key module-a-key.pem -sha256 -days 365 \
 -out module-a-cert.pem \
--subj &quot;/C=LK/ST=WP/L=CMB/O=HMS/OU=module-a/CN=localhost&quot;
+-subj &quot;/C=LK/ST=WP/L=CMB/O=ExampleOrg/OU=module-a/CN=localhost&quot;
 </code></pre>
 <pre><code>openssl pkcs12 -export -out module-a-keystore.p12 \
 -inkey module-a-key.pem -in module-a-cert.pem -name module-a \
@@ -358,7 +358,7 @@ keycloak again this is coming
 </code></pre>
 <pre><code>openssl req -x509 -new -nodes -key eqp-key.pem -sha256 -days 365 \
 -out eqp-cert.pem \
--subj &quot;/C=LK/ST=WP/L=CMB/O=HMS/OU=eqp/CN=localhost&quot;
+-subj &quot;/C=LK/ST=WP/L=CMB/O=ExampleOrg/OU=eqp/CN=localhost&quot;
 </code></pre>
 <pre><code>openssl pkcs12 -export -out eqp-keystore.p12 \
 -inkey eqp-key.pem -in eqp-cert.pem -name eqp \
@@ -398,11 +398,12 @@ wrapper.java.additional.2=-Djavax.net.ssl.trustStorePassword=&lt;truststore-pass
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Tomcat, Keycloak, one-way SSL, keystore, keytool, truststore -->
  </article>
 
  

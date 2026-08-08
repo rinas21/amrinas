@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Purpose: Creates a new xUnit test project.">
+ <meta name="description" content="Set up a .NET solution with an xUnit test project: dotnet new xunit with -n and -f flags, project structure and adding the test project to the solution.">
  <meta name="keywords" content="Setting Up a .NET Solution with xUnit Test Project, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Setting Up a .NET Solution with xUnit Test Project | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Set up a .NET solution with an xUnit test project: dotnet new xunit with -n and -f flags, project structure and adding the test project to the solution.">
  <meta property="og:url" content="https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Setting Up a .NET Solution with xUnit Test Project">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Set up a .NET solution with an xUnit test project: dotnet new xunit with -n and -f flags, project structure and adding the test project to the solution.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Setting Up a .NET Solution with xUnit Test Project | A.M Rinas</title>
- <meta name="description" content="Purpose: Creates a new xUnit test project.">
+ <meta name="description" content="Set up a .NET solution with an xUnit test project: dotnet new xunit with -n and -f flags, project structure and adding the test project to the solution.">
  <link rel="canonical" href="https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html">
  <meta name="robots" content="index, follow">
  
@@ -142,14 +142,14 @@
 
 
 <h2>Step 1 – Create the Test Project</h2>
-<pre><code class="language-bash">dotnet new xunit -n BuffetConnect.E2E -f net10.0
+<pre><code class="language-bash">dotnet new xunit -n SampleApp.E2E -f net10.0
 </code></pre>
 <p><strong>Purpose:</strong> Creates a new xUnit test project.</p>
 <ul>
-<li><code>-n BuffetConnect.E2E</code>: Names the project folder and <code>.csproj</code> file.</li>
+<li><code>-n SampleApp.E2E</code>: Names the project folder and <code>.csproj</code> file.</li>
 <li><code>-f net10.0</code>: Targets .NET 10 framework.</li>
 </ul>
-<p><strong>Result:</strong> Generates <code>BuffetConnect.E2E/</code> folder containing <code>BuffetConnect.E2E.csproj</code>, <code>UnitTest1.cs</code>, and <code>obj/</code>.</p>
+<p><strong>Result:</strong> Generates <code>SampleApp.E2E/</code> folder containing <code>SampleApp.E2E.csproj</code>, <code>UnitTest1.cs</code>, and <code>obj/</code>.</p>
 <blockquote>
 <p><strong>Note:</strong> This is the project where you will write your tests.</p>
 </blockquote>
@@ -159,16 +159,16 @@
 <p><strong>Purpose:</strong> Ensure that the solution file will be created in the correct directory.</p>
 <p><strong>Why:</strong> The solution file should be one level above the projects it contains.</p>
 <h2>Step 3 – Create the Solution File</h2>
-<pre><code class="language-bash">dotnet new sln -n BuffetConnect
+<pre><code class="language-bash">dotnet new sln -n SampleApp
 </code></pre>
-<p><strong>Purpose:</strong> Creates a solution file <code>BuffetConnect.sln</code>.</p>
+<p><strong>Purpose:</strong> Creates a solution file <code>SampleApp.sln</code>.</p>
 <p><strong>Why:</strong> The solution is a container for multiple projects (your tests, main app, libraries).</p>
 <p><strong>Result:</strong> You now have a <code>.sln</code> file ready to hold one or more projects.</p>
 <blockquote>
 <p><strong>Important:</strong> Do not try to add projects before creating the solution.</p>
 </blockquote>
 <h2>Step 4 – Add the Test Project to the Solution</h2>
-<pre><code class="language-bash">dotnet sln add BuffetConnect.E2E/BuffetConnect.E2E.csproj
+<pre><code class="language-bash">dotnet sln add SampleApp.E2E/SampleApp.E2E.csproj
 </code></pre>
 <p><strong>Purpose:</strong> Adds the test project to the solution.</p>
 <p><strong>Why:</strong> The solution now “knows” about this project, so you can build, test, or run everything from the solution level.</p>
@@ -182,13 +182,13 @@
 <p><strong>Expected Output:</strong></p>
 <pre><code class="language-text">Project(s)
 ----------
-BuffetConnect.E2E/BuffetConnect.E2E.csproj
+SampleApp.E2E/SampleApp.E2E.csproj
 </code></pre>
 <h2>Directory Structure After Setup</h2>
 <pre><code class="language-text">buffet-automation/
-├── BuffetConnect.sln &lt;-- Solution container
-└── BuffetConnect.E2E/ &lt;-- Test project
- ├── BuffetConnect.E2E.csproj
+├── SampleApp.sln &lt;-- Solution container
+└── SampleApp.E2E/ &lt;-- Test project
+ ├── SampleApp.E2E.csproj
  ├── UnitTest1.cs
  └── obj/
 </code></pre>
@@ -202,11 +202,12 @@ BuffetConnect.E2E/BuffetConnect.E2E.csproj
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: .NET, xUnit, dotnet new, test project, solution -->
  </article>
 
  

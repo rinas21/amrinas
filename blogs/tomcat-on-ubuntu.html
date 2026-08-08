@@ -8,9 +8,9 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="Check your current Java version details using the following command terminal hook:">
+ <meta name="description" content="Install Tomcat on Ubuntu: download and extract, set JAVA_HOME, configure users, start the server, and verify with the manager app.">
  <meta name="keywords"
- content="Install Tomcat on Linux, Apache Tomcat 9, Linux Administration, DevOps, Java Web Server, Ubuntu Tutorial, A.M. Rinas">
+ content="Install Tomcat on Linux, Apache Tomcat 9, Tomcat tarball install, tomcat user, catalina.sh, Tomcat 8080 verify, Linux Administration, DevOps, Ubuntu Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/tomcat-on-ubuntu.html">
 
@@ -48,7 +48,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Install Tomcat on Linux | A.M Rinas</title>
- <meta name="description" content="Check your current Java version details using the following command terminal hook:">
+ <meta name="description" content="Install Tomcat on Ubuntu: download and extract, set JAVA_HOME, configure users, start the server, and verify with the manager app.">
  <link rel="canonical" href="https://rinas.tech/blogs/tomcat-on-ubuntu.html">
  <meta name="robots" content="index, follow">
  
@@ -144,81 +144,148 @@
  <article class="blog-post-container">
  <h1>Install Tomcat on Linux</h1>
 
-
-
  <p>
- Deploying Java-based web applications requires a robust, efficient servlet container. Apache Tomcat remains
- one of the world's most popular open-source solutions for executing Java Servlets, JavaServer Pages (JSP),
- and WebSockets code definitions. In this step-by-step infrastructure guide, we will walk through how to
- configure a production-ready baseline installation of Tomcat 9.0.21 on a Linux runtime environment.
+ Apache Tomcat is the most widely used open-source servlet container for running Java web applications —
+ the thing that actually executes your <code>.war</code> files. Installing it from the official tarball
+ gives you a clean, version-pinned server without tying it to the package manager. This guide installs
+ Tomcat 9 on Ubuntu, creates a dedicated unprivileged user to run it, and verifies everything end to end
+ with a request to <code>localhost:8080</code>. See the <a href="java-binary-instalation-on-ubuntu.html">
+ Java installation guide</a> first if you need a JDK on the machine.
  </p>
 
  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWrBowLwBjgGhSAavMUvh4fwF9WSGrlks01QJI17ord2Gr6F8ZD5d0cSXDHSMkQfo_37OXgZ6NP_Tz1Rq-WEjW-9jivDOChJdm1JcwNv9X2akn4NRW2kvwCpLyd81_jExA0hOVM20SZk23aeaQZidpAS39c91TzUYoEH2p6m3pW6iidk8kpcUlYthX/s980/tomcat.webp"
- alt="Tomcat installation tutorial banner showcasing modern Java application server deployment setup on Linux">
+ alt="Apache Tomcat installation on Linux showing the Java application server deployment">
 
- <h2>Step 1: Installing JDK (Java Development Kit)</h2>
+ <h2>Step 1: Install the JDK</h2>
  <p>
- Because Apache Tomcat is written completely in Java, it relies on an underlying runtime engine. Tomcat 9
- requires Java SE 8 or later variants installed on the host system. Let's first ensure a viable runtime
- engine environment exists by auditing standard versions.
+ Tomcat is written in Java, so it needs a Java runtime on the host. Tomcat 9 requires Java 8 or later.
+ Check what is already installed:
  </p>
- <p>Check your current Java version details using the following command terminal hook:</p>
  <pre><code>$ java -version</code></pre>
-
- <p>If the shell execution returns a command missing error, update the local package architecture indices and
- apply the default system-wide Java Development Kit package:</p>
+ <p>
+ If the command is not found, install the default JDK:
+ </p>
  <pre><code>$ sudo apt-get update
 $ sudo apt-get install default-jdk -y</code></pre>
-
- <p>Once configuration scripts terminate successfully, run the diagnostics pass once again to verify the compiler
- parameters:</p>
+ <p>Re-check the version before continuing — Tomcat will not start without a working Java:</p>
  <pre><code>$ java -version</code></pre>
 
- <h2>Step 2: Creating a Dedicated Tomcat User and Group</h2>
+ <h2>Step 2: Create a Dedicated Tomcat User</h2>
  <p>
- Running service utilities under a standard privileged administrative account introduces massive security
- holes into production servers. To isolate your application environment, provision a sandboxed group and an
- unprivileged service daemon user constrained from systemic layout access.
+ Running a public service as root is a security hole — a compromised app then runs as root. The standard
+ practice is an unprivileged, non-login system user that owns only Tomcat's files:
  </p>
- <p>Create a tracking group array followed immediately by a system service user assignment targeting
- non-interactive environments:</p>
  <pre><code>$ sudo groupadd tomcat
 $ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat</code></pre>
+ <p><code>-s /bin/false</code> means this account cannot log into a shell.</p>
 
  <h2>Step 3: Download and Extract Tomcat 9</h2>
  <p>
- With the runtime identity sandboxed, pull down the distribution tarball mirror archive structures directly
- into the targeted host mount layouts.
+ Download the tarball into <code>/opt</code> (the standard location for third-party software) and extract
+ it:
  </p>
- <p>Navigate toward the global standard <code>/opt</code> storage path structure and initialize a secure transfer
- download using the command utility framework:</p>
  <pre><code>$ cd /opt
 $ sudo wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.21/bin/apache-tomcat-9.0.21.tar.gz</code></pre>
-
- <p>Extract the compressed bin assets package structure into active paths, then remap the directory layout
- cleanly to conform with your user home configuration setups:</p>
+ <p>Extract and normalize the directory name:</p>
  <pre><code>$ sudo tar -xvzf apache-tomcat-9.0.21.tar.gz
 $ sudo mv apache-tomcat-9.0.21 /opt/tomcat</code></pre>
-
- <h2>Step 4: Set Up Path Variables and Boot Tomcat</h2>
  <p>
- To execute internal management scripts cleanly from terminal wrappers without assigning persistent system
- flags, append tactical context assignments temporarily.
+ Grant ownership of everything to the tomcat user so it can read and write its own files:
  </p>
- <p>Shift directories over into the binary executable container path array:</p>
- <pre><code>$ cd /opt/tomcat/bin</code></pre>
+ <pre><code>$ sudo chown -R tomcat:tomcat /opt/tomcat</code></pre>
 
- <p>Export your active context location variables temporarily into the current running terminal path hook:</p>
- <pre><code>$ export PATH=$PATH:$(pwd)</code></pre>
+ <h2>Step 4: Start Tomcat</h2>
+ <p>
+ Tomcat's startup script is <code>catalina.sh</code> in <code>bin</code>. Add that directory to the PATH
+ for the current terminal, then start the server:
+ </p>
+ <pre><code>$ cd /opt/tomcat/bin
+$ export PATH=$PATH:$(pwd)
+$ ./catalina.sh start</code></pre>
+ <p>Expected output:</p>
+ <pre><code>Using CATALINA_BASE:   /opt/tomcat
+Using CATALINA_HOME:   /opt/tomcat
+Using CATALINA_TMPDIR: /opt/tomcat/temp
+...
+Tomcat started.</code></pre>
 
- <p>Initialize the underlying structural Catalina process listener system thread loops by launching the startup
- wrapper:</p>
- <pre><code>$ ./catalina.sh start</code></pre>
- <p>Your Tomcat server instance should now be running successfully and listening on port 8080.</p>
+ <h2>Verify the Installation</h2>
+ <p>Tomcat listens on port 8080 by default. Verify from the same machine:</p>
+ <pre><code>$ curl -I http://localhost:8080</code></pre>
+ <p>Expected result — an <code>HTTP/1.1 200</code> response:</p>
+ <pre><code>HTTP/1.1 200
+Content-Type: text/html;charset=UTF-8
+...</code></pre>
+ <p>
+ If you are on the server itself you can also open <code>http://localhost:8080</code> in a browser. To
+ confirm the process is alive, check with <a href="netstat-commnd.html">netstat</a>:
+ </p>
+ <pre><code>$ netstat -tulpn | grep 8080</code></pre>
+ <p>
+ The Java process listening on 8080 is your Tomcat. If you need to expose it externally, open the port in
+ your firewall and make sure Tomcat binds to the right interface (see
+ <a href="network-interfaces-and-their-levels-usage.html">network interfaces</a>).
+ </p>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: "Neither the JAVA_HOME nor the JRE_HOME environment variable is defined"</h3>
+ <p><strong>Cause:</strong> <code>catalina.sh</code> cannot find Java because the shell that starts it has
+ no Java in its PATH or no <code>JAVA_HOME</code>.</p>
+ <p><strong>Solution:</strong> export the JDK location before starting:
+ <code>export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64</code> (adjust to your install — see
+ <a href="java-binary-instalation-on-ubuntu.html">JAVA_HOME setup</a>), then start again.</p>
+
+ <h3>Problem 2: "Address already in use" / "Bind exception: Port 8080 already in use"</h3>
+ <p><strong>Cause:</strong> another process — often a second Tomcat, or an app like Jenkins — owns
+ 8080.</p>
+ <p><strong>Solution:</strong> find the owner with <code>netstat -tulpn | grep 8080</code>, stop it or
+ change Tomcat's port in <code>/opt/tomcat/conf/server.xml</code> (the <code>&lt;Connector
+ port="8080"&gt;</code> line), then restart.</p>
+
+ <h3>Problem 3: Tomcat starts but pages show 404 / nothing listens</h3>
+ <p><strong>Cause:</strong> a failed deployment or the process died right after start; also possible if
+ files under <code>/opt/tomcat</code> are owned by root (the tomcat user cannot write).</p>
+ <p><strong>Solution:</strong> check the startup log: <code>tail -f /opt/tomcat/logs/catalina.out</code>,
+ and verify ownership: <code>sudo chown -R tomcat:tomcat /opt/tomcat</code>.</p>
+
+ <h3>Problem 4: remote clients cannot reach Tomcat although it works locally</h3>
+ <p><strong>Cause:</strong> firewall or the connector bound only to localhost.</p>
+ <p><strong>Solution:</strong> open the port in your firewall (see
+ <a href="iptables-rules.html">iptables rules</a>), and check the connector address in
+ <code>conf/server.xml</code>.</p>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Always run Tomcat under its own unprivileged user, never root.</li>
+ <li>Use <code>catalina.sh stop</code> for shutdown; kill -9 corrupts deployments.</li>
+ <li>Keep Java and Tomcat versions pinned and matched to your applications (Tomcat 9 &rarr; Java 8+).</li>
+ <li>Check <code>/opt/tomcat/logs/catalina.out</code> first when anything behaves oddly.</li>
+ <li>Run Tomcat as a systemd service so it survives reboots — wrap the catalina scripts in a
+ <code>tomcat.service</code> unit with <code>User=tomcat</code>.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ We installed the JDK, created an unprivileged tomcat user, downloaded and extracted Tomcat 9 into
+ <code>/opt</code>, started it with <code>catalina.sh</code>, and verified it answers on port 8080. The
+ structure — app in <code>/opt/tomcat</code>, service user, log in <code>logs/</code> — is the same layout
+ you will see on production Tomcat boxes, so the skills transfer directly.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="java-binary-instalation-on-ubuntu.html">Java Binary Installation on Ubuntu</a></li>
+ <li><a href="ssl-exception-in-tomcat-with-cas.html">SSL Exception in Tomcat with CAS</a></li>
+ <li><a href="fixing-apache-ant-deploytask-issue-in-tomcat.html">Fixing Apache Ant DeployTask Issues in Tomcat</a></li>
+ <li><a href="netstat-commnd.html">netstat Commands: A Comprehensive Guide</a></li>
+ <li><a href="iptables-rules.html">iptables Rules Explained</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
  <!-- Topic SEO Keywords: How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide, DevOps, Guide, Tutorial -->

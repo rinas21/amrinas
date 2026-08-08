@@ -8,9 +8,9 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="Read about Why Docker Builds Fail Differently on Linux and Windows on the A.M Rinas tech blog.">
+ <meta name="description" content="Docker build failures on Linux vs Windows: line-ending and permission differences, common errors, and fixes for cross-platform Dockerfiles.">
  <meta name="keywords"
- content="Docker build issues, Linux vs Windows Docker, Docker Compose errors, container debugging, DevOps Docker troubleshooting, file system differences Docker, A.M. Rinas">
+ content="Docker build issues, Linux vs Windows Docker, CRLF LF line endings Docker, Docker Compose errors, container debugging, Docker permissions, DevOps Docker troubleshooting, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/docker-build-failures-linux-vs-windows.html">
 
@@ -48,7 +48,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Why Docker Builds Fail Differently on Linux and Windows | A.M Rinas</title>
- <meta name="description" content="Read about Why Docker Builds Fail Differently on Linux and Windows on the A.M Rinas tech blog.">
+ <meta name="description" content="Docker build failures on Linux vs Windows: line-ending and permission differences, common errors, and fixes for cross-platform Dockerfiles.">
  <link rel="canonical" href="https://rinas.tech/blogs/docker-build-failures-linux-vs-windows.html">
  <meta name="robots" content="index, follow">
  
@@ -262,6 +262,12 @@ C:\app\src
 
  <pre><code>* text=auto eol=lf</code></pre>
 
+ <p>
+ Put this in your <code>.gitattributes</code> file so every checkout on every machine uses LF endings —
+ see <a href="gitattributes-crlf-lf-line-endings-git.html">gitattributes, CRLF/LF line endings and
+ Git</a> for the full setup.
+ </p>
+
  <h2>Best Practices to Avoid These Issues</h2>
 
  <ul>
@@ -284,10 +290,21 @@ C:\app\src
  frustrating.
  </p>
 
+ <h2>Related Articles</h2>
+
+ <ul>
+ <li><a href="gitattributes-crlf-lf-line-endings-git.html">gitattributes, CRLF/LF Line Endings and Git</a></li>
+ <li><a href="docker-compose-intro.html">Docker Compose Introduction</a></li>
+ <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ <li><a href="docker-ps.html">docker ps Explained</a></li>
+ <li><a href="how-to-disable-auto-start-for-a-docker-container.html">How to Disable Auto-Start for a Docker Container</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
 
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
 
  <!-- SEO Crawler Data: Docker Linux Windows issues, container build failures, DevOps troubleshooting, A.M. Rinas Blog -->

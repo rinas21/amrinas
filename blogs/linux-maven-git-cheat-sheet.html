@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
  
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
  <style>
  .blog-post-container img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
  .blog-post-container pre { background: var(--ink); color: var(--cream); padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
@@ -37,22 +36,22 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Git Tag Commands | A.M Rinas</title>
- <meta name="description" content="The proxy configuration in the settings.xml file is essential for the following reasons:">
+ <title>Linux, Maven and Git Cheat Sheet | A.M Rinas</title>
+ <meta name="description" content="Cheat sheet: find files by owner/group/size, SSH with custom ports and ProxyJump, Maven proxy configuration in settings.xml, and 13 essential Git tag commands.">
  <link rel="canonical" href="https://rinas.tech/blogs/linux-maven-git-cheat-sheet.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Linux Maven Git Cheat Sheet">
- <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta property="og:description" content="Cheat sheet: find files by owner/group/size, SSH with custom ports and ProxyJump, Maven proxy configuration in settings.xml, and 13 essential Git tag commands.">
  <meta property="og:url" content="https://rinas.tech/blogs/linux-maven-git-cheat-sheet.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Linux Maven Git Cheat Sheet">
- <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta name="twitter:description" content="Cheat sheet: find files by owner/group/size, SSH with custom ports and ProxyJump, Maven proxy configuration in settings.xml, and 13 essential Git tag commands.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -130,155 +129,146 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content"></article>
+ <article class="blog-post-container">
+ <h1>Linux, Maven and Git Cheat Sheet</h1>
 
- <script type="text/markdown" id="md-content">
-1. We need to locate a file owned by user bandit7, group bandit6, and is exactly 33 bytes in size. Here's the exact find command:
+ <p>
+ The commands I reach for daily while working across Linux servers, Maven builds and Git repositories —
+ collected in one place: finding a file by owner/group/size, SSH with custom ports and jump hosts, Maven
+ proxy configuration, and the Git tag commands that show up in every release workflow.
+ </p>
 
-```bash
-find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
-```
+ <h2>Find a File by Owner, Group and Size</h2>
+ <p>
+ To locate a file owned by user <code>bandit7</code>, group <code>bandit6</code>, exactly 33 bytes in
+ size, use this find command:
+ </p>
+ <pre><code>find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null</code></pre>
+ <ul>
+ <li>Search the entire server.</li>
+ <li><code>-type f</code>: look for regular files.</li>
+ <li><code>-user bandit7</code>: files owned by user bandit7.</li>
+ <li><code>-group bandit6</code>: files owned by group bandit6.</li>
+ <li><code>-size 33c</code>: files that are 33 bytes in size (c stands for bytes).</li>
+ <li><code>2>/dev/null</code>: suppress permission denied errors.</li>
+ </ul>
 
- - Search the entire server.
- - type f: Look for regular files.
- - user bandit7: Files owned by user bandit7.
- - group bandit6: Files owned by group bandit6.
- - size 33c: Files that are 33 bytes in size (c stands for bytes).
- - 2>/dev/null: Suppress permission denied errors.
+ <h2>SSH with a Custom Port</h2>
+ <p>When the remote SSH daemon listens on a non-standard port, pass it with lowercase <code>-p</code>:</p>
+ <pre><code>ssh -p PORT_NUMBER username@hostname</code></pre>
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ <h2>SSH with ProxyJump (Jump Host)</h2>
+ <p>
+ If you need to use an intermediary server (jump host) to reach your destination server, use the
+ <code>-J</code> option:
+ </p>
+ <pre><code>ssh -J jump_user@jump_host destination_user@destination_host</code></pre>
+ <p>
+ ProxyJump chains the two connections for you — you authenticate against the jump host, which then carries
+ you to the destination. See the <a href="ssh-commnd.html">SSH setup guide</a> for more SSH patterns.
+ </p>
 
-## SSH with a Custom Port
+ <h2>Why We Need Proxy Configuration in Maven's settings.xml</h2>
+ <p>The proxy configuration in the <code>settings.xml</code> file is essential for the following reasons:</p>
+ <ol>
+  <li><strong>Network Access Control:</strong>
+  <p>If your network is behind a corporate firewall or proxy server, Maven needs this configuration to route its requests through the proxy. This allows Maven to access remote repositories (such as Maven Central or internal repositories) and download dependencies or plugins, especially when direct access to the internet is restricted.</p>
+  </li>
+  <li><strong>Security and Monitoring:</strong>
+  <p>Proxies are often used to monitor and control network traffic for security and auditing purposes. By routing Maven's traffic through a proxy, your organization can track and control access to external resources.</p>
+  </li>
+  <li><strong>Optimized Performance (Caching):</strong>
+  <p>Proxies can cache responses (like dependencies or artifacts), which can speed up build times when accessing commonly used resources. If Maven has already downloaded a dependency once, the proxy can serve it from the cache instead of downloading it again.</p>
+  </li>
+  <li><strong>Bypass Local Restrictions:</strong>
+  <p>The <code>nonProxyHosts</code> field allows you to define exceptions where Maven doesn't use the proxy, such as for internal repositories or local network addresses. This ensures that Maven can still communicate directly with trusted hosts without needing to route everything through the proxy.</p>
+  </li>
+  <li><strong>Consistency:</strong>
+  <p>Configuring the proxy in the <code>settings.xml</code> ensures that all developers and build environments within your organization are using the same proxy configuration, providing consistent behavior across different machines or systems.</p>
+  </li>
+ </ol>
+ <p>In summary, this configuration is required when Maven needs to access the internet via a proxy server, ensuring smooth communication with remote repositories and better control over network traffic.</p>
 
-```bash
-ssh -p PORT_NUMBER username@hostname
-```
-## SSH with ProxyJump (Jump Host)
+ <h3>Example Proxy Configuration in settings.xml</h3>
+ <pre><code>&lt;proxy&gt;
+  &lt;id&gt;optional&lt;/id&gt;
+  &lt;active&gt;true&lt;/active&gt;
+  &lt;protocol&gt;http&lt;/protocol&gt;
+  &lt;host&gt;proxy.host.net&lt;/host&gt;
+  &lt;port&gt;80&lt;/port&gt;
+  &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
+&lt;/proxy&gt;</code></pre>
+ <p>Example path to settings.xml: <code>/opt/mvn-3-0-3/conf</code>. See
+ <a href="java-binary-instalation-on-ubuntu.html">the Java/Maven binary install guide</a> for Maven setup.</p>
 
-### If you need to use an intermediary server (jump host) to reach your destination server, you can use the -J option.
+ <h2>Git Tag Commands</h2>
+ <p>Here are some useful Git commands for managing and working with tags:</p>
 
-```bash
-ssh -J jump_user@jump_host destination_user@destination_host
-```
+ <h3>1. List all tags</h3>
+ <pre><code>git tag</code></pre>
+ <p>Lists all the tags in the repository.</p>
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## Why We Need Proxy Configuration in Maven's settings.xml
-
-<p>The proxy configuration in the <code>settings.xml</code> file is essential for the following reasons:</p>
-
-<ol>
- <li><strong>Network Access Control:</strong> 
- <p>If your network is behind a corporate firewall or proxy server, Maven needs this configuration to route its requests through the proxy. This allows Maven to access remote repositories (such as Maven Central or internal repositories) and download dependencies or plugins, especially when direct access to the internet is restricted.</p>
- </li>
- <li><strong>Security and Monitoring:</strong> 
- <p>Proxies are often used to monitor and control network traffic for security and auditing purposes. By routing Maven's traffic through a proxy, your organization can track and control access to external resources.</p>
- </li>
- <li><strong>Optimized Performance (Caching):</strong> 
- <p>Proxies can cache responses (like dependencies or artifacts), which can speed up build times when accessing commonly used resources. If Maven has already downloaded a dependency once, the proxy can serve it from the cache instead of downloading it again.</p>
- </li>
- <li><strong>Bypass Local Restrictions:</strong> 
- <p>The <code>nonProxyHosts</code> field allows you to define exceptions where Maven doesn't use the proxy, such as for internal repositories or local network addresses. This ensures that Maven can still communicate directly with trusted hosts without needing to route everything through the proxy.</p>
- </li>
- <li><strong>Consistency:</strong> 
- <p>Configuring the proxy in the <code>settings.xml</code> ensures that all developers and build environments within your organization are using the same proxy configuration, providing consistent behavior across different machines or systems.</p>
- </li>
-</ol>
-
-<p>In summary, this configuration is required when Maven needs to access the internet via a proxy server, ensuring smooth communication with remote repositories and better control over network traffic.</p>
-
-<h3>Example Proxy Configuration in settings.xml</h3>
-
-<pre>
-<code>
-&lt;proxy&gt;
- &lt;id&gt;optional&lt;/id&gt;
- &lt;active&gt;true&lt;/active&gt;
- &lt;protocol&gt;http&lt;/protocol&gt;
- &lt;host&gt;proxy.host.net&lt;/host&gt;
- &lt;port&gt;80&lt;/port&gt;
- &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
-&lt;/proxy&gt;
-
-</code>
-</pre>
-
-<p>Example Path to settings.xml:</p>
-
-<pre>
-<code>
-/opt/mvn-3-0-3/conf
-</code>
-</pre>
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
-<h1>Git Tag Commands</h1>
-
-
-<p>Here are some useful Git commands for managing and working with tags:</p>
- 
- <h2>1. List all tags</h2>
-<pre><code>git tag</code></pre>
-<p>Lists all the tags in the repository.</p>
-
-<h2>2. Show the latest tag</h2>
+ <h3>2. Show the latest tag</h3>
  <pre><code>git describe --tags --abbrev=0</code></pre>
  <p>This will show the most recent tag associated with the current commit, without any additional information.</p>
 
-<h2>3. Show information about a specific tag</h2>
+ <h3>3. Show information about a specific tag</h3>
  <pre><code>git show &lt;tag_name&gt;</code></pre>
  <p>Displays the commit information associated with the specified tag.</p>
 
-<h2>4. Create a new tag</h2>
+ <h3>4. Create a new tag</h3>
  <pre><code>git tag &lt;tag_name&gt;</code></pre>
  <p>Creates a new tag at the current commit.</p>
 
- <h2>5. Create an annotated tag</h2>
+ <h3>5. Create an annotated tag</h3>
  <pre><code>git tag -a &lt;tag_name&gt; -m "Tag message"</code></pre>
  <p>Creates an annotated tag with a message at the current commit. Annotated tags are stored as full objects in the Git database, containing the tagger name, email, and date.</p>
 
- <h2>6. Create a lightweight tag</h2>
+ <h3>6. Create a lightweight tag at a specific commit</h3>
  <pre><code>git tag &lt;tag_name&gt; &lt;commit_hash&gt;</code></pre>
  <p>Creates a lightweight tag pointing to a specific commit. It's simply a reference to that commit.</p>
 
- <h2>7. Delete a tag</h2>
+ <h3>7. Delete a tag</h3>
  <pre><code>git tag -d &lt;tag_name&gt;</code></pre>
  <p>Deletes the specified tag from your local repository.</p>
 
- <h2>8. Push a tag to remote</h2>
+ <h3>8. Push a tag to remote</h3>
  <pre><code>git push origin &lt;tag_name&gt;</code></pre>
  <p>Pushes a specific tag to the remote repository.</p>
 
-<h2>9. Push all tags to remote</h2>
+ <h3>9. Push all tags to remote</h3>
  <pre><code>git push --tags</code></pre>
  <p>Pushes all tags in the local repository to the remote.</p>
 
- <h2>10. Checkout a tag</h2>
+ <h3>10. Checkout a tag</h3>
  <pre><code>git checkout &lt;tag_name&gt;</code></pre>
  <p>Switches to a specific tag. This creates a "detached HEAD" state, meaning you're not on a branch, but instead, you're pointing to a specific commit.</p>
 
- <h2>11. List all tags with their commit messages</h2>
+ <h3>11. List all tags with their commit messages</h3>
  <pre><code>git tag -n</code></pre>
  <p>Lists all tags with the first few lines of their associated commit messages.</p>
 
- <h2>12. Find tags for a specific commit</h2>
+ <h3>12. Find tags for a specific commit</h3>
  <pre><code>git tag --contains &lt;commit_hash&gt;</code></pre>
  <p>Shows all the tags that contain the specified commit.</p>
 
- <h2>13. Show the commit for a specific tag</h2>
+ <h3>13. Show the commit history for a specific tag</h3>
  <pre><code>git log &lt;tag_name&gt;</code></pre>
  <p>Shows the commit history for the specified tag.</p>
- </script>
- <script>
- const markdownContent = document.getElementById('md-content').textContent;
- document.getElementById('content').innerHTML = marked.parse(markdownContent);
- </script>
 
- <article class="blog-post-container">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="advanced-git-strategies.html">Advanced Git Strategies</a></li>
+ <li><a href="git-stash-notes.html">Git Stash Notes</a></li>
+ <li><a href="ssh-commnd.html">SSH Setup: A Comprehensive Guide</a></li>
+ <li><a href="java-binary-instalation-on-ubuntu.html">Java Binary Installation on Ubuntu</a></li>
+ <li><a href="basic-linux.html">Basic Linux Commands</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  </article>
 

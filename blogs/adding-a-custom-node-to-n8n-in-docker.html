@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
  
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
  <style>
  .blog-post-container img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
  .blog-post-container pre { background: var(--ink); color: var(--cream); padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
@@ -38,21 +37,21 @@
 
  <!-- SEO Meta Tags -->
  <title>Adding A Custom Node To N8N In Docker | A.M Rinas</title>
- <meta name="description" content="Read about Adding A Custom Node To N8N In Docker on the A.M Rinas tech blog.">
+ <meta name="description" content="Add a custom community node to n8n in Docker: create the .n8n/custom folders, copy your built node files with docker cp, restart the container, and verify.">
  <link rel="canonical" href="https://rinas.tech/blogs/adding-a-custom-node-to-n8n-in-docker.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Adding A Custom Node To N8N In Docker">
- <meta property="og:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta property="og:description" content="Add a custom community node to n8n in Docker: create the .n8n/custom folders, copy your built node files with docker cp, restart the container, and verify.">
  <meta property="og:url" content="https://rinas.tech/blogs/adding-a-custom-node-to-n8n-in-docker.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Adding A Custom Node To N8N In Docker">
- <meta name="twitter:description" content="A blog post covering technical insights, DevOps, and programming guides.">
+ <meta name="twitter:description" content="Add a custom community node to n8n in Docker: create the .n8n/custom folders, copy your built node files with docker cp, restart the container, and verify.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -61,7 +60,7 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Adding A Custom Node To N8N In Docker",
- "description": "A blog post covering technical insights, DevOps, and programming guides.",
+ "description": "Add a custom community node to n8n in Docker: create the .n8n/custom folders, copy your built node files with docker cp, restart the container, and verify.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -130,78 +129,77 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content"></article>
-
- <script type="text/markdown" id="md-content">
-# Adding a Custom Node to n8n in Docker
-
-## 1. Check Container and Home Directory
-
-List all Docker containers:
-
-```sh
-docker ps -a
-```
-
-Identify your n8n container ID (e.g., `a417a8c95406`) and start it:
-
-```sh
-docker start -d a417a8c95406
-```
-
-Find the container's home directory (usually `/home/node` in official n8n images):
-
-```sh
-docker exec -it a417a8c95406 sh -c 'echo $HOME'
-```
-
-## 2. Create Custom Node Folders
-
-Inside the container, create the necessary folders:
-
-```sh
-docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/nodes
-docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/credentials
-```
-
-> **Note:** Do **not** use `/root/.n8n` — official n8n Docker images run as a non-root user (`node`).
-
-## 3. Copy Your Node Files
-
-From your local machine (adjust paths as needed):
-
-```sh
-docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.js a417a8c95406:/home/node/.n8n/custom/nodes/
-docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.json a417a8c95406:/home/node/.n8n/custom/nodes/
-docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/eventHub.svg a417a8c95406:/home/node/.n8n/custom/nodes/
-```
-
-If you have credentials:
-
-```sh
-docker cp ~/Desktop/project/n8n-nodes-starter/dist/credentials/EventHubCredential.credential.js a417a8c95406:/home/node/.n8n/custom/credentials/
-```
-
-## 4. Restart the Container
-
-```sh
-docker restart a417a8c95406
-```
-
-## 5. Access n8n and Verify
-
-- Open your browser: [http://localhost:5678](http://localhost:5678)
-- Create a workflow and search for the **EventHub** node.
- </script>
- <script>
- const markdownContent = document.getElementById('md-content').textContent;
- document.getElementById('content').innerHTML = marked.parse(markdownContent);
- </script>
-
  <article class="blog-post-container">
+ <h1>Adding a Custom Node to n8n in Docker</h1>
+ <p>
+ n8n officially supports loading community nodes from the
+ <code>.n8n/custom</code> folder inside its home directory. This guide walks you
+ through the exact commands to mount a custom node into a running n8n Docker
+ container — from finding your container ID to verifying the node in the
+ editor.
+ </p>
+
+ <h2>1. Check the Container and Home Directory</h2>
+ <p>List all Docker containers to find the n8n container:</p>
+ <pre><code>docker ps -a</code></pre>
+ <p>
+ Identify your n8n container ID (e.g., <code>a417a8c95406</code>) and start it if
+ it is stopped:
+ </p>
+ <pre><code>docker start -d a417a8c95406</code></pre>
+ <p>
+ Find the container's home directory (usually <code>/home/node</code> in
+ official n8n images):
+ </p>
+ <pre><code>docker exec -it a417a8c95406 sh -c 'echo $HOME'</code></pre>
+
+ <h2>2. Create the Custom Node Folders</h2>
+ <p>Inside the container, create the folders n8n watches for custom code:</p>
+ <pre><code>docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/nodes
+ docker exec -it a417a8c95406 mkdir -p /home/node/.n8n/custom/credentials</code></pre>
+ <p>
+ <strong>Note:</strong> Do <strong>not</strong> use <code>/root/.n8n</code> —
+ official n8n Docker images run as a non-root user (<code>node</code>).
+ </p>
+
+ <h2>3. Copy Your Node Files</h2>
+ <p>
+ From your local machine, copy the built node, JSON definition and icon into
+ the container (adjust the paths for your project):
+ </p>
+ <pre><code>docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.js a417a8c95406:/home/node/.n8n/custom/nodes/
+ docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/EventHub.node.json a417a8c95406:/home/node/.n8n/custom/nodes/
+ docker cp ~/Desktop/project/n8n-nodes-starter/dist/nodes/eventHub.svg a417a8c95406:/home/node/.n8n/custom/nodes/</code></pre>
+ <p>If your node ships credentials:</p>
+ <pre><code>docker cp ~/Desktop/project/n8n-nodes-starter/dist/credentials/EventHubCredential.credential.js a417a8c95406:/home/node/.n8n/custom/credentials/</code></pre>
+
+ <h2>4. Restart the Container</h2>
+ <p>n8n only scans the custom folder at startup, so restart the container:</p>
+ <pre><code>docker restart a417a8c95406</code></pre>
+
+ <h2>5. Access n8n and Verify</h2>
+ <ul>
+ <li>Open your browser: <a href="http://localhost:5678">http://localhost:5678</a></li>
+ <li>Create a workflow and search for the <strong>EventHub</strong> node.</li>
+ </ul>
+ <p>
+ If the node does not appear, check the container logs for module loading
+ errors with <code>docker logs a417a8c95406</code> — the most common causes are
+ a missing <code>.node.json</code> file or a build that was not recompiled.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="docker-ps.html">Docker PS: A Complete Guide</a></li>
+ <li><a href="docker-compose-intro.html">Docker Compose: An Introduction</a></li>
+ <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ <li><a href="how-to-disable-auto-start-for-a-docker-container.html">How to Disable Auto-Start for a Docker Container</a></li>
+ </ul>
+
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  </article>
 

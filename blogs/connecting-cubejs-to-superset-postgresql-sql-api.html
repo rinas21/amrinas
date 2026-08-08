@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Connect Apache Superset to Cube.js using Cube&#39;s PostgreSQL SQL API on port 15432, allowing Superset to query Cube.js pre-aggregated data.">
+ <meta name="description" content="Connect Apache Superset to Cube.js through the PostgreSQL SQL API on port 15432 so Superset can query Cube.js pre-aggregated data.">
  <meta name="keywords" content="Connecting Cube.js to Superset (PostgreSQL SQL API), Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/connecting-cubejs-to-superset-postgresql-sql-api.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Connecting Cube.js to Superset (PostgreSQL SQL API) | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Connect Apache Superset to Cube.js through the PostgreSQL SQL API on port 15432 so Superset can query Cube.js pre-aggregated data.">
  <meta property="og:url" content="https://rinas.tech/blogs/connecting-cubejs-to-superset-postgresql-sql-api.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Connecting Cube.js to Superset (PostgreSQL SQL API)">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Connect Apache Superset to Cube.js through the PostgreSQL SQL API on port 15432 so Superset can query Cube.js pre-aggregated data.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Connecting Cube.js to Superset (PostgreSQL SQL API) | A.M Rinas</title>
- <meta name="description" content="Connect Apache Superset to Cube.js using Cube&#39;s PostgreSQL SQL API on port 15432, allowing Superset to query Cube.js pre-aggregated data.">
+ <meta name="description" content="Connect Apache Superset to Cube.js through the PostgreSQL SQL API on port 15432 so Superset can query Cube.js pre-aggregated data.">
  <link rel="canonical" href="https://rinas.tech/blogs/connecting-cubejs-to-superset-postgresql-sql-api.html">
  <meta name="robots" content="index, follow">
  
@@ -138,31 +138,79 @@
  </header>
 
  <article class="blog-post-container">
-<h1>Connecting Cube.js to Superset (PostgreSQL SQL API)</h1>
+ <h1>Connecting Cube.js to Superset (PostgreSQL SQL API)</h1>
 
+ <h2>Goal</h2>
+ <p>Connect Apache Superset to Cube.js using Cube's PostgreSQL SQL API on port <code>15432</code>, allowing Superset to query Cube.js pre-aggregated data.</p>
 
-<h2> Goal</h2>
-<p>Connect Apache Superset to Cube.js using Cube&#39;s PostgreSQL SQL API on port <code>15432</code>, allowing Superset to query Cube.js pre-aggregated data.</p>
-<hr>
-<h2> Prerequisites</h2>
-<ul>
-<li>Cube.js project configured to expose PostgreSQL SQL API</li>
-<li>Superset installed in a Python virtual environment</li>
-<li>PostgreSQL driver (<code>psycopg2</code>) installed in Superset’s environment</li>
-</ul>
-<hr>
-<h2> 1. Cube.js Configuration</h2>
-<p>In your <code>.env</code> file for Cube.js:</p>
-<pre><code class="language-env">
-</code></pre>
+ <h2>Prerequisites</h2>
+ <ul>
+ <li>Cube.js project configured to expose the PostgreSQL SQL API</li>
+ <li>Superset installed in a Python virtual environment</li>
+ <li>PostgreSQL driver (<code>psycopg2</code>) installed in Superset's environment</li>
+ </ul>
+
+ <h2>1. Cube.js Configuration</h2>
+ <p>In your <code>.env</code> file for Cube.js, enable the SQL API and point it at your source database:</p>
+ <pre><code class="language-env">CUBEJS_PG_SQL_PORT=15432
+ CUBEJS_DB_TYPE=postgres
+ CUBEJS_DB_HOST=localhost
+ CUBEJS_DB_PORT=5432
+ CUBEJS_DB_NAME=demodb
+ CUBEJS_DB_USER=postgres
+ CUBEJS_DB_PASS=password
+ CUBEJS_DB_SCHEMA=demodata</code></pre>
+ <p>
+ The SQL API implements the PostgreSQL wire protocol, so any PostgreSQL
+ client — including Superset — can connect to Cube.js as if it were a
+ database. Queries written against your Cube data model are then answered
+ using pre-aggregations.
+ </p>
+
+ <h2>2. Connect Superset to the SQL API</h2>
+ <ol>
+ <li>Open Superset and go to <strong>Settings → Database Connections → + Database</strong>.</li>
+ <li>Select <strong>PostgreSQL</strong> as the database type.</li>
+ <li>Fill in the connection details:
+ <ul>
+ <li><strong>Host:</strong> the machine running Cube.js (e.g., <code>localhost</code>)</li>
+ <li><strong>Port:</strong> <code>15432</code> (the SQL API port)</li>
+ <li><strong>Database name:</strong> your Cube.js database name</li>
+ <li><strong>Username / Password:</strong> the Cube.js credentials your project defines</li>
+ </ul></li>
+ <li>Click <strong>Test Connection</strong> to verify, then save.</li>
+ </ol>
+
+ <h2>3. Verify from the Command Line</h2>
+ <p>Before touching Superset, confirm the API responds like a PostgreSQL server:</p>
+ <pre><code>psql -h localhost -p 15432 -U &lt;DB_USER&gt; -d &lt;DB_NAME&gt;</code></pre>
+ <p>
+ If <code>psql</code> connects and <code>\dt</code> lists tables from your Cube
+ data model, Superset will be able to query the same endpoint.
+ </p>
+
+ <h2>Troubleshooting</h2>
+ <ul>
+ <li><strong>Connection refused on 15432:</strong> the SQL API is not enabled or the server was started before you set <code>CUBEJS_PG_SQL_PORT</code> — restart Cube.js after editing <code>.env</code>.</li>
+ <li><strong>Authentication errors in Superset:</strong> the SQL API uses your Cube.js credentials, not the PostgreSQL database credentials.</li>
+ <li><strong>Empty table list in Superset:</strong> make sure the schema shown is the one your data model uses, then click <strong>Edit → refresh metadata</strong>.</li>
+ </ul>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="initialize-the-database.html">Initialize the Database</a></li>
+ <li><a href="postgresql-connection-to-actual-data-source-if-applicable.html">PostgreSQL Connection to Actual Data Source</a></li>
+ <li><a href="copy-the-sql-file-to-the-container.html">Copy the SQL File to the Container</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Cube.js, Superset, PostgreSQL, SQL API, pre-aggregations, BI, analytics -->
  </article>
 
  

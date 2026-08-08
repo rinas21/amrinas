@@ -10,7 +10,7 @@
  <title>I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication | A.M. Rinas Blog</title>
 
  <meta name="description"
- content="A real debugging story about fixing a 401 Unauthorized error in a full stack application. The issue was not authentication but an incorrect API request flow and configuration.">
+ content="A real debugging story about fixing a 401 Unauthorized error: the issue was not authentication but an incorrect API request flow and configuration.">
  <meta name="keywords"
  content="401 Unauthorized error, API debugging, authentication bug, Next.js API, backend debugging, software engineering">
  <meta name="robots" content="index, follow">
@@ -202,6 +202,16 @@ fetch("/api/user", {
  </ul>
 
 
+ <h2>What a 401 Actually Means</h2>
+
+ <p>
+ The HTTP status <code>401 Unauthorized</code> means the server could not verify who made the request. It
+ does <em>not</em> mean your password was wrong, your token is invalid, or your authentication system is
+ broken — it only means the credentials the server expects did not arrive, or were rejected. That
+ distinction matters because it directs where you look: the browser's network tab will show exactly what
+ was sent.
+ </p>
+
  <h2>Final Thoughts</h2>
 
  <p>
@@ -211,11 +221,37 @@ fetch("/api/user", {
  components.
  </p>
 
+ <h2>How to Prevent This Next Time</h2>
+
+ <ul>
+ <li>Open the browser's Network tab first and inspect the <strong>request headers</strong> — if no
+ <code>Cookie</code> or <code>Authorization</code> header is present, the problem is the client, not the
+ server.</li>
+ <li>Make <code>credentials: "include"</code> (or <code>withCredentials: true</code> in axios) a default
+ for any request that needs cookies, especially in cross-origin setups.</li>
+ <li>Check CORS: <code>Access-Control-Allow-Credentials</code> must be true and the origin must be
+ explicitly allowed when cookies are involved.</li>
+ <li>Test the protected endpoint directly with an API client (like
+ <a href="postman-ubunut.html">Postman</a>) before blaming the frontend — a working direct request proves
+ the backend is fine.</li>
+ <li>Add request logging in backend middleware so you can see which headers each request actually
+ carries.</li>
+ </ul>
+
+ <h2>Related Articles</h2>
+
+ <ul>
+ <li><a href="keycloak-login-error-expiredcode-non-secure-cookie-context.html">Keycloak Login Error: Expired Code / Non-Secure Cookie Context</a></li>
+ <li><a href="creating-a-temporary-admin-user-in-keycloak.html">Creating a Temporary Admin User in Keycloak</a></li>
+ <li><a href="postman-ubunut.html">Install Postman on Ubuntu</a></li>
+ <li><a href="https-server.html">Setting Up an HTTPS Server</a></li>
+ </ul>
 
  <hr style="margin:40px 0;border:none;border-top:1px solid var(--rule);">
 
  <p style="font-size:14px;font-style:italic;text-align:right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
 
 

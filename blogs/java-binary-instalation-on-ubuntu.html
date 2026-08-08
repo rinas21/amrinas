@@ -7,22 +7,22 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Read about Java Binary Instalation On Ubuntu on the A.M Rinas tech blog.">
- <meta name="keywords" content="Java Binary Instalation On Ubuntu, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
+ <meta name="description" content="Install Java binaries on Ubuntu: download the JDK archive, extract it, set JAVA_HOME and PATH, and verify with java -version.">
+ <meta name="keywords" content="Java binary installation Ubuntu, JAVA_HOME setup, JDK install Linux, Maven binary install, multiple Java versions, Software Engineering, DevOps, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html">
  
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="Java Binary Instalation On Ubuntu | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:title" content="Java Binary Installation on Ubuntu | A.M. Rinas Blog">
+ <meta property="og:description" content="Install Java binaries on Ubuntu: download the JDK archive, extract it, set JAVA_HOME and PATH, and verify with java -version.">
  <meta property="og:url" content="https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Java Binary Instalation On Ubuntu">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:title" content="Java Binary Installation on Ubuntu">
+ <meta name="twitter:description" content="Install Java binaries on Ubuntu: download the JDK archive, extract it, set JAVA_HOME and PATH, and verify with java -version.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -43,15 +43,15 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Java Binary Instalation On Ubuntu | A.M Rinas</title>
- <meta name="description" content="Read about Java Binary Instalation On Ubuntu on the A.M Rinas tech blog.">
+ <title>Java Binary Installation on Ubuntu | A.M Rinas</title>
+ <meta name="description" content="Install Java binaries on Ubuntu: download the JDK archive, extract it, set JAVA_HOME and PATH, and verify with java -version.">
  <link rel="canonical" href="https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="Java Binary Instalation On Ubuntu">
- <meta property="og:description" content="Insights and technical documentation.">
+ <meta property="og:title" content="Java Binary Installation on Ubuntu">
+ <meta property="og:description" content="Install Java binaries on Ubuntu: download the JDK archive, extract it, set JAVA_HOME and PATH, and verify with java -version.">
  <meta property="og:url" content="https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
@@ -138,44 +138,116 @@
  </header>
 
  <article class="blog-post-container">
-<h3>java binary instalation on ubuntu</h3>
-<ol>
-<li>Download tar file and extract</li>
-<li>then use location of that</li>
-</ol>
-<pre><code class="language-bash">
-export JAVA_HOME=/hms/installs/jdk-21.0.5
+ <h1>Java Binary Installation on Ubuntu</h1>
+
+ <p>
+ Installing the JDK from a binary archive (the official tar.gz) instead of apt gives you a specific Java
+ version in a known location — useful when a project needs Java 21 while your system default is Java 17.
+ This guide covers the full sequence: download and extract, set <code>JAVA_HOME</code> and
+ <code>PATH</code> <em>persistently</em>, verify <code>java</code> and <code>javac</code>, then the same
+ approach for Maven. I also explain why the classic <code>export</code> commands only work in one terminal
+ window — the mistake that makes installations "disappear" after a reboot.
+ </p>
+
+ <h2>Java Binary Installation on Ubuntu</h2>
+ <p>
+ The JDK is distributed as a tarball containing the <code>bin</code> directory with the
+ <code>java</code> and <code>javac</code> executables. Installing it is two things: put those files
+ somewhere permanent, and tell the shell where they are.
+ </p>
+
+ <h3>Step 1: Download and Extract the JDK</h3>
+ <ol>
+ <li>Download the JDK tarball (for example <code>jdk-21.0.5_linux-x64_bin.tar.gz</code>) from the official
+ distribution — <a href="oracle-jdk-vs-openjdk.html">OpenJDK or Oracle JDK</a>, whichever your project
+ requires.</li>
+ <li>Extract it to a permanent location, e.g. <code>/opt/</code>:
+ <pre><code class="language-bash">sudo tar -xzf jdk-21.0.5_linux-x64_bin.tar.gz -C /opt/</code></pre>
+ </li>
+ <li>Note the extracted directory — that is your <code>JAVA_HOME</code>:
+ <pre><code class="language-bash">ls /opt/jdk-21.0.5/bin/java</code></pre>
+ </li>
+ </ol>
+
+ <h3>Step 2: Set JAVA_HOME and PATH (the temporary way)</h3>
+ <p>
+ These commands make Java work <em>in the current terminal only</em>. Useful for a quick test, but gone
+ the moment you close the window:
+ </p>
+ <pre><code class="language-bash">export JAVA_HOME=/opt/jdk-21.0.5
 export PATH=$JAVA_HOME/bin:$PATH
 
-java -version
-</code></pre>
-<h3>installing maven binary in ubuntu</h3>
-<ol>
-<li>Download tar file and extract</li>
-<li>then use the location of that</li>
-</ol>
-<pre><code class="language-bash">
-M2_HOME=/hms/installs/mvn-3-2-3/
+java -version</code></pre>
+
+ <h3>Step 3: Set JAVA_HOME and PATH (the permanent way)</h3>
+ <p>
+ To keep Java available in every new terminal, append the exports to your shell startup file —
+ <code>~/.bashrc</code> for Bash, <code>~/.zshrc</code> for Zsh. Then reload it:
+ </p>
+ <pre><code class="language-bash">echo 'export JAVA_HOME=/opt/jdk-21.0.5' &gt;&gt; ~/.bashrc
+echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; ~/.bashrc
+source ~/.bashrc</code></pre>
+
+ <h3>Step 4: Verify the Installation</h3>
+ <pre><code class="language-bash">java -version
+javac -version
+echo $JAVA_HOME</code></pre>
+ <p>Expected output for JDK 21:</p>
+ <pre><code>openjdk version "21.0.5" 2024-10-15
+OpenJDK Runtime Environment ...
+javac 21.0.5</code></pre>
+ <p>
+ Note: <code>java -version</code> alone only proves a runtime exists; <code>javac -version</code> proves
+ the compiler is present too, which you need for building code.
+ </p>
+
+ <h3>Managing Multiple Java Versions</h3>
+ <p>
+ If several JDKs are installed, the last one added to <code>PATH</code> wins. To see what is active:
+ </p>
+ <pre><code class="language-bash">update-alternatives --config java
+update-alternatives --config javac</code></pre>
+ <p>
+ These commands (from the <code>java-common</code> package) let you switch the system-wide default. For a
+ project-specific version, override <code>JAVA_HOME</code> per terminal instead:
+ </p>
+ <pre><code class="language-bash">export JAVA_HOME=/opt/jdk-17</code></pre>
+
+ <h2>Installing Maven Binary on Ubuntu</h2>
+ <p>
+ Maven follows the identical pattern: extract, point a variable at it, add its <code>bin</code> to the
+ PATH.
+ </p>
+ <pre><code class="language-bash">M2_HOME=/opt/mvn-3-2-3/
 PATH=$M2_HOME/bin:$PATH
 export PATH
 
-mvn -version
-</code></pre>
-<hr>
-<h3>starting working on ansible</h3>
-<ol>
-<li>Install ansible</li>
-<li>Create ansible.cfg file</li>
-</ol>
-<pre><code class="language-markdown">[defaults]
+mvn -version</code></pre>
+ <p>
+ For a permanent install, add the same lines to <code>~/.bashrc</code> and run
+ <code>source ~/.bashrc</code>.
+ </p>
+
+ <h2>Bonus: Getting Started with Ansible</h2>
+ <p>
+ Once Java and Maven are on the PATH, you often need to manage the machines you deploy to. Ansible does
+ this over SSH with no agent required. Here is the minimal setup I use.
+ </p>
+
+ <h3>1. Install Ansible</h3>
+ <pre><code class="language-bash">sudo apt install ansible</code></pre>
+
+ <h3>2. Create ansible.cfg</h3>
+ <p>Ansible reads this config from the current directory before any run:</p>
+ <pre><code class="language-markdown">[defaults]
 inventory = ./inventory.ini
 host_key_checking = False
 retry_files_enabled = False
 </code></pre>
-<ol start="3">
-<li>now create inventory.ini file</li>
-</ol>
-<pre><code class="language-markdown">
+
+ <h3>3. Create inventory.ini</h3>
+ <p>Group servers and tell Ansible which user and SSH key to use for each:</p>
+ <pre><code class="language-markdown">
 [enum]
 172.16.3.23 ansible_user=cloud-user ansible_ssh_private_key_file=/home/rinas/.ssh/m1-sec.pem
 
@@ -183,51 +255,100 @@ retry_files_enabled = False
 172.27.2.43 ansible_user=cloud-user ansible_ssh_private_key_file=/home/rinas/.ssh/m1-radius.pem
 
 [hutch]
-172.16.3.114 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/etisalat-ipg-keypair.pem
+172.16.3.114 ansible_user=centos ansible_ssh_private_key_file=~/.ssh/ansible-keypair.pem
 </code></pre>
-<ol start="4">
-<li>if want playbook now cretate my-any-name.yml</li>
-</ol>
-<pre><code class="language-yml">---
+
+ <h3>4. Test Connectivity Without a Playbook</h3>
+ <pre><code class="language-bash">ansible all -m ping -i inventory.ini</code></pre>
+ <p>Every reachable host answers <code>pong</code>.</p>
+
+ <h3>5. Run a Playbook</h3>
+ <p>Create a playbook file (e.g. <code>my-playbook.yml</code>) and execute it against the inventory:</p>
+ <pre><code class="language-yml">---
 - name: Gather system information
- hosts: all
- gather_facts: yes
- tasks:
- - name: Display disk usage
- ansible.builtin.command: df -h
- register: disk_usage
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Display disk usage
+      ansible.builtin.command: df -h
+      register: disk_usage
 
- - name: Show disk usage output
- ansible.builtin.debug:
- var: disk_usage.stdout_lines
+    - name: Show disk usage output
+      ansible.builtin.debug:
+        var: disk_usage.stdout_lines
 
- - name: Check uptime
- ansible.builtin.command: uptime
- register: system_uptime
+    - name: Check uptime
+      ansible.builtin.command: uptime
+      register: system_uptime
 
- - name: Show system uptime
- ansible.builtin.debug:
- var: system_uptime.stdout
+    - name: Show system uptime
+      ansible.builtin.debug:
+        var: system_uptime.stdout
 </code></pre>
-<ol start="5">
-<li>Try without playbook</li>
-</ol>
-<pre><code class="language-bash">ansible all -m ping -i inventory.ini
-</code></pre>
-<ol start="6">
-<li>Try with playbook</li>
-</ol>
-<pre><code class="language-bash">ansible-playbook my-any-name.yml -i inventory.ini
-</code></pre>
-<hr>
+ <pre><code class="language-bash">ansible-playbook my-playbook.yml -i inventory.ini</code></pre>
+ <p>
+ For more on the SSH keys used here, see <a href="ssh-commnd.html">the SSH setup guide</a>.
+ </p>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: java works, but "javac: command not found"</h3>
+ <p><strong>Cause:</strong> you installed a JRE (runtime only), not a JDK (includes the compiler).</p>
+ <p><strong>Solution:</strong> download the JDK tarball, not the JRE, and re-verify with
+ <code>javac -version</code>.</p>
+
+ <h3>Problem 2: java works in one terminal but not in a new one</h3>
+ <p><strong>Cause:</strong> you used <code>export</code> at the prompt — it only affects the current
+ session.</p>
+ <p><strong>Solution:</strong> add the export lines to <code>~/.bashrc</code> and open a new terminal.</p>
+
+ <h3>Problem 3: the wrong Java version is active</h3>
+ <p><strong>Cause:</strong> several JDKs are on the PATH and another one comes first, or a distribution
+ default took over.</p>
+ <p><strong>Solution:</strong> check <code>which java</code> and <code>echo $JAVA_HOME</code>, then fix the
+ order in <code>~/.bashrc</code> or use <code>update-alternatives --config java</code>.</p>
+
+ <h3>Problem 4: "Error: A JNI error has occurred" when running SDK tools</h3>
+ <p><strong>Cause:</strong> the tool was compiled for a newer Java than the active runtime.</p>
+ <p><strong>Solution:</strong> point <code>JAVA_HOME</code> at a newer JDK (e.g. JDK 17+ for Android
+ tools).</p>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Keep <code>JAVA_HOME</code> pointing at the JDK, not the JRE — build tools (Maven, Gradle) need
+ <code>javac</code>.</li>
+ <li>Put binary installs in one place (e.g. <code>/opt</code>) so
+ <code>JAVA_HOME</code> is predictable.</li>
+ <li>Pin versions in <code>~/.bashrc</code> deliberately; use <code>update-alternatives</code> for the
+ system default.</li>
+ <li>Verify with both <code>java -version</code> and <code>javac -version</code> after any change.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ We installed the JDK from a binary archive, made <code>JAVA_HOME</code> and <code>PATH</code> persistent
+ in <code>~/.bashrc</code>, verified both <code>java</code> and <code>javac</code>, applied the same
+ pattern to Maven, and set up a minimal Ansible inventory for server management. The key idea: a binary
+ install is just a folder plus a PATH entry — persistence is the detail that makes it survive a reboot.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="oracle-jdk-vs-openjdk.html">Oracle JDK vs OpenJDK</a></li>
+ <li><a href="tomcat-on-ubuntu.html">Install Tomcat on Linux</a></li>
+ <li><a href="java-process-info-command.html">Java Process Info Commands</a></li>
+ <li><a href="fix-java-virtual-machine-error-linux.html">Fix Java Virtual Machine Error on Linux</a></li>
+ <li><a href="javap-and-its-use-case.html">javap and Its Use Cases</a></li>
+ </ul>
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Java binary installation Ubuntu, Maven install Ubuntu, JAVA_HOME PATH, Ansible basics -->
  </article>
 
  

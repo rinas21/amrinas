@@ -16,7 +16,6 @@
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
 
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
 
  <!-- JSON-LD Schema -->
 
@@ -29,21 +28,21 @@
 
  <!-- SEO Meta Tags -->
  <title>Apache HTTP Server Troubleshooting Notes | A.M Rinas</title>
- <meta name="description" content="Read about Apache HTTP Server Troubleshooting Notes on the A.M Rinas tech blog.">
+ <meta name="description" content="Apache HTTP Server troubleshooting: syntax checks with httpd -t, fixing SSLSessionCache errors, reading error logs, and installing SSL certificates with OpenSSL.">
  <link rel="canonical" href="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
  <meta name="robots" content="index, follow">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Apache HTTP Server Troubleshooting Notes">
- <meta property="og:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
+ <meta property="og:description" content="Apache HTTP Server troubleshooting: syntax checks with httpd -t, fixing SSLSessionCache errors, reading error logs, and installing SSL certificates with OpenSSL.">
  <meta property="og:url" content="https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Apache HTTP Server Troubleshooting Notes">
- <meta name="twitter:description" content="Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.">
+ <meta name="twitter:description" content="Apache HTTP Server troubleshooting: syntax checks with httpd -t, fixing SSLSessionCache errors, reading error logs, and installing SSL certificates with OpenSSL.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -52,7 +51,7 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Apache HTTP Server Troubleshooting Notes",
- "description": "Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.",
+ "description": "Apache HTTP Server troubleshooting: syntax checks with httpd -t, fixing SSLSessionCache errors, reading error logs, and installing SSL certificates with OpenSSL.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -122,202 +121,153 @@
  </nav>
  </header>
 
- <article class="blog-post-container" id="content">
- </article>
- 
- <script type="text/markdown" id="md-content">
+ <article class="blog-post-container">
+ <h1>Apache HTTP Server Troubleshooting Notes</h1>
+ <p>
+ Field notes from working with the Apache HTTP Server: the commands to validate
+ a configuration before restarting, a common <code>SSLSessionCache</code>
+ misplacement error and its fix, how to read the error log, and the full
+ OpenSSL workflow for installing an SSL certificate and verifying it.
+ </p>
 
-## Apache HTTP Server Troubleshooting Notes
+ <h2>Common Commands</h2>
 
-## Common Commands
+ <h3>Syntax Check</h3>
+ <ul>
+ <li><strong>Command:</strong> <code>./httpd -t</code></li>
+ <li><strong>Purpose:</strong> Validates the syntax of Apache configuration files without restarting the server.</li>
+ <li><strong>Benefits:</strong>
+ <ul>
+ <li>Quickly identifies errors in configuration.</li>
+ <li>Pinpoints the exact file and line number of the issue.</li>
+ </ul></li>
+ </ul>
 
-### Syntax Check
-- **Command:**
- ```bash
- ./httpd -t
- ```
-- **Purpose:** Validates the syntax of Apache configuration files without restarting the server.
-- **Benefits:**
- - Quickly identifies errors in configuration.
- - Pinpoints the exact file and line number of the issue.
+ <h3>Additional Options</h3>
+ <ul>
+ <li><strong>Dump Virtual Hosts:</strong>
+ <pre><code>./httpd -t -D DUMP_VHOSTS</code></pre>
+ Lists all configured virtual hosts and their respective settings.</li>
+ <li><strong>Dump Modules:</strong>
+ <pre><code>./httpd -t -D DUMP_MODULES</code></pre>
+ Displays all loaded Apache modules.</li>
+ <li><strong>Dump Runtime Configuration:</strong>
+ <pre><code>./httpd -t -D DUMP_RUN_CFG</code></pre>
+ Outputs the runtime configuration, useful for debugging.</li>
+ </ul>
 
-### Additional Options
-- **Dump Virtual Hosts:**
- ```bash
- ./httpd -t -D DUMP_VHOSTS
- ```
- Lists all configured virtual hosts and their respective settings.
+ <h2>Issue Encountered: SSLSessionCache cannot occur within &lt;VirtualHost&gt;</h2>
 
-- **Dump Modules:**
- ```bash
- ./httpd -t -D DUMP_MODULES
- ```
- Displays all loaded Apache modules.
+ <h3>Error Description</h3>
+ <pre><code>AH00526: Syntax error on line 209 of /path/to/httpd.conf:
+ SSLSessionCache cannot occur within &lt;VirtualHost&gt; section</code></pre>
+ <p>
+ <strong>Cause:</strong> The <code>SSLSessionCache</code> directive was placed
+ inside a <code>&lt;VirtualHost&gt;</code> block, which is not allowed. This
+ directive should be in the global context.
+ </p>
 
-- **Dump Runtime Configuration:**
- ```bash
- ./httpd -t -D DUMP_RUN_CFG
- ```
- Outputs the runtime configuration, useful for debugging.
+ <h3>Resolution Steps</h3>
+ <ol>
+ <li>Open the Apache configuration file for editing:
+ <pre><code>vim /path/to/httpd.conf</code></pre></li>
+ <li>Locate the <code>SSLSessionCache</code> directive.</li>
+ <li>Move the directive outside of any <code>&lt;VirtualHost&gt;</code> blocks, typically near the top of the configuration file.</li>
+ <li>Save and close the file.</li>
+ <li>Validate the syntax:
+ <pre><code>./httpd -t</code></pre></li>
+ <li>Restart the Apache server:
+ <pre><code>./httpd -k restart</code></pre></li>
+ </ol>
 
----
+ <h2>Debugging Logs</h2>
 
-## Issue Encountered: `SSLSessionCache cannot occur within <VirtualHost>`
+ <h3>Check the Error Log</h3>
+ <ul>
+ <li><strong>Command:</strong> <code>cat /path/to/apache/logs/error_log</code></li>
+ <li><strong>Purpose:</strong> Provides detailed error messages and logs related to server operations.</li>
+ </ul>
+ <p>Example logs:</p>
+ <pre><code>[Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+ [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down</code></pre>
 
-### Error Description
-- **Error Message:**
- ```
- AH00526: Syntax error on line 209 of /path/to/httpd.conf:
- SSLSessionCache cannot occur within <VirtualHost> section
- ```
+ <h3>Key Warnings and Notices</h3>
+ <ul>
+ <li><strong>AH01873:</strong> Warning — Session Cache is not configured. <strong>Hint:</strong> ensure <code>SSLSessionCache</code> is configured in the global context.</li>
+ <li><strong>AH00491:</strong> Notice — the server received a signal to terminate (e.g., <code>SIGTERM</code>).</li>
+ </ul>
 
-- **Cause:**
- The `SSLSessionCache` directive was placed inside a `<VirtualHost>` block, which is not allowed. This directive should be in the global context.
+ <h2>Tips for Future Troubleshooting</h2>
+ <ul>
+ <li>Always use <code>httpd -t</code> after making configuration changes.</li>
+ <li>Check logs regularly for warnings or errors.</li>
+ <li>Keep configuration directives in the appropriate context (global vs. <code>&lt;VirtualHost&gt;</code>).</li>
+ </ul>
 
-### Resolution Steps
-1. Open the Apache configuration file for editing:
- ```bash
- vim /path/to/httpd.conf
- ```
+ <h2>SSL Certificate Creation and Validation</h2>
 
-2. Locate the `SSLSessionCache` directive.
+ <h3>1. Generate a New Private Key</h3>
+ <p>To generate a new private key using OpenSSL:</p>
+ <pre><code>openssl genrsa -out /opt/apache/key/enum_example_com.key 2048</code></pre>
 
-3. Move the directive outside of any `<VirtualHost>` blocks, typically near the top of the configuration file.
+ <h3>2. Create a New CSR (Certificate Signing Request)</h3>
+ <pre><code>openssl req -new -key /opt/apache/key/enum_example_com.key -out /opt/apache/key/enum_example_com.csr</code></pre>
 
-4. Save and close the file.
+ <h3>3. Submit the CSR to a Certificate Authority (CA)</h3>
+ <p>
+ Once the CSR is generated, submit it to your Certificate Authority (CA) of
+ choice (e.g., Let's Encrypt, DigiCert) to obtain a signed certificate. The CA
+ will provide:
+ </p>
+ <ul>
+ <li><code>.crt</code> file: this is the signed certificate.</li>
+ <li><code>.chain</code> or <code>.intermediate</code> certificate file (optional): this is the intermediate certificate that links your certificate to the CA's root certificate.</li>
+ </ul>
+ <p>Example — after submitting the CSR you receive files like:</p>
+ <ul>
+ <li><code>enum_example_com.crt</code> (signed certificate)</li>
+ <li><code>enum_example_com_chain.crt</code> (intermediate certificate)</li>
+ </ul>
 
-5. Validate the syntax:
- ```bash
- ./httpd -t
- ```
+ <h3>4. Install the SSL Certificate</h3>
+ <p>Edit the Apache configuration to include the following:</p>
+ <pre><code>SSLEngine On
+ SSLCertificateFile /opt/apache/key/enum_example_com.crt
+ SSLCertificateKeyFile /opt/apache/key/enum_example_com.key
+ SSLCertificateChainFile /opt/apache/key/enum_example_com_chain.crt</code></pre>
 
-6. Restart the Apache server:
- ```bash
- ./httpd -k restart
- ```
+ <h2>Steps to Verify HTTPS Certificate and Redirection</h2>
+ <ol>
+ <li><strong>Verify the HTTPS certificate.</strong> Run the following command to check the HTTPS certificate:
+ <pre><code>curl -ikv https://localhost</code></pre>
+ <p><strong>Note:</strong> replace <code>localhost</code> with the correct endpoint based on your environment (development or production).</p></li>
+ <li><code>curl -ikv http://localhost</code> checks how the server responds to HTTP requests.</li>
+ <li><code>curl -L http://localhost</code> follows any HTTP-to-HTTPS redirections.</li>
+ </ol>
 
----
+ <h3>Expected Results</h3>
+ <ul>
+ <li>The certificate details (Subject, Issuer, Validity period) should be displayed.</li>
+ <li>A warning might appear if using a self-signed certificate, which is acceptable if intentional.</li>
+ <li>The server should respond with a "301 Moved Permanently" or "302 Found" status code, indicating a redirection to HTTPS.</li>
+ <li>The request should follow the redirection to the HTTPS URL.</li>
+ </ul>
 
-## Debugging Logs
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="ssh-commnd.html">SSH Setup: A Comprehensive Guide</a></li>
+ <li><a href="netstat-commnd.html">Netstat: A Complete Guide</a></li>
+ <li><a href="checking-port-availability-using-netcat-nc.html">Checking Port Availability Using Netcat (nc)</a></li>
+ </ul>
 
-### Check the Error Log
-- **Command:**
- ```bash
- cat /path/to/apache/logs/error_log
- ```
-- **Purpose:** Provides detailed error messages and logs related to server operations.
-- **Example Logs:**
- ```
- [Fri Jan 10 11:42:11.283516 2025] [ssl:warn] [pid 21313:tid 21313] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
- [Fri Jan 10 12:27:21.218230 2025] [mpm_event:notice] [pid 21414:tid 21414] AH00491: caught SIGTERM, shutting down
- ```
-
-### Key Warnings and Notices
-- **`AH01873`:**
- - Warning: Session Cache is not configured.
- - **Hint:** Ensure `SSLSessionCache` is configured in the global context.
-
-- **`AH00491`:**
- - Notice: The server received a signal to terminate (e.g., `SIGTERM`).
-
----
-
-## Tips for Future Troubleshooting
-- Always use `httpd -t` after making configuration changes.
-- Check logs regularly for warnings or errors.
-- Keep configuration directives in the appropriate context (global vs. `<VirtualHost>`).
-
----
-
-### Notes
-This document can be expanded with additional issues or commands encountered during Apache HTTP Server management.
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## SSL Certificate Creation and Validation
-
-## 1. Generate a New Private Key
-To generate a new private key using OpenSSL:
-
-```bash
-openssl genrsa -out /hms/installs/apache/key/enum_hsenidmobile_com.key 2048
- 
- ```
-
-## 2. Create a New CSR (Certificate Signing Request)
-
- ```bash
-openssl req -new -key /hms/installs/apache/key/enum_hsenidmobile_com.key -out /hms/installs/apache/key/enum_hsenidmobile_com.csr
-```
-## 3. Submit the CSR to a Certificate Authority (CA)
-
-Once the CSR is generated, submit it to your Certificate Authority (CA) of choice (e.g., Let's Encrypt, DigiCert) to obtain a signed certificate. The CA will provide:
-
-- `.crt` file: This is the signed certificate.
-- `.chain` or `.intermediate` certificate file (optional): This is the intermediate certificate that links your certificate to the CA's root certificate.
-
-### Example:
-After submitting the CSR to the CA, you will receive files like:
-- `enum_hsenidmobile_com.crt` (signed certificate)
-- `enum_hsenidmobile_com_chain.crt` (intermediate certificate)
-
-## 4. Install the SSL Certificate
-
-Once you have received the certificate files from your CA, you'll need to install them on your server.
-
-### Update Apache SSL Configuration
-
-Edit the Apache configuration to include the following:
-
-```apache
-SSLEngine On
-SSLCertificateFile /hms/installs/apache/key/enum_hsenidmobile_com.crt
-SSLCertificateKeyFile /hms/installs/apache/key/enum_hsenidmobile_com.key
-SSLCertificateChainFile /hms/installs/apache/key/enum_hsenidmobile_com_chain.crt
-```
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## Steps to Verify HTTPS Certificate and Redirection: 
-
-1. **Verify HTTPS Certificate**
-
-Run the following command to check the HTTPS certificate:
-```bash 
- curl -ikv https://localhost
-```
-
-**Note**: Replace with the correct endpoint based on your environment (e.g., localhost for development or the production endpoint URL).
-
-1. curl -ikv http://localhost checks how the server responds to HTTP requests. 
-
-2. curl -L http://localhost will follow any HTTP-to-HTTPS redirections.
-
-## Expected Results:
-
-* The certificate details (Subject, Issuer, Validity period) should be displayed.
- 
- * A warning might appear if using a self-signed certificate, which is acceptable if intentional.
- 
-* The server should respond with a “301 Moved Permanently” or “302 Found” status code, indicating a redirection to HTTPS.
- 
-* The request should follow the redirection to the HTTPS URL.
- 
- </script>
- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
- <script>
-const markdownContent = document.getElementById('md-content').textContent;
- const htmlContent = marked.parse(markdownContent);
- const footerHtml = `
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
  <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
- `;
- document.getElementById('content').innerHTML = htmlContent + footerHtml;
- </script>
+ </article>
 
  
  <!-- ===== FOOTER ===== -->

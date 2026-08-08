@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="While running Tomcat with CAS authentication, the following error occurs:">
+ <meta name="description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
  <meta name="keywords" content="SSL Exception in Tomcat with CAS, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="SSL Exception in Tomcat with CAS | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
  <meta property="og:url" content="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="SSL Exception in Tomcat with CAS">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>SSL Exception in Tomcat with CAS | A.M Rinas</title>
- <meta name="description" content="While running Tomcat with CAS authentication, the following error occurs:">
+ <meta name="description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
  <link rel="canonical" href="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
  <meta name="robots" content="index, follow">
  
@@ -205,8 +205,8 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
 	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
 	at java.lang.Thread.run(Thread.java:744)
 2025-02-13 11:53:16,726 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - &lt;AuthenticationHandler: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated the user which provided the following credentials: [username: admin]&gt;
-2025-02-13 11:53:16,726 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-2-KLy6snBeqYeu4eGFDRcr-cas] for service [https://dialoglbsn.hsenidmobile.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
-2025-02-13 11:53:17,232 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-3-LXs0JZaA7NwZfmWJUeDo-cas] for service [https://dialoglbsn.hsenidmobile.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
+2025-02-13 11:53:16,726 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-2-KLy6snBeqYeu4eGFDRcr-cas] for service [https://lbs.example.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
+2025-02-13 11:53:17,232 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-3-LXs0JZaA7NwZfmWJUeDo-cas] for service [https://lbs.example.com/lbs-admin/j_spring_cas_security_check] for user [admin]&gt;
 2025-02-13 11:53:34,588 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - &lt;Granted service ticket [ST-4-0QPS6PyeRg9JRPS
 </code></pre>
 <ul>
@@ -220,11 +220,12 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: Tomcat, CAS, SSLException, TLS, protocol_version -->
  </article>
 
  

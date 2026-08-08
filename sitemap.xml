@@ -187,8 +187,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/developer-notes-april-8-2025.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/java-jvm-initialization-error-hpi-library.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -235,14 +235,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/error-explanation-why-it-happens-how-to-fix.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/typescript-common-errors-and-fixes.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/error-message.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/tomcat-keystore-tampered-or-password-incorrect.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -493,20 +493,20 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/note.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/apache-http-server-compile-error-pcre-not-found.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/notes-for-2025-04-10.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/apache-build-error-apr-not-found-fix.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/notes-for-2025-04-30.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/replace-overwrite-files-in-ubuntu.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -643,14 +643,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/the-order-by-clause-does-not-work-with-distinct-in-that-way-if-you-want-to-order-the-results-by-the-name-column-you-should-simply-use.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/sql-order-by-does-not-work-with-distinct.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/this-is-a-overview-of-configuring-one-way-ssl-between-tomcat-and-keycloak.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <loc>https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

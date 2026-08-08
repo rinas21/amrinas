@@ -7,7 +7,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="unset rc">
+ <meta name="description" content="Organize bash config with ~/.bashrc.d/: source modular config files in a loop, keep aliases in separate files, apply with source ~/.bashrc.">
  <meta name="keywords" content="Optional: Load modular configs from ~/.bashrc.d/, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
  <meta name="robots" content="index, follow">
  <link rel="canonical" href="https://rinas.tech/blogs/optional-load-modular-configs-from-bashrcd.html">
@@ -15,14 +15,14 @@
  <!-- Open Graph for Facebook/LinkedIn -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Optional: Load modular configs from ~/.bashrc.d/ | A.M. Rinas Blog">
- <meta property="og:description" content="Your SEO friendly description goes here.">
+ <meta property="og:description" content="Organize bash config with ~/.bashrc.d/: source modular config files in a loop, keep aliases in separate files, apply with source ~/.bashrc.">
  <meta property="og:url" content="https://rinas.tech/blogs/optional-load-modular-configs-from-bashrcd.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Optional: Load modular configs from ~/.bashrc.d/">
- <meta name="twitter:description" content="Your SEO friendly description goes here.">
+ <meta name="twitter:description" content="Organize bash config with ~/.bashrc.d/: source modular config files in a loop, keep aliases in separate files, apply with source ~/.bashrc.">
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -44,7 +44,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Optional: Load modular configs from ~/.bashrc.d/ | A.M Rinas</title>
- <meta name="description" content="unset rc">
+ <meta name="description" content="Organize bash config with ~/.bashrc.d/: source modular config files in a loop, keep aliases in separate files, apply with source ~/.bashrc.">
  <link rel="canonical" href="https://rinas.tech/blogs/optional-load-modular-configs-from-bashrcd.html">
  <meta name="robots" content="index, follow">
  
@@ -149,30 +149,17 @@
  done
 fi</p>
 <p>unset rc</p>
-<pre><code>
----
+<h2>Explanation of Key Sections</h2>
+<ul>
+<li><strong>Global Definitions:</strong> sources <code>/etc/bashrc</code> for system-wide defaults.</li>
+<li><strong>PATH Setup:</strong> ensures <code>~/.local/bin</code> and <code>~/bin</code> are included in <code>$PATH</code>.</li>
+<li><strong>Modular Configuration Support:</strong> if <code>~/.bashrc.d/</code> exists, loads all scripts in it. Useful for organizing aliases, environment variables, and tool configs.</li>
+</ul>
 
-## Explanation of Key Sections
+<h2>After Editing</h2>
 
-- **Global Definitions:** 
- Sources `/etc/bashrc` for system-wide defaults.
-
-- **PATH Setup:** 
- Ensures `~/.local/bin` and `~/bin` are included in `$PATH`.
-
-- **Modular Configuration Support:** 
- If `~/.bashrc.d/` exists, loads all scripts in it. 
- Useful for organizing aliases, environment variables, and tool configs.
-
----
-
-## After Editing
-
-Apply changes with:
-
-```bash
-source ~/.bashrc
-</code></pre>
+<p>Apply changes with:</p>
+<pre><code class="language-bash">source ~/.bashrc</code></pre>
 <hr>
 <h2> Optional: Modular Setup</h2>
 <p>Create and use <code>~/.bashrc.d/</code> for custom scripts:</p>
@@ -196,11 +183,12 @@ echo &quot;alias ll=&#39;ls -alF&#39;&quot; &gt; ~/.bashrc.d/aliases.sh
 
  <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
  <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <strong>A.M. Rinas</strong>
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
  </p>
  <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
 
- <!-- Topic SEO Keywords: Replace with keywords related to your post, e.g., React tutorial, API guide, etc. -->
+ <!-- Topic SEO Keywords: bashrc, bashrc.d, bash configuration, aliases, modular configs -->
  </article>
 
  

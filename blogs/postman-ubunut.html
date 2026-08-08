@@ -8,7 +8,7 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="Read about Install Postman Using Binary File on Ubuntu on the A.M Rinas tech blog.">
+ <meta name="description" content="Install Postman on Ubuntu: download the archive, extract it, symlink the binary, and add a desktop entry for the app menu.">
  <meta name="keywords"
  content="Install Postman Ubuntu, Postman binary installation Linux, tarball extraction, create symlink, postman desktop entry, API development platform, Linux systems administration, A.M. Rinas">
  <meta name="robots" content="index, follow">
@@ -46,7 +46,7 @@
 
  <!-- SEO Meta Tags -->
  <title>Install Postman Using Binary File on Ubuntu | A.M Rinas</title>
- <meta name="description" content="Read about Install Postman Using Binary File on Ubuntu on the A.M Rinas tech blog.">
+ <meta name="description" content="Install Postman on Ubuntu: download the archive, extract it, symlink the binary, and add a desktop entry for the app menu.">
  <link rel="canonical" href="https://rinas.tech/blogs/postman-ubunut.html">
  <meta name="robots" content="index, follow">
  
@@ -142,37 +142,207 @@
  <article class="blog-post-container">
  <h1>Install Postman Using Binary File on Ubuntu</h1>
 
-
-
  <p>
- When building backend microservices, mapping relational web hooks, or tuning complex endpoints, verified API
- inspection tooling is fundamental. Postman provides a complete workspace engine to build, iterate, and mock
- interface schemas across every stage of the API lifecycle. While alternative distribution models exist,
- manually initializing Postman from raw binary tarballs offers granular control over installation parameters
- without adding unneeded background daemon abstractions.
+ Postman is the standard tool for building and testing APIs — you send a request, inspect the response, and
+ store collections of endpoints for your team. Ubuntu does not ship Postman in its default repositories, so
+ the cleanest install is the official Linux binary tarball. This guide extracts it into <code>/opt</code>,
+ links it into your PATH, creates a desktop launcher, verifies the install, and covers the errors people hit
+ — including the "No such file or directory" that comes from a missing symlink target.
  </p>
 
  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtQFdS48TY0X92rSiW2MEvfe_0oTYrZ7bPaEZgbeT7-Y2Ar7ElaPz_p6XFrvyc-6ItA4IiMHTwO3MhtbfU1twyPOwjPTNHvLdYkRIRjEDX3ii4joXsTRC_9Vy1OZFQS0ay7yyxOw4-hcVC51IuK5HS_1b_JYCu5E3u68S6RlhnH0nLGJoE2wqUglCI/s787/postman.png"
- alt="Official Postman execution workspace environment illustrating structural API endpoint calls and payload configuration panels">
+ alt="Postman API testing workspace with request builder and response panel">
 
  <h2>Preparing the System Environment</h2>
  <p>
- Before unpacking application footprints directly into protected runtime paths, confirm your workstation
- infrastructure is fully updated and possesses the necessary superuser system capabilities.
- </p>
- <p>
- Open a clean system shell (<code>Ctrl + Alt + T</code>) and sync your system's package definitions list
- against the active upstream mirror servers:
+ Open a terminal (<code>Ctrl + Alt + T</code>) and refresh the package list — you will need the tar tool and
+ the ability to use <code>sudo</code>:
  </p>
  <pre><code>sudo apt update</code></pre>
 
- <h2>Step-by-Step Binary Installation Pipeline</h2>
+ <h2>Step-by-Step Installation</h2>
+
+ <h3>Step 1: Download the Linux Binary Package</h3>
  <p>
- Follow the structural system sequence below to extract, bind, and catalog the Postman suite directly into
- standard Unix application paths.
+ Download the official Linux x64 tarball from the Postman download page (it is usually named
+ <code>postman-linux-x64-&lt;version&gt;.tar.gz</code>). The download lands in <code>~/Downloads</code>.
  </p>
 
- <h3>Step 1: Retrieve the Linux Binary Package</h3>
+ <h3>Step 2: Extract into /opt</h3>
  <p>
- Navigate to the official Postman download portal via your browser and grab the latest stable compiled Linux
- x64 core
+ <code>/opt</code> is the standard location for third-party application binaries. Extract the tarball
+ there with root permissions:
+ </p>
+ <pre><code>sudo tar -xzf ~/Downloads/postman-linux-x64-*.tar.gz -C /opt/</code></pre>
+ <p>
+ This creates <code>/opt/Postman/</code> containing the <code>Postman</code> executable. Verify with:
+ </p>
+ <pre><code>ls /opt/Postman/Postman</code></pre>
+
+ <h3>Step 3: Create a Symlink in Your PATH</h3>
+ <p>
+ <code>/opt/Postman</code> is not in your PATH, so typing <code>postman</code> would fail. A symlink in
+ <code>/usr/local/bin</code> (which is always in the PATH) fixes that:
+ </p>
+ <pre><code>sudo ln -s /opt/Postman/Postman /usr/local/bin/postman</code></pre>
+
+ <h3>Step 4: Create a Desktop Launcher</h3>
+ <p>
+ So Postman appears in your application menu, create a desktop entry file:
+ </p>
+ <pre><code>nano ~/.local/share/applications/postman.desktop</code></pre>
+ <p>Paste this content and save:</p>
+ <pre><code>[Desktop Entry]
+Name=Postman
+Comment=API Development Environment
+Exec=/opt/Postman/Postman
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;</code></pre>
+ <p>
+ If your icon path is different, locate it with <code>find /opt/Postman -name "*.png" | head</code>.
+ </p>
+
+ <h2>Verifying the Installation</h2>
+ <pre><code>postman --version
+which postman</code></pre>
+ <p>
+ <code>which postman</code> should print <code>/usr/local/bin/postman</code>, and the app should open when
+ you run <code>postman</code> (or from your application menu).
+ </p>
+
+ <h2>Common Problems</h2>
+
+ <h3>Problem 1: postman: command not found</h3>
+ <p><strong>Cause:</strong> the symlink was not created, or <code>/usr/local/bin</code> is not in your
+ PATH.</p>
+ <p><strong>Solution:</strong> run <code>sudo ln -s /opt/Postman/Postman /usr/local/bin/postman</code>, then
+ check <code>echo $PATH</code> contains <code>/usr/local/bin</code>.</p>
+
+ <h3>Problem 2: "No such file or directory" when starting Postman</h3>
+ <p><strong>Cause:</strong> the symlink points at a path that does not exist — usually the tarball extracted
+ to a different folder name, or the symlink references the old version path after an update.</p>
+ <p><strong>Solution:</strong> verify the real path with <code>ls /opt/Postman/</code>, then re-create the
+ symlink against the correct path.</p>
+
+ <h3>Problem 3: "Permission denied" while extracting or running</h3>
+ <p><strong>Cause:</strong> extraction without sudo, or the binary lacks execute permissions.</p>
+ <p><strong>Solution:</strong> extract with <code>sudo</code> and fix permissions:
+ <code>sudo chmod +x /opt/Postman/Postman</code>.</p>
+
+ <h3>Problem 4: Postman icon is missing in the menu</h3>
+ <p><strong>Cause:</strong> the Icon path in the desktop entry does not match the real icon file.</p>
+ <p><strong>Solution:</strong> update the <code>Icon=</code> line to an existing path found via
+ <code>find /opt/Postman -name "*.png"</code>, then refresh the menu database:
+ <code>update-desktop-database ~/.local/share/applications</code>.</p>
+
+ <h2>How to Uninstall</h2>
+ <pre><code>sudo rm /usr/local/bin/postman
+sudo rm -rf /opt/Postman
+rm ~/.local/share/applications/postman.desktop</code></pre>
+
+ <h2>Best Practices</h2>
+ <ul>
+ <li>Install to <code>/opt</code> and symlink — this keeps updates to a simple re-extract and symlink
+ refresh.</li>
+ <li>Do not run Postman with <code>sudo</code>; it creates config files in your home directory and running
+ as root causes permission headaches later.</li>
+ <li>Check <code>~/.config/Postman</code> for configuration backups before uninstalling.</li>
+ <li>Prefer the binary method when your distribution does not provide a snap/flatpak you trust, since the
+ tarball runs without containerization overhead.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+ <p>
+ We downloaded the Postman tarball, extracted it to <code>/opt</code>, linked it into the PATH, created a
+ desktop launcher, and verified the install. The key idea is separation: the application lives in
+ <code>/opt/Postman</code>, and the rest of the system only sees a symlink — so reinstalling or removing it
+ is a single command.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="katalon-studio-guide.html">Katalon Studio Guide</a></li>
+ <li><a href="debugging-401-error.html">Debugging 401 Errors</a></li>
+ <li><a href="java-binary-instalation-on-ubuntu.html">Java Binary Installation on Ubuntu</a></li>
+ <li><a href="basic-linux.html">Basic Linux Commands</a></li>
+ </ul>
+
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 8, 2026
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+ <!-- Topic SEO Keywords: Postman Ubuntu installation, Postman binary install, postman desktop entry -->
+ </article>
+
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
+
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
+
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
+
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
+
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
+
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
+
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
+
+</body>
+
+</html>
