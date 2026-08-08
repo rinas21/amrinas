@@ -5,6 +5,12 @@
     <link>https://rinas21.github.io/amrinas/</link>
     <description>Insights, research, and guides by A.M. Rinas.</description>
     <item>
+      <title>Save Money &amp; Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code</title>
+      <link>https://rinas21.github.io/amrinas/blogs/install-caveman.html</link>
+      <description>Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM token usage.</description>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Adding Google Chat to the Ubuntu Desktop Bar</title>
       <link>https://rinas21.github.io/amrinas/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html</link>
       <description>To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.</description>
