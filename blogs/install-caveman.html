@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description"
+        content="Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM output token usage by up to 65%.">
+    <meta name="keywords"
+        content="Caveman AI, Claude Code, VS Code, Antigravity, Token Saver, Software Engineering, DevOps, AI Tools, A.M. Rinas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical"
+        href="https://rinas.tech/blogs/install-caveman.html">
+
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title"
+        content="Save Money & Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code | A.M. Rinas Blog">
+    <meta property="og:description"
+        content="Cut up to 65% of your AI output token usage and lower API costs by stripping conversational filler from AI coding assistants.">
+    <meta property="og:url"
+        content="https://rinas.tech/blogs/install-caveman.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Save Money & Tokens: Installing and Using Caveman">
+    <meta name="twitter:description"
+        content="Cut up to 65% of your AI output token usage across VS Code, Antigravity, and Claude Code.">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+
+    <!-- SEO Meta Tags -->
+    <title>Save Money & Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code | A.M Rinas
+    </title>
+
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Save Money & Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code",
+ "description": "Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM token usage.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas21.github.io/amrinas/favicon.png"
+ }
+ },
+ "datePublished": "08 August 2026",
+ "dateModified": "08 August 2026",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://rinas21.github.io/amrinas/blogs/install-caveman.html"
+        }
+ }
+ </script>
+
+    <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas21.github.io/amrinas/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas21.github.io/amrinas/blog.html"
+ },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Installing and Using Caveman",
+                "item": "https://rinas21.github.io/amrinas/blogs/install-caveman.html"
+            }
+ ]
+ }
+ </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Mohomad Rinas -->
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Save Money & Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code</h1>
+
+        <p>If you build software using AI coding tools like Claude Code, Cursor, Codex, or VS Code extensions, output
+            token costs can accumulate rapidly. Conversational fluff ("Sure! I would be happy to help you with
+            that..."), long explanatory intros, and filler text consume bandwidth, increase response times, and consume
+            API budgets.</p>
+
+        <p>Created by Julius Brussee, <strong>Caveman</strong> (<code>juliusbrussee/caveman</code>) is an open-source AI
+            skill that strips conversational filler, instructing your AI assistant to communicate in direct, highly
+            concise phrases while keeping code, diffs, terminal commands, and technical logic exact.</p>
+
+        <h2>Why Use Caveman?</h2>
+        <ul>
+            <li><strong>Up to 65% Token Savings:</strong> Significantly lowers output token usage on prose,
+                explanations, and reviews.</li>
+            <li><strong>Faster Response Latency:</strong> Generating fewer output tokens means your editor or terminal
+                yields results much faster.</li>
+            <li><strong>Zero Loss in Code Quality:</strong> Code blocks, stack traces, and commands remain unaltered.
+                Only conversational fluff is removed.</li>
+        </ul>
+
+        <h2>1. One-Line Auto-Installer (Recommended)</h2>
+        <p>The fastest way to install Caveman across all AI agents configured on your system (including local VS Code
+            extensions, CLI tools, and agent environments) is the global universal install script:</p>
+
+        <h3>macOS / Linux / WSL:</h3>
+        <pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash</code></pre>
+
+        <h3>Windows (PowerShell):</h3>
+        <pre><code class="language-powershell">irm https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.ps1 | iex</code></pre>
+
+        <h2>2. Platform-Specific Setup Instructions</h2>
+
+        <h3>Option A: Claude Code CLI</h3>
+        <p>If you run Anthropic's official <code>claude</code> CLI terminal agent, you can install Caveman directly via
+            the plugin marketplace:</p>
+        <pre><code class="language-bash">claude plugin marketplace add JuliusBrussee/caveman
+claude plugin install caveman@caveman</code></pre>
+        <p>Once installed, Caveman activates automatically on your next prompt in Claude Code.</p>
+
+        <h3>Option B: VS Code (Cursor, Windsurf, Copilot, Cline, Continue)</h3>
+        <p>To register Caveman across VS Code extensions and AI coding environments using the global skills registry,
+            run:</p>
+        <pre><code class="language-bash">npx skills add JuliusBrussee/caveman</code></pre>
+        <p>Alternatively, for individual VS Code extensions that support custom instructions or prompt templates (e.g.,
+            Cursor <code>.cursorrules</code>, Cline, or Copilot instructions), clone the repository and add it to your
+            local environment:</p>
+        <pre><code class="language-bash">git clone https://github.com/JuliusBrussee/caveman.git</code></pre>
+
+        <h3>Option C: Antigravity & Web AI Clients</h3>
+        <p>For custom web clients, API proxy layers, or Antigravity agents, load the Caveman rule definition into your
+            system prompt context or prompt modifier stack. You can trigger it natively by appending the rule set or
+            issuing the instruction:</p>
+        <pre><code class="language-text">Type /caveman or add instruction: "Talk like a caveman. Drop filler words, keep technical answers precise, preserve code."</code></pre>
+
+        <h2>3. Compression Modes & Usage Commands</h2>
+        <p>Caveman supports multiple verbosity levels depending on how concise you want your AI output to be:</p>
+
+        <ul>
+            <li><code>/caveman lite</code> – Removes unnecessary conversational filler while maintaining standard
+                sentence structures.</li>
+            <li><code>/caveman full</code> – Default mode. Direct shorthand ("New object ref created each render. Wrap
+                in useMemo.").</li>
+            <li><code>/caveman ultra</code> – Extreme telegraph-style compression for maximum speed and token reduction.
+            </li>
+            <li><code>normal mode</code> – Restores standard conversational output.</li>
+        </ul>
+
+        <h2>Before and After Comparison</h2>
+
+        <h3>Standard AI Output:</h3>
+        <p><em>"Sure! I would be happy to help you fix that issue. The reason your React component is re-rendering is
+                likely because you are creating a new object reference on every render cycle. When you pass an inline
+                object as a prop, React's shallow comparison sees it as a new object, which triggers a re-render. I
+                recommend using useMemo to memoize it."</em></p>
+
+        <h3>Caveman AI Output:</h3>
+        <p><em>"Inline object prop creates new reference every render. Triggers shallow comparison re-render. Wrap
+                object in <code>useMemo</code>."</em></p>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+        <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+            Written by <strong>A.M. Rinas</strong>
+        </p>
+        <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21, Caveman AI, Julius Brussee, Claude Code token saver -->
+    </article>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer"
+        style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+            <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+            <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Switcher UI -->
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+    <script>
+        const THEMES = [
+            { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+            { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+            { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+        ];
+
+        let currentTheme = localStorage.getItem('selected_theme') || "default";
+        const container = document.getElementById("themeSwitcher");
+
+        function setTheme(themeId) {
+            currentTheme = themeId;
+            document.documentElement.setAttribute("data-theme", themeId);
+            localStorage.setItem('selected_theme', themeId);
+
+            document.querySelectorAll(".theme-btn").forEach(btn => {
+                if (btn.dataset.theme === themeId) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        }
+
+        if (container) {
+            THEMES.forEach(theme => {
+                const btn = document.createElement("button");
+                btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+                btn.dataset.theme = theme.id;
+                btn.title = theme.label;
+
+                const bgPreview = document.createElement("div");
+                bgPreview.className = "theme-bg-preview";
+                bgPreview.style.backgroundColor = theme.bg;
+
+                const accentPreview = document.createElement("div");
+                accentPreview.className = "theme-accent-preview";
+                accentPreview.style.backgroundColor = theme.color;
+
+                btn.appendChild(bgPreview);
+                btn.appendChild(accentPreview);
+
+                btn.addEventListener("click", () => setTheme(theme.id));
+                container.appendChild(btn);
+            });
+            // Initialize on load
+            setTheme(currentTheme);
+        }
+    </script>
+
+</body>
+
+</html>
