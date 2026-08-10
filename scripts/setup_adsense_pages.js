@@ -71,7 +71,7 @@ const contactContent = `
         <p>If you have any questions, want to discuss a project, or just want to say hi, feel free to reach out to me through the following channels:</p>
         
         <ul>
-            <li><strong>Email:</strong> <a href="mailto:contact@rinas.tech" style="color: var(--rule);">contact@rinas.tech</a></li>
+            <li><strong>Email:</strong> <a href="mailto:hello@rinas.tech" style="color: var(--rule);">hello@rinas.tech</a></li>
             <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/amrinas" style="color: var(--rule);" target="_blank">linkedin.com/in/amrinas</a></li>
             <li><strong>GitHub:</strong> <a href="https://github.com/rinas21" style="color: var(--rule);" target="_blank">github.com/rinas21</a></li>
         </ul>
