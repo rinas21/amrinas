@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="author" content="Mohomad Rinas">
+ <meta name="author" content="A.M. Rinas">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <!-- SEO Meta Tags for Google AdSense -->
+ <meta name="description" content="Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.">
+ <meta name="keywords" content="custom email subdomain, Cloudflare DNS, Brevo, DKIM, branded sender, email authentication, MX records, Software Engineering, DevOps, A.M. Rinas">
+ <meta name="robots" content="index, follow">
+ <link rel="canonical" href="https://rinas.tech/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html">
+
+ <!-- Open Graph for Facebook/LinkedIn -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Setting Up a Custom Email Subdomain with Cloudflare and Brevo">
+ <meta property="og:description" content="Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.">
+ <meta property="og:url" content="https://rinas.tech/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html">
+ <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+
+ <!-- Twitter Cards -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Setting Up a Custom Email Subdomain with Cloudflare and Brevo">
+ <meta name="twitter:description" content="Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+ <link rel="stylesheet" href="../css/style.css">
+ <link rel="stylesheet" href="../css/cyber-theme.css">
+ <link rel="stylesheet" href="../css/blog.css">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+
+ <link rel="stylesheet" href="../css/theme-switcher.css">
+
+ <style>
+ .blog-post-container table {
+   width: 100%;
+   border-collapse: collapse;
+   margin: 20px 0;
+ }
+
+ .blog-post-container th,
+ .blog-post-container td {
+   padding: 12px;
+   border: 1px solid var(--rule-strong);
+   text-align: left;
+ }
+
+ .blog-post-container th {
+   background: var(--warm);
+ }
+ </style>
+
+ <!-- JSON-LD Schemas -->
+ <script type="application/ld+json">
+ {
+   "@context": "https://schema.org",
+   "@type": "BlogPosting",
+   "headline": "Setting Up a Custom Email Subdomain with Cloudflare and Brevo",
+   "description": "Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.",
+   "image": "https://rinas.tech/img/100blog.jpg",
+   "author": {
+     "@type": "Person",
+     "name": "A.M Rinas"
+   },
+   "publisher": {
+     "@type": "Organization",
+     "name": "A.M. Rinas Portfolio",
+     "logo": {
+       "@type": "ImageObject",
+       "url": "https://rinas21.github.io/amrinas/favicon.png"
+     }
+   },
+   "datePublished": "2026-08-15",
+   "dateModified": "2026-08-15",
+   "mainEntityOfPage": {
+     "@type": "WebPage",
+     "@id": "https://rinas21.github.io/amrinas/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html"
+   }
+ }
+ </script>
+
+ <script type="application/ld+json">
+ {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "Home",
+       "item": "https://rinas21.github.io/amrinas/"
+     },
+     {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "Blog",
+       "item": "https://rinas21.github.io/amrinas/pages/blog.html"
+     },
+     {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "Setting Up a Custom Email Subdomain with Cloudflare and Brevo",
+       "item": "https://rinas21.github.io/amrinas/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html"
+     }
+   ]
+ }
+ </script>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+ crossorigin="anonymous"></script>
+
+ <title>Setting Up a Custom Email Subdomain with Cloudflare and Brevo | A.M Rinas</title>
+</head>
+
+<body>
+
+ <!-- ===== NAVBAR ===== -->
+ <header class="header">
+   <a href="../index.html" class="logo">
+     <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+   </a>
+   <nav class="navbar">
+     <a href="../index.html#Home" style="--i:1">Home</a>
+     <a href="../index.html#About" style="--i:2">About</a>
+     <a href="../index.html#Experience" style="--i:3">Experience</a>
+     <a href="../pages/projects.html" style="--i:4">Projects</a>
+     <a href="../pages/blog.html" style="--i:5">Blog</a>
+     <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+     <a href="../index.html#Contact" style="--i:7">Contact</a>
+   </nav>
+ </header>
+
+ <article class="blog-post-container">
+
+ <h1>Setting Up a Custom Email Subdomain with Cloudflare and Brevo</h1>
+
+ <p>
+ If you own a domain such as <code>yourdomain.com</code>, you can use it to send
+ professional emails instead of relying on a generic address such as
+ <code>gmail.com</code>.
+ </p>
+
+ <p>
+ For example, instead of sending application emails from a generic address,
+ you might want to send them as:
+ </p>
+
+ <pre><code>webpulse@yourdomain.com</code></pre>
+
+ <p>
+ This guide explains how DNS, Cloudflare and Brevo work together to authenticate
+ your domain and send emails using your own domain.
+ </p>
+
+ <h2>1. Understand What Each Service Does</h2>
+
+ <p>
+ There are three separate pieces involved in this setup:
+ </p>
+
+ <ul>
+   <li><strong>Cloudflare:</strong> manages your domain's DNS records.</li>
+   <li><strong>Brevo:</strong> handles outgoing email delivery.</li>
+   <li><strong>Email receiving service:</strong> handles incoming messages if you want to receive replies at your custom address.</li>
+ </ul>
+
+ <p>
+ This distinction is important. Adding DNS records in Cloudflare does not
+ automatically create an inbox for <code>webpulse@yourdomain.com</code>.
+ </p>
+
+ <h2>2. Move Your Domain DNS to Cloudflare</h2>
+
+ <p>
+ If your domain is currently using another DNS provider, you first need to
+ change the domain's nameservers to the nameservers provided by Cloudflare.
+ </p>
+
+ <p>
+ Cloudflare will provide two nameservers for your domain. They will look
+ something similar to:
+ </p>
+
+ <pre><code>example.ns.cloudflare.com
+example2.ns.cloudflare.com</code></pre>
+
+ <p>
+ Go to your domain registrar and replace the existing nameservers with the
+ Cloudflare nameservers assigned to your domain.
+ </p>
+
+ <p>
+ After the nameserver change propagates, Cloudflare becomes the DNS provider
+ for your domain.
+ </p>
+
+ <h2>3. Add Your Domain to Brevo</h2>
+
+ <p>
+ Log in to Brevo and open the sender and domain settings.
+ Choose the option to add or authenticate a domain and enter:
+ </p>
+
+ <pre><code>yourdomain.com</code></pre>
+
+ <p>
+ Brevo will provide several DNS records that need to be added to your DNS
+ provider.
+ </p>
+
+ <p>
+ These records are used to prove that you control the domain and allow Brevo
+ to authenticate messages sent from it.
+ </p>
+
+ <h2>4. Add Brevo DNS Records to Cloudflare</h2>
+
+ <p>
+ Open your domain in Cloudflare and go to:
+ </p>
+
+ <pre><code>DNS → Records</code></pre>
+
+ <p>
+ Then add the DNS records provided by Brevo.
+ </p>
+
+ <p>
+ Depending on your Brevo configuration, these can include records used for
+ domain verification, DKIM authentication and other email-related settings.
+ </p>
+
+ <p>
+ Copy the values exactly as Brevo provides them. Do not manually modify the
+ DKIM values.
+ </p>
+
+ <h2>5. Configure the Brevo Branded Subdomain</h2>
+
+ <p>
+ Brevo can also use a branded subdomain for tracking links.
+ For example:
+ </p>
+
+ <pre><code>track.yourdomain.com</code></pre>
+
+ <p>
+ Brevo provides a CNAME target for this subdomain.
+ </p>
+
+ <p>
+ In Cloudflare, add the CNAME record using the hostname provided by Brevo.
+ Make sure the record is configured as DNS only when Brevo specifically
+ requires that configuration.
+ </p>
+
+ <p>
+ After DNS propagation, Brevo should show the branded subdomain as configured.
+ </p>
+
+ <h2>6. Authenticate the Domain</h2>
+
+ <p>
+ Return to Brevo and check the domain authentication status.
+ Once the DNS records are detected, the domain should show as authenticated.
+ </p>
+
+ <p>
+ A properly authenticated domain improves email trust and helps receiving
+ mail servers verify that Brevo is authorized to send messages on behalf of
+ your domain.
+ </p>
+
+ <h2>7. Create Your Sender</h2>
+
+ <p>
+ After authenticating the domain, add the sender address you want to use.
+ For example:
+ </p>
+
+ <pre><code>webpulse@yourdomain.com</code></pre>
+
+ <p>
+ You can also provide a sender name such as:
+ </p>
+
+ <pre><code>WebPulse</code></pre>
+
+ <p>
+ Your outgoing emails can then appear as:
+ </p>
+
+ <pre><code>From: WebPulse &lt;webpulse@yourdomain.com&gt;</code></pre>
+
+ <h2>8. Important: Sending Is Not the Same as Receiving</h2>
+
+ <p>
+ One of the most confusing parts of custom email configuration is the
+ difference between sending and receiving.
+ </p>
+
+ <p>
+ Brevo can send email using your authenticated domain, but DNS authentication
+ alone does not create an inbox.
+ </p>
+
+ <p>
+ If somebody sends an email to:
+ </p>
+
+ <pre><code>webpulse@yourdomain.com</code></pre>
+
+ <p>
+ you need an email receiving or forwarding service configured for your domain.
+ That service is normally configured using MX records.
+ </p>
+
+ <p>
+ For example, your setup could look like:
+ </p>
+
+ <pre><code>Cloudflare
+    ↓
+DNS management
+
+Brevo
+    ↓
+Outgoing email
+
+Email provider / forwarding service
+    ↓
+Incoming email</code></pre>
+
+ <h2>9. Do Not Replace Your MX Records Without Checking</h2>
+
+ <p>
+ MX records control where incoming email for your domain is delivered.
+ If your domain already has an email provider configured, replacing its MX
+ records can stop incoming email.
+ </p>
+
+ <p>
+ Before changing MX records, check which service currently receives mail for
+ your domain.
+ </p>
+
+ <p>
+ Brevo's sending authentication records and your receiving mail records serve
+ different purposes, so they should not be confused.
+ </p>
+
+ <h2>10. Test Your DNS Configuration</h2>
+
+ <p>
+ You can verify DNS records directly from a Linux terminal using
+ <code>dig</code>.
+ </p>
+
+ <p>
+ For a CNAME record:
+ </p>
+
+ <pre><code>dig track.yourdomain.com CNAME</code></pre>
+
+ <p>
+ For MX records:
+ </p>
+
+ <pre><code>dig yourdomain.com MX</code></pre>
+
+ <p>
+ For TXT records:
+ </p>
+
+ <pre><code>dig yourdomain.com TXT</code></pre>
+
+ <p>
+ You can also query a specific DNS record using:
+ </p>
+
+ <pre><code>dig webpulse.yourdomain.com CNAME</code></pre>
+
+ <p>
+ If the record exists, the answer section should show the configured target.
+ </p>
+
+ <h2>11. Example Architecture</h2>
+
+ <p>
+ A simple setup for a project such as WebPulse could look like this:
+ </p>
+
+ <table>
+   <thead>
+     <tr>
+       <th>Component</th>
+       <th>Purpose</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td>yourdomain.com</td>
+       <td>Main domain</td>
+     </tr>
+     <tr>
+       <td>Cloudflare</td>
+       <td>DNS management</td>
+     </tr>
+     <tr>
+       <td>webpulse.yourdomain.com</td>
+       <td>Branded subdomain</td>
+     </tr>
+     <tr>
+       <td>Brevo</td>
+       <td>Outgoing email delivery</td>
+     </tr>
+     <tr>
+       <td>webpulse@yourdomain.com</td>
+       <td>Custom sender address</td>
+     </tr>
+     <tr>
+       <td>MX provider</td>
+       <td>Incoming email delivery</td>
+     </tr>
+   </tbody>
+ </table>
+
+ <h2>12. Final Checklist</h2>
+
+ <ul>
+   <li>Domain is using Cloudflare nameservers.</li>
+   <li>Brevo domain authentication is configured.</li>
+   <li>Brevo DNS records have been added to Cloudflare.</li>
+   <li>DKIM authentication is enabled.</li>
+   <li>Brevo branded tracking subdomain is configured if required.</li>
+   <li>Your sender address is configured in Brevo.</li>
+   <li>MX records are configured separately if you need incoming email.</li>
+   <li>DNS records have been verified using <code>dig</code>.</li>
+   <li>A real test email has been sent and received successfully.</li>
+ </ul>
+
+ <h2>Conclusion</h2>
+
+ <p>
+ Using Cloudflare and Brevo together gives you a clean way to send application
+ and transactional emails using your own domain.
+ </p>
+
+ <p>
+ The important thing is to understand that Cloudflare is responsible for DNS,
+ while Brevo handles outgoing email delivery. Creating a sender such as
+ <code>webpulse@yourdomain.com</code> does not automatically create an inbox, so
+ incoming email requires a separate mail receiving or forwarding configuration.
+ </p>
+
+ <h2>Related Articles</h2>
+ <ul>
+   <li><a href="docker-ps.html">Docker PS: A Complete Guide</a></li>
+   <li><a href="docker-compose-intro.html">Docker Compose: An Introduction</a></li>
+   <li><a href="docker-network-guide.html">Docker Network Guide</a></li>
+ </ul>
+
+ <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
+
+ <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
+   Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+   Published August 15, 2026
+ </p>
+ <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+
+ <!-- Topic SEO Keywords: custom email subdomain, cloudflare dns, brevo, dkim, branded sender -->
+ </article>
+
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+   <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+     <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+     <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+     <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+     <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+     <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+   </nav>
+   <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
+
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+ <script>
+ const THEMES = [
+   { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+   { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+   { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
+
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
+
+ function setTheme(themeId) {
+   currentTheme = themeId;
+   document.documentElement.setAttribute("data-theme", themeId);
+   localStorage.setItem('selected_theme', themeId);
+
+   document.querySelectorAll(".theme-btn").forEach(btn => {
+     if (btn.dataset.theme === themeId) {
+       btn.classList.add("active");
+     } else {
+       btn.classList.remove("active");
+     }
+   });
+ }
+
+ if (container) {
+   THEMES.forEach(theme => {
+     const btn = document.createElement("button");
+     btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+     btn.dataset.theme = theme.id;
+     btn.title = theme.label;
+
+     const bgPreview = document.createElement("div");
+     bgPreview.className = "theme-bg-preview";
+     bgPreview.style.backgroundColor = theme.bg;
+
+     const accentPreview = document.createElement("div");
+     accentPreview.className = "theme-accent-preview";
+     accentPreview.style.backgroundColor = theme.color;
+
+     btn.appendChild(bgPreview);
+     btn.appendChild(accentPreview);
+
+     btn.addEventListener("click", () => setTheme(theme.id));
+     container.appendChild(btn);
+   });
+
+   setTheme(currentTheme);
+ }
+ </script>
+
+</body>
+</html>

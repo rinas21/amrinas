@@ -5,6 +5,12 @@
     <link>https://rinas21.github.io/amrinas/</link>
     <description>Insights, research, and guides by A.M. Rinas.</description>
     <item>
+      <title>Setting Up a Custom Email Subdomain with Cloudflare and Brevo</title>
+      <link>https://rinas21.github.io/amrinas/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html</link>
+      <description>Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.</description>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Save Money &amp; Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code</title>
       <link>https://rinas21.github.io/amrinas/blogs/install-caveman.html</link>
       <description>Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM token usage.</description>

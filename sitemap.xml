@@ -619,6 +619,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://rinas.tech/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>yearly</changefreq>
