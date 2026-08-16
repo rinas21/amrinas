@@ -7,22 +7,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
- <meta name="keywords" content="SSL Exception in Tomcat with CAS, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
+ <meta property="article:published_time" content="2026-05-22T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-05-22T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="SSL Exception in Tomcat with CAS | A.M. Rinas Blog">
- <meta property="og:description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="SSL Exception in Tomcat with CAS">
- <meta name="twitter:description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -33,7 +38,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
@@ -43,10 +48,10 @@
 
 
  <!-- SEO Meta Tags -->
- <title>SSL Exception in Tomcat with CAS | A.M Rinas</title>
- <meta name="description" content="Fix javax.net.ssl.SSLException: Received fatal alert: protocol_version when Tomcat runs with CAS: enforce the TLS version supported by the server.">
+ <title>SSL Exception in Tomcat with CAS | A.M. Rinas Blog</title>
+ <meta name="description" content="While running Tomcat with CAS authentication, the following error occurs:">
  <link rel="canonical" href="https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
@@ -71,21 +76,21 @@
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-07-30",
- "dateModified": "2026-07-30",
+ "datePublished": "2026-05-22",
+ "dateModified": "2026-05-22",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/ssl-exception-in-tomcat-with-cas.html"
+ "@id": "https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html"
  }
  }
  </script>
@@ -99,19 +104,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "SSL Exception in Tomcat with CAS",
- "item": "https://rinas21.github.io/amrinas/blogs/ssl-exception-in-tomcat-with-cas.html"
+ "item": "https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html"
  }
  ]
  }
@@ -139,6 +144,16 @@
 
  <article class="blog-post-container">
 <h1>SSL Exception in Tomcat with CAS</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-05-22">May 22, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
 
 
 <h2>Issue</h2>
@@ -218,14 +233,27 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
 <li>Investigate Java security policies that might be restricting the allowed protocols.</li>
 </ol>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
- <!-- Topic SEO Keywords: Tomcat, CAS, SSLException, TLS, protocol_version -->
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="java-process-info-command.html">Java Process Info Command</a></li>
+ <li><a href="fix-java-virtual-machine-error-linux.html">Fixing &quot;Could Not Initialize Java Virtual Machine&quot; on Linux</a></li>
+ <li><a href="tomcat-on-ubuntu.html">How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -236,7 +264,11 @@ javax.net.ssl.SSLException: Received fatal alert: protocol_version
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

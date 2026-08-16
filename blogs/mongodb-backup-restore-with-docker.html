@@ -14,7 +14,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
  
  <style>
  .blog-post-container img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
@@ -36,22 +36,27 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Mongodb Backup Restore With Docker | A.M Rinas</title>
- <meta name="description" content="Back up and restore MongoDB in Docker: mongodump inside the container, docker cp to the host, and mongorestore to the same or a new database name.">
+ <title>MongoDB Backup &amp; Restore with Docker | A.M. Rinas Blog</title>
+ <meta name="description" content="A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.">
  <link rel="canonical" href="https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html">
- <meta name="robots" content="index, follow">
+ <meta property="article:published_time" content="2026-03-25T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-03-25T00:00:00+00:00">
+ <meta property="article:section" content="Databases">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="Mongodb Backup Restore With Docker">
- <meta property="og:description" content="Back up and restore MongoDB in Docker: mongodump inside the container, docker cp to the host, and mongorestore to the same or a new database name.">
+ <meta property="og:title" content="MongoDB Backup &amp; Restore with Docker">
+ <meta property="og:description" content="A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.">
  <meta property="og:url" content="https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Mongodb Backup Restore With Docker">
- <meta name="twitter:description" content="Back up and restore MongoDB in Docker: mongodump inside the container, docker cp to the host, and mongorestore to the same or a new database name.">
+ <meta name="twitter:title" content="MongoDB Backup &amp; Restore with Docker">
+ <meta name="twitter:description" content="A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -59,26 +64,26 @@
  {
  "@context": "https://schema.org",
  "@type": "BlogPosting",
- "headline": "Mongodb Backup Restore With Docker",
- "description": "Back up and restore MongoDB in Docker: mongodump inside the container, docker cp to the host, and mongorestore to the same or a new database name.",
+ "headline": "MongoDB Backup & Restore with Docker",
+ "description": "A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-06-11",
- "dateModified": "2026-06-11",
+ "datePublished": "2026-03-25",
+ "dateModified": "2026-03-25",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/mongodb-backup-restore-with-docker.html"
+ "@id": "https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html"
  }
  }
  </script>
@@ -92,19 +97,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Mongodb Backup Restore With Docker",
- "item": "https://rinas21.github.io/amrinas/blogs/mongodb-backup-restore-with-docker.html"
+ "item": "https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html"
  }
  ]
  }
@@ -131,6 +136,16 @@
 
  <article class="blog-post-container">
  <h1>MongoDB Backup &amp; Restore with Docker</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-03-25">March 25, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Databases</a></span>
+ <span class="post-meta-item">5 min read</span>
+ </div>
+ <!-- post-meta -->
  <p>
  This guide outlines the process for backing up and restoring MongoDB databases
  running in Docker containers. It uses generic names for containers and
@@ -258,11 +273,18 @@
  <li><a href="docker-build-failures-linux-vs-windows.html">Docker Build Failures: Linux vs Windows</a></li>
  </ul>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -273,7 +295,11 @@
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

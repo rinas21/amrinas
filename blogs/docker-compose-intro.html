@@ -6,9 +6,9 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="A beginner's guide to using Docker Compose to orchestrate multi-container applications.">
- <meta name="keywords" content="docker, docker-compose, devops">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
@@ -22,10 +22,15 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Introduction to Docker Compose | A.M Rinas</title>
+ <title>Introduction to Docker Compose | A.M. Rinas Blog</title>
  <meta name="description" content="A beginner's guide to using Docker Compose to orchestrate multi-container applications.">
  <link rel="canonical" href="https://rinas.tech/blogs/docker-compose-intro.html">
- <meta name="robots" content="index, follow">
+ <meta property="article:published_time" content="2026-01-22T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-01-22T00:00:00+00:00">
+ <meta property="article:section" content="DevOps">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
@@ -50,21 +55,21 @@
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-05-09",
- "dateModified": "2026-05-09",
+ "datePublished": "2026-01-22",
+ "dateModified": "2026-01-22",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/docker-compose-intro.html"
+ "@id": "https://rinas.tech/blogs/docker-compose-intro.html"
  }
  }
  </script>
@@ -78,19 +83,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Introduction to Docker Compose",
- "item": "https://rinas21.github.io/amrinas/blogs/docker-compose-intro.html"
+ "item": "https://rinas.tech/blogs/docker-compose-intro.html"
  }
  ]
  }
@@ -118,83 +123,168 @@
  <article class="blog-post-container">
 
  <h1>Introduction to Docker Compose</h1>
-
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-01-22">January 22, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">DevOps</a></span>
+ <span class="post-meta-item">6 min read</span>
+ </div>
+ <!-- post-meta -->
 
  <p>
- When developing modern applications, you rarely rely on a single service. A typical web application requires a frontend, a backend API, a database, and perhaps a caching layer like Redis. Managing all these containers manually with individual <code>docker run</code> commands becomes tedious and error-prone. This is where <strong>Docker Compose</strong> comes in.
+ Most applications I run are not a single container. There is the API, a database, sometimes a cache or a
+ message broker, and a scheduler that seeds data. Managing those by hand with individual
+ <code>docker run</code> commands is where mistakes happen — forgotten <code>--network</code> flags,
+ mismatched passwords between services, and the eternal question of which container is on which port.
+ Docker Compose fixes this by describing the whole stack in one YAML file and bringing it up with a single
+ command.
  </p>
- 
- <h2>What is Docker Compose?</h2>
+
+ <h2>What Docker Compose Is</h2>
  <p>
- Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file (usually named <code>docker-compose.yml</code>) to configure your application's services, networks, and volumes. Then, with a single command, you create and start all the services from your configuration.
+ Docker Compose is the tool that ships with Docker for defining and running multi-container applications.
+ You declare services, networks, and volumes in a <code>compose.yaml</code> file (the old name
+ <code>docker-compose.yml</code> still works), and <code>docker compose up -d</code> creates the network,
+ pulls the images, builds what needs building, and starts everything in dependency order.
  </p>
-
- <h2>Anatomy of a docker-compose.yml File</h2>
  <p>
- Let's look at a practical example. Imagine we are building a Node.js API that connects to a PostgreSQL database. Here is what our Compose file would look like:
+ One naming note that confuses people: the modern command is <code>docker compose</code> (a Docker
+ plugin, with a space) — the standalone <code>docker-compose</code> binary is the older v1 tool. Both read
+ the same file; modern files no longer need a <code>version:</code> key at the top, and if you see one in
+ an old guide you can safely drop it.
  </p>
- <pre><code>version: '3.8'
 
-services:
- api:
- build: ./api
- ports:
- - "3000:3000"
- environment:
- - DB_HOST=db
- - DB_USER=postgres
- - DB_PASSWORD=secret
- depends_on:
- - db
+ <h2>A Compose File That Looks Like Real Life</h2>
+ <p>
+ This is the shape of a typical stack: an API built from a local Dockerfile, a PostgreSQL database, and
+ health checks so the API does not start before the database is actually ready:
+ </p>
+ <pre><code>services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
 
- db:
- image: postgres:14
- environment:
- - POSTGRES_USER=postgres
- - POSTGRES_PASSWORD=secret
- - POSTGRES_DB=myapp
- volumes:
- - pgdata:/var/lib/postgresql/data
- ports:
- - "5432:5432"
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=myapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
 volumes:
- pgdata:
+  pgdata:
 </code></pre>
-
- <h2>Key Concepts Explained</h2>
- <h3>Services</h3>
  <p>
- The <code>services</code> block defines the containers that will make up your application. In the example above, we have two services: <code>api</code> and <code>db</code>. The <code>api</code> service is built from a local Dockerfile, while the <code>db</code> service uses an official PostgreSQL image from Docker Hub.
+ Compared with a "hello world" example, the practical differences that actually matter in daily use:
  </p>
- 
- <h3>Environment Variables</h3>
- <p>
- The <code>environment</code> section allows you to pass variables into the container. Notice how the <code>api</code> service uses <code>DB_HOST=db</code>. Docker Compose automatically sets up a default network where services can communicate with each other using their service names as hostnames.
- </p>
-
- <h3>Volumes</h3>
- <p>
- Containers are ephemeral by default. If the <code>db</code> container crashes or is removed, all your database data is lost. We solve this by defining a named volume (<code>pgdata</code>) and mounting it to the PostgreSQL data directory inside the container. This ensures data persistence across container restarts.
- </p>
-
- <h2>Useful Docker Compose Commands</h2>
  <ul>
- <li><code>docker-compose up -d</code>: Starts all services in the background (detached mode).</li>
- <li><code>docker-compose down</code>: Stops and removes all containers, networks, and anonymous volumes.</li>
- <li><code>docker-compose logs -f</code>: Tails the logs of all running services, which is incredibly useful for debugging.</li>
- <li><code>docker-compose exec [service_name] bash</code>: Opens a shell inside a running service container.</li>
+ <li><strong>No <code>version:</code> key</strong> — the current Compose spec does not need it.</li>
+ <li><strong><code>depends_on</code> with <code>condition: service_healthy</code></strong> — plain
+ <code>depends_on</code> only waits for the container to start, not for the database to accept
+ connections. Without the healthcheck, the API starts, fails to connect, and exits — and you get to
+ explain why the stack "randomly" worked on the second run.</li>
+ <li><strong><code>${DB_PASSWORD}</code> from a <code>.env</code> file</strong> — Compose reads a
+ <code>.env</code> file in the same directory and substitutes variables. Passwords in compose files get
+ committed to git eventually; environment variables do not.</li>
+ <li><strong><code>restart: unless-stopped</code></strong> — the API comes back after a reboot or crash
+ without you noticing the outage. The default policy is <code>no</code>, which is usually the wrong
+ choice for a service you expect to stay up.</li>
  </ul>
- 
+
+ <h2>How Compose Networking Works</h2>
  <p>
- Mastering Docker Compose will dramatically improve your local development workflow, ensuring consistency between your local machine and your team's environments.
+ Compose creates a default network for the project, and every service can reach every other service by
+ <strong>service name</strong>: inside the API container, the database is reachable at <code>db:5432</code>
+ rather than <code>localhost:5432</code> (inside the container, localhost is the container itself). This is
+ why the API uses <code>DB_HOST=db</code>. You never need to know the database container's IP address —
+ Compose's built-in DNS handles it, and that is also the basis of the
+ <a href="docker-network-guide.html">bridge network model</a>.
  </p>
- 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
+
+ <h2>The Commands You Will Actually Use</h2>
+ <ul>
+ <li><code>docker compose up -d</code> — build and start everything in the background. Without
+ <code>-d</code> it runs in the foreground and Ctrl+C stops the stack.</li>
+ <li><code>docker compose up -d --build</code> — rebuild images before starting; see
+ <a href="docker-compose-up-build-command.html">docker compose up --build</a> for when this matters.</li>
+ <li><code>docker compose logs -f</code> — tail logs from all services; add a service name to limit to one.</li>
+ <li><code>docker compose exec api sh</code> — open a shell inside a running service.</li>
+ <li><code>docker compose down</code> — stop and remove containers and the default network. Volumes are
+ kept, so the database survives; <code>docker compose down -v</code> removes volumes too — use it only
+ when you mean to destroy data.</li>
+ <li><code>docker compose ps</code> — status of the services in the current directory's project.</li>
+ </ul>
+
+ <h2>Problems You Will Hit and Why</h2>
+ <p>
+ The most common failure with this file is a <strong>port conflict</strong>: if anything else on the host
+ already listens on <code>5432</code> (a natively installed PostgreSQL, for instance), <code>up</code>
+ fails with <code>bind: address already in use</code>. The container's internal port stays the same —
+ change only the left-hand side of the mapping, e.g. <code>"5433:5432"</code>, and update
+ <code>DB_PORT</code> in the API.
  </p>
+ <p>
+ The second classic: <code>docker compose down</code> followed by "where did my data go?" — data is safe
+ because it lives in the named <code>pgdata</code> volume, not in the container. Containers are ephemeral;
+ volumes are the point of persistence, which matters when you
+ <a href="mongodb-backup-restore-with-docker.html">back up and restore databases</a>.
+ </p>
+
+ <h2>Where to Go Next</h2>
+ <ul>
+ <li><a href="docker-compose-up-build-command.html">docker compose up --build</a> — rebuild semantics</li>
+ <li><a href="docker-network-guide.html">Creating Docker Networks for Container Communication</a></li>
+ <li><a href="how-to-disable-auto-start-for-a-docker-container.html">Disabling auto-start for a container</a></li>
+ <li><a href="docker-build-failures-linux-vs-windows.html">Why Docker builds fail differently on Linux and Windows</a></li>
+ </ul>
+
+ <p>
+ Compose removes the "which container, which port, which network" guesswork from a multi-service stack.
+ The file above is a solid template: a healthchecked database, an API that waits for it, secrets outside
+ the repo, and a restart policy that keeps things running.
+ </p>
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="docker-compose-up-build-command.html">Docker Compose: The up --build Command</a></li>
+ <li><a href="docker-network-guide.html">Creating Docker Networks for Container Communication</a></li>
+ <li><a href="docker-ps.html">docker ps: Listing and Monitoring Containers</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -205,7 +295,11 @@ volumes:
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

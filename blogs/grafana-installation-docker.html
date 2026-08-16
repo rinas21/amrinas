@@ -8,22 +8,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
- <meta name="keywords" content="Grafana installation Docker, Grafana OSS Ubuntu, Docker compose Grafana, Grafana data persistence, Grafana troubleshooting, DevOps monitoring, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/grafana-installation-docker.html">
+ <meta property="article:published_time" content="2026-02-21T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-02-21T00:00:00+00:00">
+ <meta property="article:section" content="DevOps">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="Grafana Installation on Ubuntu using Docker | A.M. Rinas Blog">
- <meta property="og:description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/grafana-installation-docker.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Grafana Installation on Ubuntu using Docker">
- <meta name="twitter:description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -34,7 +39,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
  <!-- JSON-LD Schema -->
 
@@ -46,22 +51,22 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Grafana Installation on Ubuntu using Docker | A.M Rinas</title>
- <meta name="description" content="Install Grafana with Docker: run the container, persist data in a volume, configure datasources, and troubleshoot common startup issues.">
+ <title>Grafana Installation on Ubuntu using Docker | A.M. Rinas Blog</title>
+ <meta name="description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker">
  <link rel="canonical" href="https://rinas.tech/blogs/grafana-installation-docker.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Grafana Installation on Ubuntu using Docker">
- <meta property="og:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker....">
+ <meta property="og:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker">
  <meta property="og:url" content="https://rinas.tech/blogs/grafana-installation-docker.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Grafana Installation on Ubuntu using Docker">
- <meta name="twitter:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker....">
+ <meta name="twitter:description" content="Install Grafana OSS (open-source version) on Ubuntu using Docker">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -70,25 +75,25 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Grafana Installation on Ubuntu using Docker",
- "description": "Install Grafana OSS (open-source version) on Ubuntu using Docker....",
+ "description": "Install Grafana OSS (open-source version) on Ubuntu using Docker",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-05-24",
- "dateModified": "2026-05-24",
+ "datePublished": "2026-02-21",
+ "dateModified": "2026-02-21",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/grafana-installation-docker.html"
+ "@id": "https://rinas.tech/blogs/grafana-installation-docker.html"
  }
  }
  </script>
@@ -102,19 +107,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Grafana Installation on Ubuntu using Docker",
- "item": "https://rinas21.github.io/amrinas/blogs/grafana-installation-docker.html"
+ "item": "https://rinas.tech/blogs/grafana-installation-docker.html"
  }
  ]
  }
@@ -142,6 +147,16 @@
 
  <article class="blog-post-container">
  <h1>Grafana Installation on Ubuntu using Docker</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-02-21">February 21, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">DevOps</a></span>
+ <span class="post-meta-item">5 min read</span>
+ </div>
+ <!-- post-meta -->
 
  <p>
  Grafana turns metrics into dashboards — you point it at a data source (Prometheus, InfluxDB, PostgreSQL)
@@ -281,14 +296,18 @@ sudo docker run -d -p 3000:3000 --name=grafana \
  <li><a href="netstat-commnd.html">netstat Commands: A Comprehensive Guide</a></li>
  </ul>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
- <!-- Topic SEO Keywords: Grafana installation Docker, Grafana OSS Ubuntu, DevOps monitoring tools, Grafana dashboard setup, Docker compose Grafana -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -299,7 +318,11 @@ sudo docker run -d -p 3000:3000 --name=grafana \
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

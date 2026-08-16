@@ -7,22 +7,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Enable SSLProxyEngine in Apache for HTTPS reverse proxying: add the directive inside the VirtualHost, test with apachectl configtest and reload.">
- <meta name="keywords" content="Steps To Enable Sslproxyengine In Apache, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html">
+ <meta property="article:published_time" content="2026-05-20T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-05-20T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="Steps To Enable Sslproxyengine In Apache | A.M. Rinas Blog">
- <meta property="og:description" content="Enable SSLProxyEngine in Apache for HTTPS reverse proxying: add the directive inside the VirtualHost, test with apachectl configtest and reload.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Steps To Enable Sslproxyengine In Apache">
- <meta name="twitter:description" content="Enable SSLProxyEngine in Apache for HTTPS reverse proxying: add the directive inside the VirtualHost, test with apachectl configtest and reload.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -33,7 +38,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
@@ -43,21 +48,21 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Steps To Enable Sslproxyengine In Apache | A.M Rinas</title>
- <meta name="description" content="Enable SSLProxyEngine in Apache for HTTPS reverse proxying: add the directive inside the VirtualHost, test with apachectl configtest and reload.">
+ <title>Steps to Enable SSLProxyEngine in Apache | A.M. Rinas Blog</title>
+ <meta name="description" content="Insights and technical documentation.">
  <link rel="canonical" href="https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
- <meta property="og:title" content="Steps To Enable Sslproxyengine In Apache">
+ <meta property="og:title" content="Steps to Enable SSLProxyEngine in Apache">
  <meta property="og:description" content="Insights and technical documentation.">
  <meta property="og:url" content="https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Steps To Enable Sslproxyengine In Apache">
+ <meta name="twitter:title" content="Steps to Enable SSLProxyEngine in Apache">
  <meta name="twitter:description" content="Insights and technical documentation.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
@@ -66,26 +71,26 @@
  {
  "@context": "https://schema.org",
  "@type": "BlogPosting",
- "headline": "Steps To Enable Sslproxyengine In Apache",
+ "headline": "Steps to Enable SSLProxyEngine in Apache",
  "description": "Insights and technical documentation.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-07-31",
- "dateModified": "2026-07-31",
+ "datePublished": "2026-05-20",
+ "dateModified": "2026-05-20",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/steps-to-enable-sslproxyengine-in-apache.html"
+ "@id": "https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html"
  }
  }
  </script>
@@ -99,19 +104,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Steps To Enable Sslproxyengine In Apache",
- "item": "https://rinas21.github.io/amrinas/blogs/steps-to-enable-sslproxyengine-in-apache.html"
+ "item": "https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html"
  }
  ]
  }
@@ -139,6 +144,16 @@
 
  <article class="blog-post-container">
  <h1>Steps to Enable SSLProxyEngine in Apache</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-05-20">May 20, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
  <p>
  <code>SSLProxyEngine</code> is required when Apache acts as a reverse proxy
  and forwards requests to a backend that serves HTTPS. Without it, requests to
@@ -185,14 +200,18 @@
  <li><a href="ssl-exception-in-tomcat-with-cas.html">SSL Exception in Tomcat with CAS</a></li>
  </ul>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
- <!-- Topic SEO Keywords: Apache, SSLProxyEngine, reverse proxy, mod_proxy_ssl, 502 -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -203,7 +222,11 @@
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

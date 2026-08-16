@@ -7,22 +7,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Paging vs segmentation in operating systems: fixed-size pages with page tables versus variable-size segments, and how each manages memory.">
- <meta name="keywords" content="Paging vs. Segmentation, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/paging-vs-segmentation.html">
+ <meta property="article:published_time" content="2026-06-05T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-06-05T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="Paging vs. Segmentation | A.M. Rinas Blog">
- <meta property="og:description" content="Paging vs segmentation in operating systems: fixed-size pages with page tables versus variable-size segments, and how each manages memory.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/paging-vs-segmentation.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Paging vs. Segmentation">
- <meta name="twitter:description" content="Paging vs segmentation in operating systems: fixed-size pages with page tables versus variable-size segments, and how each manages memory.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -33,7 +38,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
@@ -43,22 +48,22 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Paging vs. Segmentation | A.M Rinas</title>
- <meta name="description" content="Paging vs segmentation in operating systems: fixed-size pages with page tables versus variable-size segments, and how each manages memory.">
+ <title>Paging vs. Segmentation | A.M. Rinas Blog</title>
+ <meta name="description" content="Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di">
  <link rel="canonical" href="https://rinas.tech/blogs/paging-vs-segmentation.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Paging vs. Segmentation">
- <meta property="og:description" content="Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di...">
+ <meta property="og:description" content="Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di">
  <meta property="og:url" content="https://rinas.tech/blogs/paging-vs-segmentation.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Paging vs. Segmentation">
- <meta name="twitter:description" content="Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di...">
+ <meta name="twitter:description" content="Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -67,25 +72,25 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Paging vs. Segmentation",
- "description": "Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di...",
+ "description": "Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-07-23",
- "dateModified": "2026-07-23",
+ "datePublished": "2026-06-05",
+ "dateModified": "2026-06-05",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/paging-vs-segmentation.html"
+ "@id": "https://rinas.tech/blogs/paging-vs-segmentation.html"
  }
  }
  </script>
@@ -99,19 +104,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Paging vs. Segmentation",
- "item": "https://rinas21.github.io/amrinas/blogs/paging-vs-segmentation.html"
+ "item": "https://rinas.tech/blogs/paging-vs-segmentation.html"
  }
  ]
  }
@@ -138,298 +143,117 @@
  </header>
 
  <article class="blog-post-container">
-<h1>Paging vs. Segmentation</h1>
+<h1>Paging vs. Segmentation: How Operating Systems Manage Memory</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-06-05">June 5, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
 
+<p>Every running process needs memory, and the operating system has to decide how to hand it out. Two classical strategies exist: <strong>segmentation</strong>, which divides memory along the logical structure of a program, and <strong>paging</strong>, which divides it into fixed-size blocks. Modern Linux, Windows, and macOS all use paging in practice. This article explains both approaches, why paging won, and where you actually notice the difference as a developer.</p>
 
-<p><strong>Paging</strong> and <strong>Segmentation</strong> are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in different ways. Here’s a detailed comparison:</p>
-<h2>1. <strong>Concept</strong></h2>
+<h2>Segmentation: Memory That Mirrors Your Program</h2>
+<p>In a segmented memory model, a process's address space is split into variable-sized segments that correspond to program structure: a code segment, a data segment, a stack segment, and so on. Each segment is described by a <strong>base address</strong> (where it starts in physical memory) and a <strong>limit</strong> (its size), and a segment selector identifies the segment being accessed.</p>
+<p>The x86 architecture was designed around this idea — registers like <code>CS</code>, <code>DS</code>, and <code>SS</code> point to code, data, and stack segments, and the CPU checks every access against the segment's limit. That check is the original hardware-level memory protection mechanism: one process could not reach outside its segments because the CPU would raise a fault.</p>
+<p>The fundamental weakness is <strong>external fragmentation</strong>. Because segments are variable-sized, allocating and freeing them over time leaves small holes between segments that are individually too small to be used, even when the total free memory is large. Fixing it requires compaction — moving segments around in physical memory — and every pointer into a moved segment breaks unless the OS updates it.</p>
+
+<h2>Paging: Fixed-Size Blocks and a Page Table</h2>
+<p>Paging ignores program structure entirely. Virtual memory is cut into fixed-size blocks called <strong>pages</strong> — 4&nbsp;KB on most Linux and x86-64 systems, with 2&nbsp;MB "huge pages" available on servers — and physical memory into equally sized <strong>frames</strong>. A per-process <strong>page table</strong> maps every virtual page to a physical frame.</p>
+<p>This eliminates external fragmentation by construction: any page fits into any free frame, so memory never gets riddled with unusable gaps. The costs are:</p>
 <ul>
-<li><p><strong>Paging</strong>: </p>
+<li><strong>Internal fragmentation</strong> — a process whose heap is 4&nbsp;KB plus one byte occupies two full pages, wasting most of the second one.</li>
+<li><strong>Translation overhead</strong> — every memory access must go through the page table. CPUs mitigate this with a <strong>Translation Lookaside Buffer (TLB)</strong>, a hardware cache of recent virtual-to-physical translations. A process whose working set exceeds the TLB's capacity spends significant time walking page tables.</li>
+<li><strong>Memory for page tables</strong> — a multi-level page table is small per process, but thousands of processes add up; Linux splits the address space so that shared kernel tables are not duplicated.</li>
+</ul>
+
+<h2>What x86 Actually Does Today</h2>
+<p>On modern 64-bit systems, addresses are translated through multiple levels of page tables, and segments still exist in the architecture but are configured "flat" — base 0, no limit — so they effectively do nothing. Linux uses the <code>FS</code> segment register for thread-local storage, which is about the only place segments matter in practice. The segment-based scheme above lives on mainly in textbooks, <code>80386</code> era tutorials, and languages like early C runtimes that referenced segment registers directly.</p>
+
+<h2>Why Paging Won</h2>
 <ul>
-<li>Divides memory into <strong>fixed-size blocks</strong> called <strong>pages</strong>.</li>
-<li>Each page in virtual memory is mapped to a corresponding page in physical memory.</li>
+<li><strong>No external fragmentation</strong>, so memory utilization stays high without expensive compaction.</li>
+<li><strong>Demand paging and swapping</strong> become possible: individual pages can be swapped out to disk or mapped lazily, because a page is a fixed, pageable unit. A segment is a whole program component — you cannot easily page out "half a stack segment".</li>
+<li><strong>Copy-on-write</strong> — <code>fork()</code> on Linux shares parent and child memory by mapping the same frames read-only and copying only on write. That is why forking is cheap. Segmentation has no equivalent mechanism.</li>
+<li><strong>Sharing</strong> — shared libraries map the same physical frames into many processes' page tables. The OS shares memory in page-granularity units, not program-shaped segments.</li>
 </ul>
-</li>
-<li><p><strong>Segmentation</strong>: </p>
+
+<h2>Where You Notice This as a Developer</h2>
 <ul>
-<li>Divides memory into <strong>variable-sized segments</strong> (e.g., <strong>code</strong>, <strong>data</strong>, <strong>stack</strong>).</li>
-<li>Each segment is treated as a separate entity and is allocated space accordingly.</li>
+<li><code>/proc/&lt;pid&gt;/smaps</code> shows every mapped region of a process, including per-page reference counts; <code>smem</code> reports proportional memory accounting across shared mappings.</li>
+<li>The JVM maps its heap with <code>mmap</code>. The difference between <code>RSS</code> and <code>VSZ</code> in <code>ps</code> output is paging and lazy allocation in action — virtual memory is reserved up front, but physical frames are only touched when pages are actually accessed.</li>
+<li>Databases such as PostgreSQL and MySQL document <strong>huge pages</strong> because a big buffer pool means a working set of many 4&nbsp;KB pages, and the TLB can only hold so many translations. Fewer, larger pages mean fewer TLB misses — a direct consequence of how paging works.</li>
+<li><code>free -m</code> showing "buffers/cache" is the page cache: files cached as pages, reclaimed on demand.</li>
 </ul>
-</li>
-</ul>
-<h2>2. <strong>Size</strong></h2>
-<ul>
-<li><p><strong>Paging</strong>: </p>
-<ul>
-<li>Pages are <strong>fixed in size</strong> (e.g., 4KB, 8KB).</li>
-</ul>
-</li>
-<li><p><strong>Segmentation</strong>: </p>
-<ul>
-<li>Segments are <strong>variable in size</strong>.</li>
-<li>The size of each segment depends on the specific part of the program.</li>
-</ul>
-</li>
-</ul>
-<h2>3. <strong>Memory Allocation</strong></h2>
-<ul>
-<li><p><strong>Paging</strong>:</p>
-<ul>
-<li>Allocates memory in fixed-sized chunks (pages).</li>
-<li>May lead to <strong>internal fragmentation</strong> (unused space within a page).</li>
-</ul>
-</li>
-<li><p><strong>Segmentation</strong>:</p>
-<ul>
-<li>Allocates memory based on the actual size of the segment.</li>
-<li>May result in <strong>external fragmentation</strong> (unused space between segments).</li>
-</ul>
-</li>
-</ul>
-<h2>4. <strong>Addressing</strong></h2>
-<ul>
-<li><p><strong>Paging</strong>: </p>
-<ul>
-<li>Uses <strong>page numbers</strong> and <strong>offsets</strong> for addressing memory.</li>
-<li>Linear address mapping.</li>
-</ul>
-</li>
-<li><p><strong>Segmentation</strong>: </p>
-<ul>
-<li>Uses <strong>segment numbers</strong> and <strong>segment offsets</strong> for addressing memory.</li>
-<li>Logical memory structure, making it more intuitive for program-based divisions.</li>
-</ul>
-</li>
-</ul>
-<h2>5. <strong>Advantages and Disadvantages</strong></h2>
-<h3>Paging:</h3>
-<ul>
-<li><p><strong>Advantages</strong>:</p>
-<ul>
-<li>Efficient memory utilization.</li>
-<li>Less fragmentation (internal fragmentation only).</li>
-</ul>
-</li>
-<li><p><strong>Disadvantages</strong>:</p>
-<ul>
-<li><strong>Internal fragmentation</strong>.</li>
-<li>Less logical organization of memory.</li>
-</ul>
-</li>
-</ul>
-<h3>Segmentation:</h3>
-<ul>
-<li><p><strong>Advantages</strong>:</p>
-<ul>
-<li>Logical memory structure (code, data, etc.).</li>
-<li>Flexible segment sizes.</li>
-</ul>
-</li>
-<li><p><strong>Disadvantages</strong>:</p>
-<ul>
-<li><strong>External fragmentation</strong>.</li>
-<li>Complex to manage.</li>
-</ul>
-</li>
-</ul>
-<h2>6. <strong>Example Use Cases</strong></h2>
-<h3>Paging:</h3>
-<ul>
-<li><strong>Used in</strong>: Operating systems like <strong>Linux</strong> and <strong>Windows</strong>.</li>
-<li><strong>Purpose</strong>: To manage large amounts of data and processes by dividing memory into fixed-size pages.</li>
-</ul>
-<h3>Segmentation:</h3>
-<ul>
-<li><strong>Used in</strong>: Programming languages like <strong>C</strong>, <strong>Java</strong>.</li>
-<li><strong>Purpose</strong>: To logically organize memory into separate segments (e.g., code, data, stack) and manage them individually.</li>
-</ul>
-<h2>7. <strong>Summary</strong></h2>
+
+<h2>Comparison Table</h2>
 <table>
 <thead>
 <tr>
 <th>Feature</th>
-<th><strong>Paging</strong></th>
-<th><strong>Segmentation</strong></th>
+<th>Paging</th>
+<th>Segmentation</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Memory Division</strong></td>
-<td>Fixed-size pages</td>
+<td>Memory division</td>
+<td>Fixed-size pages (e.g., 4 KB)</td>
 <td>Variable-size segments</td>
 </tr>
 <tr>
-<td><strong>Size of Blocks</strong></td>
-<td>Fixed (e.g., 4KB, 8KB)</td>
-<td>Variable</td>
+<td>Fragmentation</td>
+<td>Internal (wasted space inside a page)</td>
+<td>External (unusable gaps between segments)</td>
 </tr>
 <tr>
-<td><strong>Fragmentation</strong></td>
-<td>Internal fragmentation (unused space within a page)</td>
-<td>External fragmentation (unused space between segments)</td>
+<td>Addressing</td>
+<td>Page number + offset, via page table</td>
+<td>Segment number + offset, via segment table</td>
 </tr>
 <tr>
-<td><strong>Addressing</strong></td>
-<td>Divided into page number and offset</td>
-<td>Divided into segment number and offset</td>
+<td>Protection granularity</td>
+<td>Per page</td>
+<td>Per segment (code/data/stack)</td>
 </tr>
 <tr>
-<td><strong>Use Case</strong></td>
-<td>OS memory management (e.g., Linux, Windows)</td>
-<td>Logical structure in programs (e.g., code, data)</td>
+<td>Supports demand paging / swapping</td>
+<td>Yes</td>
+<td>Not practically</td>
+</tr>
+<tr>
+<td>Used by modern OS kernels</td>
+<td>Yes (Linux, Windows, macOS)</td>
+<td>No (flat model + paging)</td>
 </tr>
 </tbody></table>
-<h3>In Summary:</h3>
-<ul>
-<li><strong>Paging</strong> is efficient but less flexible, making it ideal for memory management in operating systems.</li>
-<li><strong>Segmentation</strong> is more flexible, closely reflecting the structure of a program, but it can lead to external fragmentation.</li>
-</ul>
-<hr>
-<h2>Maven Usages for Issue Troubleshooting in Development</h2>
-<h2>Maven is not only a build tool but also a great utility for troubleshooting issues during development. Here are some common troubleshooting scenarios and how Maven can help:</h2>
-<h3>Problem:</h3>
-<h2>1. Conflicting or missing dependencies in your project.</h2>
-<h3>Solution:</h3>
-<p>Use Maven commands to inspect, resolve, or debug dependency problems.</p>
-<pre><code class="language-bash">mvn dependency:tree
-</code></pre>
-<p><strong>Usage:</strong>
-Displays a hierarchical tree of dependencies. This helps identify conflicts (e.g., multiple versions of the same library).</p>
-<pre><code class="language-bash">mvn dependency:analyze
-</code></pre>
-<p>**Usage:**Checks for unused or undeclared dependencies.</p>
-<h2>2. Verifying Repository Configuration</h2>
-<h3>Problem:</h3>
-<p>Maven is unable to download dependencies or plugins from repositories.</p>
-<h3>Solution:</h3>
-<pre><code class="language-bash">mvn dependency:purge-local-repository
-</code></pre>
-<p>**Usage:**Clears the local repository cache and downloads fresh artifacts.</p>
-<ul>
-<li>~/.m2/settings.xml</li>
-</ul>
-<h2>3. Debugging Build Failures</h2>
-<h3>Problem:</h3>
-<p>Builds are failing due to unclear errors.</p>
-<h3>Solution:</h3>
-<p>Enable verbose logging to identify the exact issue.</p>
-<pre><code class="language-bash">mvn clean install -X
-</code></pre>
-<p>**Usage:**Runs the build in debug mode to provide detailed logs for error analysis.</p>
-<h2>4. Diagnosing Plugin Issues</h2>
-<h3>Problem:</h3>
-<p>Plugins are misbehaving or not working as expected.</p>
-<h3>Solution:</h3>
-<pre><code class="language-bash">mvn help:effective-pom
-</code></pre>
-<p>**Usage:**Displays the full pom.xml with inherited and default configurations. Helps in debugging plugin misconfigurations.</p>
-<pre><code class="language-bash">mvn versions:display-plugin-updates
-</code></pre>
-<h2>5. Resolving Out-of-Sync Dependencies</h2>
-<h3>Problem:</h3>
-<p>Your dependencies are updated, but Maven still uses the old versions.</p>
-<h3>Solution:</h3>
-<pre><code class="language-bash">mvn dependency:purge-local-repository
-</code></pre>
-<p>Clears local cache for dependencies and forces a fresh download.</p>
-<pre><code class="language-bash">mvn clean install -UForces 
-</code></pre>
-<p>Maven to update snapshots and dependencies.</p>
-<h2>6. Identifying Build Profiles</h2>
-<h3>Problem:</h3>
-<p>Build behaves differently in different environments (e.g., staging vs. production).</p>
-<h3>Solution:</h3>
-<pre><code class="language-bash">mvn help:active-profiles
-</code></pre>
-<p>**Usage:**Lists all active profiles in the current build session.</p>
-<h2>7. Skipping Tests in Maven</h2>
-<p>If you want to skip tests during the build process (e.g., to save time):</p>
-<ul>
-<li>Add -DskipTests: This skips the execution of tests but still compiles them.</li>
-</ul>
-<pre><code class="language-bash">mvn clean install -DskipTests
-</code></pre>
-<ul>
-<li>Add -Dmaven.test.skip=true: This skips both the test execution and compilation.</li>
-</ul>
-<pre><code class="language-bash">mvn clean install -Dmaven.test.skip=true
-</code></pre>
-<h2>8. Building a Specific Version</h2>
-<ul>
-<li><p>If your project has multiple versions (e.g., tagged in Git), you can specify a version or a branch during the build:</p>
-</li>
-<li><p>Building a specific version: Assuming you have checked out the desired version or branch:</p>
-</li>
-</ul>
-<pre><code class="language-bash">git checkout v1.2
-mvn clean install
-</code></pre>
-<h2>9. Running a Specific Module</h2>
-<p>If your Maven project is a multi-module project and you only want to build a specific module:</p>
-<pre><code class="language-bash">mvn clean install -pl &lt;module-name&gt;
-</code></pre>
-<p>To include the dependencies of the module:</p>
-<pre><code class="language-bash">mvn clean install -pl &lt;module-name&gt; -am
-</code></pre>
-<h2>10. Running Maven Goals</h2>
-<ul>
-<li>Here are some commonly used Maven goals with examples:</li>
-</ul>
-<p><em>Clean: Deletes the target/ directory.</em></p>
-<pre><code class="language-bash">mvn clean
-</code></pre>
-<ul>
-<li>Compile: Compiles the source code.</li>
-</ul>
-<pre><code class="language-bash">mvn compile
-</code></pre>
-<ul>
-<li>Test: Runs the unit tests.</li>
-</ul>
-<pre><code class="language-bash">
-mvn test
-</code></pre>
-<ul>
-<li>Package: Builds the project and packages the output (e.g., WAR, JAR).</li>
-</ul>
-<pre><code class="language-bash">mvn package
-</code></pre>
-<ul>
-<li>Install: Installs the package in your local Maven repository.</li>
-</ul>
-<pre><code class="language-bash">mvn install
-</code></pre>
-<ul>
-<li>Deploy: Deploys the built package to a remote repository.</li>
-</ul>
-<pre><code class="language-bash">mvn deploy
-</code></pre>
-<h2>11. Profiles in Maven</h2>
-<ul>
-<li><p>You can use profiles to activate specific configurations or dependencies.</p>
-</li>
-<li><p>To activate a profile:</p>
-</li>
-</ul>
-<pre><code class="language-bash">mvn clean install -P&lt;profile-name&gt;
-</code></pre>
-<h2>12. Verbose Debugging</h2>
-<p>For troubleshooting Maven build issues, you can enable debug output:</p>
-<pre><code class="language-bash">mvn clean install -X
-</code></pre>
-<ul>
-<li>skip the tests.</li>
-</ul>
-<pre><code class="language-bash">mvn clean install -DskipTests
-</code></pre>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
- <!-- Topic SEO Keywords: paging, segmentation, memory management, operating systems, virtual memory -->
+<h2>Summary</h2>
+<p>Paging wins because it trades a little wasted space per page for a memory model that has no external fragmentation, supports demand paging, copy-on-write, and cheap sharing — properties a modern multitasking kernel needs. Segmentation's only real advantages, logical organization and fine-grained protection, are now handled by paging plus per-region access flags. When you are debugging a process's memory usage on Linux, you are almost always debugging paging.</p>
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="cpu-cycle-and-its-relation-to-time.html">CPU Cycle and its Relation to Time</a></li>
+ <li><a href="basic-linux.html">Essential Linux System Commands: A Systems Engineering Reference</a></li>
+ <li><a href="eulerian-and-hamiltonian-graphs.html">Eulerian and Hamiltonian Graphs</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -440,7 +264,11 @@ mvn test
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

@@ -7,22 +7,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="List Java processes with PID and working directory: use jps piped to pwdx, plus SSH server settings for connection timeouts and security.">
- <meta name="keywords" content="Java Process Info Command, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/java-process-info-command.html">
+ <meta property="article:published_time" content="2026-06-29T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-06-29T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="Java Process Info Command | A.M. Rinas Blog">
- <meta property="og:description" content="List Java processes with PID and working directory: use jps piped to pwdx, plus SSH server settings for connection timeouts and security.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/java-process-info-command.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Java Process Info Command">
- <meta name="twitter:description" content="List Java processes with PID and working directory: use jps piped to pwdx, plus SSH server settings for connection timeouts and security.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -33,7 +38,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
@@ -43,10 +48,10 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Java Process Info Command | A.M Rinas</title>
- <meta name="description" content="List Java processes with PID and working directory: use jps piped to pwdx, plus SSH server settings for connection timeouts and security.">
+ <title>Java Process Info Command | A.M. Rinas Blog</title>
+ <meta name="description" content="The following settings help manage timeouts, session limits, and authentication attempts for SSH connections:">
  <link rel="canonical" href="https://rinas.tech/blogs/java-process-info-command.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
@@ -71,21 +76,21 @@
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-07-11",
- "dateModified": "2026-07-11",
+ "datePublished": "2026-06-29",
+ "dateModified": "2026-06-29",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/java-process-info-command.html"
+ "@id": "https://rinas.tech/blogs/java-process-info-command.html"
  }
  }
  </script>
@@ -99,19 +104,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Java Process Info Command",
- "item": "https://rinas21.github.io/amrinas/blogs/java-process-info-command.html"
+ "item": "https://rinas.tech/blogs/java-process-info-command.html"
  }
  ]
  }
@@ -137,101 +142,85 @@
  </nav>
  </header>
 
- <article class="blog-post-container">
-<h2>Java Process Info - Command</h2>
-<h2>Command to list PID and Working Directory for Java processes</h2>
-<pre><code class="language-bash">jps | grep -v Jps | while read pid _; do pwdx $pid; done
-</code></pre>
-<hr>
-<h2>SSH Configuration for Connection Timeout and Security Settings</h2>
-<h3>SSH Server Configuration (<code>/etc/ssh/sshd_config</code>)</h3>
-<p>The following settings help manage timeouts, session limits, and authentication attempts for SSH connections:</p>
-<h3>Configuration Settings:</h3>
-<ol>
-<li><p><strong>Key Exchange Algorithms</strong>:</p>
-<pre><code class="language-bash">KexAlgorithms -diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
-</code></pre>
-<ul>
-<li>This configuration disables certain key exchange algorithms (<code>diffie-hellman-group1-sha1</code>, <code>diffie-hellman-group14-sha1</code>, and <code>diffie-hellman-group-exchange-sha1</code>).</li>
-<li>It is used to enforce stronger encryption algorithms and prevent weak ones.</li>
-</ul>
-</li>
-<li><p><strong>Max Startups</strong>:</p>
-<pre><code class="language-bash">MaxStartups 10:30:60
-</code></pre>
-<ul>
-<li>Controls the maximum number of simultaneous unauthenticated connections to the SSH server.</li>
-<li><code>10</code>: Maximum number of unauthenticated connections.</li>
-<li><code>30</code>: Percentage of connections rejected once the limit is reached.</li>
-<li><code>60</code>: The maximum number of unauthenticated connections after which the server blocks new ones.</li>
-</ul>
-</li>
-<li><p><strong>Max Sessions</strong>:</p>
-<pre><code class="language-bash">MaxSessions 10
-</code></pre>
-<ul>
-<li>Limits the number of open sessions per connection.</li>
-<li>In this case, a maximum of 10 sessions can be opened per SSH connection.</li>
-</ul>
-</li>
-<li><p><strong>Max Authentication Tries</strong>:</p>
-<pre><code class="language-bash">MaxAuthTries 4
-</code></pre>
-<ul>
-<li>Limits the number of authentication attempts allowed before disconnecting the client.</li>
-<li>After 4 failed attempts, the server disconnects the client.</li>
-</ul>
-</li>
-<li><p><strong>Login Grace Time</strong>:</p>
-<pre><code class="language-bash">LoginGraceTime 60
-</code></pre>
-<ul>
-<li>Specifies the time allowed for a client to authenticate after connecting.</li>
-<li>The client has 60 seconds to authenticate before the connection is closed.</li>
-</ul>
-</li>
-<li><p><strong>Client Alive Interval</strong>:</p>
-<pre><code class="language-bash">ClientAliveInterval 300
-</code></pre>
-<ul>
-<li>Controls how often the server sends a &quot;keep-alive&quot; message to the client to prevent disconnection due to inactivity.</li>
-<li>The server will send a message every 300 seconds (5 minutes).</li>
-</ul>
-</li>
-<li><p><strong>Client Alive Count Max</strong>:</p>
-<pre><code class="language-bash">ClientAliveCountMax 1
-</code></pre>
-<ul>
-<li>Specifies how many &quot;keep-alive&quot; messages can be missed before the server disconnects the client.</li>
-<li>With a value of <code>1</code>, the server will disconnect the client if one &quot;keep-alive&quot; message is missed.</li>
-</ul>
-</li>
-</ol>
-<h3>Recommended Adjustments for Longer Inactivity Period:</h3>
-<ul>
-<li><strong>To allow a longer idle period</strong> before disconnecting:<pre><code class="language-bash">ClientAliveInterval 600 # 10 minutes
-ClientAliveCountMax 3 # Allow up to 3 missed messages before disconnecting
-</code></pre>
-</li>
-</ul>
-<h3>Apply Changes:</h3>
-<ol>
-<li>After modifying the <code>sshd_config</code> file, restart the SSH service to apply the changes:<pre><code class="language-bash">sudo systemctl restart sshd
-</code></pre>
-</li>
-</ol>
-<hr>
-<p>By adjusting these settings, you can control connection timeouts, improve security, and manage idle time more effectively.</p>
-<hr>
+<article class="blog-post-container">
+<h1>Java Process Info: Finding PID, Working Directory, and Memory of Java Processes</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-06-29">June 29, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
+<p>When several Java applications run on the same server — Tomcat instances, a batch job, a scheduler — the first thing you often need is a map of which PID belongs to which application and where it was started. This article covers the commands I use for that, from the JDK's own process lister to <code>/proc</code> inspection.</p>
 
- <!-- Topic SEO Keywords: Java, jps, pwdx, process info, SSH server configuration -->
+<h2>jps: The JDK's Own Process Lister</h2>
+<p><code>jps</code> ships with every JDK and finds only JVMs, which makes it cleaner than grepping <code>ps</code> output:</p>
+<pre><code class="language-bash">jps -l
+</code></pre>
+<p>The <code>-l</code> flag shows the full main class name or the jar path instead of just a short name:</p>
+<pre><code>12854 /opt/apps/order-service/order-service.jar
+12901 org.apache.catalina.startup.Bootstrap
+13012 sun.tools.jps.Jps
+</code></pre>
+<p>The last line is <code>jps</code> itself — it lists every JVM, including the one running the command.</p>
+
+<h2>PID and Working Directory</h2>
+<p>PIDs alone are not very useful until you know where each process was started. The working directory of any process is available through <code>/proc/&lt;pid&gt;/cwd</code> (a symlink), and <code>pwdx</code> prints it in one step:</p>
+<pre><code class="language-bash">jps | grep -v Jps | while read pid _; do pwdx "$pid"; done
+</code></pre>
+<p>Example output:</p>
+<pre><code>12854: /opt/apps/order-service
+12901: /opt/tomcat/bin
+</code></pre>
+<p>The <code>grep -v Jps</code> filters out the <code>jps</code> process itself; quoting <code>"$pid"</code> protects against paths containing spaces (unlikely for PIDs, but harmless).</p>
+
+<h2>Command Line, JVM Flags, and Environment</h2>
+<pre><code class="language-bash">jps -lv                      # full args, including -Xmx and -D properties
+ps -e -o pid,rss,vsz,args --sort=-rss | grep java | grep -v grep
+tr '\0' ' ' &lt; /proc/12854/cmdline
+cat /proc/12854/environ | tr '\0' '\n' | grep -E 'JAVA_HOME|APP_'
+</code></pre>
+<ul>
+<li><code>jps -lv</code> shows the exact launch flags, which is the fastest way to see the configured heap (<code>-Xmx</code>) of a running JVM.</li>
+<li><code>ps ... --sort=-rss</code> lists Java processes by resident memory, useful for spotting a runaway process.</li>
+<li><code>/proc/&lt;pid&gt;/cmdline</code> and <code>/proc/&lt;pid&gt;/environ</code> expose the raw arguments and environment; the entries are null-terminated, hence the <code>tr '\0' ...</code> conversion.</li>
+</ul>
+
+<h2>Heap vs RSS: Why They Differ</h2>
+<p>A JVM's <code>-Xmx</code> value is the maximum heap, not its current usage, and RSS includes heap, metaspace, thread stacks, and native memory. To check the actual heap of a running JVM, use <code>jcmd</code> (preferred over the deprecated <code>jmap -heap</code>):</p>
+<pre><code class="language-bash">jcmd 12854 GC.heap_info
+</code></pre>
+<p>This reports current used/committed heap, which is the number that matters when a JVM seems to be using more memory than <code>-Xmx</code> suggests — the gap is usually native memory, thread stacks, or metaspace, not a leak in the heap itself.</p>
+
+<h2>When This Pays Off</h2>
+<ul>
+<li>Two Tomcat instances on one box: confirm which one is which with <code>jps -l</code> before restarting anything.</li>
+<li>A deployment script needs the working directory of the running service to find its log path — <code>pwdx</code> answers it without guessing.</li>
+<li>An application is using far more RAM than its heap setting — compare <code>ps</code> RSS against <code>jcmd GC.heap_info</code> to separate heap from native memory.</li>
+</ul>
+
+<h2>Related Articles</h2>
+<ul>
+<li><a href="javap-and-its-use-case.html">javap and Its Use Case</a></li>
+<li><a href="fix-java-virtual-machine-error-linux.html">Fixing "Could Not Initialize Java Virtual Machine" on Linux</a></li>
+<li><a href="java-binary-instalation-on-ubuntu.html">Installing the Java Binary on Ubuntu</a></li>
+</ul>
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -242,7 +231,11 @@ ClientAliveCountMax 3 # Allow up to 3 missed messages before disconnecting
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

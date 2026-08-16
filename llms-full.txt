@@ -18,7 +18,7 @@ A.M. Rinas is a dedicated Software Engineer with a strong background across full
 - **QA & Testing**: Postman, JMeter, Wireshark, Selenium, Jira, Jest
 
 ## Contact & Links
-- Website: https://rinas21.github.io/amrinas/
+- Website: https://rinas.tech/
 - GitHub: https://github.com/rinas21
 - LinkedIn: https://www.linkedin.com/in/amrinas
 

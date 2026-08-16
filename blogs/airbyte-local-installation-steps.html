@@ -14,7 +14,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 
  <!-- JSON-LD Schema -->
@@ -27,22 +27,27 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Airbyte Local Installation Steps | A.M Rinas</title>
- <meta name="description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
+ <title>Airbyte Local Installation Steps | A.M. Rinas Blog</title>
+ <meta name="description" content="Steps for installing Airbyte locally and handling common permission errors during setup.">
  <link rel="canonical" href="https://rinas.tech/blogs/airbyte-local-installation-steps.html">
- <meta name="robots" content="index, follow">
+ <meta property="article:published_time" content="2026-04-02T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-04-02T00:00:00+00:00">
+ <meta property="article:section" content="DevOps">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Airbyte Local Installation Steps">
- <meta property="og:description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
+ <meta property="og:description" content="Steps for installing Airbyte locally and handling common permission errors during setup.">
  <meta property="og:url" content="https://rinas.tech/blogs/airbyte-local-installation-steps.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Airbyte Local Installation Steps">
- <meta name="twitter:description" content="Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.">
+ <meta name="twitter:description" content="Steps for installing Airbyte locally and handling common permission errors during setup.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -51,25 +56,25 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Airbyte Local Installation Steps",
- "description": "Install Airbyte locally with abctl: own the /opt/airbyte path, run ABCTL_LOCAL_PATH=/opt/airbyte abctl local install, and fix the airbyte-db permission error.",
+ "description": "Steps for installing Airbyte locally and handling common permission errors during setup.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-06-11",
- "dateModified": "2026-06-11",
+ "datePublished": "2026-04-02",
+ "dateModified": "2026-04-02",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/airbyte-local-installation-steps.html"
+ "@id": "https://rinas.tech/blogs/airbyte-local-installation-steps.html"
  }
  }
  </script>
@@ -83,19 +88,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Airbyte Local Installation Steps",
- "item": "https://rinas21.github.io/amrinas/blogs/airbyte-local-installation-steps.html"
+ "item": "https://rinas.tech/blogs/airbyte-local-installation-steps.html"
  }
  ]
  }
@@ -123,6 +128,16 @@
 
  <article class="blog-post-container">
  <h1>Airbyte Local Installation Steps</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-04-02">April 2, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">DevOps</a></span>
+ <span class="post-meta-item">3 min read</span>
+ </div>
+ <!-- post-meta -->
  <p>
  Airbyte's recommended local setup is <code>abctl</code>, the command-line
  tool that spins up the platform (web app, API and database) with a single
@@ -178,13 +193,18 @@
  <li><a href="how-to-disable-auto-start-for-a-docker-container.html">How to Disable Auto-Start for a Docker Container</a></li>
  </ul>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
- <!-- Topic SEO Keywords: Tech, DevOps, Development, Guide, A.M. Rinas -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -195,7 +215,11 @@
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

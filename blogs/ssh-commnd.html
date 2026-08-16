@@ -8,23 +8,25 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <meta name="description" content="SSH setup on Linux: keys, config, connection troubleshooting, and common errors, with expected output examples.">
- <meta name="keywords"
- content="SSH setup Linux, OpenSSH server hardening, SSH key-keygen, asymmetric encryption, disabled password authentication, Linux administration, DevOps infrastructure security, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
+ <meta property="article:published_time" content="2026-02-03T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-02-03T00:00:00+00:00">
+ <meta property="article:section" content="DevOps">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
 
- <meta property="og:type" content="article">
- <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide | A.M. Rinas Blog">
- <meta property="og:description"
- content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
 
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
- <meta name="twitter:description"
- content="Step-by-step systems workflow for deploying OpenSSH server daemons, managing public key cryptography, and executing hardening profiles.">
+ 
+ 
+ 
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +37,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
  <!-- JSON-LD Schema -->
 
@@ -47,22 +49,22 @@
 
 
  <!-- SEO Meta Tags -->
- <title>SSH Setup: A Comprehensive Guide | A.M Rinas</title>
- <meta name="description" content="SSH setup on Linux: keys, config, connection troubleshooting, and common errors, with expected output examples.">
+ <title>Comprehensive SSH Setup and Hardening Guide | A.M. Rinas Blog</title>
+ <meta name="description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication pa…">
  <link rel="canonical" href="https://rinas.tech/blogs/ssh-commnd.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Comprehensive SSH Setup and Hardening Guide">
- <meta property="og:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ <meta property="og:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication pa…">
  <meta property="og:url" content="https://rinas.tech/blogs/ssh-commnd.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Comprehensive SSH Setup and Hardening Guide">
- <meta name="twitter:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.">
+ <meta name="twitter:description" content="An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication pa…">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -71,25 +73,25 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Comprehensive SSH Setup and Hardening Guide",
- "description": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setups, and daemon policy enforcement.",
+ "description": "An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication pa…",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-05-15",
- "dateModified": "2026-05-15",
+ "datePublished": "2026-02-03",
+ "dateModified": "2026-02-03",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
+ "@id": "https://rinas.tech/blogs/ssh-commnd.html"
  }
  }
  </script>
@@ -103,19 +105,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Comprehensive SSH Setup and Hardening Guide",
- "item": "https://rinas21.github.io/amrinas/blogs/ssh-commnd.html"
+ "item": "https://rinas.tech/blogs/ssh-commnd.html"
  }
  ]
  }
@@ -143,6 +145,16 @@
 
  <article class="blog-post-container">
  <h1>SSH Setup: A Comprehensive Guide</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-02-03">February 3, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">DevOps</a></span>
+ <span class="post-meta-item">5 min read</span>
+ </div>
+ <!-- post-meta -->
 
  <p>
  SSH (Secure Shell) is how you get a secure terminal on a remote Linux server — and it is also the
@@ -303,6 +315,50 @@ Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-31-generic x86_64)</code></pre>
  <a href="rsync-and-its-usages.html">rsync</a> — both ride on the same SSH security.</li>
  </ul>
 
+ <h2>Hardening the SSH Daemon (<code>sshd_config</code>)</h2>
+ <p>
+ Beyond the basics, <code>/etc/ssh/sshd_config</code> exposes settings that control how the daemon handles
+ connections and which cryptographic algorithms it accepts. The following values tighten the default
+ configuration:
+ </p>
+ <pre><code># Disable legacy, weak key-exchange algorithms
+KexAlgorithms -diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1
+
+# Unauthenticated connection flood control: max 10 pending,
+# reject 30% of new ones once the limit is reached, hard cap at 60
+MaxStartups 10:30:60
+
+# At most 10 sessions per connection
+MaxSessions 10
+
+# Disconnect a client after 4 failed authentication attempts
+MaxAuthTries 4
+
+# Client must authenticate within 60 seconds of connecting
+LoginGraceTime 60
+
+# Server sends a keep-alive every 300s and drops the client
+# after 1 unanswered probe (about 5 minutes of true inactivity)
+ClientAliveInterval 300
+ClientAliveCountMax 1
+</code></pre>
+ <p>
+ <strong>What each one does:</strong> <code>KexAlgorithms</code> with a leading <code>-</code> removes the listed
+ algorithms from the daemon's offer list, forcing strong key exchange. <code>MaxStartups 10:30:60</code> is a
+ rate-limit against connection floods: the first 10 unauthenticated connections are accepted, then 30% of new
+ ones are rejected, and once 60 are pending the server drops new ones. <code>MaxSessions</code>,
+ <code>MaxAuthTries</code>, and <code>LoginGraceTime</code> cap session multiplexing, password guessing, and slow
+ handshakes respectively. <code>ClientAliveInterval</code>/<code>ClientAliveCountMax</code> control idle
+ disconnects — with the values above, a client that misses one keep-alive is dropped after roughly five minutes
+ of inactivity. For a longer idle window, raise both, e.g. <code>ClientAliveInterval 600</code> with
+ <code>ClientAliveCountMax 3</code>.
+ </p>
+ <p>
+ Apply any change by restarting the daemon: <code>sudo systemctl restart sshd</code> (on Debian/Ubuntu the
+ service is named <code>ssh</code>). Always keep an existing session open while you test a new configuration —
+ a broken <code>sshd_config</code> can lock you out of the server.
+ </p>
+
  <h2>Conclusion</h2>
  <p>
  We installed the SSH server, started it as a service, generated a key pair, copied the public key to the
@@ -329,13 +385,18 @@ Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-31-generic x86_64)</code></pre>
  </p>
  </div>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
- <!-- Topic SEO Keywords: Comprehensive SSH Setup and Hardening Guide, DevOps, Guide, Tutorial -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -346,7 +407,11 @@ Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-31-generic x86_64)</code></pre>
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>

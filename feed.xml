@@ -1,110 +1,725 @@
-<?xml version="1.0" ?>
-<rss version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A.M. Rinas | Blog</title>
-    <link>https://rinas21.github.io/amrinas/</link>
-    <description>Insights, research, and guides by A.M. Rinas.</description>
+    <link>https://rinas.tech/pages/blog.html</link>
+    <atom:link href="https://rinas.tech/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Technical articles, debugging notes, and lessons from a full-stack software and DevOps engineer.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 18 Aug 2026 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Setting Up a Custom Email Subdomain with Cloudflare and Brevo</title>
-      <link>https://rinas21.github.io/amrinas/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html</link>
+      <link>https://rinas.tech/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html</link>
+      <guid>https://rinas.tech/blogs/setting-up-custom-email-subdomain-cloudflare-brevo.html</guid>
       <description>Learn how to configure a custom email subdomain with Cloudflare and Brevo, authenticate your domain with DNS records, and send branded emails from your own domain.</description>
       <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Save Money &amp; Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code</title>
-      <link>https://rinas21.github.io/amrinas/blogs/install-caveman.html</link>
-      <description>Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM token usage.</description>
-      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+      <link>https://rinas.tech/blogs/install-caveman.html</link>
+      <guid>https://rinas.tech/blogs/install-caveman.html</guid>
+      <description>Learn how to install and use Julius Brussee's Caveman plugin across VS Code, Antigravity, and Claude Code to save money and cut LLM token usage by up to 65%.</description>
+      <pubDate>Sat, 8 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Configuring One-Way SSL Between Tomcat and Keycloak</title>
+      <link>https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html</link>
+      <guid>https://rinas.tech/blogs/configuring-one-way-ssl-tomcat-keycloak.html</guid>
+      <description>Configure one-way SSL between Tomcat and Keycloak: generate keystores with keytool, export certificates and import the Keycloak certificate into Tomcat's truststore.</description>
+      <pubDate>Sun, 2 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>SQL: Why ORDER BY Does Not Work with DISTINCT</title>
+      <link>https://rinas.tech/blogs/sql-order-by-does-not-work-with-distinct.html</link>
+      <guid>https://rinas.tech/blogs/sql-order-by-does-not-work-with-distinct.html</guid>
+      <description>Why SQL rejects ORDER BY columns that are not in the SELECT list when DISTINCT is used, and the correct DISTINCT and GROUP BY patterns.</description>
+      <pubDate>Sat, 1 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Hostinger Domain Redirect Missing? Here's the Fix That Finally Worked</title>
+      <link>https://rinas.tech/blogs/hostinger-domain-redirect-missing-fix.html</link>
+      <guid>https://rinas.tech/blogs/hostinger-domain-redirect-missing-fix.html</guid>
+      <description>Learn why the Hostinger redirect option disappears for some domains and how disconnecting the website allowed a permanent 301 redirect to another domain.</description>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The SEO Mistakes Developers Make When Building Websites</title>
+      <link>https://rinas.tech/blogs/seo-mistakes-developers-make.html</link>
+      <guid>https://rinas.tech/blogs/seo-mistakes-developers-make.html</guid>
+      <description>Learn the common SEO mistakes developers make when building websites and how I fixed technical SEO issues including metadata, images, schema, sitemap, robots.txt, and performance optimization.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Image Naming Strategy That Improved My Website SEO</title>
+      <link>https://rinas.tech/blogs/image-naming-strategy-for-seo.html</link>
+      <guid>https://rinas.tech/blogs/image-naming-strategy-for-seo.html</guid>
+      <description>Learn how descriptive image filenames can significantly improve your website SEO and accessibility over generic names like IMG_001.jpg.</description>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication</title>
+      <link>https://rinas.tech/blogs/debugging-401-error.html</link>
+      <guid>https://rinas.tech/blogs/debugging-401-error.html</guid>
+      <description>A real debugging story about fixing a 401 Unauthorized error in a full stack application. The issue was not authentication but an incorrect API request flow and configuration.</description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Compress Hundreds of Videos Without Fancy Software Using FFmpeg on Ubuntu</title>
+      <link>https://rinas.tech/blogs/compress-videos-ffmpeg-ubuntu.html</link>
+      <guid>https://rinas.tech/blogs/compress-videos-ffmpeg-ubuntu.html</guid>
+      <description>Learn how to batch compress hundreds of MKV or MP4 video files automatically using a simple Bash script and FFmpeg on Ubuntu.</description>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Replace or Overwrite Files in Ubuntu Linux</title>
+      <link>https://rinas.tech/blogs/replace-overwrite-files-in-ubuntu.html</link>
+      <guid>https://rinas.tech/blogs/replace-overwrite-files-in-ubuntu.html</guid>
+      <description>Notes from 2025-04-30: replace or overwrite files in Ubuntu with cp -f and mv, including permission notes for system files.</description>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Compress Large Videos Without Losing Much Quality Using FFmpeg</title>
+      <link>https://rinas.tech/blogs/compress-large-videos-using-ffmpeg.html</link>
+      <guid>https://rinas.tech/blogs/compress-large-videos-using-ffmpeg.html</guid>
+      <description>Learn how to compress large video files like MP4 and MKV without losing quality using FFmpeg. A complete guide with best practices and commands.</description>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fix Apache HTTP Server Build Error: APR Not Found</title>
+      <link>https://rinas.tech/blogs/apache-build-error-apr-not-found-fix.html</link>
+      <guid>https://rinas.tech/blogs/apache-build-error-apr-not-found-fix.html</guid>
+      <description>Notes from 2025-04-10: resolving the APR not found error in an Apache source build by installing libapr1-dev and related dependencies.</description>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fix Apache HTTP Server Compile Error: PCRE Not Found</title>
+      <link>https://rinas.tech/blogs/apache-http-server-compile-error-pcre-not-found.html</link>
+      <guid>https://rinas.tech/blogs/apache-http-server-compile-error-pcre-not-found.html</guid>
+      <description>Fix configure: error: pcre(2)-config for libpcre not found when compiling Apache: install libpcre3-dev, optional SSL/zlib deps, and reconfigure.</description>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Lefthook Setup Guide</title>
+      <link>https://rinas.tech/blogs/lefthook-setup-guide.html</link>
+      <guid>https://rinas.tech/blogs/lefthook-setup-guide.html</guid>
+      <description>Lefthook run automated checks before code commit. Catch bugs, format issues, lint errors before production.</description>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Disabling the Pager in `psql` for the `postgres` User</title>
+      <link>https://rinas.tech/blogs/disabling-the-pager-in-psql-for-the-postgres-user.html</link>
+      <guid>https://rinas.tech/blogs/disabling-the-pager-in-psql-for-the-postgres-user.html</guid>
+      <description>Great! It looks like you successfully created the .psqlrc file in the postgres user&amp;#39;s home directory (/var/lib/postgresql/) and confirmed that</description>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Docker Compose: The up --build Command</title>
+      <link>https://rinas.tech/blogs/docker-compose-up-build-command.html</link>
+      <guid>https://rinas.tech/blogs/docker-compose-up-build-command.html</guid>
+      <description>docker compose up --build is used to build (or rebuild) and start Docker containers as defined in your docker-compose.yml file. This ensures your c</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>File Permissions in Linux (Owner, Group, Others)</title>
+      <link>https://rinas.tech/blogs/file-permissions-in-linux-owner-group-others.html</link>
+      <guid>https://rinas.tech/blogs/file-permissions-in-linux-owner-group-others.html</guid>
+      <description>In Linux/Unix, each file and directory has permissions assigned to three types of users:</description>
+      <pubDate>Tue, 7 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fix Tomcat Error: Keystore Was Tampered With or Password Incorrect</title>
+      <link>https://rinas.tech/blogs/tomcat-keystore-tampered-or-password-incorrect.html</link>
+      <guid>https://rinas.tech/blogs/tomcat-keystore-tampered-or-password-incorrect.html</guid>
+      <description>Fix java.io.IOException: Keystore was tampered with, or password was incorrect in Tomcat: check the server.xml keystore password, path, format and file integrity.</description>
+      <pubDate>Mon, 6 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Initializing the Database</title>
+      <link>https://rinas.tech/blogs/initialize-the-database.html</link>
+      <guid>https://rinas.tech/blogs/initialize-the-database.html</guid>
+      <description>superset db upgrade superset fab create-admin # Create admin user superset init</description>
+      <pubDate>Sun, 5 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>TypeScript Common Module Export Errors and How to Fix Them</title>
+      <link>https://rinas.tech/blogs/typescript-common-errors-and-fixes.html</link>
+      <guid>https://rinas.tech/blogs/typescript-common-errors-and-fixes.html</guid>
+      <description>Fix the TypeScript error Module has no exported member ApplyPromoResult: define the type, export it from types/index.ts, and match the name exactly.</description>
+      <pubDate>Sun, 5 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Working with UTF-16 Encoded Files in Linux</title>
+      <link>https://rinas.tech/blogs/issue-working-with-utf-16-encoded-files-in-linux.html</link>
+      <guid>https://rinas.tech/blogs/issue-working-with-utf-16-encoded-files-in-linux.html</guid>
+      <description>When trying to process a binary/encoded file (IPG_APP1_DISK_old.log), tools like grep, strings, and less don&amp;#39;t return expected results. The fil</description>
+      <pubDate>Fri, 3 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Installing the Java Binary on Ubuntu</title>
+      <link>https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html</link>
+      <guid>https://rinas.tech/blogs/java-binary-instalation-on-ubuntu.html</guid>
+      <description>Insights and technical documentation.</description>
+      <pubDate>Wed, 1 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Java Process Info Command</title>
+      <link>https://rinas.tech/blogs/java-process-info-command.html</link>
+      <guid>https://rinas.tech/blogs/java-process-info-command.html</guid>
+      <description>The following settings help manage timeouts, session limits, and authentication attempts for SSH connections:</description>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Javap And Its Use Case</title>
+      <link>https://rinas.tech/blogs/javap-and-its-use-case.html</link>
+      <guid>https://rinas.tech/blogs/javap-and-its-use-case.html</guid>
+      <description>javap is a command-line tool provided by the Java Development Kit (JDK) that disassembles Java class files. It allows you to view the bytecode of a</description>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Keycloak Configuration for SSL Requirement</title>
+      <link>https://rinas.tech/blogs/keycloak-configuration-for-ssl-requirement.html</link>
+      <guid>https://rinas.tech/blogs/keycloak-configuration-for-ssl-requirement.html</guid>
+      <description>Insights and technical documentation.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fixing &quot;Could Not Initialize Java Virtual Machine&quot; on Linux</title>
+      <link>https://rinas.tech/blogs/fix-java-virtual-machine-error-linux.html</link>
+      <guid>https://rinas.tech/blogs/fix-java-virtual-machine-error-linux.html</guid>
+      <description>Fix the Oracle JDK error 'Could not initialize Java Virtual Machine / Error trying to initialize HPI library' on Linux by installing the missing 32-bit compatibility libraries.</description>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Keycloak Login Error Expiredcode Non Secure Cookie Context</title>
+      <link>https://rinas.tech/blogs/keycloak-login-error-expiredcode-non-secure-cookie-context.html</link>
+      <guid>https://rinas.tech/blogs/keycloak-login-error-expiredcode-non-secure-cookie-context.html</guid>
+      <description>When using Keycloak, you may encounter the following log warnings related to authentication errors and non-secure cookies:</description>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>`locate` Command Cheat Sheet</title>
+      <link>https://rinas.tech/blogs/locate-command-cheat-sheet.html</link>
+      <guid>https://rinas.tech/blogs/locate-command-cheat-sheet.html</guid>
+      <description>The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).</description>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Manually Deleting the Prisma Migration Folder</title>
+      <link>https://rinas.tech/blogs/manually-delete-the-migration-folder.html</link>
+      <guid>https://rinas.tech/blogs/manually-delete-the-migration-folder.html</guid>
+      <description>rm -rf prisma/migrations/</description>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Note Google Apps Script To Clone Data Up To Column J</title>
+      <link>https://rinas.tech/blogs/note-google-apps-script-to-clone-data-up-to-column-j.html</link>
+      <guid>https://rinas.tech/blogs/note-google-apps-script-to-clone-data-up-to-column-j.html</guid>
+      <description>Use the following function to replicate all sheets from a source Google Spreadsheet to a target Spreadsheet, copying only columns A-J. Existing she</description>
+      <pubDate>Wed, 17 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Optional: Load Modular Configs from ~/.bashrc.d/</title>
+      <link>https://rinas.tech/blogs/optional-load-modular-configs-from-bashrcd.html</link>
+      <guid>https://rinas.tech/blogs/optional-load-modular-configs-from-bashrcd.html</guid>
+      <description>if [ -d ~/.bashrc.d ]; then for rc in ~/.bashrc.d/*; do if [ -f $rc ]; then . $rc fi do</description>
+      <pubDate>Tue, 9 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>OTRS Installation Guide on Ubuntu (with Custom MySQL Binary)</title>
+      <link>https://rinas.tech/blogs/otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html</link>
+      <guid>https://rinas.tech/blogs/otrs-installation-guide-on-ubuntu-with-custom-mysql-binary.html</guid>
+      <description>Update system packages:</description>
+      <pubDate>Sun, 7 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Paging vs. Segmentation</title>
+      <link>https://rinas.tech/blogs/paging-vs-segmentation.html</link>
+      <guid>https://rinas.tech/blogs/paging-vs-segmentation.html</guid>
+      <description>Paging and Segmentation are two memory management techniques in operating systems. Both help allocate memory for processes, but they function in di</description>
+      <pubDate>Fri, 5 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>PostgreSQL Setup Issues</title>
+      <link>https://rinas.tech/blogs/postgresql-setup-issues.html</link>
+      <guid>https://rinas.tech/blogs/postgresql-setup-issues.html</guid>
+      <description>Error: Warning: No existing cluster is suitable as a default target. Please see man pg_wrapper(1) how to specify one. Error: You must install at le</description>
+      <pubDate>Wed, 3 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Python Virtual Environment Setup Guide (Ubuntu/Linux)</title>
+      <link>https://rinas.tech/blogs/python-virtual-environment-setup-guide-ubuntulinux.html</link>
+      <guid>https://rinas.tech/blogs/python-virtual-environment-setup-guide-ubuntulinux.html</guid>
+      <description>Make sure Python and pip are installed:</description>
+      <pubDate>Mon, 1 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Reverting to RHEL 9.4 Kernel Version (After Upgrade to RHEL 9.5)</title>
+      <link>https://rinas.tech/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html</link>
+      <guid>https://rinas.tech/blogs/reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95.html</guid>
+      <description>Insights and technical documentation.</description>
+      <pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Ruby on Rails Installation Notes (2025-05-19)</title>
+      <link>https://rinas.tech/blogs/ruby-on-rails-installation-notes-2025-05-19.html</link>
+      <guid>https://rinas.tech/blogs/ruby-on-rails-installation-notes-2025-05-19.html</guid>
+      <description>Verify Ruby and gem are installed:</description>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Sed Command and Its Different Usages</title>
+      <link>https://rinas.tech/blogs/sed-command-and-its-different-usages.html</link>
+      <guid>https://rinas.tech/blogs/sed-command-and-its-different-usages.html</guid>
+      <description>sed (Stream Editor) is a powerful command-line tool used for text processing, including search, replace, insert, and delete operations.</description>
+      <pubDate>Tue, 26 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Setting Up a .NET Solution with xUnit Test Project</title>
+      <link>https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html</link>
+      <guid>https://rinas.tech/blogs/setting-up-a-net-solution-with-xunit-test-project.html</guid>
+      <description>Purpose: Creates a new xUnit test project.</description>
+      <pubDate>Sun, 24 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>SSL Exception in Tomcat with CAS</title>
+      <link>https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html</link>
+      <guid>https://rinas.tech/blogs/ssl-exception-in-tomcat-with-cas.html</guid>
+      <description>While running Tomcat with CAS authentication, the following error occurs:</description>
+      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Steps to Enable SSLProxyEngine in Apache</title>
+      <link>https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html</link>
+      <guid>https://rinas.tech/blogs/steps-to-enable-sslproxyengine-in-apache.html</guid>
+      <description>Insights and technical documentation.</description>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Troubleshooting Prisma DB Seeding Failure</title>
+      <link>https://rinas.tech/blogs/troubleshooting-prisma-db-seeding-failure.html</link>
+      <guid>https://rinas.tech/blogs/troubleshooting-prisma-db-seeding-failure.html</guid>
+      <description>This note documents the process of resolving a PrismaClientKnownRequestError that occurred during database seeding. The root cause was a mismatch b</description>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>View Saved Wi-Fi Passwords on Ubuntu</title>
+      <link>https://rinas.tech/blogs/view-saved-wi-fi-passwords-on-ubuntu.html</link>
+      <guid>https://rinas.tech/blogs/view-saved-wi-fi-passwords-on-ubuntu.html</guid>
+      <description>You can view previously connected Wi-Fi passwords by accessing the NetworkManager configuration files.</description>
+      <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Note on Handling Local Variables in Inner Classes (Java)</title>
+      <link>https://rinas.tech/blogs/note-on-handling-local-variables-in-inner-classes-java.html</link>
+      <guid>https://rinas.tech/blogs/note-on-handling-local-variables-in-inner-classes-java.html</guid>
+      <description>In Java, when using local variables within an inner class or anonymous class, they must be declared as final or effectively final. This post explains why and how to resolve compilation errors.</description>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>PostgreSQL connection to actual data source (if applicable)</title>
+      <link>https://rinas.tech/blogs/postgresql-connection-to-actual-data-source-if-applicable.html</link>
+      <guid>https://rinas.tech/blogs/postgresql-connection-to-actual-data-source-if-applicable.html</guid>
+      <description>Configuration details for connecting Cube.js to a PostgreSQL database and setting up Apache Superset.</description>
+      <pubDate>Fri, 8 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Network Interfaces and Their Levels &amp; Usage</title>
+      <link>https://rinas.tech/blogs/network-interfaces-and-their-levels-usage.html</link>
+      <guid>https://rinas.tech/blogs/network-interfaces-and-their-levels-usage.html</guid>
+      <description>A breakdown of physical and virtual network interfaces, their usage, and how they operate across the different layers of the OSI model.</description>
+      <pubDate>Wed, 6 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Git Bisect Process to Debug Issue</title>
+      <link>https://rinas.tech/blogs/git-bisect-process-to-debug-issue.html</link>
+      <guid>https://rinas.tech/blogs/git-bisect-process-to-debug-issue.html</guid>
+      <description>A guide on how to use git bisect to perform a binary search and find the exact commit that introduced a bug in your codebase.</description>
+      <pubDate>Mon, 4 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Oracle JDK vs OpenJDK</title>
+      <link>https://rinas.tech/blogs/oracle-jdk-vs-openjdk.html</link>
+      <guid>https://rinas.tech/blogs/oracle-jdk-vs-openjdk.html</guid>
+      <description>A comparison between Oracle JDK and OpenJDK, detailing licensing, performance, support, and installation differences to help you choose the right JDK for your project.</description>
+      <pubDate>Sat, 2 May 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Fixing Apache Ant Deploytask Issue In Tomcat</title>
+      <link>https://rinas.tech/blogs/fixing-apache-ant-deploytask-issue-in-tomcat.html</link>
+      <guid>https://rinas.tech/blogs/fixing-apache-ant-deploytask-issue-in-tomcat.html</guid>
+      <description>While running ant clean dist, the build failed with taskdef class org.apache.catalina.ant.DeployTask cannot be found. This article details steps to fix the issue by correcting the Tomcat path and cla…</description>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Rsync and Its Usages</title>
+      <link>https://rinas.tech/blogs/rsync-and-its-usages.html</link>
+      <guid>https://rinas.tech/blogs/rsync-and-its-usages.html</guid>
+      <description>Rsync (Remote Sync) is a fast and versatile command-line tool for copying and synchronizing files and directories between locations. It efficiently transfers only the differences between the source a…</description>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Git Stash Notes</title>
+      <link>https://rinas.tech/blogs/git-stash-notes.html</link>
+      <guid>https://rinas.tech/blogs/git-stash-notes.html</guid>
+      <description>Git stash is a command that temporarily saves your uncommitted changes so you can switch branches or pull updates without losing your work.</description>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Python Troubleshooting and Installation Summary</title>
+      <link>https://rinas.tech/blogs/python-troubleshooting-and-installation-summary.html</link>
+      <guid>https://rinas.tech/blogs/python-troubleshooting-and-installation-summary.html</guid>
+      <description>This document summarizes the issues encountered and troubleshooting steps taken for Python installation and version management.</description>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cube.js Concepts Summary</title>
+      <link>https://rinas.tech/blogs/cubejs-concepts-summary.html</link>
+      <guid>https://rinas.tech/blogs/cubejs-concepts-summary.html</guid>
+      <description>A summary of Cube.js concepts including Cubes, Measures, Dimensions, Pre-aggregations, and more.</description>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>n8n Custom Node Development Guide</title>
+      <link>https://rinas.tech/blogs/n8n-custom-node-development-guide.html</link>
+      <guid>https://rinas.tech/blogs/n8n-custom-node-development-guide.html</guid>
+      <description>This guide explains how to create, build, and test a custom n8n node locally.</description>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>CPU Cycle and its Relation to Time</title>
+      <link>https://rinas.tech/blogs/cpu-cycle-and-its-relation-to-time.html</link>
+      <guid>https://rinas.tech/blogs/cpu-cycle-and-its-relation-to-time.html</guid>
+      <description>Understanding CPU cycles and how they relate to execution time and processing speed.</description>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Eulerian and Hamiltonian Graphs</title>
+      <link>https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html</link>
+      <guid>https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html</guid>
+      <description>A deep dive into Eulerian and Hamiltonian graphs in Graph Theory.</description>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Flutter Installation Notes</title>
+      <link>https://rinas.tech/blogs/flutter-installation-notes.html</link>
+      <guid>https://rinas.tech/blogs/flutter-installation-notes.html</guid>
+      <description>Notes and steps for setting up and installing Flutter for mobile development.</description>
+      <pubDate>Sun, 12 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>docker ps: Listing and Monitoring Containers</title>
+      <link>https://rinas.tech/blogs/docker-ps.html</link>
+      <guid>https://rinas.tech/blogs/docker-ps.html</guid>
+      <description>A quick guide on using docker ps and troubleshooting Postgres container issues.</description>
+      <pubDate>Fri, 10 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Downloading Files from Google Drive using gdown</title>
+      <link>https://rinas.tech/blogs/downloading-files-from-google-drive-using-gdown.html</link>
+      <guid>https://rinas.tech/blogs/downloading-files-from-google-drive-using-gdown.html</guid>
+      <description>How to download files from Google Drive using gdown and Python.</description>
+      <pubDate>Wed, 8 Apr 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Enable Swap Memory on Linux</title>
+      <link>https://rinas.tech/blogs/how-to-enable-swap-memory-on-linux.html</link>
+      <guid>https://rinas.tech/blogs/how-to-enable-swap-memory-on-linux.html</guid>
+      <description>A step-by-step guide on how to enable swap memory on Linux by creating a swap file or using a swap partition.</description>
+      <pubDate>Mon, 6 Apr 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Adding Google Chat to the Ubuntu Desktop Bar</title>
-      <link>https://rinas21.github.io/amrinas/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html</link>
+      <link>https://rinas.tech/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html</link>
+      <guid>https://rinas.tech/blogs/adding-google-chat-to-the-ubuntu-desktop-bar.html</guid>
       <description>To add Google Chat as a shortcut to your Ubuntu desktop bar, create a custom desktop entry.</description>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 4 Apr 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Airbyte Local Installation Steps</title>
-      <link>https://rinas21.github.io/amrinas/blogs/airbyte-local-installation-steps.html</link>
+      <link>https://rinas.tech/blogs/airbyte-local-installation-steps.html</link>
+      <guid>https://rinas.tech/blogs/airbyte-local-installation-steps.html</guid>
       <description>Steps for installing Airbyte locally and handling common permission errors during setup.</description>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 2 Apr 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Apache HTTP Server Troubleshooting Notes</title>
-      <link>https://rinas21.github.io/amrinas/blogs/apache-http-server-troubleshooting-notes.html</link>
+      <link>https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html</link>
+      <guid>https://rinas.tech/blogs/apache-http-server-troubleshooting-notes.html</guid>
       <description>Troubleshooting notes for Apache HTTP Server including syntax checking, resolving SSLSessionCache errors, and checking error logs.</description>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 31 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Adding a Custom Node to n8n in Docker</title>
-      <link>https://rinas21.github.io/amrinas/blogs/adding-a-custom-node-to-n8n-in-docker.html</link>
+      <link>https://rinas.tech/blogs/adding-a-custom-node-to-n8n-in-docker.html</link>
+      <guid>https://rinas.tech/blogs/adding-a-custom-node-to-n8n-in-docker.html</guid>
       <description>A step-by-step guide on how to inject a custom node into an n8n Docker container by mounting volumes and restarting the service.</description>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Linux, Maven, and Git Cheat Sheet</title>
-      <link>https://rinas21.github.io/amrinas/blogs/linux-maven-git-cheat-sheet.html</link>
+      <link>https://rinas.tech/blogs/linux-maven-git-cheat-sheet.html</link>
+      <guid>https://rinas.tech/blogs/linux-maven-git-cheat-sheet.html</guid>
       <description>A compilation of useful commands for Linux file searching, SSH proxy jumps, Maven proxy settings, and Git tagging.</description>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>MongoDB Backup &amp; Restore with Docker</title>
-      <link>https://rinas21.github.io/amrinas/blogs/mongodb-backup-restore-with-docker.html</link>
+      <link>https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html</link>
+      <guid>https://rinas.tech/blogs/mongodb-backup-restore-with-docker.html</guid>
       <description>A complete guide to backing up and restoring MongoDB databases running inside Docker containers using mongodump and mongorestore.</description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 25 Mar 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Checking If a User Group Exists in RHEL</title>
+      <link>https://rinas.tech/blogs/checking-if-a-user-group-exists-in-rhel.html</link>
+      <guid>https://rinas.tech/blogs/checking-if-a-user-group-exists-in-rhel.html</guid>
+      <description>To check whether a user group exists in RHEL (Red Hat Enterprise Linux), use the grep or getent commands.</description>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Checking Port Availability Using Netcat (`nc`)</title>
+      <link>https://rinas.tech/blogs/checking-port-availability-using-netcat-nc.html</link>
+      <guid>https://rinas.tech/blogs/checking-port-availability-using-netcat-nc.html</guid>
+      <description>Netcat (`nc`) is a powerful networking tool that can be used for a variety of tasks, such as scanning ports, connecting to remote systems, and troubleshooting network issues.</description>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Configuring SSH Authentication for GitHub</title>
+      <link>https://rinas.tech/blogs/configuring-ssh-authentication-for-github.html</link>
+      <guid>https://rinas.tech/blogs/configuring-ssh-authentication-for-github.html</guid>
+      <description>A complete guide on setting up SSH authentication for GitHub, generating a new SSH key (ed25519), and adding it to your GitHub account.</description>
+      <pubDate>Thu, 19 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>How to Disable Auto-Start for a Docker Container</title>
-      <link>https://rinas21.github.io/amrinas/blogs/how-to-disable-auto-start-for-a-docker-container.html</link>
+      <link>https://rinas.tech/blogs/how-to-disable-auto-start-for-a-docker-container.html</link>
+      <guid>https://rinas.tech/blogs/how-to-disable-auto-start-for-a-docker-container.html</guid>
       <description>Learn how to stop Docker containers from starting automatically after a machine reboot by updating restart policies.</description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Why Docker Builds Fail Differently on Linux and Windows</title>
-      <link>https://rinas21.github.io/amrinas/blogs/docker-build-failures-linux-vs-windows.html</link>
+      <link>https://rinas.tech/blogs/docker-build-failures-linux-vs-windows.html</link>
+      <guid>https://rinas.tech/blogs/docker-build-failures-linux-vs-windows.html</guid>
       <description>A practical breakdown of Docker build issues across Linux and Windows environments.</description>
-      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Understanding .gitattributes: Solving Cross-Platform Line Ending Problems</title>
-      <link>https://rinas21.github.io/amrinas/blogs/gitattributes-crlf-lf-line-endings-git.html</link>
+      <link>https://rinas.tech/blogs/gitattributes-crlf-lf-line-endings-git.html</link>
+      <guid>https://rinas.tech/blogs/gitattributes-crlf-lf-line-endings-git.html</guid>
       <description>A practical guide to .gitattributes and Git line ending normalization between Windows and Linux systems.</description>
-      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Fast Video Trimming on Linux Using FFmpeg (No Re-encoding)</title>
-      <link>https://rinas21.github.io/amrinas/blogs/ffmpeg-video-trimming-linux-no-reencoding.html</link>
+      <link>https://rinas.tech/blogs/ffmpeg-video-trimming-linux-no-reencoding.html</link>
+      <guid>https://rinas.tech/blogs/ffmpeg-video-trimming-linux-no-reencoding.html</guid>
       <description>A practical Linux guide to trimming videos instantly using FFmpeg without re-encoding.</description>
-      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>MySQL 8.0 Binary Installation and MariaDB Cleanup Guide</title>
-      <link>https://rinas21.github.io/amrinas/blogs/mysql-binary.html</link>
-      <description>A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runtime dependencies, and purge conflicting MariaDB footprints.</description>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <link>https://rinas.tech/blogs/mysql-binary.html</link>
+      <guid>https://rinas.tech/blogs/mysql-binary.html</guid>
+      <description>A professional engineering guide to installing MySQL 8.0 on Linux from generic binaries. Learn step-by-step how to manage unprivileged system accounts, set tight directory flags, resolve libaio runti…</description>
+      <pubDate>Mon, 9 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Introduction: Overview of Grafana, Prometheus, and Node Exporter</title>
-      <link>https://rinas21.github.io/amrinas/blogs/grafana-prometheus-node-exporter.html</link>
-      <description>Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali...</description>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <title>An Overview of Grafana, Prometheus, and Node Exporter</title>
+      <link>https://rinas.tech/blogs/grafana-prometheus-node-exporter.html</link>
+      <guid>https://rinas.tech/blogs/grafana-prometheus-node-exporter.html</guid>
+      <description>Grafana: Grafana is an open-source platform for monitoring and observability that allows you to create, explore, and share dashboards and data visuali</description>
+      <pubDate>Sat, 7 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Creating Docker Networks for Container Communication</title>
-      <link>https://rinas21.github.io/amrinas/blogs/docker-network-guide.html</link>
+      <link>https://rinas.tech/blogs/docker-network-guide.html</link>
+      <guid>https://rinas.tech/blogs/docker-network-guide.html</guid>
       <description>Learn how Docker bridge networks work and how to connect multiple containers securely.</description>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 5 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>How to Enable and Monitor the MySQL General Log</title>
-      <link>https://rinas21.github.io/amrinas/blogs/mysql-general-log.html</link>
-      <description>Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries....</description>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+      <link>https://rinas.tech/blogs/mysql-general-log.html</link>
+      <guid>https://rinas.tech/blogs/mysql-general-log.html</guid>
+      <description>Verify the general log by checking the log file at /var/log/mysql/mysql-general.log for recorded queries</description>
+      <pubDate>Tue, 3 Mar 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Fixing \</title>
-      <link>https://rinas21.github.io/amrinas/blogs/fix-java-virtual-machine-error-linux.html</link>
-      <description>Step-by-step systems debugging guide to resolve the Java HPI library dependency error 'Could not initialize Java Virtual Machine' after deploying an Oracle JDK binary on Linux kernels.</description>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <title>Essential Linux System Commands: A Systems Engineering Reference</title>
+      <link>https://rinas.tech/blogs/basic-linux.html</link>
+      <guid>https://rinas.tech/blogs/basic-linux.html</guid>
+      <description>An advanced systems administration reference for fundamental Linux commands. Covers multi-tenant user management, programmatic file and stream manipulation, kernel process analysis, and low-level net…</description>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Essential SQL Queries for Database Exploration and Management</title>
+      <link>https://rinas.tech/blogs/essential-sql-queries.html</link>
+      <guid>https://rinas.tech/blogs/essential-sql-queries.html</guid>
+      <description>Structured Query Language (SQL) is the backbone of database management, enabling users to interact with databases to retrieve, manipulate, and manage</description>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>A Developer's Guide to the OpenAI GPT Playground</title>
+      <link>https://rinas.tech/blogs/gpt-playground.html</link>
+      <guid>https://rinas.tech/blogs/gpt-playground.html</guid>
+      <description>Master OpenAI's GPT Playground parameters including Temperature, Top P, and Stop Sequences. Learn how to configure structural LLM workflows for reliable bug reporting.</description>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Grafana Installation on Ubuntu using Docker</title>
+      <link>https://rinas.tech/blogs/grafana-installation-docker.html</link>
+      <guid>https://rinas.tech/blogs/grafana-installation-docker.html</guid>
+      <description>Install Grafana OSS (open-source version) on Ubuntu using Docker</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Apache HTTP Server 2.4.x Installation and Configuration Guide</title>
+      <link>https://rinas.tech/blogs/https-server.html</link>
+      <guid>https://rinas.tech/blogs/https-server.html</guid>
+      <description>Master compiling and configuring Apache HTTP Server 2.4.x from source. Learn forward/reverse proxying to Tomcat, custom virtual hosts, mod_rewrite rules, and SSL/TLS infrastructure setup on Linux.</description>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Install XMind on Ubuntu: A Step-by-Step Guide</title>
+      <link>https://rinas.tech/blogs/insall-xmind.html</link>
+      <guid>https://rinas.tech/blogs/insall-xmind.html</guid>
+      <description>A complete Linux administration guide to installing XMind on Ubuntu. Learn how to troubleshoot package repositories, utilize snap deployment channels, and set up a robust mind-mapping workspace.</description>
+      <pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Understanding iptables in Linux: Firewall Packet Filtering Guide</title>
+      <link>https://rinas.tech/blogs/iptables-rules.html</link>
+      <guid>https://rinas.tech/blogs/iptables-rules.html</guid>
+      <description>An introductory guide to Linux iptables and Netfilter. Learn how to configure packet filtering chains, create input and output rules, and block target service ports like HTTP, HTTPS, and Tomcat.</description>
+      <pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Installing Katalon Studio on Ubuntu</title>
+      <link>https://rinas.tech/blogs/katalon-studio-guide.html</link>
+      <guid>https://rinas.tech/blogs/katalon-studio-guide.html</guid>
+      <description>Katalon Studio is a powerful tool for automating web, API, and mobile testing. In this guide, we&amp;#39;ll walk you through the installation process and</description>
+      <pubDate>Fri, 13 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mastering netstat for Linux Network Analysis</title>
+      <link>https://rinas.tech/blogs/netstat-commnd.html</link>
+      <guid>https://rinas.tech/blogs/netstat-commnd.html</guid>
+      <description>A practical networking guide to using netstat commands in Linux. Learn how to inspect open sockets, audit listening TCP/UDP ports, map Process IDs (PIDs), and analyze kernel routing tables.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Semantic Versioning: An NPM and NuGet Guide</title>
+      <link>https://rinas.tech/blogs/npm-version-understand.html</link>
+      <guid>https://rinas.tech/blogs/npm-version-understand.html</guid>
+      <description>A comprehensive guide to understanding Semantic Versioning (SemVer) mechanics across NPM and NuGet ecosystems, covering version constraints, resolution, and breaking changes.</description>
+      <pubDate>Mon, 9 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Install Postman via Binary Tarball on Ubuntu</title>
+      <link>https://rinas.tech/blogs/postman-ubunut.html</link>
+      <guid>https://rinas.tech/blogs/postman-ubunut.html</guid>
+      <description>A structural DevOps guide to manually installing Postman on Ubuntu using official Linux binary tarballs. Learn how to extract binaries, map symbolic execution paths, and provision desktop application…</description>
+      <pubDate>Sat, 7 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mastering SCP for Secure File Transfers</title>
+      <link>https://rinas.tech/blogs/scp-commnd.html</link>
+      <guid>https://rinas.tech/blogs/scp-commnd.html</guid>
+      <description>A practical DevOps guide to using SCP (Secure Copy Protocol) for secure file and directory transfers between local and remote Linux machines. Learn key syntax, flags, and real-world examples.</description>
+      <pubDate>Thu, 5 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Comprehensive SSH Setup and Hardening Guide</title>
+      <link>https://rinas.tech/blogs/ssh-commnd.html</link>
+      <guid>https://rinas.tech/blogs/ssh-commnd.html</guid>
+      <description>An advanced systems engineering guide to initializing, configuring, and hardening an OpenSSH server on Linux architectures. Learn key-based authentication patterns, asymmetric cryptographic pair setu…</description>
+      <pubDate>Tue, 3 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How to Install Apache Tomcat 9 on Linux: A Step-by-Step Guide</title>
+      <link>https://rinas.tech/blogs/tomcat-on-ubuntu.html</link>
+      <guid>https://rinas.tech/blogs/tomcat-on-ubuntu.html</guid>
+      <description>A comprehensive step-by-step tutorial on installing Apache Tomcat 9.0.21 on Linux (Ubuntu/Debian). Learn how to configure JDK, manage dedicated service users, and establish environment path variables…</description>
+      <pubDate>Sun, 1 Feb 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mastering the Vi/Vim Editor: A Comprehensive Systems Guide</title>
+      <link>https://rinas.tech/blogs/vim-editor.html</link>
+      <guid>https://rinas.tech/blogs/vim-editor.html</guid>
+      <description>A structural DevOps and systems engineering guide to mastering the Vi/Vim terminal text editor. Learn modal switching mechanics, regex string replacement, regex escaping, buffer yank arrays, and effi…</description>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduction to Kubernetes Architecture</title>
+      <link>https://rinas.tech/blogs/kubernetes-intro.html</link>
+      <guid>https://rinas.tech/blogs/kubernetes-intro.html</guid>
+      <description>A beginner-friendly overview of Kubernetes architecture, including pods, nodes, and control plane components.</description>
+      <pubDate>Wed, 28 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mastering Python Generators</title>
+      <link>https://rinas.tech/blogs/python-generators.html</link>
+      <guid>https://rinas.tech/blogs/python-generators.html</guid>
+      <description>Learn how to use Python generators for efficient memory management and elegant code design.</description>
+      <pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Understanding React Hooks</title>
+      <link>https://rinas.tech/blogs/react-hooks.html</link>
+      <guid>https://rinas.tech/blogs/react-hooks.html</guid>
+      <description>A deep dive into React Hooks: useState, useEffect, and how they simplify functional components.</description>
+      <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Introduction to Docker Compose</title>
+      <link>https://rinas.tech/blogs/docker-compose-intro.html</link>
+      <guid>https://rinas.tech/blogs/docker-compose-intro.html</guid>
+      <description>A beginner's guide to using Docker Compose to orchestrate multi-container applications.</description>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Advanced Git Strategies</title>
+      <link>https://rinas.tech/blogs/advanced-git-strategies.html</link>
+      <guid>https://rinas.tech/blogs/advanced-git-strategies.html</guid>
+      <description>Explore advanced Git strategies, including rebasing, bisecting, and using the reflog.</description>
+      <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>CSS Grid vs Flexbox</title>
+      <link>https://rinas.tech/blogs/css-grid-vs-flexbox.html</link>
+      <guid>https://rinas.tech/blogs/css-grid-vs-flexbox.html</guid>
+      <description>When to use CSS Grid and when to use Flexbox to build modern, responsive web layouts.</description>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Connecting Cube.js to Superset (PostgreSQL SQL API)</title>
+      <link>https://rinas.tech/blogs/connecting-cubejs-to-superset-postgresql-sql-api.html</link>
+      <guid>https://rinas.tech/blogs/connecting-cubejs-to-superset-postgresql-sql-api.html</guid>
+      <description>Connect Apache Superset to Cube.js using Cube's PostgreSQL SQL API on port 15432, allowing Superset to query Cube.js pre-aggregated data.</description>
+      <pubDate>Fri, 16 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Connecting GitLab to Airbyte Using OAuth 2.0</title>
+      <link>https://rinas.tech/blogs/connecting-gitbd-gitlab-to-airbyte-using-oauth20.html</link>
+      <guid>https://rinas.tech/blogs/connecting-gitbd-gitlab-to-airbyte-using-oauth20.html</guid>
+      <description>A step-by-step guide to configuring an OAuth2.0 application in GitLab (GitBD) and authenticating Airbyte to use it as a source.</description>
+      <pubDate>Wed, 14 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Copying a SQL File into a Docker Container</title>
+      <link>https://rinas.tech/blogs/copy-the-sql-file-to-the-container.html</link>
+      <guid>https://rinas.tech/blogs/copy-the-sql-file-to-the-container.html</guid>
+      <description>A short guide on how to copy a SQL file from a local machine into a running Docker container.</description>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Creating a Temporary Admin User in Keycloak</title>
+      <link>https://rinas.tech/blogs/creating-a-temporary-admin-user-in-keycloak.html</link>
+      <guid>https://rinas.tech/blogs/creating-a-temporary-admin-user-in-keycloak.html</guid>
+      <description>A short tutorial on how to bootstrap a temporary admin user in Keycloak and install MySQL Workbench.</description>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

@@ -7,22 +7,27 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <!-- SEO Meta Tags for Google AdSense -->
- <meta name="description" content="Eulerian vs Hamiltonian graphs: the mathematical conditions for Eulerian circuits and Hamiltonian cycles, with rules and examples for graph theory.">
- <meta name="keywords" content="Eulerian and Hamiltonian Graphs, Software Engineering, DevOps, AI, Tutorial, A.M. Rinas">
- <meta name="robots" content="index, follow">
+ 
+ 
+ 
  <link rel="canonical" href="https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html">
+ <meta property="article:published_time" content="2026-04-14T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-04-14T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
  
  <!-- Open Graph for Facebook/LinkedIn -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="Eulerian and Hamiltonian Graphs | A.M. Rinas Blog">
- <meta property="og:description" content="Eulerian vs Hamiltonian graphs: the mathematical conditions for Eulerian circuits and Hamiltonian cycles, with rules and examples for graph theory.">
+ 
+ 
+ 
  <meta property="og:url" content="https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter Cards -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="Eulerian and Hamiltonian Graphs">
- <meta name="twitter:description" content="Eulerian vs Hamiltonian graphs: the mathematical conditions for Eulerian circuits and Hamiltonian cycles, with rules and examples for graph theory.">
+ 
+ 
+ 
  
  <!-- Google Structured Data (JSON-LD) for Rich Results -->
 
@@ -33,7 +38,7 @@
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
- <link rel="icon" type="image/png" sizes="48x48" href="https://rinas21.github.io/amrinas/favicon.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
 
 <link rel="stylesheet" href="../css/theme-switcher.css">
 
@@ -43,10 +48,10 @@
 
 
  <!-- SEO Meta Tags -->
- <title>Eulerian and Hamiltonian Graphs | A.M Rinas</title>
- <meta name="description" content="Eulerian vs Hamiltonian graphs: the mathematical conditions for Eulerian circuits and Hamiltonian cycles, with rules and examples for graph theory.">
+ <title>Eulerian and Hamiltonian Graphs | A.M. Rinas Blog</title>
+ <meta name="description" content="A deep dive into Eulerian and Hamiltonian graphs in Graph Theory.">
  <link rel="canonical" href="https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
@@ -71,21 +76,21 @@
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
- "name": "A.M Rinas"
+ "name": "A.M. Rinas"
  },
  "publisher": {
  "@type": "Organization",
  "name": "A.M. Rinas Portfolio",
  "logo": {
  "@type": "ImageObject",
- "url": "https://rinas21.github.io/amrinas/favicon.png"
+ "url": "https://rinas.tech/favicon.png"
  }
  },
- "datePublished": "2026-06-19",
- "dateModified": "2026-06-19",
+ "datePublished": "2026-04-14",
+ "dateModified": "2026-04-14",
  "mainEntityOfPage": {
  "@type": "WebPage",
- "@id": "https://rinas21.github.io/amrinas/blogs/eulerian-and-hamiltonian-graphs.html"
+ "@id": "https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html"
  }
  }
  </script>
@@ -99,19 +104,19 @@
  "@type": "ListItem",
  "position": 1,
  "name": "Home",
- "item": "https://rinas21.github.io/amrinas/"
+ "item": "https://rinas.tech/"
  },
  {
  "@type": "ListItem",
  "position": 2,
  "name": "Blog",
- "item": "https://rinas21.github.io/amrinas/blog.html"
+ "item": "https://rinas.tech/pages/blog.html"
  },
  {
  "@type": "ListItem",
  "position": 3,
  "name": "Eulerian and Hamiltonian Graphs",
- "item": "https://rinas21.github.io/amrinas/blogs/eulerian-and-hamiltonian-graphs.html"
+ "item": "https://rinas.tech/blogs/eulerian-and-hamiltonian-graphs.html"
  }
  ]
  }
@@ -139,6 +144,16 @@
 
  <article class="blog-post-container">
 <h1>Eulerian and Hamiltonian Graphs</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-04-14">April 14, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
 
 
 <p>This document provides key differences, mathematical rules, and conditions for determining whether a graph is <strong>Eulerian</strong> or <strong>Hamiltonian</strong>.</p>
@@ -151,13 +166,13 @@
 <li>The graph must satisfy the following conditions:<ul>
 <li>The graph is <strong>connected</strong>, and</li>
 <li>All vertices ( v \in V ) have an <strong>even degree</strong>:
-$$
+$
 \text{deg}(v) \equiv 0 \ (\text{mod } 2) \ \forall v \in V
-$$</li>
+$</li>
 <li>Or exactly two vertices have an <strong>odd degree</strong>:
-$$
+$
 \text{deg}(v) \equiv 1 \ (\text{mod } 2)
-$$</li>
+$</li>
 </ul>
 </li>
 </ol>
@@ -168,9 +183,9 @@ $$</li>
 <li>It contains a <strong>Hamiltonian cycle</strong>—a closed path that visits every vertex exactly once and returns to the starting vertex.</li>
 <li>For a simple graph ( G = (V, E) ) with ( |V| = n ) vertices:<ul>
 <li>Each vertex ( v \in V ) satisfies:
-$$
+$
 \text{deg}(v) \geq \frac{n}{2}.
-$$</li>
+$</li>
 </ul>
 </li>
 </ol>
@@ -231,13 +246,13 @@ $$</li>
 <ul>
 <li>Example of an Eulerian graph:<ul>
 <li>A connected graph where all vertices have even degrees:
-$$
+$
 \text{deg}(A) = 2, \ \text{deg}(B) = 2, \ \text{deg}(C) = 2, \ \text{deg}(D) = 2
-$$</li>
+$</li>
 <li>Alternatively, a graph with exactly two vertices of odd degrees:
-$$
+$
 \text{deg}(A) = 3, \ \text{deg}(B) = 3, \ \text{deg}(C) = 2, \ \text{deg}(D) = 2
-$$</li>
+$</li>
 </ul>
 </li>
 </ul>
@@ -245,21 +260,34 @@ $$</li>
 <ul>
 <li>Example of a Hamiltonian graph:<ul>
 <li>A simple graph where each vertex satisfies $ \text{deg}(v) \geq \frac{n}{2} $ for ( n = 6 ) vertices:
-$$
+$
 \text{deg}(A) = 3, \ \text{deg}(B) = 3, \ \text{deg}(C) = 3, \ \text{deg}(D) = 3, \ \text{deg}(E) = 3, \ \text{deg}(F) = 3
-$$</li>
+$</li>
 </ul>
 </li>
 </ul>
 
- <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--rule);">
- <p style="font-size: 14px; font-style: italic; color: var(--ink-muted); text-align: right;">
- Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
- Published August 8, 2026
- </p>
- <!-- SEO Crawler Data: A.M.Rinas, A M Rinas, Rinas, Rinas Software Engineer, A.M. Rinas Full Stack Developer, A.M. Rinas DevOps, Rinas AI, A M Rinas Tech Blog, amrinas, rinas21 -->
-
- <!-- Topic SEO Keywords: graph theory, Eulerian, Hamiltonian, circuits, cycles, algorithms -->
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="kubernetes-intro.html">Introduction to Kubernetes Architecture</a></li>
+ <li><a href="network-interfaces-and-their-levels-usage.html">Network Interfaces and Their Levels &amp; Usage</a></li>
+ <li><a href="paging-vs-segmentation.html">Paging vs. Segmentation</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
  </article>
 
  
@@ -270,7 +298,11 @@ $$</li>
  <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
  <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+  |
+  |
+ 
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>
