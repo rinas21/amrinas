@@ -59,6 +59,18 @@ const TECH = {
     "Networking":     { fa: "fa-solid fa-wifi",          color: "#63b3ed" },
     "n8n":            { fa: "fa-solid fa-project-diagram", color: "#ea4b71" },
     "Azure":          { icon: "devicon-azure-plain colored" },
+
+    /* WealthTrack / WebPulse stack */
+    "Express.js":     { icon: "devicon-express-original colored" },
+    "PostgreSQL":     { icon: "devicon-postgresql-plain colored" },
+    "Google OAuth":   { fa: "fa-brands fa-google",           color: "#4285f4" },
+    "Zustand":        { fa: "fa-solid fa-atom",              color: "#764abc" },
+    "React Query":    { fa: "fa-solid fa-rotate",            color: "#ff4154" },
+    "ECharts":        { fa: "fa-solid fa-chart-area",        color: "#c23531" },
+    "Astro":          { icon: "devicon-astro-plain colored" },
+    "GSAP":           { fa: "fa-solid fa-wand-magic-sparkles", color: "#88ce02" },
+    "Nodemailer":     { fa: "fa-solid fa-envelope",          color: "#00a651" },
+    "Vite":           { icon: "devicon-vitejs-plain colored" },
 };
 
 function iconHtml(name) {
@@ -69,20 +81,57 @@ function iconHtml(name) {
     return `<i class="${meta.fa}" style="color:${meta.color}"></i>`;
 }
 
-/* ---- live project ---- */
-const liveProject = {
-    tech: ["React", "TypeScript", "Node.js", "Tailwind CSS", "Vercel"]
-};
+/* ---- live projects ---- */
+const liveProjects = [
+    {
+        name: "WealthTrack",
+        url:  "expense.rinas.tech",
+        href: "https://expense.rinas.tech",
+        tech: ["React", "TypeScript", "Vite", "Express.js", "PostgreSQL", "Docker", "Google OAuth", "Zustand", "React Query", "ECharts"]
+    },
+    {
+        name: "WebPulse",
+        url:  "webpulse.rinas.tech",
+        href: "https://webpulse.rinas.tech",
+        tech: ["Astro", "TypeScript", "Tailwind CSS", "GSAP", "Vercel", "Nodemailer"]
+    },
+    {
+        name: "CSE Atlas",
+        url:  "cse-atlas.vercel.app",
+        href: "https://cse-atlas.vercel.app",
+        tech: ["React", "TypeScript", "Node.js", "Tailwind CSS", "Vercel"]
+    }
+];
 
-const liveTechRow = document.getElementById('liveTechRow');
-liveTechRow.innerHTML = liveProject.tech.map(t =>
-    `<span class="tech-chip" style="cursor:default;">${iconHtml(t)}<span>${t}</span></span>`
-).join('');
-
-const liveCard = document.getElementById('liveCard');
-liveCard.addEventListener('click', (e) => {
-    if (e.target.closest('.live-visit')) return;
-    liveCard.classList.toggle('expanded');
+const liveContainer = document.getElementById('liveDeployments');
+liveProjects.forEach((proj, idx) => {
+    const card = document.createElement('div');
+    card.className = 'live-card';
+    card.id = `liveCard-${idx}`;
+    card.innerHTML = `
+        <div class="live-top">
+            <div class="live-left">
+                <span class="pulse-dot"></span>
+                <div>
+                    <div class="live-name">${proj.name}</div>
+                    <div class="live-url">${proj.url}</div>
+                </div>
+            </div>
+            <div class="live-right">
+                <span class="live-badge">LIVE</span>
+                <a class="live-visit" href="${proj.href}" target="_blank" rel="noopener">Visit ↗</a>
+                <span class="chev">▾</span>
+            </div>
+        </div>
+        <div class="live-tech">
+            <div class="live-tech-label">TECH STACK</div>
+            <div class="live-tech-row">${proj.tech.map(t => `<span class="tech-chip" style="cursor:default;">${iconHtml(t)}<span>${t}</span></span>`).join('')}</div>
+        </div>`;
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('.live-visit')) return;
+        card.classList.toggle('expanded');
+    });
+    liveContainer.appendChild(card);
 });
 
 /* ---- mobile nav toggle ---- */
@@ -97,6 +146,27 @@ document.addEventListener('click', (e) => {
 
 /* ---- project data (merged old + sample.txt) ---- */
 const projects = [
+    {
+        title: "WealthTrack",
+        role: "Full Stack Developer",
+        bullets: [
+            "Personal finance and expense tracking web app with multi-currency support.",
+            "Built with React, TypeScript, and Vite on the frontend; Express.js and PostgreSQL on the backend.",
+            "Integrated Google OAuth for authentication, ECharts for interactive financial charts.",
+            "State managed via Zustand and React Query; fully containerised with Docker."
+        ],
+        tech: ["React", "TypeScript", "Vite", "Express.js", "PostgreSQL", "Docker", "Google OAuth", "Zustand", "React Query", "ECharts"]
+    },
+    {
+        title: "WebPulse",
+        role: "Full Stack Developer",
+        bullets: [
+            "High-performance marketing and analytics landing page built with Astro.",
+            "Implemented smooth scroll animations and transitions using GSAP.",
+            "Contact and notification system powered by Nodemailer; deployed on Vercel."
+        ],
+        tech: ["Astro", "TypeScript", "Tailwind CSS", "GSAP", "Vercel", "Nodemailer"]
+    },
     {
         title: "OUSL Smart Academic Assistant",
         role: "Developer",
