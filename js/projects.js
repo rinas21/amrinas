@@ -104,35 +104,37 @@ const liveProjects = [
 ];
 
 const liveContainer = document.getElementById('liveDeployments');
-liveProjects.forEach((proj, idx) => {
-    const card = document.createElement('div');
-    card.className = 'live-card';
-    card.id = `liveCard-${idx}`;
-    card.innerHTML = `
-        <div class="live-top">
-            <div class="live-left">
-                <span class="pulse-dot"></span>
-                <div>
-                    <div class="live-name">${proj.name}</div>
-                    <div class="live-url">${proj.url}</div>
+if (liveContainer) {
+    liveProjects.forEach((proj, idx) => {
+        const card = document.createElement('div');
+        card.className = 'live-card';
+        card.id = `liveCard-${idx}`;
+        card.innerHTML = `
+            <div class="live-top">
+                <div class="live-left">
+                    <span class="pulse-dot"></span>
+                    <div>
+                        <div class="live-name">${proj.name}</div>
+                        <div class="live-url">${proj.url}</div>
+                    </div>
+                </div>
+                <div class="live-right">
+                    <span class="live-badge">LIVE</span>
+                    <a class="live-visit" href="${proj.href}" target="_blank" rel="noopener">Visit ↗</a>
+                    <span class="chev">▾</span>
                 </div>
             </div>
-            <div class="live-right">
-                <span class="live-badge">LIVE</span>
-                <a class="live-visit" href="${proj.href}" target="_blank" rel="noopener">Visit ↗</a>
-                <span class="chev">▾</span>
-            </div>
-        </div>
-        <div class="live-tech">
-            <div class="live-tech-label">TECH STACK</div>
-            <div class="live-tech-row">${proj.tech.map(t => `<span class="tech-chip" style="cursor:default;">${iconHtml(t)}<span>${t}</span></span>`).join('')}</div>
-        </div>`;
-    card.addEventListener('click', (e) => {
-        if (e.target.closest('.live-visit')) return;
-        card.classList.toggle('expanded');
+            <div class="live-tech">
+                <div class="live-tech-label">TECH STACK</div>
+                <div class="live-tech-row">${proj.tech.map(t => `<span class="tech-chip" style="cursor:default;">${iconHtml(t)}<span>${t}</span></span>`).join('')}</div>
+            </div>`;
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.live-visit')) return;
+            card.classList.toggle('expanded');
+        });
+        liveContainer.appendChild(card);
     });
-    liveContainer.appendChild(card);
-});
+}
 
 /* ---- mobile nav toggle ---- */
 const hamburger = document.getElementById('hamburger');
