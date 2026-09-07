@@ -51,7 +51,7 @@ const CATEGORY_OVERRIDES = {
 };
 
 const CLUSTERS = {
-  docker: ['docker-compose-intro', 'docker-compose-up-build-command', 'docker-network-guide', 'docker-ps', 'how-to-disable-auto-start-for-a-docker-container', 'docker-build-failures-linux-vs-windows', 'copy-the-sql-file-to-the-container', 'adding-a-custom-node-to-n8n-in-docker', 'mongodb-backup-restore-with-docker', 'grafana-installation-docker', 'airbyte-local-installation-steps'],
+  docker: ['docker-compose-intro', 'docker-compose-up-build-command', 'docker-network-guide', 'docker-ps', 'how-to-disable-auto-start-for-a-docker-container', 'docker-build-failures-linux-vs-windows', 'copy-the-sql-file-to-the-container', 'adding-a-custom-node-to-n8n-in-docker', 'mongodb-backup-restore-with-docker', 'grafana-installation-docker', 'airbyte-local-installation-steps', 'how-i-debugged-docker-nginx-and-reverse-proxy-problems-in-production'],
   linux: ['basic-linux', 'sed-command-and-its-different-usages', 'file-permissions-in-linux-owner-group-others', 'view-saved-wi-fi-passwords-on-ubuntu', 'replace-overwrite-files-in-ubuntu', 'adding-google-chat-to-the-ubuntu-desktop-bar', 'how-to-enable-swap-memory-on-linux', 'optional-load-modular-configs-from-bashrcd', 'locate-command-cheat-sheet', 'rsync-and-its-usages', 'reverting-to-rhel-94-kernel-version-after-upgrade-to-rhel-95', 'issue-working-with-utf-16-encoded-files-in-linux', 'checking-if-a-user-group-exists-in-rhel', 'network-interfaces-and-their-levels-usage', 'linux-maven-git-cheat-sheet'],
   network: ['scp-commnd', 'ssh-commnd', 'netstat-commnd', 'checking-port-availability-using-netcat-nc', 'iptables-rules', 'configuring-ssh-authentication-for-github'],
   ffmpeg: ['compress-large-videos-using-ffmpeg', 'compress-videos-ffmpeg-ubuntu', 'ffmpeg-video-trimming-linux-no-reencoding'],
@@ -63,9 +63,10 @@ const CLUSTERS = {
   git: ['advanced-git-strategies', 'git-bisect-process-to-debug-issue', 'git-stash-notes', 'gitattributes-crlf-lf-line-endings-git', 'configuring-ssh-authentication-for-github', 'linux-maven-git-cheat-sheet', 'lefthook-setup-guide'],
   monitoring: ['grafana-installation-docker', 'grafana-prometheus-node-exporter', 'docker-ps', 'network-interfaces-and-their-levels-usage'],
   datatools: ['gpt-playground', 'install-caveman', 'note-google-apps-script-to-clone-data-up-to-column-j', 'n8n-custom-node-development-guide', 'adding-a-custom-node-to-n8n-in-docker', 'airbyte-local-installation-steps', 'connecting-gitbd-gitlab-to-airbyte-using-oauth20', 'connecting-cubejs-to-superset-postgresql-sql-api', 'cubejs-concepts-summary', 'python-troubleshooting-and-installation-summary'],
-  webdev: ['react-hooks', 'css-grid-vs-flexbox', 'typescript-common-errors-and-fixes', 'debugging-401-error', 'seo-mistakes-developers-make', 'image-naming-strategy-for-seo', 'python-generators', 'setting-up-a-net-solution-with-xunit-test-project'],
+  webdev: ['react-hooks', 'css-grid-vs-flexbox', 'typescript-common-errors-and-fixes', 'debugging-401-error', 'seo-mistakes-developers-make', 'image-naming-strategy-for-seo', 'python-generators', 'setting-up-a-net-solution-with-xunit-test-project', 'how-i-audited-a-saas-application-and-found-16-dead-ui-elements', 'how-i-debug-complex-user-flows-by-tracing-dependencies', 'building-a-user-friendly-website-editor-for-non-technical-users', 'designing-plan-based-feature-restrictions-in-a-saas-application', 'how-i-improved-mobile-responsiveness-across-a-real-world-web-app', 'building-a-secure-image-upload-and-processing-pipeline', 'why-frontend-authorization-is-not-enough-lessons-from-a-security-audit'],
   theory: ['paging-vs-segmentation', 'cpu-cycle-and-its-relation-to-time', 'eulerian-and-hamiltonian-graphs', 'kubernetes-intro', 'network-interfaces-and-their-levels-usage'],
-  installs: ['insall-xmind', 'katalon-studio-guide', 'postman-ubunut', 'flutter-installation-notes', 'python-virtual-environment-setup-guide-ubuntulinux', 'ruby-on-rails-installation-notes-2025-05-19', 'otrs-installation-guide-on-ubuntu-with-custom-mysql-binary', 'setting-up-custom-email-subdomain-cloudflare-brevo', 'hostinger-domain-redirect-missing-fix', 'gpt-playground', 'insall-xmind']
+  installs: ['insall-xmind', 'katalon-studio-guide', 'postman-ubunut', 'flutter-installation-notes', 'python-virtual-environment-setup-guide-ubuntulinux', 'ruby-on-rails-installation-notes-2025-05-19', 'otrs-installation-guide-on-ubuntu-with-custom-mysql-binary', 'setting-up-custom-email-subdomain-cloudflare-brevo', 'hostinger-domain-redirect-missing-fix', 'gpt-playground', 'insall-xmind'],
+  aieng: ['how-i-audit-an-existing-codebase-before-letting-ai-modify-it', 'using-ai-coding-agents-for-real-software-engineering-not-just-code-generation', 'how-to-get-150-million-free-ai-tokens-kira-ai', 'install-caveman', 'gpt-playground']
 };
 
 const EXPLICIT_RELATED = {
@@ -379,7 +380,7 @@ function rebuildFeed(posts) {
     <atom:link href="https://rinas.tech/feed.xml" rel="self" type="application/rss+xml" />
     <description>Technical articles, debugging notes, and lessons from a full-stack software and DevOps engineer.</description>
     <language>en</language>
-    <lastBuildDate>${rfc822('2026-08-18')}</lastBuildDate>
+    <lastBuildDate>${rfc822('2026-09-07')}</lastBuildDate>
 ${items}
   </channel>
 </rss>
@@ -398,9 +399,9 @@ function rebuildSitemap(posts) {
     <priority>${priority}</priority>
   </url>`);
   };
-  add('https://rinas.tech/', '2026-08-18', '1.0');
-  add('https://rinas.tech/pages/about.html', '2026-08-18', '0.8');
-  add('https://rinas.tech/pages/blog.html', '2026-08-18', '0.8');
+  add('https://rinas.tech/', '2026-09-07', '1.0');
+  add('https://rinas.tech/pages/about.html', '2026-09-07', '0.8');
+  add('https://rinas.tech/pages/blog.html', '2026-09-07', '0.8');
   add('https://rinas.tech/pages/codelab.html', '2026-08-18', '0.8');
   add('https://rinas.tech/pages/contact.html', '2026-08-18', '0.8');
   add('https://rinas.tech/pages/privacy.html', '2026-08-18', '0.5');

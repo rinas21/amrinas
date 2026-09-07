@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags for Google AdSense -->
+    <meta name="description" content="Lessons from a security audit showing why hiding UI is not authorization: every sensitive action needs server-side permission checks and tests.">
+    
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical"
+        href="https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html">
+ <meta property="article:published_time" content="2026-08-29T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-08-29T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
+
+    <!-- Open Graph for Facebook/LinkedIn -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why Frontend Authorization Is Not Enough: Lessons From a Security Audit">
+    <meta property="og:description" content="Lessons from a security audit showing why hiding UI is not authorization: every sensitive action needs server-side permission checks and tests.">
+    <meta property="og:url"
+        content="https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Frontend Authorization Is Not Enough: Lessons From a Security Audit">
+    <meta name="twitter:description" content="Lessons from a security audit showing why hiding UI is not authorization: every sensitive action needs server-side permission checks and tests.">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+
+    <!-- SEO Meta Tags -->
+    <title>Why Frontend Authorization Is Not Enough: Lessons From a Security Audit | A.M. Rinas Blog</title>
+
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": "Why Frontend Authorization Is Not Enough: Lessons From a Security Audit",
+ "description": "Lessons from a security audit showing why hiding UI is not authorization: every sensitive action needs server-side permission checks and tests.",
+ "image": "https://rinas.tech/img/100blog.jpg",
+ "author": {
+ "@type": "Person",
+ "name": "A.M. Rinas"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "A.M. Rinas Portfolio",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://rinas.tech/favicon.png"
+ }
+ },
+ "datePublished": "2026-08-29",
+ "dateModified": "2026-08-29",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html"
+        }
+ }
+ </script>
+
+    <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ {
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Home",
+ "item": "https://rinas.tech/"
+ },
+ {
+ "@type": "ListItem",
+ "position": 2,
+ "name": "Blog",
+ "item": "https://rinas.tech/pages/blog.html"
+ },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Frontend Authorization Is Not Enough",
+                "item": "https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html"
+            }
+ ]
+ }
+ </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4323468251086961"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Mohomad Rinas -->
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Why Frontend Authorization Is Not Enough: Lessons From a Security Audit</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-08-29">August 29, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">6 min read</span>
+ </div>
+ <!-- post-meta -->
+
+
+ <p>
+ During a security audit of a SaaS app, several “admin-only” actions were only hidden in the React UI.
+ The API still accepted the requests if you called them directly. That is not authorization — that is
+ obscurity.
+ </p>
+
+ <h2>What Frontend Checks Are Good For</h2>
+ <ul>
+ <li>Better UX (do not show actions you cannot use)</li>
+ <li>Fewer confused clicks</li>
+ <li>Faster feedback when a plan lacks a feature</li>
+ </ul>
+ <p>
+ They are <strong>not</strong> a security boundary. Any user can open DevTools, replay a request, or
+ call the API with a script.
+ </p>
+
+ <h2>The Failure Pattern</h2>
+ <pre><code class="language-tsx">// Frontend only — insufficient
+{user.role === 'admin' &amp;&amp; (
+  &lt;button onClick={deleteOrg}&gt;Delete organization&lt;/button&gt;
+)}</code></pre>
+ <pre><code class="language-javascript">// Missing on the API
+app.delete('/api/orgs/:id', async (req, res) =&gt; {
+  await db.orgs.delete(req.params.id); // no role check
+  res.status(204).end();
+});</code></pre>
+
+ <h2>What Proper Authorization Looks Like</h2>
+ <ol>
+ <li>Authenticate the request (session/JWT)</li>
+ <li>Load membership / role for the target resource</li>
+ <li>Authorize the specific action (RBAC or policy)</li>
+ <li>Perform the mutation</li>
+ <li>Audit-log sensitive actions</li>
+ </ol>
+ <pre><code class="language-javascript">app.delete('/api/orgs/:id', requireAuth, async (req, res) =&gt; {
+  const membership = await getMembership(req.user.id, req.params.id);
+  if (!membership || membership.role !== 'owner') {
+    return res.status(403).json({ error: 'forbidden' });
+  }
+  await db.orgs.delete(req.params.id);
+  await audit.log('org.delete', { actor: req.user.id, orgId: req.params.id });
+  res.status(204).end();
+});</code></pre>
+
+ <h2>Audit Techniques That Caught Issues</h2>
+ <ul>
+ <li>Map every privileged UI action to its API route</li>
+ <li>Replay those routes as a lower-privilege user</li>
+ <li>Try IDOR: change resource IDs in URLs and bodies</li>
+ <li>Check background jobs that accept user-controlled IDs</li>
+ <li>Verify plan/feature gates on the server, not only in React</li>
+ </ul>
+
+ <h2>Tests You Should Automate</h2>
+ <pre><code class="language-text">member cannot delete org
+member cannot change billing
+owner can invite admin
+cross-tenant IDOR returns 404/403
+feature-gated endpoint returns 402/403 on free plan</code></pre>
+
+ <h2>Final Thoughts</h2>
+ <p>
+ Frontend authorization improves UX. Server authorization protects the business. If a control matters,
+ the API must refuse unauthorized callers — every time.
+ </p>
+
+
+ <hr style="margin:40px 0;border:none;border-top:1px solid var(--rule);">
+<p style="font-size:14px;font-style:italic;text-align:right;">
+ Written by <a href="../pages/about.html" style="color: var(--ink-muted);">A.M. Rinas</a> ·
+ Published August 29, 2026
+ </p>
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="debugging-401-error.html">I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication</a></li>
+ <li><a href="seo-mistakes-developers-make.html">The SEO Mistakes Developers Make When Building Websites</a></li>
+ <li><a href="how-to-get-150-million-free-ai-tokens-kira-ai.html">How to Get 150 Million Free AI Tokens with Kira AI</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+ </article>
+
+ 
+ <!-- ===== FOOTER ===== -->
+ <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+ <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+ <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
+ <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+ <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
+ <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
+ <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a> |
+ 
+ </nav>
+ <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+ </footer>
+
+ <!-- Theme Switcher UI -->
+ <div class="theme-switcher-container" id="themeSwitcher"></div>
+
+ <script>
+ const THEMES = [
+ { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
+ { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
+ { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
+ ];
+
+ let currentTheme = localStorage.getItem('selected_theme') || "default";
+ const container = document.getElementById("themeSwitcher");
+
+ function setTheme(themeId) {
+ currentTheme = themeId;
+ document.documentElement.setAttribute("data-theme", themeId);
+ localStorage.setItem('selected_theme', themeId);
+ 
+ document.querySelectorAll(".theme-btn").forEach(btn => {
+ if (btn.dataset.theme === themeId) {
+ btn.classList.add("active");
+ } else {
+ btn.classList.remove("active");
+ }
+ });
+ }
+
+ if(container) {
+ THEMES.forEach(theme => {
+ const btn = document.createElement("button");
+ btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
+ btn.dataset.theme = theme.id;
+ btn.title = theme.label;
+ 
+ const bgPreview = document.createElement("div");
+ bgPreview.className = "theme-bg-preview";
+ bgPreview.style.backgroundColor = theme.bg;
+ 
+ const accentPreview = document.createElement("div");
+ accentPreview.className = "theme-accent-preview";
+ accentPreview.style.backgroundColor = theme.color;
+
+ btn.appendChild(bgPreview);
+ btn.appendChild(accentPreview);
+
+ btn.addEventListener("click", () => setTheme(theme.id));
+ container.appendChild(btn);
+ });
+ // Initialize on load
+ setTheme(currentTheme);
+ }
+ </script>
+
+</body>
+</html>

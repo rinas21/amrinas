@@ -6,13 +6,83 @@
     <atom:link href="https://rinas.tech/feed.xml" rel="self" type="application/rss+xml" />
     <description>Technical articles, debugging notes, and lessons from a full-stack software and DevOps engineer.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 7 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>How I Audited a SaaS Application and Found 16 Dead UI Elements</title>
+      <link>https://rinas.tech/blogs/how-i-audited-a-saas-application-and-found-16-dead-ui-elements.html</link>
+      <guid>https://rinas.tech/blogs/how-i-audited-a-saas-application-and-found-16-dead-ui-elements.html</guid>
+      <description>How I systematically audited a SaaS UI, found 16 dead buttons and menus still rendered for users, and cleaned them without breaking active flows.</description>
+      <pubDate>Mon, 7 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How I Debug Complex User Flows by Tracing Dependencies</title>
+      <link>https://rinas.tech/blogs/how-i-debug-complex-user-flows-by-tracing-dependencies.html</link>
+      <guid>https://rinas.tech/blogs/how-i-debug-complex-user-flows-by-tracing-dependencies.html</guid>
+      <description>A practical method for debugging complex SaaS user flows by mapping UI actions to APIs, services, queues, and database writes before changing code.</description>
+      <pubDate>Sun, 6 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building a User-Friendly Website Editor for Non-Technical Users</title>
+      <link>https://rinas.tech/blogs/building-a-user-friendly-website-editor-for-non-technical-users.html</link>
+      <guid>https://rinas.tech/blogs/building-a-user-friendly-website-editor-for-non-technical-users.html</guid>
+      <description>Lessons from building a website editor for non-technical users: safer defaults, constrained editing, preview workflows, and guardrails that prevent broken pages.</description>
+      <pubDate>Sat, 5 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Designing Plan-Based Feature Restrictions in a SaaS Application</title>
+      <link>https://rinas.tech/blogs/designing-plan-based-feature-restrictions-in-a-saas-application.html</link>
+      <guid>https://rinas.tech/blogs/designing-plan-based-feature-restrictions-in-a-saas-application.html</guid>
+      <description>How to design plan-based feature restrictions in SaaS: central entitlements, server-side enforcement, upgrade UX, and avoiding frontend-only paywalls.</description>
+      <pubDate>Fri, 4 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>How to Get 150 Million Free AI Tokens with Kira AI</title>
       <link>https://rinas.tech/blogs/how-to-get-150-million-free-ai-tokens-kira-ai.html</link>
       <guid>https://rinas.tech/blogs/how-to-get-150-million-free-ai-tokens-kira-ai.html</guid>
       <description>Step-by-step developer guide to claim 150 million free AI tokens on Kira AI and configure OpenAI-compatible coding clients like Antigravity and Cline.</description>
-      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 3 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How I Improved Mobile Responsiveness Across a Real-World Web App</title>
+      <link>https://rinas.tech/blogs/how-i-improved-mobile-responsiveness-across-a-real-world-web-app.html</link>
+      <guid>https://rinas.tech/blogs/how-i-improved-mobile-responsiveness-across-a-real-world-web-app.html</guid>
+      <description>A practical pass on mobile responsiveness for a real web app: audit method, layout fixes, touch targets, tables, and performance on small screens.</description>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building a Secure Image Upload and Processing Pipeline</title>
+      <link>https://rinas.tech/blogs/building-a-secure-image-upload-and-processing-pipeline.html</link>
+      <guid>https://rinas.tech/blogs/building-a-secure-image-upload-and-processing-pipeline.html</guid>
+      <description>How to build a secure image upload and processing pipeline: validation, storage, virus scanning concepts, resizing, and least-privilege access.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why Frontend Authorization Is Not Enough: Lessons From a Security Audit</title>
+      <link>https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html</link>
+      <guid>https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html</guid>
+      <description>Lessons from a security audit showing why hiding UI is not authorization: every sensitive action needs server-side permission checks and tests.</description>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How I Debugged Docker, Nginx, and Reverse Proxy Problems in Production</title>
+      <link>https://rinas.tech/blogs/how-i-debugged-docker-nginx-and-reverse-proxy-problems-in-production.html</link>
+      <guid>https://rinas.tech/blogs/how-i-debugged-docker-nginx-and-reverse-proxy-problems-in-production.html</guid>
+      <description>A production debugging playbook for Docker, Nginx, and reverse proxy failures: 502s, wrong hosts, TLS termination, WebSockets, and header forwarding.</description>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How I Audit an Existing Codebase Before Letting AI Modify It</title>
+      <link>https://rinas.tech/blogs/how-i-audit-an-existing-codebase-before-letting-ai-modify-it.html</link>
+      <guid>https://rinas.tech/blogs/how-i-audit-an-existing-codebase-before-letting-ai-modify-it.html</guid>
+      <description>A practical pre-flight audit I run before allowing AI coding agents to modify a repository: architecture map, risks, tests, and scoped change plans.</description>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Using AI Coding Agents for Real Software Engineering, Not Just Code Generation</title>
+      <link>https://rinas.tech/blogs/using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html</link>
+      <guid>https://rinas.tech/blogs/using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html</guid>
+      <description>How to use AI coding agents for real software engineering: investigation, planning, tests, reviews, and safe execution — not paste-and-pray code generation.</description>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Setting Up a Custom Email Subdomain with Cloudflare and Brevo</title>
@@ -193,7 +263,7 @@
       <title>Fixing &quot;Could Not Initialize Java Virtual Machine&quot; on Linux</title>
       <link>https://rinas.tech/blogs/fix-java-virtual-machine-error-linux.html</link>
       <guid>https://rinas.tech/blogs/fix-java-virtual-machine-error-linux.html</guid>
-      <description>Fix the Oracle JDK error 'Could not initialize Java Virtual Machine / Error trying to initialize HPI library' on Linux by installing the missing 32-bit compatibility libraries.</description>
+      <description>Fix the Oracle JDK error 'Could not initialize Java Virtual Machine / Error trying to initialize HPI library' on Linux by installing the missing 32-bit compa</description>
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
