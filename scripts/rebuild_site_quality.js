@@ -66,7 +66,7 @@ const CLUSTERS = {
   webdev: ['react-hooks', 'css-grid-vs-flexbox', 'typescript-common-errors-and-fixes', 'debugging-401-error', 'seo-mistakes-developers-make', 'image-naming-strategy-for-seo', 'python-generators', 'setting-up-a-net-solution-with-xunit-test-project', 'how-i-audited-a-saas-application-and-found-16-dead-ui-elements', 'how-i-debug-complex-user-flows-by-tracing-dependencies', 'building-a-user-friendly-website-editor-for-non-technical-users', 'designing-plan-based-feature-restrictions-in-a-saas-application', 'how-i-improved-mobile-responsiveness-across-a-real-world-web-app', 'building-a-secure-image-upload-and-processing-pipeline', 'why-frontend-authorization-is-not-enough-lessons-from-a-security-audit'],
   theory: ['paging-vs-segmentation', 'cpu-cycle-and-its-relation-to-time', 'eulerian-and-hamiltonian-graphs', 'kubernetes-intro', 'network-interfaces-and-their-levels-usage'],
   installs: ['insall-xmind', 'katalon-studio-guide', 'postman-ubunut', 'flutter-installation-notes', 'python-virtual-environment-setup-guide-ubuntulinux', 'ruby-on-rails-installation-notes-2025-05-19', 'otrs-installation-guide-on-ubuntu-with-custom-mysql-binary', 'setting-up-custom-email-subdomain-cloudflare-brevo', 'hostinger-domain-redirect-missing-fix', 'gpt-playground', 'insall-xmind'],
-  aieng: ['how-i-audit-an-existing-codebase-before-letting-ai-modify-it', 'using-ai-coding-agents-for-real-software-engineering-not-just-code-generation', 'how-to-get-150-million-free-ai-tokens-kira-ai', 'install-caveman', 'gpt-playground']
+  aieng: ['how-i-audit-an-existing-codebase-before-letting-ai-modify-it', 'using-ai-coding-agents-for-real-software-engineering-not-just-code-generation', 'how-to-get-150-million-free-ai-tokens-kira-ai', 'install-caveman', 'gpt-playground', 'building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline']
 };
 
 const EXPLICIT_RELATED = {
@@ -244,7 +244,7 @@ function fixBlogFile(post, allPosts) {
   t = t.replace(/https:\/\/rinas\.tech\/blog\.html/g, 'https://rinas.tech/pages/blog.html');
 
   const excerpt = truncate(post.excerpt || post.title, 158);
-  const title = `${post.title} | A.M. Rinas Blog`;
+  const title = post.title;
 
   t = t.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
 
@@ -333,7 +333,7 @@ function fixBlogFile(post, allPosts) {
 
   t = t.replace(/<a href="https:\/\/rinas\.tech\/pages\/terms\.html"[^>]*>Terms<\/a>/g, '');
 
-  t = t.replace(/<a href="https:\/\/rinas\.tech\/pages\/privacy\.html"[^>]*>Privacy<\/a>/, '<a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a> |\n <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>');
+  t = t.replace(/<a href="https:\/\/rinas\.tech\/pages\/privacy\.html"[^>]*>Privacy<\/a>/, '<a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>\n <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>');
 
   fs.writeFileSync(file, t);
   console.log('fixed', post.slug);

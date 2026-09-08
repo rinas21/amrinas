@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline</title>
+    <meta name="description" content="Step-by-step guide to setting up a zero-cost AI blogging workflow using FreeLLMAPI to orchestrate Gemini, Groq, and NVIDIA NIM within VS Code via the Cline e…">
+    <link rel="canonical" href="https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html">
+ <meta property="article:published_time" content="2026-09-08T00:00:00+00:00">
+ <meta property="article:modified_time" content="2026-09-08T00:00:00+00:00">
+ <meta property="article:section" content="Tech">
+ <meta property="article:author" content="https://rinas.tech/pages/about.html">
+ <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline">
+    <meta property="og:description" content="Step-by-step guide to setting up a zero-cost AI blogging workflow using FreeLLMAPI to orchestrate Gemini, Groq, and NVIDIA NIM within VS Code via the Cline e…">
+    <meta property="og:url" content="https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline">
+    <meta name="twitter:description" content="Step-by-step guide to setting up a zero-cost AI blogging workflow using FreeLLMAPI to orchestrate Gemini, Groq, and NVIDIA NIM within VS Code via the Cline e…">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html"
+      },
+      "headline": "Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline",
+      "description": "Step-by-step guide to setting up a zero-cost AI blogging workflow using FreeLLMAPI to orchestrate Gemini, Groq, and NVIDIA NIM within VS Code via the Cline e…",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-09-08",
+      "dateModified": "2026-09-08"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-09-08">September 8, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">3 min read</span>
+ </div>
+ <!-- post-meta -->
+        
+        <p>In the evolving landscape of AI-driven development, the dream of a zero-cost, high-performance blogging workflow is now a reality. By combining the power of an autonomous coding agent like <strong>Cline</strong> with a robust API orchestrator like <strong>FreeLLMAPI</strong>, you can leverage world-class models from Google, Groq, and NVIDIA without spending a cent. This guide walks you through the simple end-to-end flow to set up your own pipeline.</p>
+
+        <h2>1. Install and Set Up FreeLLMAPI</h2>
+        <p>FreeLLMAPI acts as a unified gateway, routing your requests to various free AI providers. It provides an OpenAI-compatible interface that works seamlessly with local agents.</p>
+        <p>Run the following command in your terminal to install FreeLLMAPI via Docker:</p>
+        <pre><code>curl -fsSL https://freellmapi.co/install.sh | bash</code></pre>
+        <p>Once the installation finishes, verify that the container is running and healthy:</p>
+        <pre><code>docker ps</code></pre>
+        <p>You should see <code>freellmapi-freellmapi-1</code> listed with a <strong>healthy</strong> status, mapping port <code>3001</code>.</p>
+
+        <h2>2. Configure Your AI Providers</h2>
+        <p>Open your browser and navigate to the FreeLLMAPI dashboard:</p>
+        <pre><code>http://localhost:3001</code></pre>
+        <p>Go to the <strong>Keys</strong> section. Here, you can add your free API keys from supported providers:</p>
+        <ul>
+            <li><strong>Google Gemini:</strong> Accessible via Google AI Studio.</li>
+            <li><strong>Groq:</strong> Known for its lightning-fast inference speeds.</li>
+            <li><strong>NVIDIA NIM:</strong> High-performance model hosting from NVIDIA.</li>
+        </ul>
+        <p>After adding your keys, copy the <strong>Unified API Key</strong> generated by FreeLLMAPI. This single key will allow you to access any of the configured models.</p>
+
+        <h2>3. Set Up VS Code and Cline</h2>
+        <p>If you haven't already, install <strong>Visual Studio Code</strong>. Then, head to the extensions marketplace and search for <strong>Cline</strong>. Cline is an autonomous coding agent that lives in your sidebar and can read, write, and execute code based on your natural language instructions.</p>
+
+        <h2>4. Connecting Cline to FreeLLMAPI</h2>
+        <p>Open the Cline extension and click on the settings (gear icon). Select <strong>OpenAI Compatible</strong> as the provider and enter the following details:</p>
+        <ul>
+            <li><strong>Base URL:</strong> <code>http://localhost:3001/v1</code></li>
+            <li><strong>API Key:</strong> Paste your <code>YOUR_FREELLMAPI_UNIFIED_KEY</code> here.</li>
+            <li><strong>Model:</strong> Set this to <code>auto</code> (FreeLLMAPI will intelligently route to the best available model).</li>
+        </ul>
+
+        <h2>5. Create Your Blogging Project</h2>
+        <p>Create a dedicated workspace for your blog:</p>
+        <pre><code>mkdir my-blog
+cd my-blog
+code .</code></pre>
+        <p>Initialize a new <code>index.html</code> file. This will be the canvas for your AI-generated blog.</p>
+
+        <h2>6. Prompting Cline to Generate Content</h2>
+        <p>Now comes the magic. You can ask Cline to build the entire structure for you. Try a prompt like this:</p>
+        <pre><code>Create a complete responsive blog website using only HTML and CSS.
+
+Create index.html with:
+- Header and Navigation
+- Hero section with a call to action
+- Blog post cards with placeholders
+- Categories sidebar
+- About section and Footer
+
+Use clean semantic HTML and modern responsive CSS. Do not use JavaScript. Keep everything inside index.html.</code></pre>
+
+        <h2>7. Iterative Refinement</h2>
+        <p>One of Cline's greatest strengths is its ability to refine existing code. You can follow up with prompts to polish the UI, improve SEO, or ensure accessibility:</p>
+        <pre><code>Improve the UI while keeping everything in index.html.
+Make it responsive for mobile, tablet, and desktop.
+Add SEO metadata, Open Graph tags, and proper heading hierarchy.
+Review the entire file for errors and fix them.</code></pre>
+
+        <h2>8. Preview and Launch</h2>
+        <p>To see your blog in action, start a simple local server from your project folder:</p>
+        <pre><code>python3 -m http.server 8000</code></pre>
+        <p>Visit <code>http://localhost:8000</code> in your browser. You now have a fully functional, beautifully designed blog generated entirely by AI.</p>
+
+        <h2>Conclusion</h2>
+        <p>This pipeline demonstrates the power of modern developer tools. By delegating the heavy lifting of coding and design to <strong>Cline</strong>, and orchestrating free high-tier AI models through <strong>FreeLLMAPI</strong>, you've created a sophisticated production environment for <strong>$0</strong>. Remember: Cline is your skilled navigator, while FreeLLMAPI provides the fuel for the journey.</p>
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="how-i-audit-an-existing-codebase-before-letting-ai-modify-it.html">How I Audit an Existing Codebase Before Letting AI Modify It</a></li>
+ <li><a href="using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html">Using AI Coding Agents for Real Software Engineering, Not Just Code Generation</a></li>
+ <li><a href="how-to-get-150-million-free-ai-tokens-kira-ai.html">How to Get 150 Million Free AI Tokens with Kira AI</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
+ <a href="../pages/about.html">about page</a>, or say hi through the 
+ <a href="../pages/contact.html">contact page</a> and 
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+ </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+ <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+ 
+            
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>

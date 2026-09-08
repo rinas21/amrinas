@@ -73,6 +73,66 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://rinas.tech/blogs/how-i-audited-a-saas-application-and-found-16-dead-ui-elements.html</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/how-i-debug-complex-user-flows-by-tracing-dependencies.html</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/building-a-user-friendly-website-editor-for-non-technical-users.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/designing-plan-based-feature-restrictions-in-a-saas-application.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/how-i-improved-mobile-responsiveness-across-a-real-world-web-app.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/building-a-secure-image-upload-and-processing-pipeline.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/how-i-debugged-docker-nginx-and-reverse-proxy-problems-in-production.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/how-i-audit-an-existing-codebase-before-letting-ai-modify-it.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rinas.tech/blogs/how-to-get-150-million-free-ai-tokens-kira-ai.html</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -685,68 +745,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rinas.tech/blogs/fix-java-virtual-machine-error-linux.html</loc>
     <lastmod>2026-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/building-a-secure-image-upload-and-processing-pipeline.html</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/building-a-user-friendly-website-editor-for-non-technical-users.html</loc>
-    <lastmod>2026-09-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/designing-plan-based-feature-restrictions-in-a-saas-application.html</loc>
-    <lastmod>2026-09-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/how-i-audit-an-existing-codebase-before-letting-ai-modify-it.html</loc>
-    <lastmod>2026-08-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/how-i-audited-a-saas-application-and-found-16-dead-ui-elements.html</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/how-i-debug-complex-user-flows-by-tracing-dependencies.html</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/how-i-debugged-docker-nginx-and-reverse-proxy-problems-in-production.html</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/how-i-improved-mobile-responsiveness-across-a-real-world-web-app.html</loc>
-    <lastmod>2026-08-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://rinas.tech/blogs/why-frontend-authorization-is-not-enough-lessons-from-a-security-audit.html</loc>
-    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
