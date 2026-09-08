@@ -8,10 +8,10 @@
     <language>en</language>
     <lastBuildDate>Mon, 7 Sep 2026 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Building a Free AI-Assisted Blogging Pipeline Using FreeLLMAPI and Cline</title>
-      <link>https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html</link>
-      <guid>https://rinas.tech/blogs/building-a-free-ai-assisted-blogging-pipeline-using-freellmapi-and-cline.html</guid>
-      <description>Step-by-step guide to setting up a zero-cost AI blogging workflow using FreeLLMAPI to orchestrate Gemini, Groq, and NVIDIA NIM within VS Code via the Cline extension.</description>
+      <title>How to Get Free AI Tokens Using FreeLLMAPI and Cline</title>
+      <link>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</link>
+      <guid>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</guid>
+      <description>Step-by-step developer guide to getting free AI tokens by orchestrating Google Gemini, Groq, and NVIDIA NIM using FreeLLMAPI with VS Code coding agents like Cline.</description>
       <pubDate>Tue, 8 Sep 2026 00:00:00 +0000</pubDate>
     </item>
     <item>

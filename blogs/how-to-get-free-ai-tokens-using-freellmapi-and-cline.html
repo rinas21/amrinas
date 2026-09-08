@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Get Free AI Tokens Using FreeLLMAPI and Cline</title>
+    <meta name="description" content="Step-by-step developer guide to getting free AI tokens by orchestrating Google Gemini, Groq, and NVIDIA NIM using FreeLLMAPI with VS Code coding agents like Cline.">
+    <link rel="canonical" href="https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html">
+    <meta property="article:published_time" content="2026-09-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-08T00:00:00+00:00">
+    <meta property="article:section" content="Tech">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Get Free AI Tokens Using FreeLLMAPI and Cline">
+    <meta property="og:description" content="Step-by-step developer guide to getting free AI tokens by orchestrating Google Gemini, Groq, and NVIDIA NIM using FreeLLMAPI with VS Code coding agents like Cline.">
+    <meta property="og:url" content="https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="How to Get Free AI Tokens Using FreeLLMAPI and Cline">
+    <meta name="twitter:description" content="Step-by-step developer guide to getting free AI tokens by orchestrating Google Gemini, Groq, and NVIDIA NIM using FreeLLMAPI with VS Code coding agents like Cline.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html"
+      },
+      "headline": "How to Get Free AI Tokens Using FreeLLMAPI and Cline",
+      "description": "Step-by-step developer guide to getting free AI tokens by orchestrating Google Gemini, Groq, and NVIDIA NIM using FreeLLMAPI with VS Code coding agents like Cline.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-09-08",
+      "dateModified": "2026-09-08"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket">&lt;</span> Rinas <span class="code-bracket">/&gt;</span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>How to Get Free AI Tokens Using FreeLLMAPI and Cline</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-09-08">September 8, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">Tech</a></span>
+            <span class="post-meta-item">4 min read</span>
+        </div>
+        
+        <p>Running autonomous AI coding agents like <strong>Cline</strong>, <strong>Roo Code</strong>, or <strong>Antigravity</strong> in VS Code can quickly become expensive if you rely on paid API subscriptions. Fortunately, major AI infrastructure providers offer generous free daily token quotas. By aggregating these free tiers through an open-source gateway like <strong>FreeLLMAPI</strong>, developers can secure millions of free AI tokens without spending a single dollar.</p>
+
+        <h2>1. Understand the Free Token Ecosystem</h2>
+        <p>Several top-tier AI API providers offer substantial free usage limits designed for developers and personal projects:</p>
+        <ul>
+            <li><strong>Google AI Studio (Gemini 1.5 Pro & Flash):</strong> Offers up to 15 requests per minute (RPM) and 1 million tokens per minute (TPM) completely free.</li>
+            <li><strong>Groq Cloud:</strong> Provides ultra-fast inference with free daily rate limits on models like Llama 3.3 70B and Mixtral.</li>
+            <li><strong>NVIDIA NIM:</strong> Grants free trial credits and generous rate limits for enterprise-grade open models hosted on NVIDIA infrastructure.</li>
+            <li><strong>OpenRouter (Free Models):</strong> Routes requests to dozens of open-weight LLMs with <code>:free</code> suffixes.</li>
+        </ul>
+
+        <h2>2. Install FreeLLMAPI Proxy Gateway</h2>
+        <p>FreeLLMAPI serves as a unified OpenAI-compatible local proxy. It pools multiple free API keys together, automatically load balancing and routing requests to prevent hitting individual rate limits.</p>
+        <p>Install and start FreeLLMAPI locally via Docker:</p>
+        <pre><code>curl -fsSL https://freellmapi.co/install.sh | bash</code></pre>
+        <p>Verify that the container is running cleanly:</p>
+        <pre><code>docker ps</code></pre>
+        <p>You will see <code>freellmapi-freellmapi-1</code> listening on local port <code>3001</code>.</p>
+
+        <h2>3. Aggregate Your Free API Keys</h2>
+        <p>Open your browser and access the local FreeLLMAPI management dashboard:</p>
+        <pre><code>http://localhost:3001</code></pre>
+        <p>In the dashboard configuration panel, add your free API keys obtained from provider platforms:</p>
+        <ul>
+            <li>Obtain a free Gemini API key from <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.</li>
+            <li>Generate a free API key at <a href="https://console.groq.com/" target="_blank" rel="noopener noreferrer">Groq Console</a>.</li>
+            <li>Generate an API token from <a href="https://build.nvidia.com/" target="_blank" rel="noopener noreferrer">NVIDIA build portal</a>.</li>
+        </ul>
+        <p>FreeLLMAPI combines these keys into a single <strong>Unified API Key</strong>. Copy this key from the dashboard.</p>
+
+        <h2>4. Connect Cline & AI Coding Agents</h2>
+        <p>Now configure VS Code extensions (like <strong>Cline</strong>) to consume tokens through your FreeLLMAPI proxy:</p>
+        <ol>
+            <li>Open the <strong>Cline</strong> sidebar extension settings.</li>
+            <li>Set provider type to <strong>OpenAI Compatible</strong>.</li>
+            <li>Set <strong>Base URL</strong> to <code>http://localhost:3001/v1</code>.</li>
+            <li>Paste your <strong>Unified API Key</strong> into the API Key field.</li>
+            <li>Set model name to <code>auto</code> or select specific free routing channels.</li>
+        </ol>
+
+        <h2>5. Strategies for Maximizing Free Token Quotas</h2>
+        <p>To ensure your coding agent never runs out of context during heavy sessions:</p>
+        <ul>
+            <li><strong>Key Rotation:</strong> Add multiple free API keys per provider in FreeLLMAPI to multiply your daily token ceiling.</li>
+            <li><strong>Context Compression:</strong> Use tools like <a href="install-caveman.html">Caveman</a> to compress system prompts and project context by up to 65%.</li>
+            <li><strong>Fallback Chains:</strong> Configure automatic fallback rules so if Gemini hits a temporary rate limit, requests automatically failover to Groq or Llama 3.3.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>By pairing <strong>FreeLLMAPI</strong> with free provider quotas and <strong>Cline</strong>, software engineers can execute complex refactoring, test writing, and feature development at <strong>$0 cost</strong>. You get full access to top-tier LLMs with zero credit card requirements.</p>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="how-to-get-150-million-free-ai-tokens-kira-ai.html">How to Get 150 Million Free AI Tokens with Kira AI</a></li>
+                <li><a href="install-caveman.html">Save Money & Tokens: Installing and Using Caveman in VS Code, Antigravity, and Claude Code</a></li>
+                <li><a href="using-ai-coding-agents-for-real-software-engineering-not-just-code-generation.html">Using AI Coding Agents for Real Software Engineering, Not Just Code Generation</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>
