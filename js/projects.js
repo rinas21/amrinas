@@ -3,74 +3,74 @@
 /* ---- tech metadata: real devicon / Font Awesome logos per technology ---- */
 const TECH = {
     /* languages & runtimes */
-    "Java":           { icon: "devicon-java-plain colored" },
-    "JavaScript":     { icon: "devicon-javascript-plain colored" },
-    "TypeScript":     { icon: "devicon-typescript-plain colored" },
-    "PHP":            { icon: "devicon-php-plain colored" },
-    "Python":         { icon: "devicon-python-plain colored" },
-    "C":              { icon: "devicon-c-plain colored" },
+    "Java": { icon: "devicon-java-plain colored" },
+    "JavaScript": { icon: "devicon-javascript-plain colored" },
+    "TypeScript": { icon: "devicon-typescript-plain colored" },
+    "PHP": { icon: "devicon-php-plain colored" },
+    "Python": { icon: "devicon-python-plain colored" },
+    "C": { icon: "devicon-c-plain colored" },
     "Bash Scripting": { icon: "devicon-bash-plain colored" },
-    "Shell Scripting":{ icon: "devicon-bash-plain colored" },
+    "Shell Scripting": { icon: "devicon-bash-plain colored" },
 
     /* web / frameworks */
-    "React":          { icon: "devicon-react-original colored" },
-    "React Native":   { icon: "devicon-react-original colored" },
-    "JSX":            { icon: "devicon-react-original colored" },
-    "Node.js":        { icon: "devicon-nodejs-plain colored" },
-    "GraphQL":        { icon: "devicon-graphql-plain colored" },
-    "Tailwind CSS":   { icon: "devicon-tailwindcss-plain colored" },
+    "React": { icon: "devicon-react-original colored" },
+    "React Native": { icon: "devicon-react-original colored" },
+    "JSX": { icon: "devicon-react-original colored" },
+    "Node.js": { icon: "devicon-nodejs-plain colored" },
+    "GraphQL": { icon: "devicon-graphql-plain colored" },
+    "Tailwind CSS": { icon: "devicon-tailwindcss-plain colored" },
 
     /* build / deploy / systems */
-    "Maven":          { icon: "devicon-maven-plain colored" },
-    "Docker":         { icon: "devicon-docker-plain colored" },
-    "Kubernetes":     { icon: "devicon-kubernetes-plain colored" },
-    "Linux":          { icon: "devicon-linux-plain colored" },
-    "Apache":         { icon: "devicon-apache-plain colored" },
-    "Vercel":         { fa: "fa-solid fa-rocket",   color: "#e7ecf7" },
-    "Make":           { fa: "fa-solid fa-hammer",   color: "#9ca3af" },
+    "Maven": { icon: "devicon-maven-plain colored" },
+    "Docker": { icon: "devicon-docker-plain colored" },
+    "Kubernetes": { icon: "devicon-kubernetes-plain colored" },
+    "Linux": { icon: "devicon-linux-plain colored" },
+    "Apache": { icon: "devicon-apache-plain colored" },
+    "Vercel": { fa: "fa-solid fa-rocket", color: "#e7ecf7" },
+    "Make": { fa: "fa-solid fa-hammer", color: "#9ca3af" },
 
     /* databases */
-    "SQL":            { icon: "devicon-mysql-plain colored" },
-    "MySQL":          { icon: "devicon-mysql-plain colored" },
-    "IBM Db2":        { fa: "fa-solid fa-database",  color: "#4589ff" },
-    "Firebase":       { icon: "devicon-firebase-plain colored" },
-    "Weaviate":       { fa: "fa-solid fa-database",  color: "#21ce99" },
+    "SQL": { icon: "devicon-mysql-plain colored" },
+    "MySQL": { icon: "devicon-mysql-plain colored" },
+    "IBM Db2": { fa: "fa-solid fa-database", color: "#4589ff" },
+    "Firebase": { icon: "devicon-firebase-plain colored" },
+    "Weaviate": { fa: "fa-solid fa-database", color: "#21ce99" },
 
     /* observability / data / AI */
-    "Grafana":        { icon: "devicon-grafana-original colored" },
-    "Prometheus":     { icon: "devicon-prometheus-original colored" },
-    "Loki":           { fa: "fa-solid fa-layer-group", color: "#7fd1e8" },
-    "Node Exporter":  { fa: "fa-solid fa-chart-line",  color: "#8bd17c" },
-    "Power BI":       { fa: "fa-solid fa-chart-bar",   color: "#f2c811" },
-    "Cube.js":        { fa: "fa-solid fa-cube",        color: "#fa5a6f" },
-    "Airbyte":        { fa: "fa-solid fa-paper-plane", color: "#6a6aef" },
-    "dbt":            { fa: "fa-solid fa-layer-group", color: "#ff694b" },
-    "Ollama":         { fa: "fa-solid fa-robot",       color: "#e7ecf7" },
-    "RAG":            { fa: "fa-solid fa-brain",       color: "#b794f4" },
-    "AI/ML":          { fa: "fa-solid fa-brain",       color: "#b794f4" },
+    "Grafana": { icon: "devicon-grafana-original colored" },
+    "Prometheus": { icon: "devicon-prometheus-original colored" },
+    "Loki": { fa: "fa-solid fa-layer-group", color: "#7fd1e8" },
+    "Node Exporter": { fa: "fa-solid fa-chart-line", color: "#8bd17c" },
+    "Power BI": { fa: "fa-solid fa-chart-bar", color: "#f2c811" },
+    "Cube.js": { fa: "fa-solid fa-cube", color: "#fa5a6f" },
+    "Airbyte": { fa: "fa-solid fa-paper-plane", color: "#6a6aef" },
+    "dbt": { fa: "fa-solid fa-layer-group", color: "#ff694b" },
+    "Ollama": { fa: "fa-solid fa-robot", color: "#e7ecf7" },
+    "RAG": { fa: "fa-solid fa-brain", color: "#b794f4" },
+    "AI/ML": { fa: "fa-solid fa-brain", color: "#b794f4" },
 
     /* devtools / testing / integration */
-    "Servlet":        { icon: "devicon-java-plain colored" },
-    "Postman":        { icon: "devicon-postman-plain colored" },
-    "Moodle":         { fa: "fa-solid fa-graduation-cap", color: "#f98012" },
-    "Wireshark":      { fa: "fa-solid fa-network-wired", color: "#1679a7" },
-    "REST APIs":      { fa: "fa-solid fa-plug",          color: "#a0aec0" },
-    "Red Hat":        { icon: "devicon-redhat-plain colored" },
-    "Networking":     { fa: "fa-solid fa-wifi",          color: "#63b3ed" },
-    "n8n":            { fa: "fa-solid fa-project-diagram", color: "#ea4b71" },
-    "Azure":          { icon: "devicon-azure-plain colored" },
+    "Servlet": { icon: "devicon-java-plain colored" },
+    "Postman": { icon: "devicon-postman-plain colored" },
+    "Moodle": { fa: "fa-solid fa-graduation-cap", color: "#f98012" },
+    "Wireshark": { fa: "fa-solid fa-network-wired", color: "#1679a7" },
+    "REST APIs": { fa: "fa-solid fa-plug", color: "#a0aec0" },
+    "Red Hat": { icon: "devicon-redhat-plain colored" },
+    "Networking": { fa: "fa-solid fa-wifi", color: "#63b3ed" },
+    "n8n": { fa: "fa-solid fa-project-diagram", color: "#ea4b71" },
+    "Azure": { icon: "devicon-azure-plain colored" },
 
     /* WealthTrack / WebPulse stack */
-    "Express.js":     { icon: "devicon-express-original colored" },
-    "PostgreSQL":     { icon: "devicon-postgresql-plain colored" },
-    "Google OAuth":   { fa: "fa-brands fa-google",           color: "#4285f4" },
-    "Zustand":        { fa: "fa-solid fa-atom",              color: "#764abc" },
-    "React Query":    { fa: "fa-solid fa-rotate",            color: "#ff4154" },
-    "ECharts":        { fa: "fa-solid fa-chart-area",        color: "#c23531" },
-    "Astro":          { icon: "devicon-astro-plain colored" },
-    "GSAP":           { fa: "fa-solid fa-wand-magic-sparkles", color: "#88ce02" },
-    "Nodemailer":     { fa: "fa-solid fa-envelope",          color: "#00a651" },
-    "Vite":           { icon: "devicon-vitejs-plain colored" },
+    "Express.js": { icon: "devicon-express-original colored" },
+    "PostgreSQL": { icon: "devicon-postgresql-plain colored" },
+    "Google OAuth": { fa: "fa-brands fa-google", color: "#4285f4" },
+    "Zustand": { fa: "fa-solid fa-atom", color: "#764abc" },
+    "React Query": { fa: "fa-solid fa-rotate", color: "#ff4154" },
+    "ECharts": { fa: "fa-solid fa-chart-area", color: "#c23531" },
+    "Astro": { icon: "devicon-astro-plain colored" },
+    "GSAP": { fa: "fa-solid fa-wand-magic-sparkles", color: "#88ce02" },
+    "Nodemailer": { fa: "fa-solid fa-envelope", color: "#00a651" },
+    "Vite": { icon: "devicon-vitejs-plain colored" },
 };
 
 function iconHtml(name) {
@@ -85,19 +85,19 @@ function iconHtml(name) {
 const liveProjects = [
     {
         name: "WealthTrack",
-        url:  "expense.rinas.tech",
+        url: "expense.rinas.tech",
         href: "https://expense.rinas.tech",
         tech: ["React", "TypeScript", "Vite", "Express.js", "PostgreSQL", "Docker", "Google OAuth", "Zustand", "React Query", "ECharts"]
     },
     {
         name: "WebPulse",
-        url:  "webpulse.rinas.tech",
-        href: "https://webpulse.rinas.tech",
+        url: "www.websiteops.dev",
+        href: "https://www.websiteops.dev",
         tech: ["Astro", "TypeScript", "Tailwind CSS", "GSAP", "Vercel", "Nodemailer"]
     },
     {
         name: "CSE Atlas",
-        url:  "cse-atlas.vercel.app",
+        url: "cse-atlas.vercel.app",
         href: "https://cse-atlas.vercel.app",
         tech: ["React", "TypeScript", "Node.js", "Tailwind CSS", "Vercel"]
     }
@@ -138,7 +138,7 @@ if (liveContainer) {
 
 /* ---- mobile nav toggle ---- */
 const hamburger = document.getElementById('hamburger');
-const navbar    = document.getElementById('navbar');
+const navbar = document.getElementById('navbar');
 hamburger.addEventListener('click', () => navbar.classList.toggle('open'));
 document.addEventListener('click', (e) => {
     if (!navbar.contains(e.target) && !hamburger.contains(e.target)) {
@@ -336,7 +336,7 @@ function chipHtml(name) {
 
 function renderGrid() {
     const grid = document.getElementById('grid');
-    
+
     let displayProjects = [...projects];
     if (selected.size > 0) {
         displayProjects.sort((a, b) => {
