@@ -143,9 +143,19 @@
  </header>
 
  <article class="blog-post-container">
-<h3>Note:</h3>
+<h1>Fix Apache HTTP Server Compile Error: PCRE Not Found</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published
+ <time datetime="2026-07-18">July 18, 2026</time></span>
+ <span class="post-meta-item">Category:
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">2 min read</span>
+ </div>
+ <!-- post-meta -->
 <p>The error <code>configure: error: pcre(2)-config for libpcre not found. PCRE is required and available from http://pcre.org/</code> indicates that the PCRE (Perl Compatible Regular Expressions) library is missing on your system. This library is required to compile the Apache HTTP Server.</p>
-<h4>Steps to Resolve:</h4>
+<h2>Steps to Resolve</h2>
 <ol>
 <li><p><strong>Install the PCRE development package</strong>:</p>
 <ul>
@@ -171,9 +181,9 @@ sudo apt install libpcre3-dev
 </li>
 </ol>
 <p>This should resolve the issue and allow you to proceed with the compilation of Apache HTTP Server.</p>
-<h3>Resolving the <code>ServerName</code> Warning in Apache</h3>
+<h2>Resolving the <code>ServerName</code> Warning in Apache</h2>
 <p>The warning <code>AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using 127.0.1.1. Set the &#39;ServerName&#39; directive globally to suppress this message</code> occurs when Apache cannot determine the server&#39;s fully qualified domain name (FQDN) and defaults to <code>127.0.1.1</code>.</p>
-<h4>Steps to Resolve:</h4>
+<h3>Steps to Resolve</h3>
 <ol>
 <li><strong>Edit Apache&#39;s Configuration File</strong>:</li>
 </ol>

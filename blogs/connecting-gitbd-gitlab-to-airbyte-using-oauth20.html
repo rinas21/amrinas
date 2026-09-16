@@ -143,7 +143,7 @@
  </header>
 
  <article class="blog-post-container">
-<h1> Connecting GitLab (GitLab) to Airbyte using OAuth2.0</h1>
+<h1>Connecting GitLab to Airbyte Using OAuth 2.0</h1>
  <div class="post-meta">
  <span class="post-meta-item">By 
  <a href="../pages/about.html">A.M. Rinas</a></span>
@@ -176,69 +176,44 @@
 <hr>
 <h3>2. Generate Authorization Code</h3>
 <p>Paste this URL in your browser (replace placeholders accordingly):</p>
-<p><a href="https://gitlab.example.com/oauth/authorize?client_id=">https://gitlab.example.com/oauth/authorize?client_id=</a>&lt;your_client_id&gt;&amp;redirect_uri=&lt;your_redirect_uri&gt;&amp;response_type=code&amp;scope=api</p>
-<p>makefile
-Copy<a href="https://gitlab.example.com/oauth/authorize?client_id=&lt;your_client_id&gt;&amp;redirect_uri=">https://gitlab.example.com/oauth/authorize?client_id=&lt;your_client_id&gt;&amp;redirect_uri=</a>	
-<a href="https://www.google.com/&lt;your_client_id&gt;response_type=code&scope=api">https://www.google.com/&lt;your_client_id&gt;response_type=code&amp;scope=api</a>
-Edit</p>
+<pre><code class="language-text">https://gitlab.example.com/oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=YOUR_REDIRECT_URI&amp;response_type=code&amp;scope=api</code></pre>
 <p>Example:</p>
-<p><a href="https://gitlab.example.com/oauth/authorize?client_id=c4505a79...eca13&redirect_uri=http://localhost:8000/workspaces/&lt;workspace-id&gt;/connections&amp;response_type=code&scope=api">https://gitlab.example.com/oauth/authorize?client_id=c4505a79...eca13&amp;redirect_uri=http://localhost:8000/workspaces/&lt;workspace-id&gt;/connections&amp;amp;response_type=code&amp;scope=api</a></p>
-<p>kotlin
-Copy
-Edit</p>
+<pre><code class="language-text">https://gitlab.example.com/oauth/authorize?client_id=c4505a79...eca13&amp;redirect_uri=http://localhost:8000/workspaces/123/connections&amp;response_type=code&amp;scope=api</code></pre>
 <ul>
-<li>Approve the application.</li>
+<li>Approve the application when prompted.</li>
 <li>You will be redirected, and the URL will contain <code>?code=&lt;authorization_code&gt;</code>.</li>
+<li>Copy the authorization code from the URL.</li>
 </ul>
 <hr>
 <h3>3. Exchange Code for Access &amp; Refresh Token</h3>
 <p>Use this <code>curl</code> command in your terminal (replace placeholders):</p>
-<pre><code class="language-bash">curl --location &#39;https://gitlab.example.com/oauth/token&#39; \
---header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
---data-urlencode &#39;client_id=&lt;your_client_id&gt;&#39; \
---data-urlencode &#39;client_secret=&lt;your_client_secret&gt;&#39; \
---data-urlencode &#39;code=&lt;authorization_code&gt;&#39; \
---data-urlencode &#39;grant_type=authorization_code&#39; \
---data-urlencode &#39;redirect_uri=&lt;your_redirect_uri&gt;&#39;
-Example:
-
-bash
-Copy
-Edit
-curl --location &#39;https://gitlab.example.com/oauth/token&#39; \
---header &#39;Content-Type: application/x-www-form-urlencoded&#39; \
---data-urlencode &#39;client_id=c4505a79...eca13&#39; \
---data-urlencode &#39;client_secret=&lt;your_client_secret&gt;&#39; \
---data-urlencode &#39;code=&lt;authorization_code&gt;&#39; \
---data-urlencode &#39;grant_type=authorization_code&#39; \
---data-urlencode &#39;redirect_uri=http://localhost:8000/workspaces/&lt;workspace-id&gt;/connections&amp;#39;
-You will receive a refresh_token, access_token, and token_expiry.
-
-4. Configure Airbyte Source
-In Airbyte:
-
-Choose GitLab as the source.
-
-Set the Authorization Method to OAuth2.0.
-
-Fill in:
-
-access_token
-
-refresh_token
-
-client_id
-
-client_secret
-
-token_expiry_date (from the API response)
-
-API URL: https://gitlab.example.com/api/v4
-
-Optional: group/project IDs
-
-Click Test the source.
-</code></pre>
+<pre><code class="language-bash">curl --location 'https://gitlab.example.com/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=YOUR_CLIENT_ID' \
+--data-urlencode 'client_secret=YOUR_CLIENT_SECRET' \
+--data-urlencode 'code=YOUR_AUTHORIZATION_CODE' \
+--data-urlencode 'grant_type=authorization_code' \
+--data-urlencode 'redirect_uri=YOUR_REDIRECT_URI'</code></pre>
+<p>You will receive a JSON response containing <code>refresh_token</code>, <code>access_token</code>, and <code>token_expiry</code>. Save these values.</p>
+<hr>
+<h3>4. Configure Airbyte Source</h3>
+<p>In Airbyte:</p>
+<ol>
+<li>Choose <strong>GitLab</strong> as the source.</li>
+<li>Set the <strong>Authorization Method</strong> to <strong>OAuth2.0</strong>.</li>
+<li>Fill in the following fields:
+<ul>
+<li><strong>access_token</strong>: the token from Step 3</li>
+<li><strong>refresh_token</strong>: the refresh token from Step 3</li>
+<li><strong>client_id</strong>: your GitLab OAuth app client ID</li>
+<li><strong>client_secret</strong>: your GitLab OAuth app client secret</li>
+<li><strong>token_expiry_date</strong>: the expiry timestamp from the API response</li>
+<li><strong>API URL</strong>: <code>https://gitlab.example.com/api/v4</code></li>
+<li><strong>Optional</strong>: group/project IDs to scope the connection</li>
+</ul>
+</li>
+<li>Click <strong>Test the source</strong> to verify the connection.</li>
+</ol>
 
  <section class="related-articles">
  <h2>Related Articles</h2>

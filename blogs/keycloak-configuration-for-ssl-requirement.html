@@ -49,21 +49,21 @@
 
  <!-- SEO Meta Tags -->
  <title>Keycloak Configuration for SSL Requirement</title>
- <meta name="description" content="Insights and technical documentation.">
+ <meta name="description" content="How to disable the SSL requirement in Keycloak using kcadm.sh commands for development environments.">
  <link rel="canonical" href="https://rinas.tech/blogs/keycloak-configuration-for-ssl-requirement.html">
  <meta name="robots" content="index, follow, max-image-preview:large">
  
  <!-- Open Graph -->
  <meta property="og:type" content="article">
  <meta property="og:title" content="Keycloak Configuration for SSL Requirement">
- <meta property="og:description" content="Insights and technical documentation.">
+ <meta property="og:description" content="How to disable the SSL requirement in Keycloak using kcadm.sh commands for development environments.">
  <meta property="og:url" content="https://rinas.tech/blogs/keycloak-configuration-for-ssl-requirement.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
  
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
  <meta name="twitter:title" content="Keycloak Configuration for SSL Requirement">
- <meta name="twitter:description" content="Insights and technical documentation.">
+ <meta name="twitter:description" content="How to disable the SSL requirement in Keycloak using kcadm.sh commands for development environments.">
  <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <!-- JSON-LD Schemas -->
@@ -72,7 +72,7 @@
  "@context": "https://schema.org",
  "@type": "BlogPosting",
  "headline": "Keycloak Configuration for SSL Requirement",
- "description": "Insights and technical documentation.",
+ "description": "How to disable the SSL requirement in Keycloak using kcadm.sh commands for development environments.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -143,11 +143,19 @@
  </header>
 
  <article class="blog-post-container">
-<h3>Keycloak Configuration for SSL Requirement</h3>
-<ul>
-<li>If you encounter an error regarding the requirement for HTTPS in Keycloak, you can disable the SSL requirement by running the following commands. This should be done after starting Keycloak in development mode.</li>
-</ul>
-<h3>Steps to Resolve the HTTPS Required Error</h3>
+<h1>Keycloak Configuration for SSL Requirement</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published
+ <time datetime="2026-06-25">June 25, 2026</time></span>
+ <span class="post-meta-item">Category:
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
+<p>If you encounter an error regarding the requirement for HTTPS in Keycloak, you can disable the SSL requirement by running the following commands. This should be done after starting Keycloak in development mode.</p>
+<h2>Steps to Resolve the HTTPS Required Error</h2>
 <ol>
 <li>Start Keycloak in development mode:</li>
 </ol>
@@ -165,9 +173,8 @@
 <li>The second command updates the Keycloak realm to disable the SSL requirement.</li>
 <li>This will resolve the issue where HTTPS is required but you are running Keycloak in a non-HTTPS environment.</li>
 </ol>
-<h3>Read Hidden charactors in a file</h3>
-<pre><code class="language-bash">cat -A file.txt
-</code></pre>
+<h3>Read Hidden Characters in a File</h3>
+<pre><code class="language-bash">cat -A file.txt</code></pre>
 
  <section class="related-articles">
  <h2>Related Articles</h2>

@@ -143,9 +143,19 @@
  </header>
 
  <article class="blog-post-container">
-<p><strong>Checking If a User Group Exists in RHEL</strong></p>
+<h1>Checking If a User Group Exists in RHEL</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published
+ <time datetime="2026-03-23">March 23, 2026</time></span>
+ <span class="post-meta-item">Category:
+ <a href="../pages/blog.html">DevOps</a></span>
+ <span class="post-meta-item">3 min read</span>
+ </div>
+ <!-- post-meta -->
 <p>To check whether a user group exists in RHEL (Red Hat Enterprise Linux), use the following commands:</p>
-<h3>1. Checking in the <code>/etc/group</code> file</h3>
+<h2>1. Checking in the <code>/etc/group</code> File</h2>
 <pre><code class="language-bash">grep &#39;^groupname:&#39; /etc/group
 </code></pre>
 <p>Replace <code>groupname</code> with the actual group name.</p>
@@ -156,7 +166,7 @@
 <pre><code>mysql:x:1003:
 </code></pre>
 <p>This confirms that the <code>mysql</code> group exists.</p>
-<h3>2. Using <code>getent</code> Command</h3>
+<h2>2. Using <code>getent</code> Command</h2>
 <pre><code class="language-bash">getent group groupname
 </code></pre>
 <p>Example:</p>
@@ -166,7 +176,7 @@
 <pre><code>mysql:x:1003:
 </code></pre>
 <p>This verifies the group using system and network sources.</p>
-<h3>3. Listing All Groups</h3>
+<h2>3. Listing All Groups</h2>
 <p>To list all available groups on the system:</p>
 <pre><code class="language-bash">cut -d: -f1 /etc/group
 </code></pre>

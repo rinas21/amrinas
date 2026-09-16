@@ -143,68 +143,86 @@
  </header>
 
  <article class="blog-post-container">
-<h1>Git Stash Notes</h1>
+<h1>Git Stash: A Practical Guide</h1>
  <div class="post-meta">
- <span class="post-meta-item">By 
+ <span class="post-meta-item">By
  <a href="../pages/about.html">A.M. Rinas</a></span>
- <span class="post-meta-item">Published 
+ <span class="post-meta-item">Published
  <time datetime="2026-04-26">April 26, 2026</time></span>
- <span class="post-meta-item">Category: 
+ <span class="post-meta-item">Category:
  <a href="../pages/blog.html">Tech</a></span>
  <span class="post-meta-item">3 min read</span>
  </div>
  <!-- post-meta -->
 
+<p>You are halfway through a feature, someone pings you about a production bug, and you need to switch branches immediately. Your working directory is a mess of uncommitted changes. This is exactly what <code>git stash</code> solves — it shelves your changes temporarily so you can work on something else without committing incomplete work.</p>
 
 <h2>What is Git Stash?</h2>
-<p>Git stash is a command that temporarily saves your uncommitted changes so you can switch branches or pull updates without losing your work.</p>
-<h2>Common Git Stash Commands</h2>
-<h3>1. Save Uncommitted Changes</h3>
-<pre><code class="language-sh"> git stash
-</code></pre>
-<p>This saves your uncommitted changes and reverts your working directory to the last committed state.</p>
-<h3>2. View Stashed Changes</h3>
-<pre><code class="language-sh">git stash list
-</code></pre>
-<p>Lists all stashed changes with their stash index.</p>
-<h3>3. Apply the Most Recent Stash</h3>
-<pre><code class="language-sh">git stash pop
-</code></pre>
-<p>Applies the most recent stash and removes it from the stash list.</p>
-<h3>4. Apply a Specific Stash Without Removing It</h3>
-<pre><code class="language-sh">git stash apply stash@{index}
-</code></pre>
-<p>Applies a specific stash but keeps it in the stash list.</p>
-<h3>5. Drop a Specific Stash</h3>
-<pre><code class="language-sh">git stash drop stash@{index}
-</code></pre>
-<p>Removes a specific stash from the stash list.</p>
-<h3>6. Clear All Stashes</h3>
-<pre><code class="language-sh">git stash clear
-</code></pre>
-<p>Deletes all stashed changes permanently.</p>
-<h2>Use Case Example</h2>
-<h3>Stash Changes Before Switching Branches</h3>
-<pre><code class="language-sh">git stash
-git checkout other-branch
-git stash pop
-</code></pre>
-<p>This allows you to switch branches without committing unfinished work.</p>
-<h2>Additional Notes</h2>
+<p>Git stash takes your modified tracked files and your staged changes, saves them on a stack of unfinished changes, and reverts your working directory to match the HEAD commit. You can then restore those changes later.</p>
+
+<h2>Basic Stash Operations</h2>
+
+<h3>Save Changes</h3>
+<pre><code class="language-bash">git stash</code></pre>
+<p>This saves your uncommitted changes and cleans your working directory. You can add a message to remember what the stash contains:</p>
+<pre><code class="language-bash">git stash push -m "WIP: login form validation"</code></pre>
+
+<h3>List Your Stashes</h3>
+<pre><code class="language-bash">git stash list</code></pre>
+<p>Output:</p>
+<pre><code>stash@{0}: On main: WIP: login form validation
+stash@{1}: On feature-x: partial API refactor</code></pre>
+
+<h3>Restore the Most Recent Stash</h3>
+<pre><code class="language-bash">git stash pop</code></pre>
+<p>Applies the most recent stash and removes it from the stash list. If there are merge conflicts, the stash is not removed — you resolve the conflicts and then run <code>git stash drop</code> manually.</p>
+
+<h3>Restore Without Removing</h3>
+<pre><code class="language-bash">git stash apply stash@{0}</code></pre>
+<p>Applies the stash but keeps it in the list. Useful when you want to apply the same changes to multiple branches.</p>
+
+<h3>Remove Stashes</h3>
+<pre><code class="language-bash"># Drop a specific stash
+git stash drop stash@{0}
+
+# Clear all stashes
+git stash clear</code></pre>
+
+<h2>Practical Scenarios</h2>
+
+<h3>Switch Branches Mid-Feature</h3>
+<pre><code class="language-bash">git stash push -m "half-done sidebar work"
+git checkout main
+git pull
+# fix the bug
+git checkout -
+git stash pop</code></pre>
+
+<h3>Stash Only Specific Files</h3>
+<pre><code class="language-bash">git stash push -m "just the config" -- config.yml .env</code></pre>
+<p>This stashes only the listed files, leaving everything else in your working directory untouched.</p>
+
+<h3>Include Untracked Files</h3>
+<p>By default, <code>git stash</code> does not save untracked files (new files not yet added to Git). To include them:</p>
+<pre><code class="language-bash">git stash push --include-untracked</code></pre>
+
+<h3>View Stash Diff Before Applying</h3>
+<pre><code class="language-bash">git stash show -p stash@{0}</code></pre>
+<p>This shows the full diff of what the stash contains, so you can verify the changes before applying them.</p>
+
+<h2>Common Mistakes</h2>
 <ul>
-<li>Stashed changes are stored temporarily.</li>
-<li>Use <code>git stash pop</code> to apply and remove the latest stash.</li>
-<li>Use <code>git stash apply</code> to apply changes while keeping the stash.</li>
+<li><strong>Stashing too many times:</strong> A long stash list is hard to manage. Apply or drop stashes regularly instead of accumulating dozens.</li>
+<li><strong>Forgetting which stash is which:</strong> Always use <code>git stash push -m "description"</code> instead of bare <code>git stash</code>.</li>
+<li><strong>Losing stashes after <code>git stash pop</code> with conflicts:</strong> If a conflict occurs, the stash is NOT removed. Resolve the conflict, then manually drop the stash.</li>
 </ul>
-<hr>
-<hr>
 
  <section class="related-articles">
  <h2>Related Articles</h2>
  <ul>
+ <li><a href="advanced-git-strategies.html">Advanced Git Strategies</a></li>
+ <li><a href="git-bisect-process-to-debug-issue.html">Git Bisect: Finding the Commit That Broke Your Code</a></li>
  <li><a href="gitattributes-crlf-lf-line-endings-git.html">Understanding .gitattributes: Solving Cross-Platform Line Ending Problems</a></li>
- <li><a href="configuring-ssh-authentication-for-github.html">Configuring SSH Authentication for GitHub</a></li>
- <li><a href="linux-maven-git-cheat-sheet.html">Linux, Maven, and Git Cheat Sheet</a></li>
  </ul>
  </section>
  <!-- related-articles -->

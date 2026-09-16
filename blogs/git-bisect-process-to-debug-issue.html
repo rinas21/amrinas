@@ -143,63 +143,100 @@
  </header>
 
  <article class="blog-post-container">
-<h1>Git Bisect Process to Debug Issue</h1>
+<h1>Git Bisect: Finding the Commit That Broke Your Code</h1>
  <div class="post-meta">
- <span class="post-meta-item">By 
+ <span class="post-meta-item">By
  <a href="../pages/about.html">A.M. Rinas</a></span>
- <span class="post-meta-item">Published 
+ <span class="post-meta-item">Published
  <time datetime="2026-05-04">May 4, 2026</time></span>
- <span class="post-meta-item">Category: 
+ <span class="post-meta-item">Category:
  <a href="../pages/blog.html">Tech</a></span>
  <span class="post-meta-item">3 min read</span>
  </div>
  <!-- post-meta -->
 
+<p>A bug appears in your application, but you have no idea which commit introduced it. You could read through hundreds of commits manually, or you could let Git do a binary search for you. <code>git bisect</code> checks out commits one by one, narrowing the range until it finds the exact commit where the behavior changed.</p>
 
-<h2>Steps:</h2>
-<h3>1. <strong>Start Git Bisect</strong></h3>
-<p> The <code>git bisect start</code> command initiates the bisecting process, which allows you to perform a binary search to find the commit that introduced a bug. This is useful when you know a bug exists but don&#39;t know which commit caused it.</p>
-<pre><code class="language-bash">git bisect start
-</code></pre>
-<h3>2. <strong>Checkout Version 2.0.54 (Bad Commit)</strong></h3>
-<pre><code>In this step, we checkout the version where the bug was introduced (the &quot;bad&quot; commit). We then mark this version as bad using git bisect bad. This tells Git to start the search for the bad commit from this point.
-</code></pre>
-<pre><code class="language-bash">
-git checkout 2.0.54
+<h2>How Bisect Works</h2>
+<p>Bisect performs a binary search between a known-good commit and a known-bad commit. At each step, Git checks out the middle commit, you test whether the bug is present, and Git narrows the range. For 1000 commits, this takes about 10 steps instead of reading 1000 commit messages.</p>
+
+<h2>Step-by-Step Process</h2>
+
+<h3>1. Start Bisect</h3>
+<pre><code class="language-bash">git bisect start</code></pre>
+
+<h3>2. Mark the Current Commit as Bad</h3>
+<p>This is the commit where you know the bug exists:</p>
+<pre><code class="language-bash">git bisect bad</code></pre>
+
+<h3>3. Mark a Known Good Commit</h3>
+<p>Point Git to a commit where the bug did not exist. You can use a tag, a branch, or a commit hash:</p>
+<pre><code class="language-bash">git bisect good v2.0.25</code></pre>
+<p>Git now checks out the midpoint between the good and bad commits.</p>
+
+<h3>4. Test the Current Commit</h3>
+<p>Build and test the code at the checked-out commit. Run the specific test case or manually verify the behavior.</p>
+
+<h3>5. Tell Git the Result</h3>
+<pre><code class="language-bash"># If the bug is present at this commit:
 git bisect bad
-</code></pre>
-<h3>3. <strong>Get the Top-Level Directory</strong></h3>
-<pre><code>`git rev-parse --show-toplevel` is used to print the top-level directory of your Git repository. This helps you understand the root directory where your Git repository is initialized. It&#39;s useful if you&#39;re unsure of your current working directory within the project.
-</code></pre>
-<pre><code class="language-bash">
-git rev-parse --show-toplevel
-</code></pre>
-<h3>4. <strong>Tag Information</strong></h3>
-<pre><code>The git describe --tags command retrieves the most recent tag that is reachable from a given commit. This helps you understand the closest version or release associated with a commit. It&#39;s useful when you want to track which tag the current commit belongs to.
-</code></pre>
-<pre><code class="language-bash">
-git describe --tags e86d6b276bc4d588575d6ba02716b824686c78cb
-</code></pre>
-<h3>5. <strong>Checkout Version 2.0.25 (Good Commit)</strong></h3>
-<pre><code>After marking the bad commit, we then checkout the last known good version (the &quot;good&quot; commit). This helps to narrow down where the issue occurred. We use git bisect good to indicate that this commit is working correctly.
-</code></pre>
-<pre><code class="language-bash">
-git checkout 2.0.25
-git bisect good
-</code></pre>
-<h3>6. <strong>Review Commit Log</strong></h3>
-<pre><code>To review changes in the codebase and potentially identify which commit introduced the bug, use git log --oneline -- .. This will display the commit history for the current directory. It&#39;s helpful for tracing through changes between the &quot;good&quot; and &quot;bad&quot; commits.
-</code></pre>
-<pre><code class="language-bash">
-git log --oneline -- .
-</code></pre>
+
+# If the bug is NOT present at this commit:
+git bisect good</code></pre>
+<p>Git narrows the range and checks out the next midpoint. Repeat steps 4-5 until Git identifies the first bad commit.</p>
+
+<h3>6. Return to Your Original Branch</h3>
+<p>When bisect finishes, it will print the offending commit. Return to your working branch:</p>
+<pre><code class="language-bash">git bisect reset</code></pre>
+
+<h2>Practical Example</h2>
+<pre><code class="language-bash"># Start bisect
+git bisect start
+
+# Current version has the bug
+git bisect bad
+
+# Version 2.0.25 was working correctly
+git bisect good v2.0.25
+
+# Git checks out a midpoint. Test it, then:
+git bisect good   # or git bisect bad
+
+# Continue until Git finds the first bad commit
+# Output: [hash] is the first bad commit
+
+# Return to your branch
+git bisect reset</code></pre>
+
+<h2>Automated Bisect</h2>
+<p>If you have a test script that can detect the bug, you can automate the process entirely:</p>
+<pre><code class="language-bash">git bisect start HEAD v2.0.25
+git bisect run ./test-script.sh</code></pre>
+<p>Git will run the script at each midpoint and automatically mark commits as good or bad based on the exit code (0 = good, non-zero = bad).</p>
+
+<h2>Useful Commands During Bisect</h2>
+<pre><code class="language-bash"># See the current range of commits being tested
+git bisect log
+
+# Visualize the bisect progress
+git bisect visualize
+
+# Skip a commit that cannot be tested (build failure, etc.)
+git bisect skip</code></pre>
+
+<h2>Common Mistakes</h2>
+<ul>
+<li><strong>Forgetting to reset:</strong> Always run <code>git bisect reset</code> when done. If you forget, your HEAD will be stuck at the bisect commit.</li>
+<li><strong>Starting from a dirty working directory:</strong> Commit or stash your changes before starting bisect, or it may refuse to start.</li>
+<li><strong>Using bisect on merge commits:</strong> Bisect works best on linear history. Merge commits can produce unexpected results.</li>
+</ul>
 
  <section class="related-articles">
  <h2>Related Articles</h2>
  <ul>
- <li><a href="git-stash-notes.html">Git Stash Notes</a></li>
+ <li><a href="git-stash-notes.html">Git Stash: A Practical Guide</a></li>
+ <li><a href="advanced-git-strategies.html">Advanced Git Strategies</a></li>
  <li><a href="gitattributes-crlf-lf-line-endings-git.html">Understanding .gitattributes: Solving Cross-Platform Line Ending Problems</a></li>
- <li><a href="configuring-ssh-authentication-for-github.html">Configuring SSH Authentication for GitHub</a></li>
  </ul>
  </section>
  <!-- related-articles -->

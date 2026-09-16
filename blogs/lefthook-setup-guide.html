@@ -138,78 +138,68 @@
 
 
 <h2>Why Lefthook?</h2>
-<p>Lefthook run automated checks before code commit. Catch bugs, format issues, lint errors before production.</p>
+<p>Lefthook runs automated checks before each commit — catching bugs, formatting issues, and lint errors before they reach production. Unlike Git hooks that live in <code>.git/hooks</code> (not tracked by Git), Lefthook stores its configuration in <code>lefthook.yml</code> which gets committed to the repository, so every team member gets the same hooks automatically.</p>
 <ul>
 <li>Frontend ESLint validation</li>
 <li>Backend Go tests</li>
 <li>Backend format checks</li>
 </ul>
-<p>Commit fail if checks fail.</p>
+<p>If any check fails, the commit is rejected.</p>
 <hr>
 <h2>Prerequisites</h2>
-<p>Need:</p>
 <ul>
 <li>Node.js 18+</li>
 <li>npm</li>
-<li>Go 1.21+</li>
+<li>Go 1.21+ (if running Go checks)</li>
 </ul>
-<p>Check versions:</p>
+<p>Verify your versions:</p>
 <pre><code class="language-bash">node -v
 npm -v
-go version
-</code></pre>
+go version</code></pre>
 <hr>
 <h2>Install Lefthook</h2>
-<p>From project root:</p>
+<p>From your project root:</p>
 <pre><code class="language-bash">npm install --save-dev lefthook
-npx lefthook install
-</code></pre>
-<p>Output show <code>sync hooks: </code>.</p>
+npx lefthook install</code></pre>
+<p>The output will show <code>sync hooks: pre-commit, commit-msg</code> (or whichever hooks are configured).</p>
 <hr>
 <h2>Verify Installation</h2>
-<pre><code class="language-bash">npx lefthook run pre-commit
-</code></pre>
-<p>Execute configured checks.</p>
+<pre><code class="language-bash">npx lefthook run pre-commit</code></pre>
+<p>This runs all checks configured for the <code>pre-commit</code> hook without waiting for an actual commit.</p>
 <hr>
 <h2>Normal Development Flow</h2>
-<p>Before commit:</p>
+<p>Before committing:</p>
 <pre><code class="language-bash">git add .
-git commit -m "your message"
-</code></pre>
-<p>Lefthook run automatically. If check fail, commit rejected. Fix issue, commit again.</p>
+git commit -m "your message"</code></pre>
+<p>Lefthook runs automatically. If any check fails, the commit is rejected. Fix the issue and commit again.</p>
 <hr>
 <h2>Troubleshooting</h2>
-<p>Lefthook not running:</p>
-<pre><code class="language-bash">npx lefthook install
-</code></pre>
+<p>If Lefthook is not running on commit:</p>
+<pre><code class="language-bash">npx lefthook install</code></pre>
 <p>Skip hooks temporarily (emergency only):</p>
-<pre><code class="language-bash">git commit --no-verify -m "message"
-</code></pre>
+<pre><code class="language-bash">git commit --no-verify -m "message"</code></pre>
 <hr>
 <h2>Configuration</h2>
-<p>Config file: <code>lefthook.yml</code>.</p>
-<p>Add new checks example:</p>
+<p>The configuration lives in <code>lefthook.yml</code> at the project root. Here is an example with frontend and backend checks:</p>
 <pre><code class="language-yaml">pre-commit:
- jobs:
- backend-test:
- root: backend/
- run: go test ./...
- frontend-lint:
- root: customer/
- run: npm run lint
-</code></pre>
-<p>Run <code>npx lefthook install</code> after change.</p>
+  jobs:
+    backend-test:
+      root: backend/
+      run: go test ./...
+    frontend-lint:
+      root: customer/
+      run: npm run lint</code></pre>
+<p>After changing <code>lefthook.yml</code>, run <code>npx lefthook install</code> to sync the hooks.</p>
 <hr>
-<h2>Team Rule</h2>
-<p>All developers must install Lefthook before contribute. Do not commit code with failing tests, lint errors, broken builds, format issues.</p>
-<p>Commit <code>package.json</code>, <code>package-lock.json</code>, <code>lefthook.yml</code> to Git. Do NOT commit <code>.git/hooks</code>. Other devs clone and run <code>npm install</code> then <code>npx lefthook install</code>.</p>
+<h2>Team Setup</h2>
+<p>All developers must install Lefthook before contributing. Commit <code>package.json</code>, <code>package-lock.json</code>, and <code>lefthook.yml</code> to Git. Do not commit <code>.git/hooks</code>. When other developers clone the repository, they run <code>npm install</code> and then <code>npx lefthook install</code> to get the same hooks.</p>
 
  <section class="related-articles">
  <h2>Related Articles</h2>
  <ul>
  <li><a href="advanced-git-strategies.html">Advanced Git Strategies</a></li>
- <li><a href="git-bisect-process-to-debug-issue.html">Git Bisect Process to Debug Issue</a></li>
- <li><a href="git-stash-notes.html">Git Stash Notes</a></li>
+ <li><a href="git-bisect-process-to-debug-issue.html">Git Bisect: Finding the Commit That Broke Your Code</a></li>
+ <li><a href="git-stash-notes.html">Git Stash: A Practical Guide</a></li>
  </ul>
  </section>
  <!-- related-articles -->

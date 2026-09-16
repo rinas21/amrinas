@@ -146,44 +146,84 @@
  </header>
 
  <article class="blog-post-container">
- <h1>Step-by-Step Guide to Installing Katalon Studio</h1>
+ <h1>Installing Katalon Studio on Ubuntu</h1>
  <div class="post-meta">
- <span class="post-meta-item">By 
+ <span class="post-meta-item">By
  <a href="../pages/about.html">A.M. Rinas</a></span>
- <span class="post-meta-item">Published 
+ <span class="post-meta-item">Published
  <time datetime="2026-02-13">February 13, 2026</time></span>
- <span class="post-meta-item">Category: 
+ <span class="post-meta-item">Category:
  <a href="../pages/blog.html">DevOps</a></span>
  <span class="post-meta-item">5 min read</span>
  </div>
  <!-- post-meta -->
 
+<p>Katalon Studio is a test automation framework that covers web, API, mobile, and desktop testing. It bundles test recording, script editing, and execution into a single IDE built on Eclipse. This guide covers installation on Ubuntu and creating your first web test.</p>
 
-<p>Katalon Studio is a powerful tool for automating web, API, and mobile testing. In this guide, we&#39;ll walk you through the installation process and show you how to create your first test case for a web application.</p>
-<h3>Step 1: Download Katalon Studio</h3>
-<p>Start by downloading the latest version of Katalon Studio from the official website. Choose the version that suits your operating system.</p>
-<h3>Step 2: Extract and Run the Application</h3>
-<p>Once the download is complete, extract the contents of the downloaded file. Inside the extracted folder, locate the <code>katalon.sh</code> file (for Linux users) and run it to launch Katalon Studio:</p>
-<pre><code class="language-bash">./katalon
-</code></pre>
-<p>If you&#39;re on Windows or macOS, simply follow the installation instructions for your platform.</p>
-<h3>Step 3: Open a New Project</h3>
-<p>After launching Katalon Studio, create a new project by selecting <strong>File</strong> → <strong>New</strong> → <strong>Project</strong>. Give your project a name and choose the appropriate location for saving it.</p>
-<h3>Step 4: Start Recording a Web Test</h3>
-<p>With your new project open, click on the <strong>Record Web</strong> button located in the toolbar. A new window will pop up, allowing you to enter the URL of the web page you want to test. Enter the desired URL and click <strong>OK</strong> to start the recording session.</p>
-<h3>Step 5: Create and Record a Test Case</h3>
-<p>As Katalon Studio records your actions, interact with the web page by performing the steps you want to automate (e.g., filling out forms, clicking buttons). Katalon will capture these actions and create a test case automatically.</p>
-<p>Once you&#39;re done, click the <strong>Stop</strong> button in the recording window to save your test case.</p>
-<h3>Step 6: Run Your Test Case</h3>
-<p>After saving the test case, you can run it to verify that everything works as expected. Simply select the test case from the test explorer, right-click on it, and choose <strong>Run</strong> → <strong>Chrome</strong> (or another browser of your choice).</p>
-<p>Katalon Studio will execute the test case by interacting with the browser, replicating your recorded actions.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Ubuntu 20.04+ (or similar Linux distribution)</li>
+<li>Java JDK 8 or 11 (Katalon bundles its own JRE, but some plugins need system Java)</li>
+<li>Google Chrome or Mozilla Firefox for web testing</li>
+</ul>
+
+<h2>Step 1: Download Katalon Studio</h2>
+<p>Download the Linux version from the <a href="https://katalon.com/download" target="_blank" rel="noopener noreferrer">Katalon Studio download page</a>. You need a free Katalon account to access the download.</p>
+
+<h2>Step 2: Extract and Launch</h2>
+<pre><code class="language-bash"># Extract to /opt (system-wide) or your home directory
+sudo tar -xzf katalon_studio_linux_*.tar.gz -C /opt/
+
+# Launch Katalon
+/opt/katalon_studio/katalon</code></pre>
+<p>On first launch, Katalon asks you to sign in with your Katalon account and activates a free license for personal use.</p>
+
+<h2>Step 3: Create a Project</h2>
+<p>Go to <strong>File → New → Katalon Project</strong>. Name your project and choose a directory. The project structure will include:</p>
+<ul>
+<li><code>Test Cases/</code> — your test scripts</li>
+<li><code>Object Repository/</code> — UI element definitions</li>
+<li><code>Test Suites/</code> — grouped test runs</li>
+<li><code>Profiles/</code> — environment-specific configurations</li>
+</ul>
+
+<h2>Step 4: Record Your First Web Test</h2>
+<ol>
+<li>Click <strong>Record Web</strong> in the toolbar.</li>
+<li>Enter the target URL and select a browser.</li>
+<li>Interact with the page — Katalon records your clicks, inputs, and navigations.</li>
+<li>Click <strong>Stop</strong> when done. Katalon generates a test case with Web UI keywords.</li>
+</ol>
+
+<h2>Step 5: Understand the Generated Script</h2>
+<p>Katalon uses a Groovy-based scripting language with built-in keywords. A typical recorded test looks like this:</p>
+<pre><code class="language-groovy">import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+WebUI.openBrowser('https://example.com/login')
+WebUI.setText(findTestObject('Page_Login/input_Username'), 'testuser')
+WebUI.setText(findTestObject('Page_Login/input_Password'), 'password123')
+WebUI.click(findTestObject('Page_Login/button_Login'))
+WebUI.verifyElementVisible(findTestObject('Page_Dashboard/header_Welcome'))</code></pre>
+
+<h2>Step 6: Run the Test</h2>
+<p>Select the test case in the Test Explorer, right-click, and choose <strong>Run → Chrome</strong>. Katalon opens the browser and executes each step, reporting pass/fail for each action.</p>
+
+<h2>Step 7: View Results</h2>
+<p>After execution, the <strong>Log Viewer</strong> shows each step with timestamps and screenshots on failure. The <strong>Report</strong> folder in your project directory contains HTML reports for each run.</p>
+
+<h2>Common Issues</h2>
+<ul>
+<li><strong>"katalon: command not found"</strong> — Make sure the extracted directory path is correct and the file is executable: <code>chmod +x katalon</code>.</li>
+<li><strong>Browser does not launch</strong> — Install the matching WebDriver. Katalon usually manages this automatically, but if it fails, download ChromeDriver manually and place it in the Katalon <code>configuration</code> folder.</li>
+<li><strong>Out of memory</strong> — Increase the JVM heap in <code>katalon.ini</code>: change <code>-Xmx1024m</code> to <code>-Xmx4096m</code>.</li>
+</ul>
 
  <section class="related-articles">
  <h2>Related Articles</h2>
  <ul>
  <li><a href="postman-ubunut.html">How to Install Postman via Binary Tarball on Ubuntu</a></li>
- <li><a href="flutter-installation-notes.html">Flutter Installation Notes</a></li>
- <li><a href="python-virtual-environment-setup-guide-ubuntulinux.html">Python Virtual Environment Setup Guide (Ubuntu/Linux)</a></li>
+ <li><a href="debugging-401-error.html">I Spent Hours Debugging a 401 Error. The Problem Wasn't Authentication</a></li>
+ <li><a href="how-i-debug-complex-user-flows-by-tracing-dependencies.html">How I Debug Complex User Flows by Tracing Dependencies</a></li>
  </ul>
  </section>
  <!-- related-articles -->

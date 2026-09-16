@@ -146,42 +146,101 @@
  </header>
 
  <article class="blog-post-container">
- <h1>How to Create a Docker Network</h1>
+ <h1>Creating Docker Networks for Container Communication</h1>
  <div class="post-meta">
- <span class="post-meta-item">By 
+ <span class="post-meta-item">By
  <a href="../pages/about.html">A.M. Rinas</a></span>
- <span class="post-meta-item">Published 
+ <span class="post-meta-item">Published
  <time datetime="2026-03-05">March 5, 2026</time></span>
- <span class="post-meta-item">Category: 
+ <span class="post-meta-item">Category:
  <a href="../pages/blog.html">DevOps</a></span>
  <span class="post-meta-item">5 min read</span>
  </div>
  <!-- post-meta -->
 
+<p>When containers run on the same Docker host, they need a way to find and talk to each other. Docker networks provide exactly that — an isolated communication layer where containers can reach each other by name instead of by IP address. Without a custom network, containers on the default bridge can only communicate by IP, which breaks when containers restart and get new IPs.</p>
 
-<p>Creating a Docker network allows containers to communicate with each other while isolating them from external traffic. This is particularly useful for managing services that need to interact within a defined network. Follow these steps to create a Docker network:</p>
-<h3>Step 1: Open Your Terminal</h3>
-<p>Access your terminal or command prompt where Docker is installed.</p>
-<h3>Step 2: Create a Docker Network</h3>
-<p>Use the following command to create a new Docker network:</p>
-<pre><code class="language-bash">docker network create your_network_name
-</code></pre>
-<p>Replace <code>your_network_name</code> with a name that makes sense for your application.</p>
-<h3>Step 3: Verify the Network Creation</h3>
-<p>You can verify that the network was created successfully by listing all Docker networks:</p>
-<pre><code class="language-bash">docker network ls
-</code></pre>
-<h3>Step 4: Connect Containers to the Network</h3>
-<p>When you run a container, you can connect it to the created network using the <code>--network</code> option:</p>
-<pre><code class="language-bash">docker run -d --name your_container_name --network your_network_name your_image_name
-</code></pre>
-<p>Replace <code>your_container_name</code> with the desired name for your container, and <code>your_image_name</code> with the name of the Docker image you wish to run.</p>
-<h3>Step 5: Testing Connectivity</h3>
-<p>To test if containers are communicating properly within the network, you can run a shell inside one of the containers and ping another container:</p>
-<pre><code class="language-bash">docker exec -it your_container_name /bin/bash
-ping other_container_name
-</code></pre>
-<p>This will confirm that the containers are able to see each other through the Docker network.</p>
+<h2>Why Use Custom Docker Networks?</h2>
+<ul>
+<li><strong>DNS resolution:</strong> Containers on a custom network can ping each other by container name. The default bridge network does not provide this.</li>
+<li><strong>Isolation:</strong> Only containers explicitly connected to a network can communicate through it. This keeps unrelated services separated.</li>
+<li><strong>Portability:</strong> Compose files and scripts can reference container names instead of hardcoding IPs.</li>
+</ul>
+
+<h2>Step 1: Create a Docker Network</h2>
+<pre><code class="language-bash">docker network create app-network</code></pre>
+<p>This creates a bridge network (the default driver). You can verify it exists:</p>
+<pre><code class="language-bash">docker network ls</code></pre>
+<p>You will see your new network listed alongside the default networks (<code>bridge</code>, <code>host</code>, <code>none</code>).</p>
+
+<h2>Step 2: Run Containers on the Network</h2>
+<p>Start two containers on the same network. Here is a practical example with a Node.js app and a PostgreSQL database:</p>
+<pre><code class="language-bash"># Start a PostgreSQL database on the app-network
+docker run -d --name app-db --network app-network \
+  -e POSTGRES_PASSWORD=secret \
+  postgres:16
+
+# Start a Node.js app on the same network
+docker run -d --name app-server --network app-network \
+  -p 3000:3000 \
+  my-node-app:latest</code></pre>
+<p>Both containers are now on <code>app-network</code>. The Node.js app can connect to the database using <code>app-db</code> as the hostname — no IP address needed.</p>
+
+<h2>Step 3: Test Connectivity</h2>
+<p>Exec into one container and ping the other by name:</p>
+<pre><code class="language-bash">docker exec -it app-server /bin/bash
+ping app-db</code></pre>
+<p>If the ping succeeds, DNS resolution is working. Your application can now use <code>app-db</code> as the database host in its connection string.</p>
+
+<h2>Step 4: Inspect a Network</h2>
+<p>To see which containers are connected to a network and their assigned IPs:</p>
+<pre><code class="language-bash">docker network inspect app-network</code></pre>
+<p>This outputs the network configuration including the subnet, gateway, and all connected containers with their IP addresses.</p>
+
+<h2>Step 5: Connect and Disconnect Running Containers</h2>
+<p>You can add a running container to a network without restarting it:</p>
+<pre><code class="language-bash"># Connect a running container to a new network
+docker network connect app-network some-existing-container
+
+# Disconnect a container from a network
+docker network disconnect app-network some-existing-container</code></pre>
+<p>This is useful when you need to temporarily give a container access to another network for debugging.</p>
+
+<h2>Network Drivers</h2>
+<table>
+<thead>
+<tr><th>Driver</th><th>Use Case</th></tr>
+</thead>
+<tbody>
+<tr><td><code>bridge</code></td><td>Default. Containers on the same host communicate over an internal network.</td></tr>
+<tr><td><code>host</code></td><td>Container shares the host's network stack. No isolation, but no port mapping overhead.</td></tr>
+<tr><td><code>overlay</code></td><td>Multi-host networking for Docker Swarm or Kubernetes. Containers on different hosts communicate.</td></tr>
+<tr><td><code>none</code></td><td>No networking. The container is completely isolated.</td></tr>
+</tbody>
+</table>
+
+<h2>Common Mistakes</h2>
+<ul>
+<li><strong>Using the default bridge:</strong> New users often skip creating a custom network. The default bridge does not support DNS resolution between containers — always create a custom network for multi-container setups.</li>
+<li><strong>Hardcoding IPs:</strong> Do not hardcode container IPs in your application config. Use container names and let Docker's DNS handle resolution.</li>
+<li><strong>Forgetting the network in docker run:</strong> If you create a network but forget <code>--network</code> when running containers, they will land on the default bridge and cannot resolve each other by name.</li>
+</ul>
+
+<h2>Practical Example: App + Database + Cache</h2>
+<pre><code class="language-bash"># Create the network
+docker network create backend
+
+# Start PostgreSQL
+docker run -d --name db --network backend \
+  -e POSTGRES_PASSWORD=secret postgres:16
+
+# Start Redis
+docker run -d --name cache --network backend redis:7
+
+# Start the app — connects to both db and cache by name
+docker run -d --name app --network backend \
+  -p 3000:3000 my-app:latest</code></pre>
+<p>Your application code can now connect to the database at <code>db:5432</code> and the cache at <code>cache:6379</code>.</p>
 
  <section class="related-articles">
  <h2>Related Articles</h2>

@@ -166,7 +166,7 @@
 <hr>
 <h2><strong>Solution: Setting Up SSH Authentication for GitHub</strong></h2>
 <h3><strong>Step 1: Generate a New SSH Key for GitHub</strong></h3>
-<pre><code class="language-bash">ssh-keygen -t ed25519 -C &quot;mohomadrinas00@gmail.com&quot;
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C "your-email@example.com"
 </code></pre>
 <ul>
 <li>When prompted, enter the filename as:<pre><code>github_id_ed25519
@@ -191,7 +191,7 @@ ssh-add ~/.ssh/github_id_ed25519
 <pre><code class="language-bash">ssh-add -l
 </code></pre>
 <p>Expected output:</p>
-<pre><code>256 SHA256:BPhKMXxFF94wo3VJW2UbjsuxwDpFuI4DtDAns4cVIoc mohomadrinas00@gmail.com (ED25519)
+<pre><code>256 SHA256:BPhKMXxFF94wo3VJW2UbjsuxwDpFuI4DtDAns4cVIoc your-email@example.com (ED25519)
 </code></pre>
 <hr>
 <h3><strong>Step 4: Configure SSH for GitHub</strong></h3>

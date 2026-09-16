@@ -6,73 +6,45 @@
     <meta name="author" content="A.M. Rinas">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <!-- SEO Meta Tags for Google AdSense -->
- 
- 
- 
+ <title>locate Command Cheat Sheet</title>
+ <meta name="description" content="A practical cheat sheet for the Linux locate command: installation, usage, regex patterns, common problems, and how it compares to find.">
  <link rel="canonical" href="https://rinas.tech/blogs/locate-command-cheat-sheet.html">
+ <meta name="robots" content="index, follow, max-image-preview:large">
  <meta property="article:published_time" content="2026-06-21T00:00:00+00:00">
  <meta property="article:modified_time" content="2026-06-21T00:00:00+00:00">
  <meta property="article:section" content="Tech">
  <meta property="article:author" content="https://rinas.tech/pages/about.html">
  <meta property="og:site_name" content="A.M. Rinas Blog">
- 
- <!-- Open Graph for Facebook/LinkedIn -->
- 
- 
- 
+
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="locate Command Cheat Sheet">
+ <meta property="og:description" content="A practical cheat sheet for the Linux locate command: installation, usage, regex patterns, common problems, and how it compares to find.">
  <meta property="og:url" content="https://rinas.tech/blogs/locate-command-cheat-sheet.html">
  <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
- 
- <!-- Twitter Cards -->
- 
- 
- 
- 
- <!-- Google Structured Data (JSON-LD) for Rich Results -->
+
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="locate Command Cheat Sheet">
+ <meta name="twitter:description" content="A practical cheat sheet for the Linux locate command: installation, usage, regex patterns, common problems, and how it compares to find.">
+ <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
- 
+
  <link rel="stylesheet" href="../css/style.css">
  <link rel="stylesheet" href="../css/cyber-theme.css">
  <link rel="stylesheet" href="../css/blog.css">
  <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+ <link rel="stylesheet" href="../css/theme-switcher.css">
 
-<link rel="stylesheet" href="../css/theme-switcher.css">
-
- <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
-
- <!-- JSON-LD Schemas -->
-
-
- <!-- SEO Meta Tags -->
- <title>`locate` Command Cheat Sheet</title>
- <meta name="description" content="The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).">
- <link rel="canonical" href="https://rinas.tech/blogs/locate-command-cheat-sheet.html">
- <meta name="robots" content="index, follow, max-image-preview:large">
- 
- <!-- Open Graph -->
- <meta property="og:type" content="article">
- <meta property="og:title" content="`locate` Command Cheat Sheet">
- <meta property="og:description" content="The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).">
- <meta property="og:url" content="https://rinas.tech/blogs/locate-command-cheat-sheet.html">
- <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
- 
- <!-- Twitter -->
- <meta name="twitter:card" content="summary_large_image">
- <meta name="twitter:title" content="`locate` Command Cheat Sheet">
- <meta name="twitter:description" content="The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).">
- <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
-
- <!-- JSON-LD Schemas -->
  <script type="application/ld+json">
  {
  "@context": "https://schema.org",
  "@type": "BlogPosting",
- "headline": "`locate` Command Cheat Sheet",
- "description": "The locate command is used to quickly search for files and directories on your system by querying a prebuilt database (updated with updatedb).",
+ "headline": "locate Command Cheat Sheet",
+ "description": "A practical cheat sheet for the Linux locate command: installation, usage, regex patterns, common problems, and how it compares to find.",
  "image": "https://rinas.tech/img/100blog.jpg",
  "author": {
  "@type": "Person",
@@ -94,7 +66,7 @@
  }
  }
  </script>
- 
+
  <script type="application/ld+json">
  {
  "@context": "https://schema.org",
@@ -115,7 +87,7 @@
  {
  "@type": "ListItem",
  "position": 3,
- "name": " `locate` Command Cheat Sheet",
+ "name": "locate Command Cheat Sheet",
  "item": "https://rinas.tech/blogs/locate-command-cheat-sheet.html"
  }
  ]
@@ -125,7 +97,6 @@
  crossorigin="anonymous"></script>
 </head>
 <body>
- <!-- Mohomad Rinas -->
  <!-- ===== NAVBAR ===== -->
  <header class="header">
  <a href="../index.html" class="logo">
@@ -143,84 +114,230 @@
  </header>
 
  <article class="blog-post-container">
-<h1> <code>locate</code> Command Cheat Sheet</h1>
+ <h1><code>locate</code> Command Cheat Sheet</h1>
  <div class="post-meta">
- <span class="post-meta-item">By 
+ <span class="post-meta-item">By
  <a href="../pages/about.html">A.M. Rinas</a></span>
- <span class="post-meta-item">Published 
+ <span class="post-meta-item">Published
  <time datetime="2026-06-21">June 21, 2026</time></span>
- <span class="post-meta-item">Category: 
+ <span class="post-meta-item">Category:
  <a href="../pages/blog.html">Tech</a></span>
  <span class="post-meta-item">4 min read</span>
  </div>
  <!-- post-meta -->
 
-<p>
+ <p>
  <code>locate</code> is the fastest way to find a file by name on Linux — it searches a prebuilt index
  instead of scanning the disk, so results come back in milliseconds even on huge filesystems. The trade-off
  is freshness: the index is only as current as the last <code>updatedb</code> run. This cheat sheet covers
  installation, everyday usage, regex patterns, and the problems that make people think locate is broken.
  </p>
 
-<h2> What is <code>locate</code>?</h2>
-<p>The <code>locate</code> command queries a database of file paths (usually <code>/var/lib/mlocate/mlocate.db</code>) that is rebuilt regularly by <code>updatedb</code> — on most systems a cron job or systemd timer runs it daily.</p>
-<hr>
-<h2> Installation (if not already installed)</h2>
-<pre><code class="language-bash">sudo apt update
+ <h2>What is <code>locate</code>?</h2>
+ <p>The <code>locate</code> command queries a database of file paths (usually <code>/var/lib/mlocate/mlocate.db</code>) that is rebuilt regularly by <code>updatedb</code> — on most systems a cron job or systemd timer runs it daily.</p>
+ <hr>
+ <h2>Installation (if not already installed)</h2>
+ <pre><code class="language-bash">sudo apt update
 sudo apt install mlocate -y
-sudo updatedb # Manually update the database
-</code></pre>
-<hr>
-<h2> Basic Usage</h2>
-<h3> Search for a File or Directory</h3>
-<p><code>locate</code> matches the pattern against any part of the full path — no wildcards needed:</p>
-<pre><code class="language-bash">locate filename
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">locate python
-</code></pre>
-<p>Typical output (every path containing "python"):</p>
-<pre><code>/usr/bin/python3
+sudo updatedb # Manually update the database</code></pre>
+ <hr>
+ <h2>Basic Usage</h2>
+ <h3>Search for a File or Directory</h3>
+ <p><code>locate</code> matches the pattern against any part of the full path — no wildcards needed:</p>
+ <pre><code class="language-bash">locate filename</code></pre>
+ <p>Example:</p>
+ <pre><code class="language-bash">locate python</code></pre>
+ <p>Typical output (every path containing "python"):</p>
+ <pre><code>/usr/bin/python3
 /usr/bin/python3.12
 /usr/lib/python3.12/...
 /home/rinas/projects/python-app/main.py</code></pre>
-<hr>
-<h2> Common Options</h2>
-<table>
-<thead>
-<tr><th>Option</th><th>Meaning</th></tr>
-</thead>
-<tbody>
-<tr><td><code>-i</code></td><td>Case-insensitive search</td></tr>
-<tr><td><code>-c</code></td><td>Print only the number of matches</td></tr>
-<tr><td><code>-n N</code></td><td>Limit output to the first N matches</td></tr>
-<tr><td><code>-b</code></td><td>Match only the basename, not the full path</td></tr>
-<tr><td><code>--regex</code></td><td>Treat the pattern as a regular expression</td></tr>
-<tr><td><code>-e</code></td><td>Only show paths that still exist</td></tr>
-</tbody>
-</table>
-<hr>
-<h2> Pattern Matching &amp; Filtering</h2>
-<h3> Match Full or Partial File Names</h3>
-<pre><code class="language-bash">locate myfile.txt
+ <hr>
+ <h2>Common Options</h2>
+ <table>
+ <thead>
+ <tr><th>Option</th><th>Meaning</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><code>-i</code></td><td>Case-insensitive search</td></tr>
+ <tr><td><code>-c</code></td><td>Print only the number of matches</td></tr>
+ <tr><td><code>-n N</code></td><td>Limit output to the first N matches</td></tr>
+ <tr><td><code>-b</code></td><td>Match only the basename, not the full path</td></tr>
+ <tr><td><code>--regex</code></td><td>Treat the pattern as a regular expression</td></tr>
+ <tr><td><code>-e</code></td><td>Only show paths that still exist</td></tr>
+ </tbody>
+ </table>
+ <hr>
+ <h2>Pattern Matching &amp; Filtering</h2>
+ <h3>Match Full or Partial File Names</h3>
+ <pre><code class="language-bash">locate myfile.txt
 locate myfile
-locate /etc/hosts
-</code></pre>
-<h3> Use Wildcards (with <code>--regex</code> or pipe to <code>grep</code>)</h3>
-<p><code>locate</code> by default supports substring matching.</p>
-<p>For more powerful matching, use:</p>
-<pre><code class="language-bash">locate --regex 'pattern'
-</code></pre>
-<p>Or filter with <code>grep</code>:</p>
-<pre><code class="language-bash">locate python | grep '/bin/'
-</code></pre>
-<p>
-For example, to find every <code>.log</code> file whose path ends with <code>app.log</code>, a regex keeps
-the result list short:
-</p>
-<pre><code class="language-bash">locate --regex 'app\.log
+locate /etc/hosts</code></pre>
+ <h3>Use Wildcards (with <code>--regex</code> or pipe to <code>grep</code>)</h3>
+ <p><code>locate</code> by default supports substring matching.</p>
+ <p>For more powerful matching, use:</p>
+ <pre><code class="language-bash">locate --regex 'pattern'</code></pre>
+ <p>Or filter with <code>grep</code>:</p>
+ <pre><code class="language-bash">locate python | grep '/bin/'</code></pre>
+ <p>
+ For example, to find every <code>.log</code> file whose path ends with <code>app.log</code>, a regex keeps
+ the result list short:
+ </p>
+ <pre><code class="language-bash">locate --regex 'app\.log$'</code></pre>
+ <hr>
+ <h2>Common Use Cases</h2>
+ <table>
+ <thead>
+ <tr>
+ <th>Use Case</th>
+ <th>Command</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Find all Python binaries</td>
+ <td><code>locate python</code></td>
+ </tr>
+ <tr>
+ <td>Find all <code>.conf</code> files</td>
+ <td><code>locate .conf</code></td>
+ </tr>
+ <tr>
+ <td>Find files in <code>/etc</code> directory</td>
+ <td><code>locate /etc</code></td>
+ </tr>
+ <tr>
+ <td>Find VS Code files</td>
+ <td><code>locate code</code></td>
+ </tr>
+ <tr>
+ <td>Show only <code>.sh</code> scripts</td>
+ <td><code>locate --regex '\.sh$'</code></td>
+ </tr>
+ <tr>
+ <td>Use regex to match <code>.log</code> files</td>
+ <td><code>locate --regex '\.log$'</code></td>
+ </tr>
+ <tr>
+ <td>Case-insensitive search for a config</td>
+ <td><code>locate -i nginx.conf</code></td>
+ </tr>
+ <tr>
+ <td>Count how many matches exist</td>
+ <td><code>locate -c python</code></td>
+ </tr>
+ </tbody>
+ </table>
+ <hr>
+ <h2>Update the Database</h2>
+ <pre><code class="language-bash">sudo updatedb</code></pre>
+ <p>Use this after adding/removing files to make sure <code>locate</code> returns fresh results. The daily
+ systemd timer or cron job does this automatically, but there is always a delay between a file appearing and
+ it being indexed.</p>
+ <hr>
+ <h2>Common Problems</h2>
 
- 
+ <h3>Problem 1: "locate: command not found"</h3>
+ <p><strong>Cause:</strong> mlocate/plocate is not installed.</p>
+ <p><strong>Solution:</strong> <code>sudo apt install plocate</code> (modern default) or
+ <code>mlocate</code>, then <code>sudo updatedb</code>.</p>
+
+ <h3>Problem 2: newly created files are not found</h3>
+ <p><strong>Cause:</strong> the database has not been refreshed since the file was created. This is the most
+ common "locate is broken" moment — it is working as designed.</p>
+ <p><strong>Solution:</strong> <code>sudo updatedb</code>, then retry. For files that must be findable
+ immediately, use <code>find</code>.</p>
+
+ <h3>Problem 3: results include files that no longer exist</h3>
+ <p><strong>Cause:</strong> the database lists paths from before they were deleted.</p>
+ <p><strong>Solution:</strong> rerun <code>sudo updatedb</code>, or use <code>locate -e</code> to filter to
+ existing paths only.</p>
+
+ <h3>Problem 4: "updatedb: command not found"</h3>
+ <p><strong>Cause:</strong> on Debian-based systems <code>updatedb</code> is provided by
+ <code>mlocate</code> or <code>plocate</code>, which may not be installed.</p>
+ <p><strong>Solution:</strong> install the package first: <code>sudo apt install plocate</code>.</p>
+ <hr>
+ <h2>Tips</h2>
+ <ul>
+ <li><code>locate</code> is faster than <code>find</code>, but can be outdated until the next <code>updatedb</code> run.</li>
+ <li>For real-time search, use <code>find</code>.</li>
+ <li>Combine with <code>grep</code> or <code>--regex</code> when the plain substring match returns too much.</li>
+ <li>Use <code>-n 20</code> to cap long result lists.</li>
+ </ul>
+ <hr>
+ <h2><code>locate</code> vs <code>find</code></h2>
+ <table>
+ <thead>
+ <tr>
+ <th>Feature</th>
+ <th><code>locate</code></th>
+ <th><code>find</code></th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Speed</td>
+ <td>Very fast</td>
+ <td>Slower (scans in real time)</td>
+ </tr>
+ <tr>
+ <td>Up-to-date</td>
+ <td>No (needs <code>updatedb</code>)</td>
+ <td>Yes</td>
+ </tr>
+ <tr>
+ <td>Supports filters</td>
+ <td>Needs <code>grep</code> or <code>--regex</code></td>
+ <td>Yes (<code>-name</code>, <code>-type</code>, etc.)</td>
+ </tr>
+ <tr>
+ <td>Filters by type/size/date</td>
+ <td>No</td>
+ <td>Yes</td>
+ </tr>
+ <tr>
+ <td>Needs permissions</td>
+ <td>Index is readable by all users</td>
+ <td>Respects filesystem permissions</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <h2>Conclusion</h2>
+ <p>
+ Use <code>locate</code> when you know part of a name and want the answer instantly; use <code>find</code>
+ when you need current results or complex filters. The two are complementary, and remembering to run
+ <code>sudo updatedb</code> after creating files keeps <code>locate</code> trustworthy.
+ </p>
+
+ <hr>
+
+ <section class="related-articles">
+ <h2>Related Articles</h2>
+ <ul>
+ <li><a href="basic-linux.html">Essential Linux System Commands</a></li>
+ <li><a href="linux-maven-git-cheat-sheet.html">Linux, Maven and Git Cheat Sheet</a></li>
+ <li><a href="file-permissions-in-linux-owner-group-others.html">File Permissions in Linux</a></li>
+ <li><a href="sed-command-and-its-different-usages.html">sed Command and Its Different Usages</a></li>
+ </ul>
+ </section>
+ <!-- related-articles -->
+
+ <section class="author-box" itemscope itemtype="https://schema.org/Person">
+ <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+ <div class="author-box-body">
+ <h2 itemprop="name">Written by A.M. Rinas</h2>
+ <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the
+ <a href="../pages/about.html">about page</a>, or say hi through the
+ <a href="../pages/contact.html">contact page</a> and
+ <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+ </div>
+ </section>
+ <!-- author-box -->
+ <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+ </article>
+
  <!-- ===== FOOTER ===== -->
  <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
  <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
@@ -230,11 +347,6 @@ the result list short:
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
  <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
  <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
- 
-
-
-
-
  </nav>
  <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
  </footer>
@@ -256,7 +368,7 @@ the result list short:
  currentTheme = themeId;
  document.documentElement.setAttribute("data-theme", themeId);
  localStorage.setItem('selected_theme', themeId);
- 
+
  document.querySelectorAll(".theme-btn").forEach(btn => {
  if (btn.dataset.theme === themeId) {
  btn.classList.add("active");
@@ -272,11 +384,11 @@ the result list short:
  btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
  btn.dataset.theme = theme.id;
  btn.title = theme.label;
- 
+
  const bgPreview = document.createElement("div");
  bgPreview.className = "theme-bg-preview";
  bgPreview.style.backgroundColor = theme.bg;
- 
+
  const accentPreview = document.createElement("div");
  accentPreview.className = "theme-accent-preview";
  accentPreview.style.backgroundColor = theme.color;
@@ -287,291 +399,6 @@ the result list short:
  btn.addEventListener("click", () => setTheme(theme.id));
  container.appendChild(btn);
  });
- // Initialize on load
- setTheme(currentTheme);
- }
- </script>
-
-</body>
-</html>
-</code></pre>
-<hr>
-<h2> Common Use Cases</h2>
-<table>
-<thead>
-<tr>
-<th>Use Case</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Find all Python binaries</td>
-<td><code>locate python</code></td>
-</tr>
-<tr>
-<td>Find all <code>.conf</code> files</td>
-<td><code>locate .conf</code></td>
-</tr>
-<tr>
-<td>Find files in <code>/etc</code> directory</td>
-<td><code>locate /etc</code></td>
-</tr>
-<tr>
-<td>Find VS Code files</td>
-<td><code>locate code</code></td>
-</tr>
-<tr>
-<td>Show only <code>.sh</code> scripts</td>
-<td><code>locate .sh$</code></td>
-</tr>
-<tr>
-<td>Use regex to match <code>.log</code> files</td>
-<td><code>locate --regex '\.log
-
- 
- <!-- ===== FOOTER ===== -->
- <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
- <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
- <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
- <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
- <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
- <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
- </nav>
- <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
- </footer>
-
- <!-- Theme Switcher UI -->
- <div class="theme-switcher-container" id="themeSwitcher"></div>
-
- <script>
- const THEMES = [
- { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
- { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
- { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
- ];
-
- let currentTheme = localStorage.getItem('selected_theme') || "default";
- const container = document.getElementById("themeSwitcher");
-
- function setTheme(themeId) {
- currentTheme = themeId;
- document.documentElement.setAttribute("data-theme", themeId);
- localStorage.setItem('selected_theme', themeId);
- 
- document.querySelectorAll(".theme-btn").forEach(btn => {
- if (btn.dataset.theme === themeId) {
- btn.classList.add("active");
- } else {
- btn.classList.remove("active");
- }
- });
- }
-
- if(container) {
- THEMES.forEach(theme => {
- const btn = document.createElement("button");
- btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
- btn.dataset.theme = theme.id;
- btn.title = theme.label;
- 
- const bgPreview = document.createElement("div");
- bgPreview.className = "theme-bg-preview";
- bgPreview.style.backgroundColor = theme.bg;
- 
- const accentPreview = document.createElement("div");
- accentPreview.className = "theme-accent-preview";
- accentPreview.style.backgroundColor = theme.color;
-
- btn.appendChild(bgPreview);
- btn.appendChild(accentPreview);
-
- btn.addEventListener("click", () => setTheme(theme.id));
- container.appendChild(btn);
- });
- // Initialize on load
- setTheme(currentTheme);
- }
- </script>
-
-</body>
-</html></code></td>
-</tr>
-<tr>
-<td>Case-insensitive search for a config</td>
-<td><code>locate -i nginx.conf</code></td>
-</tr>
-<tr>
-<td>Count how many matches exist</td>
-<td><code>locate -c python</code></td>
-</tr>
-</tbody></table>
-<hr>
-<h2> Update the Database</h2>
-<pre><code class="language-bash">sudo updatedb
-</code></pre>
-<p>Use this after adding/removing files to make sure <code>locate</code> returns fresh results. The daily
-systemd timer or cron job does this automatically, but there is always a delay between a file appearing and
-it being indexed.</p>
-<hr>
-<h2> Common Problems</h2>
-
-<h3>Problem 1: "locate: command not found"</h3>
-<p><strong>Cause:</strong> mlocate/plocate is not installed.</p>
-<p><strong>Solution:</strong> <code>sudo apt install plocate</code> (modern default) or
-<code>mlocate</code>, then <code>sudo updatedb</code>.</p>
-
-<h3>Problem 2: newly created files are not found</h3>
-<p><strong>Cause:</strong> the database has not been refreshed since the file was created. This is the most
-common "locate is broken" moment — it is working as designed.</p>
-<p><strong>Solution:</strong> <code>sudo updatedb</code>, then retry. For files that must be findable
-immediately, use <code>find</code>.</p>
-
-<h3>Problem 3: results include files that no longer exist</h3>
-<p><strong>Cause:</strong> the database lists paths from before they were deleted.</p>
-<p><strong>Solution:</strong> rerun <code>sudo updatedb</code>, or use <code>locate -e</code> to filter to
-existing paths only.</p>
-
-<h3>Problem 4: "updatedb: command not found"</h3>
-<p><strong>Cause:</strong> on Debian-based systems <code>updatedb</code> is provided by
-<code>mlocate</code> or <code>plocate</code>, which may not be installed.</p>
-<p><strong>Solution:</strong> install the package first: <code>sudo apt install plocate</code>.</p>
-<hr>
-<h2> Tips</h2>
-<ul>
-<li><code>locate</code> is faster than <code>find</code>, but can be outdated until the next <code>updatedb</code> run.</li>
-<li>For real-time search, use <code>find</code>.</li>
-<li>Combine with <code>grep</code> or <code>--regex</code> when the plain substring match returns too much.</li>
-<li>Use <code>-n 20</code> to cap long result lists.</li>
-</ul>
-<hr>
-<h2> <code>locate</code> vs <code>find</code></h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th><code>locate</code></th>
-<th><code>find</code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Speed</td>
-<td>Very fast</td>
-<td>Slower (scans in real time)</td>
-</tr>
-<tr>
-<td>Up-to-date</td>
-<td>No (needs <code>updatedb</code>)</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Supports filters</td>
-<td>Needs <code>grep</code> or <code>--regex</code></td>
-<td>Yes (<code>-name</code>, <code>-type</code>, etc.)</td>
-</tr>
-<tr>
-<td>Filters by type/size/date</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Needs permissions</td>
-<td>Index is readable by all users</td>
-<td>Respects filesystem permissions</td>
-</tr>
-</tbody></table>
-
-<h2> Conclusion</h2>
-<p>
-Use <code>locate</code> when you know part of a name and want the answer instantly; use <code>find</code>
-when you need current results or complex filters. The two are complementary, and remembering to run
-<code>sudo updatedb</code> after creating files keeps <code>locate</code> trustworthy.
-</p>
-
-<h2> Related Articles</h2>
-<ul>
-<li><a href="basic-linux.html">Basic Linux Commands</a></li>
-<li><a href="linux-maven-git-cheat-sheet.html">Linux, Maven and Git Cheat Sheet</a></li>
-<li><a href="file-permissions-in-linux-owner-group-others.html">File Permissions in Linux</a></li>
-<li><a href="sed-command-and-its-different-usages.html">The sed Command and Its Different Usages</a></li>
-</ul>
-
- <section class="author-box" itemscope itemtype="https://schema.org/Person">
- <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
- <div class="author-box-body">
- <h2 itemprop="name">Written by A.M. Rinas</h2>
- <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the 
- <a href="../pages/about.html">about page</a>, or say hi through the 
- <a href="../pages/contact.html">contact page</a> and 
- <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
- </div>
- </section>
- <!-- author-box -->
- <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
- </article>
-
- 
- <!-- ===== FOOTER ===== -->
- <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
- <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
- <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
- <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
- <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
- <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
- <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
- </nav>
- <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
- </footer>
-
- <!-- Theme Switcher UI -->
- <div class="theme-switcher-container" id="themeSwitcher"></div>
-
- <script>
- const THEMES = [
- { id: "default", label: "Studio Light", color: "#4338CA", bg: "#FFFFFF" },
- { id: "dark", label: "Neo Dark", color: "#CCFF00", bg: "#111111" },
- { id: "luxury", label: "Cyber Pink", color: "#FF0055", bg: "#05050A" }
- ];
-
- let currentTheme = localStorage.getItem('selected_theme') || "default";
- const container = document.getElementById("themeSwitcher");
-
- function setTheme(themeId) {
- currentTheme = themeId;
- document.documentElement.setAttribute("data-theme", themeId);
- localStorage.setItem('selected_theme', themeId);
- 
- document.querySelectorAll(".theme-btn").forEach(btn => {
- if (btn.dataset.theme === themeId) {
- btn.classList.add("active");
- } else {
- btn.classList.remove("active");
- }
- });
- }
-
- if(container) {
- THEMES.forEach(theme => {
- const btn = document.createElement("button");
- btn.className = `theme-btn ${theme.id === currentTheme ? 'active' : ''}`;
- btn.dataset.theme = theme.id;
- btn.title = theme.label;
- 
- const bgPreview = document.createElement("div");
- bgPreview.className = "theme-bg-preview";
- bgPreview.style.backgroundColor = theme.bg;
- 
- const accentPreview = document.createElement("div");
- accentPreview.className = "theme-accent-preview";
- accentPreview.style.backgroundColor = theme.color;
-
- btn.appendChild(bgPreview);
- btn.appendChild(accentPreview);
-
- btn.addEventListener("click", () => setTheme(theme.id));
- container.appendChild(btn);
- });
- // Initialize on load
  setTheme(currentTheme);
  }
  </script>
