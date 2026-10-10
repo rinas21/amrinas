@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why a High AI Benchmark Score Does Not Guarantee a Good Model</title>
+    <meta name="description" content="Benchmark design, data leakage, answer bias, metrics, validation, recommendations: Examples of misleading scores, contamination risks, class imbalance and reproducible testing.">
+    <meta property="article:published_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:section" content="AI">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why a High AI Benchmark Score Does Not Guarantee a Good Model">
+    <meta property="og:description" content="Benchmark design, data leakage, answer bias, metrics, validation, recommendations: Examples of misleading scores, contamination risks, class imbalance and reproducible testing.">
+    <meta property="og:url" content="https://rinas.tech/blogs/why-a-high-ai-benchmark-score-does-not-guarantee-a-good-model.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Why a High AI Benchmark Score Does Not Guarantee a Good Model">
+    <meta name="twitter:description" content="Benchmark design, data leakage, answer bias, metrics, validation, recommendations: Examples of misleading scores, contamination risks, class imbalance and reproducible testing.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/why-a-high-ai-benchmark-score-does-not-guarantee-a-good-model.html"
+      },
+      "headline": "Why a High AI Benchmark Score Does Not Guarantee a Good Model",
+      "description": "Benchmark design, data leakage, answer bias, metrics, validation, recommendations: Examples of misleading scores, contamination risks, class imbalance and reproducible testing.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Why a High AI Benchmark Score Does Not Guarantee a Good Model</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-10-10">October 10, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">AI</a></span>
+            <span class="post-meta-item">7 min read</span>
+        </div>
+        
+        <p>A model can score 90% on a benchmark yet fail in real-world deployment. This post examines the common pitfalls in benchmark design that lead to misleading scores, and provides recommendations for more reliable evaluation.</p>
+
+        <h2>Benchmark Design</h2>
+        <p>Benchmarks are only as good as their design. Common issues include: overly narrow domain coverage, lack of diversity in question styles, and metrics that don't align with real-world utility. A benchmark that measures memorization rather than reasoning will produce high scores for models that haven't actually learned the material.</p>
+
+        <h2>Data Leakage</h2>
+        <p>Data leakage occurs when information from the test set appears in the training data. This is especially prevalent with publicly available benchmarks like MMLU, where model developers may have inadvertently included the data in their training corpus. Leakage inflates scores and gives a false sense of model capability.</p>
+
+        <h2>Answer Bias</h2>
+        <p>Benchmarks may exhibit answer bias, where certain answer choices are more likely to be correct due to test construction. For example, in multiple-choice questions, the "E) None of the above" option may be correct less frequently than other options, skewing performance metrics if not accounted for.</p>
+
+        <h2>Metrics & Validation</h2>
+        <p>Accuracy alone is insufficient. Precision, recall, F1-score, and area under the ROC curve should be reported across demographic and domain subgroups. Cross-validation with separate train/validation/test splits is essential to detect leakage and ensure generalization.</p>
+
+        <h2>Recommendations</h2>
+        <ul>
+            <li>Audit training data for benchmark questions before model training.</li>
+            <li>Report per-category and per-difficulty scores, not just overall accuracy.</li>
+            <li>Use hold-out benchmarks that were never seen during any stage of development.</li>
+            <li>Include human evaluation alongside automated metrics.</li>
+        </ul>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="building-a-rag-based-academic-assistant.html">Building a RAG-Based Academic Assistant</a></li>
+                <li><a href="why-evaluating-ai-in-sinhala-is-harder-than-in-english.html">Why Evaluating AI in Sinhala Is Harder Than in English</a></li>
+                <li><a href="evaluating-open-weight-models-on-sinhala-multiple-choice-questions.html">Evaluating Open-Weight Models on Sinhala Multiple-Choice Questions</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&nbsp;© 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>

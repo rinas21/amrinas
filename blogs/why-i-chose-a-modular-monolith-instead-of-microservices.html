@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I Chose a Modular Monolith Instead of Microservices</title>
+    <meta name="description" content="Architecture options, module boundaries, transactions, deployment, comparison, trade-offs: Architecture diagram, coupling, operational complexity and when microservices might become justified.">
+    <meta property="article:published_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:section" content="Tech">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why I Chose a Modular Monolith Instead of Microservices">
+    <meta property="og:description" content="Architecture options, module boundaries, transactions, deployment, comparison, trade-offs: Architecture diagram, coupling, operational complexity and when microservices might become justified.">
+    <meta property="og:url" content="https://rinas.tech/blogs/why-i-chose-a-modular-monolith-instead-of-microservices.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Why I Chose a Modular Monolith Instead of Microservices">
+    <meta name="twitter:description" content="Architecture options, module boundaries, transactions, deployment, comparison, trade-offs: Architecture diagram, coupling, operational complexity and when microservices might become justified.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/why-i-chose-a-modular-monolith-instead-of-microservices.html"
+      },
+      "headline": "Why I Chose a Modular Monolith Instead of Microservices",
+      "description": "Architecture options, module boundaries, transactions, deployment, comparison, trade-offs: Architecture diagram, coupling, operational complexity and when microservices might become justified.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Why I Chose a Modular Monolith Instead of Microservices</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-10-10">October 10, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">Tech</a></span>
+            <span class="post-meta-item">5 min read</span>
+        </div>
+        
+        <p>Architectural decisions shape long-term maintainability. After evaluating both patterns, I chose a modular monolith over microservices for this project. This post explains the reasoning, module boundaries, transaction management, deployment differences, and the trade-offs that led to this decision.</p>
+
+        <h2>Architecture Options</h2>
+        <p>A modular monolith organizes the codebase into distinct modules with clear boundaries, all running within a single process and deployment. Microservices split the system into independently deployable services communicating over the network. The choice impacts data consistency, deployment complexity, and team organization.</p>
+
+        <h2>Module Boundaries</h2>
+        <p>The monolith is divided into modules by domain: <code>core</code>, <code>billing</code>, <code>reporting</code>, and <code>auth</code>. Each module owns its tables and business logic. Module boundaries are enforced through package-level access control and well-defined interfaces. This provides the organization benefits of microservices without the operational overhead.</p>
+
+        <h2>Transactions & Data Consistency</h2>
+        < Spring Boot's single-process nature means ACID transactions are straightforward. The Java Persistence API (JPA) manages transaction boundaries with @Transactional. In a microservices architecture, distributed transactions require two-phase commit or eventual consistency patterns, which add latency and complexity. The modular monolith avoids these trade-offs entirely.</p>
+
+        <h2>Deployment</h2>
+        <p>A single JAR artifact contains the entire application. Deployment is a simple <code>java -jar</code> command or a Docker image with one layer. Microservices require CI/CD pipelines for each service, service discovery, load balancing, and orchestration (Kubernetes or similar). The monolith reduces deployment time from minutes to seconds.</p>
+
+        <h2>Comparison & Trade-offs</h2>
+        <ul>
+            <li><strong>Operational complexity:</strong> Monolith wins. One process to monitor, one set of logs, one database connection pool.</li>
+            <li><strong>Team autonomy:</strong> Microservices allow independent team ownership, but this project's small team benefited from shared context in a monolith.</li>
+            <li><strong>Scaling:</strong> Microservices allow per-service scaling, but the monolith scales vertically well and can be horizontally scaled behind a load balancer if needed.</li>
+            <li><strong>Data consistency:</strong> Monolith offers strong consistency with ease; microservices require saga patterns or eventual consistency.</li>
+        </ul>
+
+        <p>Microservices might become justified if the team grows beyond 15 engineers, if different domains require completely different tech stacks, or if independent scaling of a specific bounded context is critical.</p>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="when-does-kafka-make-sense-in-a-spring-boot-application.html">When Does Kafka Make Sense in a Spring Boot Application?</a></li>
+                <li><a href="running-a-full-stack-backend-environment-with-containers.html">Running a Full-Stack Backend Environment with Containers</a></li>
+                <li><a href="building-portfolio-projects-beyond-crud-operations.html">Building Portfolio Projects Beyond CRUD Operations</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>

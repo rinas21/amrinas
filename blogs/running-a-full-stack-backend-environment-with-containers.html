@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running a Full-Stack Backend Environment with Containers</title>
+    <meta name="description" content="Prerequisites, Compose setup, service configuration, networking, troubleshooting, verification: PostgreSQL, Kafka, Redis, environment variables, health checks, terminal commands and common errors.">
+    <meta property="article:published_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:section" content="DevOps">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Running a Full-Stack Backend Environment with Containers">
+    <meta property="og:description" content="Prerequisites, Compose setup, service configuration, networking, troubleshooting, verification: PostgreSQL, Kafka, Redis, environment variables, health checks, terminal commands and common errors.">
+    <meta property="og:url" content="https://rinas.tech/blogs/running-a-full-stack-backend-environment-with-containers.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Running a Full-Stack Backend Environment with Containers">
+    <meta name="twitter:description" content="Prerequisites, Compose setup, service configuration, networking, troubleshooting, verification: PostgreSQL, Kafka, Redis, environment variables, health checks, terminal commands and common errors.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/running-a-full-stack-backend-environment-with-containers.html"
+      },
+      "headline": "Running a Full-Stack Backend Environment with Containers",
+      "description": "Prerequisites, Compose setup, service configuration, networking, troubleshooting, verification: PostgreSQL, Kafka, Redis, environment variables, health checks, terminal commands and common errors.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Running a Full-Stack Backend Environment with Containers</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-10-10">October 10, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">DevOps</a></span>
+            <span class="post-meta-item">7 min read</span>
+        </div>
+        
+        <p>Running a full-stack backend locally often requires multiple services: a PostgreSQL database, a Kafka message broker, a Redis cache, and the application itself. Docker Compose simplifies this setup by defining all services in a single YAML file.</p>
+
+        <h2>Prerequisites & Compose Setup</h2>
+        <p>Docker and Docker Compose must be installed. The <code>docker-compose.yml</code> file defines four services: <code>postgres</code>, <code>kafka</code>, <code>redis</code>, and <code>app</code>. Each service uses the latest official image and configures ports, environment variables, and volume mounts for persistence.</p>
+
+        <h2>Service Configuration</h2>
+        <p>The PostgreSQL service sets <code>POSTGRES_DB</code>, <code>POSTGRES_USER</code>, and <code>POSTGRES_PASSWORD</code> via environment variables. Kafka is configured with <code>KAFKA_ADVERTISED_LISTENERS</code> and <code>KAFKA_ZOOKEEPER_CONNECT</code> for the KRaft mode or traditional ZooKeeper setup. Redis exposes its default port 6379.</p>
+
+        <h2>Networking</h2>
+        <p>All services share a Docker network named <code>backend-net</code>, enabling communication by service name. The application service depends on <code>postgres</code>, <code>kafka</code>, and <code>redis</code> using <code>depends_on</code>, ensuring they start before the app.</p>
+
+        <h2>Environment Variables</h2>
+        <p>The application reads configuration from <code>application.yml</code> using Spring's <code>${}</code> placeholders. Example: <code>spring.datasource.url=jdbc:postgresql://postgres:5432/mydb</code>. Docker Compose exports all environment variables defined in the file, making it easy to swap configurations between environments.</</p>
+
+        <h2>Health Checks & Verification</h2>
+        <p>Each service defines a health check. PostgreSQL uses <code>pg_isready</code>, Kafka checks broker connectivity, and Redis uses <code>redis-cli ping</code>. The application endpoint <code>/actuator/health</code> aggregates these checks. Terminal commands for verification:</p>
+        <pre><code>docker compose up</code>
+        <code>docker compose ps</code>
+        <code>docker compose exec postgres pg_isready</code>
+        <code>docker compose exec redis redis-cli ping</code></code>
+
+        <h2>Common Errors</h2>
+        <ul>
+            <li><code>port already in use</code> - resolve by removing conflicting containers or adjusting port mappings.</li>
+            <li><code>Kafka broker not available</code> - verify Zookeeper connectivity and network settings.</li>
+            <li><code>Redis connection refused</code> - ensure the Redis service is running and not paused.</li>
+        </ul>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="when-does-kafka-make-sense-in-a-spring-boot-application.html">When Does Kafka Make Sense in a Spring Boot Application?</a></li>
+                <li><a href="building-a-revenue-intelligence-platform-with-java-and-spring-boot.html">Building a Revenue Intelligence Platform with Java and Spring Boot</a></li>
+                <li><a href="building-portfolio-projects-beyond-crud-operations.html">Building Portfolio Projects Beyond CRUD Operations</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>

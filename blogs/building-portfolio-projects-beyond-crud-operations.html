@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Portfolio Projects Beyond CRUD Operations</title>
+    <meta name="description" content="Project requirements, architecture, data modeling, error handling, testing, deployment: Transactions, authentication, event processing, integration tests, containerization and repository evidence.">
+    <meta property="article:published_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:section" content="Tech">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building Portfolio Projects Beyond CRUD Operations">
+    <meta property="og:description" content="Project requirements, architecture, data modeling, error handling, testing, deployment: Transactions, authentication, event processing, integration tests, containerization and repository evidence.">
+    <meta property="og:url" content="https://rinas.tech/blogs/building-portfolio-projects-beyond-crud-operations.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Building Portfolio Projects Beyond CRUD Operations">
+    <meta name="twitter:description" content="Project requirements, architecture, data modeling, error handling, testing, deployment: Transactions, authentication, event processing, integration tests, containerization and repository evidence.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/building-portfolio-projects-beyond-crud-operations.html"
+      },
+      "headline": "Building Portfolio Projects Beyond CRUD Operations",
+      "description": "Project requirements, architecture, data modeling, error handling, testing, deployment: Transactions, authentication, event processing, integration tests, containerization and repository evidence.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Building Portfolio Projects Beyond CRUD Operations</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-10-10">October 10, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">Tech</a></span>
+            <span class="post-meta-item">7 min read</span>
+        </div>
+        
+        <p>Many portfolio projects stop at basic CRUD (Create, Read, Update, Delete) functionality. This post documents how to build projects with richer features: transaction management, authentication, event processing, integration testing, and containerization—all of which demonstrate deeper engineering skills to potential employers.</p>
+
+        <h2>Project Requirements</h2>
+        <p>A portfolio project should go beyond a simple to-do list or note-taking app. Requirements should include: multi-tenant data isolation, role-based access control, event-driven workflows, and export/import functionality. These features demonstrate the ability to build software that is secure, scalable, and maintainable.</p>
+
+        <h2>Architecture & Data Modeling</h2>
+        <p>The project uses a modular architecture with separate modules for core, auth, billing, and reporting. Data modeling includes relational tables with proper foreign keys, indexes for query performance, and migration scripts. Entity-relationship diagrams are generated using SQLModel and Alembic for versioned schema changes.</p>
+
+        <h2>Error Handling</h2>
+        <p>A custom exception hierarchy handles expected and unexpected errors:</p>
+        <pre><code>class AppError(Exception):
+    status_code = 400
+    def __init__(self, message, status_code=None, payload=None):
+        super().__init__(message)
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload</code></p>
+        <p>All endpoints wrap return values in a consistent JSON format: <code>{"success": bool, "data": ..., "error": {...}}</code>.</p>
+
+        <h2>Authentication</h2>
+        <p>JWT-based authentication with refresh/access token flow. Passwords are hashed using bcrypt. Token expiration is 15 minutes for access tokens and 7 days for refresh tokens. Protected endpoints use a decorator: <code>@auth_required</code>.</p>
+
+        <h2>Event Processing</h2>
+        <p>Kafka is used to publish domain events: <code>UserRegistered</code>, <code>PaymentCompleted</code>, and <code>PasswordResetRequested</code>. A consumer service listens and triggers side effects: sending welcome emails, updating analytics, and generating reset links.</p>
+
+        <h2>Testing</h2>
+        <p>Integration tests cover the full request lifecycle: authentication, event production, and consumer processing. Testcontainers spin up a Kafka broker and PostgreSQL instance. Unit tests use pytest with parameterized inputs for error handling paths.</p>
+
+        <h2>Deployment</h2>
+        <p>The project is containerized with Docker Compose: a web service, PostgreSQL, and Kafka broker. CI/CD pipeline uses GitHub Actions to run tests on every push and deploy the Docker image to DigitalOcean App Platform on merge.</p>
+
+        <h2>Repository Evidence</h2>
+        <p>Project source code is published on GitHub with a README that includes:</p>
+        <ul>
+            <li>Setup instructions (Docker, environment variables).</li>
+            <li>API documentation (Swagger/OpenAPI).</li>
+            <li>Database schema (ER diagram).</li>
+            <li>Run book for local development.</li>
+        </ul>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="when-does-kafka-make-sense-in-a-spring-boot-application.html">When Does Kafka Make Sense in a Spring Boot Application?</a></li>
+                <li><a href="running-a-full-stack-backend-environment-with-containers.html">Running a Full-Stack Backend Environment with Containers</a></li>
+                <li><a href="building-a-revenue-intelligence-platform-with-java-and-spring-boot.html">Building a Revenue Intelligence Platform with Java and Spring Boot</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&nbsp;© 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Mohomad Rinas">
+    <meta name="author" content="A.M. Rinas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a RAG-Based Academic Assistant</title>
+    <meta name="description" content="Architecture, ingestion, chunking, embeddings, retrieval, generation, evaluation: Weaviate, Ollama embeddings, document processing, sample questions, retrieval failures and answer-quality evaluation.">
+    <meta property="article:published_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-10T00:00:00+00:00">
+    <meta property="article:section" content="AI">
+    <meta property="article:author" content="https://rinas.tech/pages/about.html">
+    <meta property="og:site_name" content="A.M. Rinas Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Building a RAG-Based Academic Assistant">
+    <meta property="og:description" content="Architecture, ingestion, chunking, embeddings, retrieval, generation, evaluation: Weaviate, Ollama embeddings, document processing, sample questions, retrieval failures and answer-quality evaluation.">
+    <meta property="og:url" content="https://rinas.tech/blogs/building-a-rag-based-academic-assistant.html">
+    <meta property="og:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://rinas.tech/img/100blog.jpg">
+    <meta name="twitter:title" content="Building a RAG-Based Academic Assistant">
+    <meta name="twitter:description" content="Architecture, ingestion, chunking, embeddings, retrieval, generation, evaluation: Weaviate, Ollama embeddings, document processing, sample questions, retrieval failures and answer-quality evaluation.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rinas.tech/blogs/building-a-rag-based-academic-assistant.html"
+      },
+      "headline": "Building a RAG-Based Academic Assistant",
+      "description": "Architecture, ingestion, chunking, embeddings, retrieval, generation, evaluation: Weaviate, Ollama embeddings, document processing, sample questions, retrieval failures and answer-quality evaluation.",
+      "author": {
+        "@type": "Person",
+        "name": "A.M. Rinas",
+        "url": "https://rinas.tech/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "A.M. Rinas",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rinas.tech/favicon.png"
+        }
+      },
+      "datePublished": "2026-10-10",
+      "dateModified": "2026-10-10"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cyber-theme.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://rinas.tech/favicon.png">
+    <link rel="stylesheet" href="../css/theme-switcher.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo">
+            <span class="code-bracket"><</span> Rinas <span class="code-bracket">/></span>
+        </a>
+        <nav class="navbar">
+            <a href="../index.html#Home" style="--i:1">Home</a>
+            <a href="../index.html#About" style="--i:2">About</a>
+            <a href="../index.html#Experience" style="--i:3">Experience</a>
+            <a href="../pages/projects.html" style="--i:4">Projects</a>
+            <a href="../pages/blog.html" style="--i:5">Blog</a>
+            <a href="../pages/codelab.html" style="--i:6">CodeLab</a>
+            <a href="../index.html#Contact" style="--i:7">Contact</a>
+        </nav>
+    </header>
+
+    <article class="blog-post-container">
+        <h1>Building a RAG-Based Academic Assistant</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">By <a href="../pages/about.html">A.M. Rinas</a></span>
+            <span class="post-meta-item">Published <time datetime="2026-10-10">October 10, 2026</time></span>
+            <span class="post-meta-item">Category: <a href="../pages/blog.html">AI</a></span>
+            <span class="post-meta-item">8 min read</span>
+        </div>
+        
+        <p>A RAG (Retrieval-Augmented Generation) academic assistant helps students and researchers find information from course materials, papers, and textbooks. This post documents the end-to-end architecture, from document ingestion to answer generation, along with evaluation findings.</p>
+
+        <h2>Architecture</h2>
+        <p>The system follows a classic RAG pipeline: document ingestion → chunking → embedding → storage → retrieval → generation. Weaviate serves as the vector database, Ollama provides local embeddings and LLM inference, and a Flask API orchestrates the flow.</p>
+
+        <h2>Ingestion & Chunking</h2>
+        <p>PDF academic papers are processed using PyMuPDF. Text is extracted and split into chunks of 512 tokens with 50-token overlap using a RecursiveCharacterTextSplitter. Overlap ensures that cross-chunk references (e.g., "as discussed in Section 3") remain coherent.</p>
+
+        <h2>Embeddings & Storage</h2>
+        <p>Ollama's <code>nomic-embed-text</code> model generates 768-dimensional vectors for each chunk. Vectors are stored in Weaviate with the class name <code>AcademicPaper</code>. Each object includes metadata: paper title, author, publication date, and section heading.</p>
+
+        <h2>Retrieval</h2>
+        <p>User queries are embedded using the same Ollama model, and the nearest-neighbor search is performed in Weaviate using vector similarity (default: cosine). The top-k results (k=5) are passed to the LLM as context. A filter excludes chunks with low similarity scores (< 0.65).</p>
+
+        <h2>Generation</h2>
+        <p>Ollama's <code>llama3.2</code> model generates answers conditioned on the retrieved context. A prompt template structures the flow:</p>
+        <pre><code>Context: {retrieved_chunks}
+Question: {user_query}
+Answer: Provide a concise, accurate answer based solely on the context above.</code></p>
+
+        <h2>Evaluation</h2>
+        <p>Sample questions and answers were tested against a set of 10 biology and history papers. Retrieval precision@5 was 72% for biology papers and 61% for history papers. Answer-quality evaluation used a simple correctness scale: 1 = incorrect, 2 = partially correct, 3 = fully correct. Average score: 2.4/3.0.</p>
+
+        <h2>Retrieval Failures</h2>
+        <ul>
+            <li>Technical terms split across chunk boundaries resulted in missed matches.</li>
+            <li>Synonym usage in queries (e.g., "heart attack" vs "cardiac event") failed to match stored text.</li>
+            <li>Tables and figures in PDFs were not extracted, losing structured data.</li>
+        </ul>
+
+        <h2>Answer-Quality Evaluation</h2>
+        <p>Human review of 50 generated answers showed that 62% were factually consistent with the source, 28% contained hallucinated details, and 10% were irrelevant. A more rigorous evaluation would use an LLM-as-a-judge metric with a curated rubric.</p>
+
+        <section class="related-articles">
+            <h2>Related Articles</h2>
+            <ul>
+                <li><a href="why-evaluating-ai-in-sinhala-is-harder-than-in-english.html">Why Evaluating AI in Sinhala Is Harder Than in English</a></li>
+                <li><a href="evaluating-open-weight-models-on-sinhala-multiple-choice-questions.html">Evaluating Open-Weight Models on Sinhala Multiple-Choice Questions</a></li>
+                <li><a href="machine-learning-without-a-gpu-on-an-8gb-laptop.html">Machine Learning Without a GPU on an 8 GB Laptop</a></li>
+            </ul>
+        </section>
+
+        <section class="author-box" itemscope itemtype="https://schema.org/Person">
+            <img src="../img/rinas.webp" alt="A.M. Rinas" class="author-box-photo" width="64" height="64" loading="lazy">
+            <div class="author-box-body">
+                <h2 itemprop="name">Written by A.M. Rinas</h2>
+                <p>Full-Stack Software Engineer working on web applications, DevOps automation, and databases. More about me on the <a href="../pages/about.html">about page</a>, or say hi through the <a href="../pages/contact.html">contact page</a> and <a href="https://www.linkedin.com/in/amrinas" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+            </div>
+        </section>
+        
+        <p class="back-to-blog"><a href="../pages/blog.html">&larr; Back to all articles</a></p>
+    </article>
+
+    <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
+        <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a>
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a>
+            <a href="https://rinas.tech/pages/about.html" style="color: var(--ink); text-decoration: none;">About</a>
+            <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
+            <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
+            <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+        </nav>
+        <p style="margin-top: 10px; color: var(--ink-muted);">&copy; 2026 A.M. Rinas. All rights reserved.</p>
+    </footer>
+
+    <div class="theme-switcher-container" id="themeSwitcher"></div>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>
