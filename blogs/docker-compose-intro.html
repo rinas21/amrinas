@@ -134,14 +134,13 @@
  </div>
  <!-- post-meta -->
 
- <p>
- Most applications I run are not a single container. There is the API, a database, sometimes a cache or a
- message broker, and a scheduler that seeds data. Managing those by hand with individual
- <code>docker run</code> commands is where mistakes happen — forgotten <code>--network</code> flags,
- mismatched passwords between services, and the eternal question of which container is on which port.
- Docker Compose fixes this by describing the whole stack in one YAML file and bringing it up with a single
- command.
- </p>
+<p>
+  Most applications consist of multiple services - an API, a database, a cache, a message broker, and
+  perhaps a scheduler. Managing these individually with <code>docker run</code> commands leads to
+  mistakes: forgotten network flags, mismatched passwords, and uncertainty about which container runs
+  on which port. Docker Compose solves this by describing the entire stack in a single YAML file and
+  bringing it up with one command, eliminating the guesswork of multi-container deployments.
+  </p>
 
  <h2>What Docker Compose Is</h2>
  <p>
