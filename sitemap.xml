@@ -73,6 +73,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://rinas.tech/blogs/how-i-audited-a-saas-application-and-found-16-dead-ui-elements.html</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -745,8 +751,116 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</loc>
-    <lastmod>2026-09-08</lastmod>
+    <loc>https://rinas.tech/blogs/building-a-revenue-intelligence-platform-with-java-and-spring-boot.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/when-does-kafka-make-sense-in-a-spring-boot-application.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/running-a-full-stack-backend-environment-with-containers.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/why-i-chose-a-modular-monolith-instead-of-microservices.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/evaluating-open-weight-models-on-sinhala-multiple-choice-questions.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/machine-learning-without-a-gpu-on-an-8gb-laptop.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/why-evaluating-ai-in-sinhala-is-harder-than-in-english.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/building-a-rag-based-academic-assistant.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/why-a-high-ai-benchmark-score-does-not-guarantee-a-good-model.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/why-ai-coding-agents-should-not-access-application-secrets-directly.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/protecting-api-keys-with-aes-gcm-and-runtime-injection.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/evaluating-an-ai-security-tool-without-unsupported-claims.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/starting-a-website-maintenance-business-without-becoming-a-web-agency.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/turning-a-website-audit-into-a-paid-service.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/building-portfolio-projects-beyond-crud-operations.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/java-backend-engineer-vs-ai-engineer-choosing-a-career-direction.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/building-a-research-profile-before-a-phd.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/can-sinhala-nlp-help-detect-scams-and-misinformation.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rinas.tech/blogs/learning-java-python-go-and-ai-at-the-same-time.html</loc>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

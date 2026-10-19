@@ -143,6 +143,17 @@
  </header>
 
  <article class="blog-post-container">
+ <h1>Working with UTF-16 Encoded Files in Linux</h1>
+ <div class="post-meta">
+ <span class="post-meta-item">By 
+ <a href="../pages/about.html">A.M. Rinas</a></span>
+ <span class="post-meta-item">Published 
+ <time datetime="2026-07-03">July 3, 2026</time></span>
+ <span class="post-meta-item">Category: 
+ <a href="../pages/blog.html">Tech</a></span>
+ <span class="post-meta-item">4 min read</span>
+ </div>
+ <!-- post-meta -->
 <h3>Issue: Working with UTF-16 Encoded Files in Linux</h3>
 <h4>Problem:</h4>
 <p>When trying to process a binary/encoded file (<code>app1_disk_old.log</code>), tools like <code>grep</code>, <code>strings</code>, and <code>less</code> don&#39;t return expected results. The file is identified as <strong>UTF-16 encoding (little-endian)</strong> with CRLF line terminators, causing issues when searching or processing with typical text-processing tools.</p>
@@ -213,6 +224,9 @@ iconv is a versatile tool for encoding conversion and is helpful when dealing wi
  <a href="https://rinas.tech/pages/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a>
  <a href="https://rinas.tech/pages/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
  <a href="https://rinas.tech/pages/terms.html" style="color: var(--ink); text-decoration: none;">Terms</a>
+ 
+ 
+ 
  
 
 

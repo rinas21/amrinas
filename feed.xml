@@ -8,6 +8,139 @@
     <language>en</language>
     <lastBuildDate>Mon, 7 Sep 2026 00:00:00 +0000</lastBuildDate>
     <item>
+      <title>Building a Revenue Intelligence Platform with Java and Spring Boot</title>
+      <link>https://rinas.tech/blogs/building-a-revenue-intelligence-platform-with-java-and-spring-boot.html</link>
+      <guid>https://rinas.tech/blogs/building-a-revenue-intelligence-platform-with-java-and-spring-boot.html</guid>
+      <description>Building a Revenue Intelligence platform with Java and Spring Boot: problem, requirements, architecture, database design, implementation, testing, and lessons learned.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>When Does Kafka Make Sense in a Spring Boot Application?</title>
+      <link>https://rinas.tech/blogs/when-does-kafka-make-sense-in-a-spring-boot-application.html</link>
+      <guid>https://rinas.tech/blogs/when-does-kafka-make-sense-in-a-spring-boot-application.html</guid>
+      <description>Synchronous vs asynchronous, Kafka basics, architecture, implementation, failure handling, trade-offs: order-created event, producer and consumer, event payload, retries, duplicate processing and whe…</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Running a Full-Stack Backend Environment with Containers</title>
+      <link>https://rinas.tech/blogs/running-a-full-stack-backend-environment-with-containers.html</link>
+      <guid>https://rinas.tech/blogs/running-a-full-stack-backend-environment-with-containers.html</guid>
+      <description>Prerequisites, Compose setup, service configuration, networking, troubleshooting, verification: PostgreSQL, Kafka, Redis, environment variables, health checks, terminal commands and common errors.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why I Chose a Modular Monolith Instead of Microservices</title>
+      <link>https://rinas.tech/blogs/why-i-chose-a-modular-monolith-instead-of-microservices.html</link>
+      <guid>https://rinas.tech/blogs/why-i-chose-a-modular-monolith-instead-of-microservices.html</guid>
+      <description>Architecture options, module boundaries, transactions, deployment, comparison, trade-offs: Architecture diagram, coupling, operational complexity and when microservices might become justified.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Evaluating Open-Weight Models on Sinhala Multiple-Choice Questions</title>
+      <link>https://rinas.tech/blogs/evaluating-open-weight-models-on-sinhala-multiple-choice-questions.html</link>
+      <guid>https://rinas.tech/blogs/evaluating-open-weight-models-on-sinhala-multiple-choice-questions.html</guid>
+      <description>Research question, dataset, model selection, baseline, evaluation, limitations, next steps: Sinhala MMLU categories, difficulty levels, inference constraints, accuracy, reproducibility and actual exp…</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Machine Learning Without a GPU on an 8 GB Laptop</title>
+      <link>https://rinas.tech/blogs/machine-learning-without-a-gpu-on-an-8gb-laptop.html</link>
+      <guid>https://rinas.tech/blogs/machine-learning-without-a-gpu-on-an-8gb-laptop.html</guid>
+      <description>Hardware limitations, environment setup, data preparation, cloud GPU workflow, memory optimization: Python examples, smoke tests, small experiments, Colab workflow and model-size trade-offs.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why Evaluating AI in Sinhala Is Harder Than in English</title>
+      <link>https://rinas.tech/blogs/why-evaluating-ai-in-sinhala-is-harder-than-in-english.html</link>
+      <guid>https://rinas.tech/blogs/why-evaluating-ai-in-sinhala-is-harder-than-in-english.html</guid>
+      <description>Low-resource languages, tokenization, data availability, benchmark quality, evaluation challenges: Sinhala text examples, Unicode handling, domain coverage and limitations of current evaluations.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building a RAG-Based Academic Assistant</title>
+      <link>https://rinas.tech/blogs/building-a-rag-based-academic-assistant.html</link>
+      <guid>https://rinas.tech/blogs/building-a-rag-based-academic-assistant.html</guid>
+      <description>Architecture, ingestion, chunking, embeddings, retrieval, generation, evaluation: Weaviate, Ollama embeddings, document processing, sample questions, retrieval failures and answer-quality evaluation.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why a High AI Benchmark Score Does Not Guarantee a Good Model</title>
+      <link>https://rinas.tech/blogs/why-a-high-ai-benchmark-score-does-not-guarantee-a-good-model.html</link>
+      <guid>https://rinas.tech/blogs/why-a-high-ai-benchmark-score-does-not-guarantee-a-good-model.html</guid>
+      <description>Benchmark design, data leakage, answer bias, metrics, validation, recommendations: Examples of misleading scores, contamination risks, class imbalance and reproducible testing.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why AI Coding Agents Should Not Access Application Secrets Directly</title>
+      <link>https://rinas.tech/blogs/why-ai-coding-agents-should-not-access-application-secrets-directly.html</link>
+      <guid>https://rinas.tech/blogs/why-ai-coding-agents-should-not-access-application-secrets-directly.html</guid>
+      <description>Threat model, agent permissions, secret exposure, proposed architecture, implementation, security tests: Secret exposure scenarios, least privilege, secret-management design and evidence from your se…</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Protecting API Keys with AES-GCM and Runtime Injection</title>
+      <link>https://rinas.tech/blogs/protecting-api-keys-with-aes-gcm-and-runtime-injection.html</link>
+      <guid>https://rinas.tech/blogs/protecting-api-keys-with-aes-gcm-and-runtime-injection.html</guid>
+      <description>Encryption, key management, encrypted storage, runtime decryption, testing, limitations: Data-flow diagram, authenticated encryption, nonce handling, key separation and secure logging.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Evaluating an AI Security Tool Without Unsupported Claims</title>
+      <link>https://rinas.tech/blogs/evaluating-an-ai-security-tool-without-unsupported-claims.html</link>
+      <guid>https://rinas.tech/blogs/evaluating-an-ai-security-tool-without-unsupported-claims.html</guid>
+      <description>Threat model, baseline, test cases, metrics, results, limitations, reproducibility: False positives, false negatives, latency, attack scenarios and measurable security criteria.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Starting a Website Maintenance Business Without Becoming a Web Agency</title>
+      <link>https://rinas.tech/blogs/starting-a-website-maintenance-business-without-becoming-a-web-agency.html</link>
+      <guid>https://rinas.tech/blogs/starting-a-website-maintenance-business-without-becoming-a-web-agency.html</guid>
+      <description>Business model, target customers, services, recurring maintenance, pricing, onboarding: Website audits, performance improvements, SEO checks, security maintenance, monthly deliverables and service bo…</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Turning a Website Audit into a Paid Service</title>
+      <link>https://rinas.tech/blogs/turning-a-website-audit-into-a-paid-service.html</link>
+      <guid>https://rinas.tech/blogs/turning-a-website-audit-into-a-paid-service.html</guid>
+      <description>Audit methodology, scoring, issue prioritization, sample report, pricing, outreach: Real performance bottlenecks, SEO issues, security headers, recommendations and before-and-after measurements.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building Portfolio Projects Beyond CRUD Operations</title>
+      <link>https://rinas.tech/blogs/building-portfolio-projects-beyond-crud-operations.html</link>
+      <guid>https://rinas.tech/blogs/building-portfolio-projects-beyond-crud-operations.html</guid>
+      <description>Project requirements, architecture, data modeling, error handling, testing, deployment: Transactions, authentication, event processing, integration tests, containerization and repository evidence.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Java Backend Engineer vs AI Engineer: Choosing a Career Direction</title>
+      <link>https://rinas.tech/blogs/java-backend-engineer-vs-ai-engineer-choosing-a-career-direction.html</link>
+      <guid>https://rinas.tech/blogs/java-backend-engineer-vs-ai-engineer-choosing-a-career-direction.html</guid>
+      <description>Role comparison, required skills, job descriptions, transferable skills, portfolio evidence, learning plan: Actual job requirements, technology comparisons, interview expectations and skill gaps.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Starting a Research Profile Before a PhD</title>
+      <link>https://rinas.tech/blogs/building-a-research-profile-before-a-phd.html</link>
+      <guid>https://rinas.tech/blogs/building-a-research-profile-before-a-phd.html</guid>
+      <description>Research gaps, paper reading, experiment design, writing, collaboration, academic profile: Literature matrix, research workflow, reproducibility checklist and responsible research outreach.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Can Sinhala NLP Help Detect Scams and Misinformation?</title>
+      <link>https://rinas.tech/blogs/can-sinhala-nlp-help-detect-scams-and-misinformation.html</link>
+      <guid>https://rinas.tech/blogs/can-sinhala-nlp-help-detect-scams-and-misinformation.html</guid>
+      <description>Problem definition, datasets, classification, labeling, evaluation, deployment risks: Sinhala message examples, precision, recall, false positives, privacy and human review.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Learning Java, Python, Go and AI at the Same Time</title>
+      <link>https://rinas.tech/blogs/learning-java-python-go-and-ai-at-the-same-time.html</link>
+      <guid>https://rinas.tech/blogs/learning-java-python-go-and-ai-at-the-same-time.html</guid>
+      <description>Learning priorities, context switching, project-led learning, weekly schedule, progress measurement: Realistic learning allocation, one primary project, measurable milestones and a retrospective.</description>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>How to Get Free AI Tokens Using FreeLLMAPI and Cline</title>
       <link>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</link>
       <guid>https://rinas.tech/blogs/how-to-get-free-ai-tokens-using-freellmapi-and-cline.html</guid>

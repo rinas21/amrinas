@@ -9,7 +9,7 @@ const footerHtml = `
     <footer class="footer" style="text-align: center; padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 14px;">
         <nav style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
             <a href="https://rinas.tech/" style="color: var(--ink); text-decoration: none;">Home</a> |
-            <a href="https://rinas.tech/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
+            <a href="https://rinas.tech/pages/blog.html" style="color: var(--ink); text-decoration: none;">Blog</a> |
             <a href="https://rinas.tech/about.html" style="color: var(--ink); text-decoration: none;">About</a> |
             <a href="https://rinas.tech/contact.html" style="color: var(--ink); text-decoration: none;">Contact</a> |
             <a href="https://rinas.tech/privacy.html" style="color: var(--ink); text-decoration: none;">Privacy</a>
